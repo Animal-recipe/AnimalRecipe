@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <body>
+    {% load static %}
+    <div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>1. 어떤 반려동물을 위한 요리인가요? </p>
+            <div>
+                <input type="radio" name="animal" value="all" autofocus="" > 모두
+                <input type="radio" name="animal" value="dog"> 강아지
+                <input type="radio" name="animal" value="cat"> 고양이
+                <input type="radio" name="animal" value="other"> 다른 동물
+                <input type="text" name="other_animal">
+            </div>
+            <p>2. 조리시간이 얼마나 걸리나요? </p>
+            <div>
+                <input type="radio" name="cooking_time" value="five" autofocus="" > 5분 이내
+                <input type="radio" name="cooking_time" value="ten"> 5분~10분
+                <input type="radio" name="cooking_time" value="twenty"> 10분~20분
+                <input type="radio" name="cooking_time" value="over"> 20분 이상
+            </div>
+            <p>3. 조리 난이도가 어떻게 되나요? </p>
+            <div>
+                <input type="radio" name="level" value="top" autofocus="" > 상
+                <input type="radio" name="level" value="middle"> 중
+                <input type="radio" name="level" value="bottom"> 하
+            </div>
+            <div>
+                <input type="text" name="title" placeholder="요리 이름을 입력해주세요">
+            </div>
+            <div>
+                <input type="textarea" name="summary" placeholder="간단히 요리를 설명해주세요.">
+            </div>
+            <div>
+                {{ image_formset.as_p }}
+                <p>완성된 요리는 총 3장까지 업로드 가능합니다.</p>
+            </div>
+            <div>
+                <span>요리의 재료를 빠짐없이 입력해주세요.</span>
+                <input type="text" name="count">
+                <span> 끼 분량 재료입니다.</span>
+            </div>
+            <div>
+                <p>요리 재료/ 재료 양(계량 단위)</p>
+                {{ ingredient_formset.as_p }}
+            </div>
+            <div>
+                <p>조리 방법을 순서대로 입력해 주세요.</p>
+                {{ step_formset.as_p }}
+            </div>
+            <input type="submit" value="올리기">
+         </form>
+    </div>
+</body>
+</html>

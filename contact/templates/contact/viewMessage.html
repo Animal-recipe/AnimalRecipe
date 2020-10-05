@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+    <body>
+
+        <p>
+            From: {{ message.sender.username }}
+        </p>
+
+        <p>
+            Message:
+        </p>
+        <p>
+            {{ message.content }}
+        </p>
+            {% for re in remessage %}
+            <div>
+                <p>
+                    From: {{ re.sender.username }}
+                </p>
+
+                <p>
+                    Message:
+                </p>
+                <p>
+                    {{ re.content }}
+                </p>
+            </div>
+            {% endfor %}
+         <div>
+             <h1>답장하기</h1>
+             <form method="POST" action="{% url 'create_remessage' message_id=message.id %}">
+                 {%csrf_token %}
+                 {{ form.as_p }}
+                 <input type="submit" value="보내기" class="comment_button">
+             </form>
+         </div>
+    </body>
+</html>

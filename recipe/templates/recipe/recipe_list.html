@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <body>
+    {% load static %}
+    <div>
+        {% if recipes %}
+            {% for item in recipes %}
+            <div onclick ="location.href='{% url 'detail_recipe' recipe_id=item.id %}'">
+                <p>{{ item.title }}</p>
+                <p>{{ item.summary }}</p>
+                <p>{{ item.animal }}</p>
+            </div>
+            <br>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</body>
+</html>
