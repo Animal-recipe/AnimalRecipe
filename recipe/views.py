@@ -38,7 +38,7 @@ def create(request):
         ingredient_formset = RecipeIngredientFormSet()
         step_formset = RecipeStepFormSet()
 
-    return render(request, 'recipe/recipe_create.html', {
+    return render(request, '../templates/recipe/recipe_create.html', {
         'image_formset': image_formset,
         'ingredient_formset': ingredient_formset,
         'step_formset': step_formset,
@@ -47,7 +47,7 @@ def create(request):
 def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipes = Recipe.objects.all()
 
-    return render(request, "recipe/recipe_list.html",
+    return render(request, "../templates/recipe/recipe_list.html",
                   {"recipes": recipes})
 
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
@@ -56,5 +56,5 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     ingredient_list = Recipe_Ingredient.objects.filter(recipe=recipe)
     step_list = Recipe_Step.objects.filter(recipe=recipe)
 
-    return render(request, "recipe/recipe_detail.html",
+    return render(request, "../templates/recipe/recipe_detail.html",
                   {"recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list})
