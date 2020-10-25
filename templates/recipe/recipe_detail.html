@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-    {% load static %}
-    <head>
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script type="text/javascript" src="{% static 'slick-1.8.1/slick/slick.min.js' %}"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'slick-1.8.1/slick/slick.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'slick-1.8.1/slick/slick-theme.css' %}"/>
-    </head>
-    <body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
         <div class="image_list"  style="">
         <!--           이미지 오류 수정.. ㅠㅠ,,  -->
             {% for img in img_list %}
@@ -67,5 +60,4 @@
 
             </div>
         </div>
-    </body>
-</html>
+{% endblock %}
