@@ -1,18 +1,191 @@
-<!DOCTYPE html>
-    <body>
-    {% load static %}
-    <div>
-        {% if recipes %}
-            {% for item in recipes %}
-            <div onclick ="location.href='{% url 'detail_recipe' recipe_id=item.id %}'">
-                <p>{{ item.title }}</p>
-                <p>{{ item.summary }}</p>
-                <p>{{ item.animal }}</p>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div style="
+width: 1920px;
+height: 757px;
+
+background: rgba(0, 0, 0, 0.5);
+border-radius: 0px 0px 80px 80px; overflow:hidden; padding-left:201px;">
+    <div style="margin-top:207px;
+width: 233px;
+height: 49px;
+
+background: #FFFFFF;
+border-radius: 16px;
+
+font-family: Noto Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 49px;
+text-align:center;
+color: #FD6B01;">
+        이번주 Hot 레시피
+    </div>
+    <!--    슬릭 들어가기~~   -->
+</div>
+    <div style=" margin-left:221px; display:inline-block;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 34px;
+line-height: 90px;
+
+color: #FFFFFF;
+width: 191px;
+height: 90px;
+text-align:center;
+
+background: #FF6B00;
+box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
+border-radius: 0px 0px 30px 30px;">
+        레시피
+    </div>
+<div style="float:right; margin-right:218px; height:290px;margin-top:60px; overflow:hidden;">
+    <div style="float:left;
+width: 409px;
+height: 126px;
+
+background: #FFFFFF;
+box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.1);
+border-radius: 20px;
+text-align:center;
+">
+        카테고리
+    </div>
+    <div style="float:left;margin-left:38px;  width: 409px;
+height: 126px;">
+        <div style="  margin-bottom:25px;
+width: 391px;
+height: 53px;
+
+background: #FFFFFF;
+box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+border-radius: 20px;">
+
+        </div>
+        <div style="display:inline-block;
+width: 186px;
+height: 53px;
+
+background: #FFFFFF;
+box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+border-radius: 20px;
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 53px;
+
+text-align: center;
+
+color: #686868;
+">
+        정렬 순서
+        </div>
+        <div style="display:inline-block; margin-left:15px;
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 53px;
+
+text-align: center;
+
+color: #FFFFFF;
+width: 186px;
+height: 53px;
+
+background: #FF6B00;
+box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+border-radius: 20px;">
+            <a href="{% url 'create_recipe' %}" style="color: #FFFFFF;">레시피 작성하기</a>
+        </div>
+    </div>
+</div>
+    <div style="margin-top:189px; padding-left:221px;">
+        {% if recipes_dict %}
+            {% for item, image in recipes_dict.items %}
+            <div style="
+width: 344px;
+height: 408px;
+
+background: #FFFFFF;
+box-shadow: 26px 20px 35px rgba(0, 0, 0, 0.1);
+border-radius: 27px;
+" onclick ="location.href='{% url 'detail_recipe' recipe_id=item.id %}'">
+                <img style="
+width: 344px;
+height: 251px;
+border-radius: 27px 27px 0px 0px;
+" src="{{ image }}" class="card-img-top" alt="사진">
+                <div style="padding-left:22px;">
+                    <p style="margin-top:24px;
+font-family: Roboto;
+font-style: normal;
+font-weight: 900;
+font-size: 16px;
+line-height: 19px;
+
+color: #000000;">{{ item.title }}</p>
+                    <div>
+                        <p style="float:left;
+width: 20px;
+height: 20px;
+margin-top:7px;
+border-radius: 27px;
+background: #C4C4C4;"></p><p style="margin-top:11px; margin-left:7px; display:inline-block;
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+height:20px;
+line-height:20xp;
+
+color: #686868;
+">{{ item.author }} 의 레시피</p>
+                    </div>
+                    <div style="margin-top:29px;">
+                        <p style="width: 65px; float: left;
+                    height: 22px;
+
+                    background: #D2D2D2;
+                    border-radius: 8px;
+
+                    font-family: Roboto;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 22px;
+                    text-align: center;
+
+                    color: #606060;
+                    ">{{ item.animal }}</p>
+                        <p style="width: 65px; float: left; margin-left:7px;
+                    height: 22px;
+
+                    background: #D2D2D2;
+                    border-radius: 8px;
+
+                    font-family: Roboto;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 22px;
+                    text-align: center;
+
+                    color: #606060;
+                    ">{{ item.cooking_time }}</p>
+                    </div>
+
+                </div>
+
             </div>
             <br>
             {% endfor %}
         {% endif %}
     </div>
 
-</body>
-</html>
+{% endblock %}
