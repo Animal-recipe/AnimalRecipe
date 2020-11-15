@@ -80,29 +80,15 @@ font-size: 18px;
 line-height: 25px;
 
 color: #FFFFFF;" href="{% url 'list_question' %}">질문</a>
-        <a style="margin-left:722px;
-height: 25px;
+             {% if user.is_authenticated %}
+    <a href="{% url 'account:logout' %}"><span style="color: #41965E;">{{ user.nickname }}님  </span>LOGOUT</a>
 
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 25px;
+    <a href="{% url 'account:mypage' %}">MYPAGE</a>
 
-color: #FFFFFF;">로그인</a>
-        <a style="margin-left:46px;
-height: 25px;
-
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-line-height: 25px;
-
-text-align: center;
-
-color: #FFFFFF;
-">회원가입</a>
+                    {% else %}
+                            <a  href="{% url 'account:login' %}">LOGIN</a>
+                            <a  href="{% url 'account:register' %}">JOIN</a>
+                    {% endif %}
     </nav>
     <div>
         {% block content %}
