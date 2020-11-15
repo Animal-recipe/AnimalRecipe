@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'account',
     'review',
     'question',
+    'home',
 ]
 
 MIDDLEWARE = [
