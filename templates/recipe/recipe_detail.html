@@ -1,51 +1,277 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-        <div class="image_list"  style="">
-        <!--           이미지 오류 수정.. ㅠㅠ,,  -->
+<script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
+<div style="
+width: 1920px;
+height: 130px;
+
+background: #1B1B1B;
+border-radius: 0px 0px 80px 80px; overflow:hidden; padding-left:201px;">
+</div>
+<div style=" margin-left:1510px;
+width: 191px;
+height: 65px;
+
+background: #A9A9A9;
+box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+border-radius: 0px 0px 24px 24px;
+
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 65px;
+text-align: center;
+
+color: #FFFFFF;
+">
+    <a href="" style="color: #FFFFFF;">수정</a>
+    <span style="margin:0 10px;">  | </span>
+    <a href="" style="color: #FFFFFF;">삭제</a>
+</div>
+<div style="margin-top:30px; margin-left:219px;">
+    <div style="overflow:hidden;">
+        <div class="image_list"  style="width: 870px; height: 526px; float:left;">
             {% for img in img_list %}
             <div class="image">
-                <img style="width: 507px; height: 652px;" src="{{ img.image.url }}" class="card-img-top" alt="사진">
+                <img style="width: 870px; height: 526px; background: #FFFFFF;
+box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+border-radius: 24px;" src="{{ img.image.url }}" class="card-img-top" alt="사진">
             </div>
             {% endfor %}
         </div>
-        <div>
-            <p>{{ recipe.animal }}를 위한</p>
-            <p>{{ recipe.title }}</p>
-            <p>조리시간 {{ recipe.cooking_time }}</p>
-            <p>난이도 {{ recipe.level }} </p>
+        <div style="width:62px; float:right; margin-right:218px; margin-top:274px;">
+            <a href=""><img style="width: 61.16px;
+    height: 61.16px;" src="{% static 'img/good.png' %}" class="card-img-top" alt="사진"></a>
+            <p style=" text-align: center;
+    height: 14px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 14px;
+    color: #575757;">공감</p>
+            <a href=""><img style="width: 61.16px;
+    height: 61.16px;" src="{% static 'img/save.png' %}" class="card-img-top" alt="사진"></a>
+            <p style=" text-align: center;
+    height: 14px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 14px;
+    color: #575757;">저장</p>
+            <a href=""><img style="width: 61.16px;
+    height: 61.16px;" src="{% static 'img/contact.png' %}" class="card-img-top" alt="사진"></a>
+            <p style=" text-align: center;
+    height: 14px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 14px;
+    color: #575757;">쪽지</p>
         </div>
-        <div>
-            <p>조회수 </p>
-            <p>레시피 업로드 {{ recipe.updated }}</p>
-            <p>공감수 </p>
+    </div>
+    <div style="margin-top:60px;">
+        <p style="
+height: 41px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 30px;
+line-height: 41px;
+color: #000000;">{{ recipe.title }}</p>
+        <div style="overflow:hidden; margin-top:40px;">
+            <img style="width: 21px; float:left; margin-right:7px;
+height: 21px;
+background: #31ADE2;
+border-radius:100px; ">
+            <p style="float:left;
+height: 22px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 22px;
+color: #686868;
+">{{ recipe.author }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
+            <p style=" float:left;
+width: 99px;
+height: 20px;
+background: #FFFFFF;
+box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+border-radius: 12px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 20px;
+text-align: center;
+
+color: #686868; margin-left: 12px;">
+                조회수   공감
+            </p>
         </div>
-        <div>"{{ recipe.summary }} "</div>
-        <div>
-            집사 {{ recipe.author}}
+    </div>
+    <div style="overflow:hidden; margin-top:58px;">
+        <p style="width: 95px; float:left;
+height: 39.6px;
+
+background: #FF8B00;
+border-radius: 14px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 39.6px;
+text-align: center;
+
+color: #FFFFFF;">{{ recipe.animal }}</p>
+        <p style="width: 130px;float:left; margin-left:11px;
+height: 39.6px;
+background: #9832FF;
+border-radius: 14px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 39.6px;
+text-align: center;
+
+color: #FFFFFF;">{{ recipe.cooking_time }}</p>
+        <p style="width: 64px;float:left;margin-left:11px;
+height: 39.6px;
+background: #A2A2A2;
+border-radius: 14px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 39.6px;
+text-align: center;
+
+color: #FFFFFF;">{{ recipe.level }}</p>
+    </div>
+
+    <div style="margin-top:85.4px;
+width: 553px;
+
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 33px;
+
+color: #575757;">"{{ recipe.summary }} "</div>
+    <div style="margin-top:133px;
+width: 290px;
+height: 72px;
+background: #3C3C3C;
+box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
+border-radius: 24px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 72px;
+text-align:center;
+color: #FFFFFF;">
+        재료를 준비해 주세요!
+    </div>
+    <div style="margin-top:75px; margin-left:62px;">
+        {% for ingredient in ingredient_list %}
+        <div style="overflow:hidden; width: 800px; margin-bottom:30px;">
+            <p style="float:left; margin-right:114px;
+height: 25px;
+
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 25px;
+color: #575757;">{{ ingredient.ingredient }}</p>
+            <p style="
+height: 25px;
+
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 25px;
+color: #575757;
+float:left;">{{ ingredient.amount }}</p>
         </div>
-        <div>
-            <p>재료</p>
-            <p>{{ recipe.count }}끼 분량</p>
-            {% for ingredient in ingredient_list %}
-                <div>
-                    <p>{{ ingredient.ingredient }}</p>
-                    <p>{{ ingredient.amount }}</p>
-                </div>
-            {% endfor %}
-        </div>
-        <div>
+        {% endfor %}
+    </div>
+</div>
+
+<div style=" margin-top:106px;
+width: 1926px;
+height: 338px;
+text-align:center;
+line-height:338px;
+background: #FFDADA;">
             ===========광고============
+</div>
+<div style="margin-top:181px; margin-left:219px;">
+    <div style="margin-top:133px;
+width: 290px;
+height: 72px;
+background: #3C3C3C;
+box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
+border-radius: 24px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 72px;
+text-align:center;
+color: #FFFFFF;">
+        이렇게 따라해봐요!
+    </div>
+    {% for step in step_list %}
+        <div style="margin-top:100px;">
+            <p style="
+width: 100px;
+height: 39px;
+
+background: #FF6B00;
+border-radius: 22px;
+
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 39px;
+text-align:center;
+color: #FFFFFF;
+" class="step"> step</p>
+            <img style="margin-top:40px; width:689px; height:421px; border-radius: 24px;" src="{{ step.image.url }}" >
+            <p style=" margin-top:40px;
+width: 689px;
+
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 25px;
+
+color: #000000;
+">{{ step.content }}</p>
         </div>
-        <div>
-            <p>요리법</p>
-            {% for step in step_list %}
-                <div>
-                    <img src="{{ step.image.url }}" >
-                    <p>{{ step.content }}</p>
-                </div>
-            {% endfor %}
-        </div>
+    {% endfor %}
+    <div style=" margin-top:152px;
+width: 1724px;
+height: 440px;
+
+background: #1B1B1B;
+border-radius: 60px;">
+
+    </div>
+</div>
+
         <div>
             <button>도움이 됐어요</button>
             <button>스크랩</button>
