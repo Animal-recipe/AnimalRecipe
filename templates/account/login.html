@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<div class="d-flex flex-column align-items-center my-5">
+    <form method = "post" action = "{% url 'account:login' %}">
+        {%csrf_token%}
+{#        <input type = "hidden" name = "next" value = "">#}
+        {{form.as_p}}
+        <br>
+        <button class = "btn btn-primary" type = "submit">로그인</button>
+        <a class="btn btn-success" href="{% url 'account:register' %}">회원가입</a>
+    </form>
+</div>
+{% endblock %}

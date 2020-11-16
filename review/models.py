@@ -4,6 +4,7 @@ from recipe.models import Recipe
 from django.urls import reverse
 from datetime import timedelta
 from django.utils import timezone
+from account.models import User
 
 STAR = [
     ('☆', '☆'),
@@ -14,7 +15,7 @@ STAR = [
 ]
 class Review(models.Model):
     # 작성자
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='review_user')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review_user')
     # 레시피
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe_review")
     # 내용
