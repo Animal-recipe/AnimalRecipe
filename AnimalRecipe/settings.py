@@ -125,11 +125,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"), # Root의 static 파일
 )
 
-#이미지가 media 폴더에 지속적으로 저장되도록
+# 이미지가 media 폴더에 지속적으로 저장되도록
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

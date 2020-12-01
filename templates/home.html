@@ -1,106 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/recipe/recipe_home.css' %}"/>
-<div style="
-margin-bottom:147px;
-height: 800px;
-width: 100%;
-background: #1B1B1B;
-box-shadow: 6px 6px 40px rgba(0, 0, 0, 0.2);
-border-radius: 0px 0px 80px 80px; padding-left:145px; overflow:hidden;">
+{% include 'nav.html' %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<div id="mainBox">
     <div class="my-5" style="margin: 800px 0 800px;">
-    <h1 style="/* 반려동물을 위한 요리 레시피를 공유해봐요! */
-
-font-family: Noto Sans KR;
-font-style: normal;
-font-weight: 900;
-font-size: 40px;
-line-height: 70px;
-display: inline-block;
-padding: 7rem 0 7rem;
-
-color: #FFFFFF;
-
-">반려동물을 위한<br/>요리 레시피를<br/>공유해봐요!</h1>
+        <h1 id="mainText">반려동물을 위한<br />요리 레시피를<br />공유해봐요!</h1>
     </div>
-    <div class="my-5">
-    <form style="" class="form-inline my-2 my-lg-0" action="" method="POST">
-        {% csrf_token %}
-            <div style="">
-                <input style="
-width: 707px;
-height: 73px;
-
-background: #FFFFFF;
-border: 1px solid #FFFFFF;
-box-sizing: border-box;
-border-radius: 24px;" class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search" name="query_str" value="{{query_str}}">
-                <button id="search_btn" type="submit" style="position: absolute; right:650px; top: 550px; border: 0px solid white; background-color:white;">
-                    <img id="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
-                </button>
-                <a class="btn btn-primary py-3" style="height: 50px;padding:1rem 1rem;border-radius: 24px;background-color: #FF5C00;border:none;" href="{% url 'home:home' %}">레시피 작성하기</a>
+    <div>
+        <form class="form-inline my-2 my-lg-0" action="" method="POST">
+            {% csrf_token %}
+            <div>
+                <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search"
+                    name="query_str" value="{{query_str}}">
+                <a id="writeBtn" class="btn btn-primary" href="{% url 'home:home' %}">레시피 작성하기</a>
             </div>
-    </form>
+        </form>
     </div>
 </div>
-<div>
-    <div style="margin:0 auto;
-width: 238px;
-height: 129px;
-
-background: #3C3C3C;
-box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
-border-radius: 40px;
-
-font-family: Noto Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 28px;
-text-align: center;
-line-height: 127.4%;
-color: #FFFFFF;
-padding-top:29px;
-">
-        이번주<br>
-        HOT 레시피
+<div id="contentBox">
+    <div class="hotRecipeBox">
+        <div id="hotRecipe">
+            이번주<br>
+            HOT 레시피
+        </div>
+        <p id="hotRecipeIntro">
+            반려동물을 위해 요리 레시피를 공유해봐요!
+        </p>
     </div>
-    <p style="margin-top:56px;
-height: 33px;
-
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 33px;
-text-align: center;
-
-color: #B5B5B5;">
-        반려동물을 위해 요리레시피를 공유해봐요!
-    </p>
-    <div style="height: 286px; text-align: center; ">
+    <div class="bestRecipeBox">
+        <div id="bestRecipe">
+            이번주<br>
+            Best 레시피
+        </div>
+        <p id="bestRecipeIntro">
+            후기가 너무 좋은 레시피! 놓치지 말고 만들어봐요.
+        </p>
     </div>
 </div>
-<div style="margin-top:226px;">
-    <div style="margin:0 auto;
-width: 238px;
-height: 129px;
 
-background: #3C3C3C;
-box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
-border-radius: 40px;
+{% include 'footer.html' %}
 
-font-family: Noto Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 28px;
-text-align: center;
-line-height: 127.4%;
-color: #FFFFFF;
-padding-top:29px;
-">
-        이번주<br>
-        Best 레시피
-    </div>
-</div>
 {% endblock %}

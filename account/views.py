@@ -34,3 +34,5 @@ def mypage(request):
     else:
         form = UserChangeForm()
     return render(request, 'account/mypage.html', {'form': form})
+
+
