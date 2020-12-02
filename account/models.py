@@ -14,35 +14,28 @@ PET_KINDS = [
 
 # 카테고리 연결하고 회원가입, 로그인, 로그아웃, 마이페이지....
 class UserManager(BaseUserManager):
-    def create_user(self, email, nickname, petname, petkind, avatar, password=None):
+    def _create_user(self, email, password, **extra_fields):
         if not email:
-            raise ValueError('Users must have an email address')
-
-        user = self.model(
-            email=self.normalize_email(email),
-            nickname = nickname,
-            petname=petname,
-            petkind=petkind,
-            avatar=avatar,
-        )
-
+            raise ValueError('The given email must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+
         return user
 
-    def create_superuser(self, email, nickname, petname, petkind, avatar, password):
-        user = self.create_user(
-            email,
-            password=password,
-            nickname = nickname,
-            petname=petname,
-            petkind=petkind,
-            avatar=avatar,
-        )
-        user.is_admin = True
-        user.save(using=self._db)
-        return user
+    def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_admin', False)
+        extra_fields.setdefault('is_active', False)
 
+        return self._create_user(email, password, **extra_fields)
+
+    def create_superuser(self, email,  password, **extra_fields):
+        extra_fields.setdefault('is_admin', True)
+        if extra_fields.get('is_admin') is not True:
+            raise ValueError('Superuser must have is_admin=True.')      
+
+        return self._create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser):
     email = models.EmailField(
@@ -52,32 +45,33 @@ class User(AbstractBaseUser):
     )
     nickname = models.CharField(
         verbose_name='nickname',
+        default='nickname',
         max_length=20,
         null=False,
+        blank=False,
         unique=True,
     )
     petname = models.CharField(
         verbose_name='petname',
+        default='petname',
         max_length=20,
-        null=True,
+        null=False,
+        blank=False,
     )
-
     petkind = models.CharField(max_length=4, choices=PET_KINDS, default='DOG')
-
-    avatar = models.ImageField(
-        verbose_name="avatar",
-        upload_to='avatars/',
-        default='avatars/2.PNG',
+    profile = models.ImageField(
+        verbose_name="profile",
+        upload_to='profiles/',
+        default='profiles/default.PNG',
         blank=True, null=True,
     )
-
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nickname, petname, petkind, avatar']
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email

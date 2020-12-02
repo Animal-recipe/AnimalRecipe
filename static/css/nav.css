@@ -1,0 +1,45 @@
+#navBar {
+    display:flex;
+    flex:1;
+    justify-content: space-between;
+    align-items: center;
+    background: #1B1B1B;
+    padding : 54px 150px 0;
+    border : 0;
+    height: 142px;
+}
+#menuBox {
+    display:flex;
+    justify-content: space-around;
+    text-align: center;
+}
+#home {
+font-family: Noto Sans;
+font-weight: bold;
+font-size: 16px;
+line-height: 25px;
+margin-right: 30px;
+color: #FF5C00;
+flex: 1 1 auto;
+width: auto;
+}
+.menuItem {
+font-family: Noto Sans;
+font-weight: 500;
+font-size: 16px;
+line-height: 25px;
+margin-right: 30px;
+color: #FFFFFF;
+flex: 1 1 auto;
+width: auto;
+}
+#logo {
+    margin-right: 232px;
+    display: flex;
+    justify-content: center;
+}
+#userBox {
+    display:flex;
+    justify-content: space-around;
+    text-align: center;
+}
