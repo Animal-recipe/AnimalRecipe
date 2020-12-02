@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'nav.html' %}
+{% include 'homeNav.html' %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
 <div id="mainBox">
@@ -14,7 +14,7 @@
             <div>
                 <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search"
                     name="query_str" value="{{query_str}}">
-                <a id="writeBtn" class="btn btn-primary" href="{% url 'home:home' %}">레시피 작성하기</a>
+                <a id="writeBtn" class="btn btn-primary" href="{% url 'recipe:create_recipe' %}">레시피 작성하기</a>
             </div>
         </form>
     </div>

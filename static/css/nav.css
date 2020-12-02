@@ -4,9 +4,10 @@
     justify-content: space-between;
     align-items: center;
     background: #1B1B1B;
-    padding : 54px 150px 0;
+    padding : 54px 150px 12px;
     border : 0;
     height: 142px;
+    border-radius: 0px 0px 80px 80px;
 }
 #menuBox {
     display:flex;

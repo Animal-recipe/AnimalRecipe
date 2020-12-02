@@ -18,7 +18,7 @@
         <div id="userBox">
                 {% if user.is_authenticated %}
                 <a href="{% url 'account:mypage' %}" class="menuItem">안녕하세요 {{ user.nickname }} 집사님</a>
-
+                <a href="{% url 'account:logout' %}" class="menuItem">로그아웃</a>
                 {% else %}
                 <a href="{% url 'account:login' %}" class="menuItem">로그인</a>
                 <a href="{% url 'account:register' %}" class="menuItem">회원가입</a>
