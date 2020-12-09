@@ -5,13 +5,14 @@
 
 <link rel="stylesheet" href="{% static 'css/account/login.css' %}">
 <div id="loginBox">
+    {{ form.non_field_errors }}
     <h2 id="loginText">로그인</h2>
     <form autocomplete="off" method="post" action="{% url 'account:login' %}">
         {%csrf_token%}
-        <input class="loginInput" autocomplete="off" type="text" class="form-control" name="email"
-            placeholder="이메일을 입력해주세요" value="{{ form.email.value|default_if_none:'' }}">
-        <input class="loginInput" autocomplete="off" type="password" class="form-control" name="password"
-            placeholder="패스워드를 입력해주세요" value="{{ form.password.value|default_if_none:'' }}">
+        <input class="loginInput" autocomplete="off" type="text" class="form-control" name="username" required
+            id="id_username" placeholder="이메일을 입력해주세요" value="{{ form.username.value|default_if_none:'' }}">
+        <input class="loginInput" autocomplete="off" type="password" class="form-control" required id="id_password"
+            name="password" placeholder="패스워드를 입력해주세요" value="{{ form.password.value|default_if_none:'' }}">
         <button id="loginBtn" class="btn btn-primary" type="submit">로그인</button>
     </form>
     <a id="register" href="{% url 'account:register' %}">회원가입</a>

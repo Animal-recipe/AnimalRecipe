@@ -18,6 +18,27 @@
     padding: 7rem 0 7rem;
     color: #FFFFFF;
 }
+#rabbit {
+    position: absolute;
+    width: 175px;
+    left: 1050px;
+    top: 179.88px;
+    transform: rotate(-4.99deg);
+}
+#cat{
+    position: absolute;
+    width: 216px;
+    left: 1000px;
+    top: 639.31px;
+    transform: rotate(-2.64deg);
+}
+#dog {
+    position: absolute;
+    width: 197px;
+    left: 1280px;
+    top: 420.9px;
+    transform: rotate(3.27deg);
+}
 
 #searchBar {
     width: 481px;

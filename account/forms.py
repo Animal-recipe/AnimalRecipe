@@ -2,11 +2,12 @@ from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.files.images import get_image_dimensions
 from django.utils.translation import ugettext_lazy as _
-
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, PET_KINDS
 
 
 class UserCreationForm(forms.ModelForm):
+
     email = forms.EmailField(
         label=_('이메일'),
         widget=forms.EmailInput(
@@ -31,12 +32,13 @@ class UserCreationForm(forms.ModelForm):
     profile = forms.ImageField(label='프로필 사진')
     password1 = forms.CharField(label='비밀번호', 
         widget=forms.PasswordInput(
-            attrs={
-                'class': 'form-control',
-                'placeholder': _('비밀번호'),
-                'required': 'True',
-            }
-    ))
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': _('비밀번호'),
+                    'required': 'True',
+                }
+        )
+    )
     password2 = forms.CharField(
         label='비밀번호 확인', 
         widget=forms.PasswordInput(
@@ -45,7 +47,8 @@ class UserCreationForm(forms.ModelForm):
                 'placeholder': _('비밀번호 확인'),
                 'required': 'True',
             }
-        ))
+        )
+    )
 
     petname = forms.CharField(
         label=_('반려동물 이름'),
@@ -67,39 +70,6 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password1', 'password2', 'nickname', 'petname', 'petkind', 'profile')
-    #
-    # def clean_avatar(self):
-    #     avatar = self.cleaned_data['avatar']
-    #
-    #     try:
-    #         w, h = get_image_dimensions(avatar)
-    #
-    #         # validate dimensions
-    #         max_width = max_height = 900
-    #         if w > max_width or h > max_height:
-    #             raise forms.ValidationError(
-    #                 u'Please use an image that is '
-    #                 '%s x %s pixels or smaller.' % (max_width, max_height))
-    #
-    #         # validate content type
-    #         main, sub = avatar.content_type.split('/')
-    #         if not (main == 'image' and sub in ['jpeg', 'pjpeg', 'gif', 'png']):
-    #             raise forms.ValidationError(u'Please use a JPEG, '
-    #                                         'GIF or PNG image.')
-    #
-    #         # validate file size
-    #         if len(avatar) > (20 * 1024):
-    #             raise forms.ValidationError(
-    #                 u'Avatar file size may not exceed 20k.')
-    #
-    #     except AttributeError:
-    #         """
-    #         Handles case when we are updating the user profile
-    #         and do not supply a new avatar
-    #         """
-    #         pass
-    #
-    #     return avatar
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -125,5 +95,3 @@ class UserChangeForm(forms.ModelForm):
     
     def clean_password(self):
         return self.initial["password"]
-
-
