@@ -16,24 +16,24 @@
     text-align: center;
 }
 #home {
-font-family: Noto Sans;
-font-weight: bold;
-font-size: 16px;
-line-height: 25px;
-margin-right: 10px;
-color: #FF5C00;
-flex: 1 1 auto;
-width: 64px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 25px;
+    margin-right: 10px;
+    color: #FF5C00;
+    flex: 1 1 auto;
+    width: 64px;
 }
 .menuItem {
-font-family: Noto Sans;
-font-weight: 500;
-font-size: 16px;
-line-height: 25px;
-margin-right: 10px;
-color: #FFFFFF;
-flex: 1 1 auto;
-width: 64px;
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    margin-right: 10px;
+    color: #FFFFFF;
+    flex: 1 1 auto;
+    width: 64px;
 }
 #logo {
     /* margin-right: 232px; */

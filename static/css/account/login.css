@@ -67,3 +67,8 @@
     color: #2680e7;
     border-bottom: 0.8px solid #2680e7;
 }
+#loginUnderBox {
+    margin-top: 340px;
+    height: 138px;
+    background: #FFDCDC;
+}
