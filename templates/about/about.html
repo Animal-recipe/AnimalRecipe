@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'nav.html' %}
+<link rel="stylesheet" href="{% static 'css/about/about.css' %}">
+<div id="brandStoryBox">
+    <div class="Title">
+        <h2 style="color: #FF5C00;" class="MainTitle">시작</h2>
+        <p class="subTitle">_<br>
+        Brand Story</p>
+    </div>
+    <div class="content">
+        <p>집사의 레시피는 <span class="emphasizedText">반려동물의 건강한 식사</span>를 위해 노력하는 모든 집사님들을 위해 시작하게 되었습니다.<br>
+            집사의 레시피에서 <span class="emphasizedText">집사님들의 레시피 정보를 서로서로 공유</span>하고 알아가며<br> 
+            <span class="emphasizedText">반려동물과 집사님들의 삶의 질이 더 높아지길 희망합니다.</span></p>
+    </div>
+</div>
+<div id="BIBox">
+    <div class="Title">
+        <h2 class="MainTitle">BI</h2>
+        <p class="subTitle">_<br>
+        Brand Story</p>
+    </div>
+    <div class="content">
+        <img id="BIImg" src="{% static 'img/about/BI.png' %}">
+    </div>
+</div>
+<div id="characterBox">
+    <div class="Title">
+        <h2 class="MainTitle">Pet Friends</h2>
+        <p class="subTitle">_<br>
+        Brand Character</p>
+    </div>
+    <div class="content">
+        <p>
+            매일 똑같은 음식만 먹다 질린 동물 친구들이 맛있는 음식과 새로운 레시피를 찾기 위해 여정을 떠나게<br>
+            됩니다. 음식을 찾아 나서는 것만이 방법이라고 생각한 냥냥이 가장 먼저 떠나게 되었죠. 냥냥의 용감한<br>
+            행동을 보고 용기를 얻은 댕, 지지, 잭, 총총, 무무 가 힘을 합치기로 했답니다!<br>
+            이렇게 탄생하게 된 Pet Friends를 위해 다양한 음식들을 공유하고 알아볼까요?
+        </p>
+        <img id="characterImg" src="{% static 'img/about/petFriends.png' %}">
+    </div>
+    <div id="characterInfo">
+        <div class="infoRow">
+            <div class="infoBox row1">
+                <img width="280px" src="{% static 'img/about/cat.png' %}">
+                <div style="margin-left: 70px;">
+                    <h4 style="color: #FF9900;">냥냥</h4>
+                    <p>_<br>
+                        Pet Friends의 리더<br>
+                        책임감이 강하다. 가끔 생각지도 못한 돌발 행동을 하기도 하지만,<br>
+                        특유의 귀여움으로 위기모면 한다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="infoRow">
+            <div class="infoBox row2">
+                <img width="199px" src="{% static 'img/about/rabbit.png' %}">
+                <div style="margin-top: 12px;">
+                    <h4 style="color: #F84B01;">총총</h4>
+                    <p>_<br>
+                    냥냥의 왼팔<br>
+                    발이 빨라 해야할 일을 모든 빠르게 해낸다. 평소엔 카리스마<br>
+                    넘치지만 밥먹을 때만큼은 귀엽고 진지하다.</p>
+                </div>
+            </div>
+            <div class="infoBox row2">
+                <img style="padding: 26px 0;" width="210px" src="{% static 'img/about/dog.png' %}">
+                <div style="margin-top: 12px;">
+                    <h4 style="color: #8D8D8D;">댕</h4>
+                    <p> _<br>
+                        냥냥의 오른팔<br>
+                        큰 목소리와 용감함으로 팀을 경호한다. 사교성이 좋아서 팀원들과<br>
+                        모두 잘 지내고, 감정표현을 잘한다.</p>
+                </div>
+            </div>
+        </div>
+        <div class="infoRow">
+            <div class="infoBox row3">
+                <img width="191px" src="{% static 'img/about/bird.png' %}">
+                <div style="margin-top: 12px;">
+                    <h4 style="color: #373737;">잭</h4>
+                    <p>_<br>
+                        Pet Friends의 브레인<br>
+                        예민한 청각과 시각으로 팀을 잘 이끌어 낸다.<br>
+                        게다가 머리도 좋아서 상황판단 능력이 대단하다.<br>
+                        잭의 말이라면 모두가 잘 듣는다고 한다.</p>
+                </div>
+            </div>
+            <div class="infoBox row3">
+                <img style="padding: 38px 0;" width="206px" src="{% static 'img/about/hamster.png' %}">
+                <div style="margin-top: 12px;">
+                    <h4 style="color: #CD8B40;">지지</h4>
+                    <p>_<br>
+                        귀여움의 끝판왕<br>
+                        지지의 타고난 귀여움은 모두의 마음을 사르르<br>
+                        녹인다. 식탐이 많아서 제일 먼저 식사를 끝내고<br>
+                        음식을 숨겨 혼자 먹기도 한다.</p>
+                </div>
+            </div>
+            <div class="infoBox row3">
+                <img style="padding: 48px 0;" width="221px" src="{% static 'img/about/fish.png' %}">
+                <div style="margin-top: 12px;">
+                    <h4 style="color: #F97808;">무무</h4>
+                    <p>_<br>
+                        Pet Friends의 물담당<br>
+                        타고난 헤엄실력으로 갑작스러운 수변이 일어나도<br>
+                        무무가 함께라면 모두 이겨낼 수 있다.무무의<br>
+                        작고 귀여운 헤엄은 모두가 놀랄 정도이다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

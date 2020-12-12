@@ -26,6 +26,7 @@ urlpatterns = [
     path('review/', include('review.urls'), name='review'),
     path('question/', include('question.urls'), name='question'),
     path('account/', include('account.urls'), name='account'),
+    path('about/', include('about.urls'), name="about"),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
