@@ -1,55 +1,101 @@
-<!DOCTYPE html>
-    <body>
-    {% load static %}
-    <div>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/recipe/recipe_create.css' %}"/>
+<script type="text/javascript" src="{% static 'js/recipe/recipe_create.js' %}"></script>
+    <div style=" overflow:hidden;
+    width: 1920px;
+    height: 420px;
+    background: #1B1B1B;
+    border-radius: 0px 0px 80px 80px;">
+        <div style="margin-left:219px; margin-top: 220px;
+height: 122px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: bold;
+font-size: 48px;
+line-height: 127.4%;
+color: #FFFFFF;
+">
+            <p>레시피</p>
+            <p>작성하기</p>
+        </div>
+    </div>
+    <div style=" margin-left:1510px;
+width: 191px;
+height: 65px;
+background: #A9A9A9;
+box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+border-radius: 0px 0px 24px 24px;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 65px;
+text-align: center;
+color: #FFFFFF;
+">임시저장 글 | </div>
+    <div style="margin-left:219px; margin-top:95px;">
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <p>1. 어떤 반려동물을 위한 요리인가요? </p>
             <div>
-                <input type="radio" name="animal" value="all" autofocus="" > 모두
-                <input type="radio" name="animal" value="dog"> 강아지
-                <input type="radio" name="animal" value="cat"> 고양이
-                <input type="radio" name="animal" value="other"> 다른 동물
-                <input type="text" name="other_animal">
+                <p class="font1">레시피 제목을 정해보세요!</p>
+                <input style="width: 636px; margin-top:80px;" class="input_box" type="text" name="title" placeholder="예시 ) 너무 쉽고 맛있는 황태국 (15자 이내)">
             </div>
-            <p>2. 조리시간이 얼마나 걸리나요? </p>
-            <div>
-                <input type="radio" name="cooking_time" value="five" autofocus="" > 5분 이내
-                <input type="radio" name="cooking_time" value="ten"> 5분~10분
-                <input type="radio" name="cooking_time" value="twenty"> 10분~20분
-                <input type="radio" name="cooking_time" value="over"> 20분 이상
+            <div style="margin-top:180px;">
+                <p class="font1">어떤 반려동물을 위한 요리인가요?</p>
+                <div class="animal" style="margin-top:80px;">
+                    <label style="width: 170px;" class="radio_box">모두<input style="display:none;" type="radio" name="animal" value="모두" autofocus="" ></label>
+                    <label style="width: 170px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="강아지"> 강아지</label>
+                    <label style="width: 170px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="고양이"> 고양이</label>
+                    <label style="width: 588px; margin-left:30px; padding-left:60px; text-align:left;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="other"> 기타 <input class="input_box" style="margin-left: 30px; box-shadow: none; width:430px;" placeholder="반려동물을 작성해주세요.(한글, 쉼표만 가능)" type="text" name="other_animal"></label>
+                </div>
             </div>
-            <p>3. 조리 난이도가 어떻게 되나요? </p>
-            <div>
-                <input type="radio" name="level" value="top" autofocus="" > 상
-                <input type="radio" name="level" value="middle"> 중
-                <input type="radio" name="level" value="bottom"> 하
+            <p class="font1" style=" margin-top:200px;">조리시간이 얼마나 걸리나요?</p>
+            <div class="cook" style="margin-top:80px;">
+                <label style="width: 180px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 이내" autofocus="" > 5분 이내 </label>
+                <label style="width: 180px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 - 10분"> 5분 - 10분 </label>
+                <label style="width: 180px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="10분 - 20분"> 10분 - 20분 </label>
+                <label style="width: 180px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="20분 이상"> 20분 이상 </label>
             </div>
-            <div>
-                <input type="text" name="title" placeholder="요리 이름을 입력해주세요">
+            <p class="font1" style="margin-top:180px;">조리 난이도</p>
+            <div class="level" style="margin-top:80px;">
+                <label style="width: 120px;" class="radio_box"><input style="display:none;" type="radio" name="level" value="상" autofocus="" > 상 </label>
+                <label style="width: 120px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="level" value="중"> 중 </label>
+                <label style="width: 120px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="level" value="하"> 하 </label>
             </div>
-            <div>
-                <input type="textarea" name="summary" placeholder="간단히 요리를 설명해주세요.">
+
+            <div style="margin-top:160px;">
+                <p class="font1">레시피를 간단히 소개해주세요!</p>
+                <textarea style="margin-top:80px; padding: 30px 50px; width: 645px; height: 320px; line-height: 32.62px;" class="input_box" name="summary" placeholder="예시 ) 우리집 강아지 뽀미가 요즘 너무 더워서 그런지 힘이 없어서 도전해 본 황태국이에요!! 만들어 보니 너무 쉽고 맛있게 만들 수 있어서 공유해봅니다. (50자 이내)"></textarea>
             </div>
-            <div>
+            <div style="margin-top:160px;">
+                <p class="font1">완성된 요리의 대표 사진을 업로드 해주세요.</p>
                 {{ image_formset.as_p }}
-                <p>완성된 요리는 총 3장까지 업로드 가능합니다.</p>
             </div>
-            <div>
-                <span>요리의 재료를 빠짐없이 입력해주세요.</span>
-                <input type="text" name="count">
-                <span> 끼 분량 재료입니다.</span>
+            <div style="margin-top:180px;">
+                <span class="font1">요리의 재료를 빠짐없이 입력해주세요.</span>
+                <span>주의사항! 확인해주세요.</span>
+                <input type="text" name="count"> 몇끼인지 안한다고 했었죠?!
+                <div id="ingredient" style="overflow:hidden; width: 800px; margin-top:50px; padding-bottom:40px;">
+                    {{ ingredient_formset }}
+                </div>
+                <div id="click_box" style="
+width: 614px;
+height: 73px;
+background: #FFFFFF;
+box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+text-align: center;
+line-height:73px;
+border-radius: 24px;">
+                    <img style="margin-top:13px;" src="{% static 'img/recipe/add.png' %}"/>
+                </div>
             </div>
-            <div>
-                <p>요리 재료/ 재료 양(계량 단위)</p>
-                {{ ingredient_formset.as_p }}
-            </div>
-            <div>
-                <p>조리 방법을 순서대로 입력해 주세요.</p>
-                {{ step_formset.as_p }}
+            <div style="margin-top:140px;">
+                <p class="font1">조리 방법을 순서대로 작성해보아요!</p>
+                    {{ step_formset.as_p }}
             </div>
             <input type="submit" value="올리기">
          </form>
     </div>
-</body>
-</html>
+{% endblock %}
