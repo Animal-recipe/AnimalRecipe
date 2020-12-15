@@ -42,7 +42,7 @@
 
 #searchBar {
     position: absolute;
-    left: 219px;
+    left: 154px;
     top: 670px;
     width: 481px;
     height: 53px;
@@ -70,7 +70,7 @@
 }
 #writeBtn {
     position: absolute;
-    left: 725px;
+    left: 660px;
     top: 668px;
     font-family: Noto Sans;
     font-style: normal;
