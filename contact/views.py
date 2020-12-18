@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Message, Remessage
-from django.contrib.auth.models import User
+from account.models import User
 from .forms import MessageForm, RemessageForm
 
 

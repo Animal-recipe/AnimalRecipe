@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'homeNav.html' %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<div id="mainBox">
+    <div class="my-5" style="margin: 800px 0 800px;">
+        <h1 id="mainText">반려동물을 위한<br />요리 레시피를<br />공유해봐요!</h1>
+    </div>
+    <img id="rabbit" src="{% static 'img/home/home_rabbit.png'%}">
+    <img id="cat" src="{% static 'img/home/home_cat.png'%}">
+    <img id="dog" src="{% static 'img/home/home_dog.png'%}">
+    <div>
+        <form class="form-inline my-2 my-lg-0" action="" method="POST">
+            {% csrf_token %}
+            <div>
+                <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search"
+                    name="query_str" value="{{query_str}}">
+                <a id="writeBtn" class="btn btn-primary" href="{% url 'recipe:create_recipe' %}">레시피 작성하기</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="contentBox">
+    <div class="hotRecipeBox">
+        <div id="hotRecipe">
+            이번주<br>
+            HOT 레시피
+        </div>
+        <p id="hotRecipeIntro">
+            반려동물을 위해 요리 레시피를 공유해봐요!
+        </p>
+    </div>
+    <div class="bestRecipeBox">
+        <div id="bestRecipe">
+            이번주<br>
+            Best 레시피
+        </div>
+        <p id="bestRecipeIntro">
+            후기가 너무 좋은 레시피! 놓치지 말고 만들어봐요.
+        </p>
+    </div>
+</div>
+<div id="aboutBox">
+    <img id="aboutRabbit" src="{% static 'img/home/home_rabbit.png'%}">
+    <img id="aboutCat" src="{% static 'img/home/home_cat.png'%}">
+    <img id="aboutDog" src="{% static 'img/home/home_dog.png'%}">
+    <div id="textBox">
+        <h3 id="aboutTitle">
+            브랜드 스토리를
+            <br>
+            들어봐요!
+        </h3>
+        <p class="aboutIntro"> _<br>
+            집사의 레시피는 동물 친구들이 맛있는 음식을 찾아<br>
+            여정을 떠나는 스토리로 시작됩니다.
+        </p>
+        <p class="aboutIntro">동물 친구들의 여정 중 일어나는 왁자지껄하고<br>
+            귀여운 이야기들 들으러 가볼까요?
+        </p>
+    </div>
+</div>
+<a href="{% url 'about:about' %}" id="aboutBtn">브랜드 소개 보러 가기</a>
+
+<div id="homeUnderBox">
+    <!-- 광고, 캠페인 등 -->
+</div>
+{% include 'footer.html' %}
+
+{% endblock %}

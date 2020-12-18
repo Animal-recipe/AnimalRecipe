@@ -1,0 +1,258 @@
+#mainBox {
+    margin-bottom:147px;
+    height: 800px;
+    background: #1B1B1B;
+    /* box-shadow: 6px 6px 40px rgba(0, 0, 0, 0.2); */
+    border-radius: 0px 0px 80px 80px; 
+    padding-left:145px; 
+    overflow:hidden;
+}
+
+#mainText {
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 70px;
+    display: inline-block;
+    padding: 7rem 0 7rem;
+    color: #FFFFFF;
+}
+#rabbit {
+    position: absolute;
+    width: 175px;
+    left: 1050px;
+    top: 179.88px;
+    transform: rotate(-4.99deg);
+}
+#cat{
+    position: absolute;
+    width: 216px;
+    left: 1037px;
+    top: 639.31px;
+    transform: rotate(-2.64deg);
+}
+#dog {
+    position: absolute;
+    width: 197px;
+    left: 1280px;
+    top: 420.9px;
+    transform: rotate(3.27deg);
+}
+
+#searchBar {
+    position: absolute;
+    left: 154px;
+    top: 670px;
+    width: 481px;
+    height: 53px;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    background-image : url('../img/home/search.png'); 
+    background-position: 93% 50%; 
+    background-repeat:no-repeat;
+}
+#searchBar:hover{
+    background: #e4e2e2;
+    background-image : url('../img/home/search.png'); 
+    background-position: 93% 50%; 
+    background-repeat:no-repeat;
+}
+/* input without button 하기 */
+.searchBtn {
+    position: absolute; 
+    right:650px; 
+    top: 550px; 
+    border: 0px solid white; 
+    background-color:white;
+}
+#writeBtn {
+    position: absolute;
+    left: 660px;
+    top: 668px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 54px;
+    display:inline-block;
+    width: 250px;
+    height: 57px;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px; border:none;
+    background-image : url('../img/home/write.png'); 
+    background-position: 80% 50%; 
+    background-repeat:no-repeat;
+    padding: 2px 28px 0 2px;
+}
+#writeBtn:hover{
+    background: #d8580d;
+    background-image : url('../img/home/write.png'); 
+    background-position: 80% 50%; 
+    background-repeat:no-repeat;
+}
+#hotRecipe {
+    margin:0 auto;
+    width: 238px;
+    height: 129px;
+    background: #3C3C3C;
+    box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 40px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    line-height: 127.4%;
+    color: #FFFFFF;
+    padding-top:29px;
+}
+#hotRecipeIntro {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #575757;
+    margin: 3rem 0 4rem;
+}
+#bestRecipe {
+    margin:0 auto;
+    width: 238px;
+    height: 129px;
+    background: #3C3C3C;
+    box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 40px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    line-height: 127.4%;
+    color: #FFFFFF;
+    padding-top:29px;
+}
+#bestRecipeIntro {
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #575757;
+    margin: 3rem 0 4rem;
+}
+#contentBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.hotRecipeBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10rem; 
+}
+.bestRecipeBox{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10rem; 
+}
+#aboutBox {
+    height: 775px;
+    background: #161616;
+    border-radius: 94px;
+    -moz-box-shadow: 0 0 9px 5px rgb(0, 0, 0);
+    -webkit-box-shadow: 0 0 9px 5px rgb(0, 0, 0);
+    box-shadow: 0 0 9px 5px rgb(0, 0, 0);
+    position: relative;
+}
+
+#textBox{
+    position: absolute;
+    width: 603px;
+    height: 578px;
+    left: 800px;
+    top: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 78px;
+    -moz-box-shadow: 0 0 8px 16px rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: 0 0 8px 16px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 8px 16px rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+    color: #FFFFFF;
+    padding: 64px 64px;
+}
+#aboutRabbit{
+    position: absolute;
+    width: 175px;
+    left: 320px;
+    top: 123px;
+    transform: rotate(-1.99deg);
+}
+#aboutCat{
+    position: absolute;
+    width: 216.81px;
+    left: 138px;
+    top: 313px;
+    transform: rotate(-2.64deg);
+}
+#aboutDog{
+    position: absolute;
+    width: 197.1px;
+    left: 457px;
+    top: 376px;
+    transform: rotate(2.27deg);
+}
+#aboutTitle{
+    font-family: Noto Sans;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 152.7%;
+    padding-bottom: 36px;
+}
+.aboutIntro {
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 212.7%;
+    padding-bottom: 21px;
+}
+#aboutBtn {
+    width: 228px;
+    height: 54px;
+    border: 1px solid #575757;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575757;
+    margin: 100px auto 0;
+}
+#aboutBtn:hover{
+    color: #cea73c;
+    border: 1px solid #cea73c;
+}
+#homeUnderBox{
+    height: 450px;
+    margin: 140px 0 14px;
+    background: #FFDADA;
+}

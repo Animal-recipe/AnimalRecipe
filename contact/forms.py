@@ -1,7 +1,7 @@
 from django import forms
 from .models import Message
 from django.forms import ModelChoiceField
-from django.contrib.auth.models import User
+from account.models import User
 
 class MessageForm(forms.ModelForm):
     recipient = ModelChoiceField(queryset=User.objects.all())

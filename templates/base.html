@@ -1,134 +1,30 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'slick-1.8.1/slick/slick.min.js' %}"></script>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:wght@400;700&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="{% static 'slick-1.8.1/slick/slick.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'slick-1.8.1/slick/slick-theme.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/recipe/reset.css' %}"/>
-
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="{% static 'slick-1.8.1/slick/slick.min.js' %}"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:wght@400;700&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'slick-1.8.1/slick/slick.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'slick-1.8.1/slick/slick-theme.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/recipe/reset.css' %}" />
 </head>
-<body  style="width:1920px; margin:0 auto;">
-<nav style="padding-left:219px; overflow:hidden; width: 1972px; margin:0 auto; margin-top:28px; position:absolute; height:68.99px; line-height:68.99px;">
-        <a style="
-width: 18px; float:left;
-height:68.99px; line-height:68.99px;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: bold;
-font-size: 18px;
 
-color: #FFFFFF;" href="{% url 'home_recipe' %}">홈</a>
-        <a style="margin-left:79px;float:left;
-height:68.99px; line-height:68.99px;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-
-color: #FFFFFF;" href="{% url 'list_recipe' %}">레시피</a>
-        <a style="margin-left:78px;float:left;
-height:68.99px; line-height:68.99px;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-
-color: #FFFFFF;
-" href="{% url 'list_review' %}">후기</a>
-        <a style="float:left;
-margin-left:79px;
-height:68.99px; line-height:68.99px;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-
-color: #FFFFFF;
-">소개</a>
-        <a style="margin-left:79px;
-float:left;
-height:68.99px; line-height:68.99px;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-
-color: #FFFFFF;" href="{% url 'list_question' %}">질문</a>
-        <img style="width: 68.16px; float:left; margin-left:253px;
-height: 68.99px;" src="{% static 'img/logo.png' %}"/>
-        <a style="margin-left:515px; float:left;
-height:68.99px; line-height:68.99px;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-
-color: #FFFFFF;">로그인</a>
-        <a style="margin-left:46px; float:left;
-height:68.99px; line-height:68.99px;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-
-text-align: center;
-
-color: #FFFFFF;
-">회원가입</a>
-    </nav>
-    <div>
-        {% block content %}
-        {% endblock %}
-    </div>
-    <footer style="width:1972px; margin:30px auto; overflow:hidden;">
-        <p style="
-height: 29px;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 12px;
-line-height: 29px;
-text-align: center;
-
-color: #262626;
-">
-            사이트 이용약관 | 개인정보 처리방침
-            | 광고·제휴 문의 | 고객센터
-        </p>
-        <p style="margin-top: 15px;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 12px;
-line-height: 14px;
-text-align: center;
-
-color: #757575;">
-            집사의 레시피 | 책임자: 최지윤 | 연락처: 010-9265-6874, spaceofjane@gmail.com
-        </p>
-        <p style="margin-top:10px;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 12px;
-line-height: 14px;
-text-align: center;
-
-color: #757575;">
-            © 2020 집사 레시피 All Rights Reserved
-        </p>
-    </footer>
+<body style="overflow-x: hidden;">
+        <div>
+                {% block content %}
+                <!-- {% include 'nav.html' %}
+                {% include 'footer.html' %} -->
+                {% endblock %}
+        </div>
 </body>
+
 </html>

@@ -31,4 +31,8 @@ $(document).ready(function(){
         $('.input_box3').eq(number).show();
         number += 1;
     })
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 7adbe0f5d80255584e10f03a81780d6e671c6af1

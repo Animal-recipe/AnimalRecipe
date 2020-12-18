@@ -1,0 +1,29 @@
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}">
+
+<nav id="navBar">
+
+        <div id="menuBox">
+                <a id="home" href="{% url 'home:home' %}">홈</a>
+                <a class="menuItem" href="{% url 'recipe:list_recipe' %}">레시피</a>
+
+                <a class="menuItem" href="#">후기</a>
+                <a class="menuItem" href="{% url 'about:about' %}">소개</a>
+                <a class="menuItem" href="{% url 'question:list_question' %}">질문</a>
+        </div>
+
+        <a id="logo" href="{% url 'home:home' %}"><img src="{% static 'img/home/logo.png'%}" width="68px"></a>
+
+        <div id="userBox">
+                {% if user.is_authenticated %}
+                <a href="{% url 'account:mypage' %}" class="menuItem" style="width: auto;">{{ user.nickname }}
+                        집사님</a>
+                <a href="{% url 'account:logout' %}" class="menuItem" style="width: auto;">로그아웃</a>
+                {% else %}
+                <a href="{% url 'account:login' %}" class="menuItem">로그인</a>
+                <a href="{% url 'account:register' %}" class="menuItem">회원가입</a>
+                {% endif %}
+        </div>
+</nav>
+{% endblock %}

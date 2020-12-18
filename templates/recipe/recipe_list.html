@@ -32,7 +32,10 @@ color: #FD6B01;">
         <input style="
     width: 819px;
     height: 53px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7adbe0f5d80255584e10f03a81780d6e671c6af1
     background: #FFFFFF;
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
@@ -44,7 +47,10 @@ color: #FD6B01;">
     font-size: 15px;
     color: #676767;
     padding-left: 30px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7adbe0f5d80255584e10f03a81780d6e671c6af1
     " class="form-control mr-sm-2" type="search" placeholder="요리를 검색해 보세요!" aria-label="Search" name="query_str" value="{{query_str}}">
         <button id="search_btn" type="submit" style="position: absolute; right:905px; top: 9px; border: 0px solid white; background-color:white;">
             <img id="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
@@ -125,7 +131,10 @@ font-weight: 500;
 font-size: 15px;
 line-height: 53px;
 padding:0px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7adbe0f5d80255584e10f03a81780d6e671c6af1
 color: #575757;" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 정렬 방식
             </a>
@@ -145,7 +154,11 @@ color: #575757;">
         </div>
     </form>
     <div style="display:inline-block; margin-top:40px; float: right; margin-right: 210px;
+<<<<<<< HEAD
 font-family: Roboto;
+=======
+        font-family: Roboto;
+>>>>>>> 7adbe0f5d80255584e10f03a81780d6e671c6af1
 font-style: normal;
 font-weight: bold;
 font-size: 18px;
@@ -160,11 +173,19 @@ height: 53px;
 background: #FF6B00;
 box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 border-radius: 20px;">
+<<<<<<< HEAD
         <a href="{% url 'create_recipe' %}" style="color: #FFFFFF;">레시피 작성하기</a>
         <img style="margin-left:15px;" src="{% static 'img/recipe_write.png' %}"/>
     </div>
 </div>
     <div style="padding-left:221px; overflow:auto; width:2012px;">
+=======
+        <a href="{% url 'recipe:create_recipe' %}" style="color: #FFFFFF;">레시피 작성하기</a>
+        <img style="margin-left:15px;" src="{% static 'img/recipe_write.png' %}"/>
+    </div>
+</div>
+<div style="padding-left:221px; overflow:auto; width:2012px;">
+>>>>>>> 7adbe0f5d80255584e10f03a81780d6e671c6af1
         {% if recipes_dict %}
             {% for item, image in recipes_dict.items %}
             <div style=" float:left; margin-right:34px; margin-bottom:104px;
@@ -174,7 +195,8 @@ height: 408px;
 background: #FFFFFF;
 box-shadow: 26px 20px 35px rgba(0, 0, 0, 0.1);
 border-radius: 27px;
-" onclick ="location.href='{% url 'detail_recipe' recipe_id=item.id %}'">
+" onclick ="">
+<!-- " onclick ="location.href='{% url 'detail_recipe' recipe_id=item.id %}'"> -->
                 <img style="
 width: 344px;
 height: 251px;

@@ -45,9 +45,7 @@ def create(request):
         'step_formset': step_formset,
     })
 
-def recipe_home(request):
 
-    return render(request, "../templates/recipe/recipe_home.html")
 
 def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipes = Recipe.objects.all()
@@ -65,8 +63,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
                 img_obj = img[j]
         recipes_dict[recipes[i]] = img_obj.image.url
 
-    return render(request, "../templates/recipe/recipe_list.html",
-                  {"recipes_dict": recipes_dict, "recipes": recipes})
+    return render(request, "recipe/recipe_list.html")
 
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipe = Recipe.objects.get(pk=recipe_id)
@@ -74,5 +71,5 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     ingredient_list = Recipe_Ingredient.objects.filter(recipe=recipe)
     step_list = Recipe_Step.objects.filter(recipe=recipe)
 
-    return render(request, "../templates/recipe/recipe_detail.html",
+    return render(request, "recipe/recipe_detail.html",
                   {"recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list})

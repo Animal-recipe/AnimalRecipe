@@ -1,10 +1,11 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+from account.models import User
 
 class Question(models.Model):
     # 유저
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='question_user')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='question_user')
     # 제목
     title = models.TextField(max_length=180, default='')
     # 내용
@@ -26,7 +27,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     # 유저
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='answer_user')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answer_user')
     #question
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answer")
     # 내용

@@ -1,0 +1,74 @@
+#loginBox {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+#loginText {
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 49px;
+    display: flex;
+    align-items: center;
+    color: #575757;
+    margin: 100px 0 50px;
+}
+.loginInput {
+    width: 465px;
+    height: 55px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    border:0;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+}
+
+#loginBtn {
+    width: 465px;
+    height: 55px;
+    border: none;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    display: flex;
+    color: #FFFFFF;    
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#loginBtn:hover{
+    background: #d8580d;
+}
+#register {
+    margin-left: 80%;
+    font-family: Noto Sans;
+    font-size: 13px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: #575757;
+    border-bottom: 0.8px solid #575757;
+}
+#register:hover {
+    color: #2680e7;
+    border-bottom: 0.8px solid #2680e7;
+}
+#loginUnderBox {
+    margin-top: 340px;
+    height: 138px;
+    background: #FFDCDC;
+}

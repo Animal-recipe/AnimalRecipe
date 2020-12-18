@@ -4,12 +4,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import timedelta
 from django.utils import timezone
 from django.urls import reverse
-from django.contrib.auth.models import User
+from account.models import User
 # Create your models here.
 
 class Recipe(models.Model):
     # 유저
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='recipe_user')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipe_user')
     # 반려동물
     animal = models.CharField(max_length=50, default='')
     # 조리시간
