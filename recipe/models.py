@@ -18,8 +18,6 @@ class Recipe(models.Model):
     title = models.TextField(max_length=180, default='')
     # 요약설명
     summary = models.TextField(max_length=180, default='')
-    #몇 끼
-    count = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)], default=0)
     # 작성 시간
     created = models.DateTimeField(auto_now_add=True)
     # 수정 시간

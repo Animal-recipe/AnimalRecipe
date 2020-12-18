@@ -5,7 +5,7 @@ from .widgets import PreviewFileWidget
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['animal', 'cooking_time', 'title', 'summary', 'count', 'level']
+        fields = ['animal', 'cooking_time', 'title', 'summary', 'level']
 
 class RecipeImageForm(forms.ModelForm):
     class Meta:

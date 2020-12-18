@@ -7,7 +7,6 @@
     border-radius: 24px;
     border: 0 solid black;
     font-family: Noto Sans;
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 65px;
@@ -29,7 +28,6 @@
     border-radius: 24px;
 
     font-family: Noto Sans;
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 73px;
@@ -49,7 +47,6 @@
     border-radius: 24px;
 
     font-family: Noto Sans;
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 73px;
@@ -66,7 +63,6 @@
     border-radius: 24px;
     border: 0 solid black;
     font-family: Noto Sans;
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 65px;
@@ -83,7 +79,6 @@
     border: 0 solid black;
 
     font-family: Noto Sans;
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 65px;
@@ -96,7 +91,6 @@
     height: 41px;
 
     font-family: Noto Sans;
-    font-style: normal;
     font-weight: 600;
     font-size: 30px;
     line-height: 41px;
@@ -112,11 +106,45 @@
     border-radius: 22px;
 
     font-family: Noto Sans;
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 39px;
     border: 0 solid black;
     text-align:center;
     color: #FFFFFF;
+}
+
+#title{
+    margin-left:219px; margin-top: 120px;
+    height: 122px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 127.4%;
+    color: #FFFFFF;
+}
+
+#save{
+    margin-left:1510px;
+    width: 191px;
+    height: 65px;
+    background: #A9A9A9;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 24px 24px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 65px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#click_box{
+    width: 614px;
+    height: 73px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    line-height:73px;
+    border-radius: 24px;
 }
