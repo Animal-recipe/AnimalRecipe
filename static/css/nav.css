@@ -9,11 +9,13 @@
     height: 142px;
     border-radius: 0px 0px 80px 80px;
     overflow: hidden;
+    position: relative;
 }
 #menuBox {
     display:flex;
     justify-content: space-around;
     text-align: center;
+    width: 370px;
 }
 #home {
     font-family: Noto Sans;
@@ -36,13 +38,13 @@
     width: 64px;
 }
 #logo {
-    /* margin-right: 232px; */
-    margin-right: 20%;
     display: flex;
     justify-content: center;
+    width: 370px;
 }
 #userBox {
+    width: 370px;
     display:flex;
-    justify-content: space-around;
-    text-align: center;
+    justify-self: flex-end;
+    /* text-align: center; */
 }
