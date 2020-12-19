@@ -1,13 +1,13 @@
 #mainBox {
     margin-bottom:147px;
-    height: 800px;
+    height: 934px;
     background: #1B1B1B;
-    /* box-shadow: 6px 6px 40px rgba(0, 0, 0, 0.2); */
     border-radius: 0px 0px 80px 80px; 
-    padding-left:145px; 
+    padding: 0 145px;
     overflow:hidden;
+    position: relative;
+    z-index: 1;
 }
-
 #mainText {
     font-family: Noto Sans KR;
     font-style: normal;

@@ -3,13 +3,11 @@
     flex:1;
     justify-content: space-between;
     align-items: center;
-    background: #1B1B1B;
-    padding : 54px 75px 12px;
     border : 0;
     height: 142px;
-    border-radius: 0px 0px 80px 80px;
     overflow: hidden;
     position: relative;
+    z-index: 1000;
 }
 #menuBox {
     display:flex;
@@ -38,13 +36,13 @@
     width: 64px;
 }
 #logo {
+    width: 370px;
     display: flex;
     justify-content: center;
-    width: 370px;
+    padding: 0 10px;
 }
 #userBox {
     width: 370px;
-    display:flex;
-    justify-self: flex-end;
-    /* text-align: center; */
+    display: flex;
+    justify-content: flex-end;
 }

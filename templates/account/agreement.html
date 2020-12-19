@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'nav.html' %}
 <link rel="stylesheet" href="{% static 'css/account/agreement.css' %}">
+<script type="text/javascript" src="{% static 'js/account/agreement.js' %}"></script>
 
+<div id="navBarBox">
+    {% include 'nav.html' %}
+</div>
 <div id="container">
     <h2 id="title">회원가입</h2>
-    <form action="" , method="POST" id="myForm">
+    <form method="post" action="" id="myForm">
         {% csrf_token %}
         <div class="row" style="margin-bottom: 65px;">
             <label>
-                <input type="checkbox" id="customCheck" class="custom_check-input" name="agreementAll"/>
-                <label for="customCheck" style="display: flex;align-items: center;"><span style="width: 24px;height: 24px;"></span>전체동의</label>
+                <input type="checkbox" id="customCheckAll" class="custom_check-input"/>
+                <label for="customCheckAll" style="display: flex;align-items: center;"><span style="width: 24px;height: 24px;"></span>전체동의</label>
             </label>
         </div>
         <div class="row">
             <label>
-                <input type="checkbox" id="customCheck1" class="custom_check-input" name="agreement1"/>
+                <input type="checkbox" id="customCheck1" class="custom_check-input checkItem" name="agreement1"/>
                 <label for="customCheck1" style="display: flex;align-items: center;"><span></span>개인정보 처리방침에 동의</label>
             </label>
             <p class="trigger" id="trigger1">상세보기</p>
@@ -188,7 +191,7 @@
         
         <div class="row">
             <label>
-                <input type="checkbox" id="customCheck2" class="custom_check-input" name="agreement2" />
+                <input type="checkbox" id="customCheck2" class="custom_check-input checkItem" name="agreement2"/>
                 <label for="customCheck2" style="display: flex;align-items: center;"><span></span>이용약관에 동의</label>
             </label>
             <p class="trigger" id="trigger2">상세보기</a>
@@ -314,47 +317,11 @@
             <부 칙>
             공고일자 : 2020년 11월 29일
             시행일자 : 2020년 11월 29일</div>
-    
+
+            <div id="buttonBox">
+                <button type="submit" id="nextButton" disabled="">다음</button>
+                <a href="{% url 'home:home' %}" id="cancelButton">취소</a>
+            </div>
     </form>
-    <div id="buttonBox">
-        <a href="{% url 'account:register' %}" id="nextButton">다음</a>
-        <a href="{% url 'home:home' %}" id="cancelButton">취소</a>
-    </div>
 <div>
-
-<script>
-    const items = document.querySelectorAll('.trigger');
-$(document).ready(function(){
-
-    function openClose() {
-        const contentID = this.id.replace('trigger', 'content');
-
-        if(document.getElementById(contentID).style.display === 'block') {
-            document.getElementById(contentID).style.display = 'none';
-            document.getElementById(this.id).textContent = '상세보기';
-        } else {
-            document.getElementById(contentID).style.display = 'block';
-            document.getElementById(this.id).textContent = '접기';
-        }
-    }
-
-    items.forEach(item => item.addEventListener('click', openClose));
-
-    $('#submit').click(function(){
-    $('#urform').submit()
-    });
-
-});
-// const checkAllItem = document.getElementById('agreementAll');
-// checkAllItem.addEventListener('click', checkAll);
-// function checkAll() {
-//     if($("#agreementAll").prop("checked")){
-//         $("input[type=checkbox]").prop("checked", true);
-//         console.log('checked!')
-//     } else {
-//         $("input[type=checkbox]").prop("checked", false);
-//         console.log('unchecked');
-//     }
-// }
-</script>
 {% endblock %}
