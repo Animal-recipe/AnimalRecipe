@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'nav.html' %}
 <link rel="stylesheet" href="{% static 'css/about/about.css' %}">
+<div id="navBarBox">
+    {% include 'nav.html' %}
+</div>
 <div id="brandStoryBox">
     <div class="Title">
         <h2 style="color: #FF5C00;" class="MainTitle">시작</h2>

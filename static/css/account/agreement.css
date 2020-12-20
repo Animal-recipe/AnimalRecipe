@@ -1,0 +1,122 @@
+#navBarBox {
+    height: 158px;
+    background: #1B1B1B;
+    border-radius: 0px 0px 80px 80px;
+    position: relative;
+    z-index: 1;
+    padding: 0 145px;
+}
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Noto Sans;
+}
+#myForm {
+    width: 760px;
+}
+#title {
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 49px;
+    color: #575757;
+    margin: 100px 0;
+}
+.row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 760px;
+}
+.trigger {
+    cursor: pointer;
+    background: none;
+    display: inline-block;
+    border: 0.8px solid #575757;
+    box-sizing: border-box;
+    border-radius: 19px;
+    color: #575757;
+    font-size: 3px;
+    padding: 6px;
+    margin-left: 26px;
+}
+.content {
+    display: none;
+    padding: 50px 50px;
+    border: 1px solid #575757;
+    border-radius: 20px;
+    white-space: pre-wrap;
+    width: 760px;
+    margin: 52px 0 68px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+}
+#agreementAll {
+    width: 760px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    color: #575757;
+    margin-bottom: 65px;
+    display: inline-block;
+}
+.checkbox {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #575757;
+    display: inline-block;
+}
+#buttonBox {
+    margin: 223px 0 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#nextButton {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    width: 329px;
+    height: 55px;
+    background-color:#5f5f5f;
+    box-shadow: 6px 6px 30px rgba(255, 92, 0, 0.1);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    border: none;
+    outline:none;
+}
+#cancelButton {
+    color: #575757;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    width: 329px;
+    height: 55px;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custom_check-input+label span{
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 15px;
+    width: 18px;
+    height: 18px;
+    background: url('../../img/account/unChecked.png') no-repeat 0 0px / contain;
+}
+.custom_check-input:checked+label span{
+    background: url('../../img/account/checked.png') no-repeat 0 0px / contain;
+}
+.custom_check-input {
+    display: none;
+}
