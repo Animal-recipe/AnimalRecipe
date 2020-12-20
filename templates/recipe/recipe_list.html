@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'homeNav.html' %}
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 
 <div id="top_div">
+    {% include 'nav.html' %}
     <div id="hot_recipe">
         이번주 Hot 레시피
     </div>
@@ -58,7 +58,7 @@
     <div style="padding-left:221px; overflow:auto; width:2012px;">
             {% if recipes_dict %}
                 {% for item, image in recipes_dict.items %}
-                <div class="recipe_size"onclick = "">
+                <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'">
                     <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
                     <div style="padding-left:22px;">
                         <p class="recipe_title">{{ item.title }}</p>

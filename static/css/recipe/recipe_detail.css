@@ -60,7 +60,7 @@
     color: #000000;
 }
 
-#user_img{
+.user_img{
     width: 21px;
     float:left;
     margin-right:7px;
@@ -69,7 +69,7 @@
     border-radius:100px;
 }
 
-#user_info{
+.user_info{
     float:left;
     height: 22px;
     font-family: Noto Sans;
@@ -79,7 +79,7 @@
     color: #686868;
 }
 
-#count{
+.count{
     float:left;
     width: 99px;
     height: 20px;
@@ -221,4 +221,68 @@
         font-size: 18px;
         line-height: 25px;
         color: #000000;
+}
+
+.white_font{
+    height: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+    color: #EAEAEA;
+}
+
+#white_title{
+    height: 41px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 41px;
+    color: #FFFFFF;
+}
+#review_title{
+    width: 210px;
+    height: 95px;
+
+    background: #FFFFFF;
+    box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 24px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    text-align: center;
+
+    color: #000000;
+
+}
+#create_review_css{
+    width: 202px;
+    height: 53px;
+
+    background: #1B1B1B;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 53px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+.star{
+    width: 58px;
+    height: 23px;
+
+    background: #1B1B1B;
+    border-radius: 12.8413px;
+
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 23px;
+    text-align:center;
+    color: #FFFFFF;
 }

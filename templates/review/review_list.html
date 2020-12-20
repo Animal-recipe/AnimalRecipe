@@ -1,52 +1,78 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 
-<div style="
-width: 1920px;
-height: 757px;
-
-background: #FFA800;
-border-radius: 0px 0px 80px 80px; overflow:hidden; padding-left:201px;">
-    <!--    후기 들어가기~~   -->
+<div id="top_div">
+    {% include 'nav.html' %}
+    <div id="hot_recipe">
+        이번주 Best 레시피
+    </div>
+    <!--    슬릭 들어가기~~   -->
 </div>
-<div style="float:right; margin-right:218px; height:290px;margin-top:60px; overflow:hidden;">
-        <div style="display:inline-block;
-width: 186px;
-height: 53px;
-
-background: #FFFFFF;
-box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
-border-radius: 20px;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 18px;
-line-height: 53px;
-
-text-align: center;
-
-color: #686868;
-">
-        정렬 순서
+<div style="margin: 0 auto; width:1920px;">
+    <div style="margin-top:52px; overflow:hidden; position:relative; height:185px; padding-left:219px;">
+        <form style="" class="form-inline my-2 my-lg-0" action="" method="POST">
+            {% csrf_token %}
+            <input id="search" class="form-control mr-sm-2" type="search" placeholder="요리를 검색해 보세요!" aria-label="Search" name="query_str" value="{{query_str}}">
+            <button id="search_btn" type="submit" style="position: absolute; right:905px; top: 9px; border: 0px solid white; background-color:white;">
+                <img id="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
+            </button>
+            <div class="dropdown show" style="margin-left:33px;">
+                <a id="dropdown_font1" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    반려 동물
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="more1">
+                    <a class="dropdown-item" href="#">강아지</a>
+                    <a class="dropdown-item" href="#">고양이</a>
+                    <a class="dropdown-item" href="#">다른 동물</a>
+                </div>
+            </div>
+            <div class="dropdown show" style="margin-left:15px;">
+                <a id="dropdown_font2" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    조리 시간
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="more2">
+                    <a class="dropdown-item" href="#">5분 이내</a>
+                    <a class="dropdown-item" href="#">5분 - 10분</a>
+                    <a class="dropdown-item" href="#">10분 - 20분</a>
+                    <a class="dropdown-item" href="#">20분 이상</a>
+                </div>
+            </div>
+            <div class="dropdown show" style="margin-left:15px;">
+                <a id="dropdown_font3" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    정렬 방식
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="more3">
+                    <a class="dropdown-item" href="#">최신순</a>
+                    <a class="dropdown-item" href="#">후기 많은 순</a>
+                    <a class="dropdown-item" href="#">공감 순</a>
+                </div>
+            </div>
+        </form>
+    </div>
+       <div>
+        <div style="padding-left:221px; overflow:auto; width:2012px;">
+            {% if review_dict %}
+                {% for item, image in review_dict.items %}
+                <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'" >
+                    <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                    <div style="padding-left:22px;">
+                        <p class="recipe_title">"{{ item.title }}"</p>
+                        <div>
+                            <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"></p>
+                            <p class="recipe_id">{{ item.author }}</p>
+                        </div>
+                        <div style="margin-top:29px; float: right; margin-right:40px;">
+                            <p class="star"> ★   {{ item.star }}.0</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
         </div>
-        <div style="display:inline-block; margin-left:15px;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 18px;
-line-height: 53px;
-
-text-align: center;
-
-color: #FFFFFF;
-width: 186px;
-height: 53px;
-
-background: #FFC700;
-box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
-border-radius: 20px;">
-            <a href="{% url 'create_recipe' %}" style="color: #000000;">후기 작성하기</a>
-        </div>
+    </div>
 </div>
+
+
 {% endblock %}
