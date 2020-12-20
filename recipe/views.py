@@ -23,7 +23,6 @@ def create(request):
             recipe.level = request.POST["level"]
             recipe.title = request.POST["title"]
             recipe.summary = request.POST["summary"]
-            recipe.count = request.POST["count"]
 
             with transaction.atomic():
                 recipe.save()
@@ -63,7 +62,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
                 img_obj = img[j]
         recipes_dict[recipes[i]] = img_obj.image.url
 
-    return render(request, "recipe/recipe_list.html")
+    return render(request, "recipe/recipe_list.html",{"recipes_dict":recipes_dict})
 
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipe = Recipe.objects.get(pk=recipe_id)
