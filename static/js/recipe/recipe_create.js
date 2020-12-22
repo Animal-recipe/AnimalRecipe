@@ -6,6 +6,14 @@ $(document).ready(function(){
         $(this).css("color","#FFFFFF");
     })
 
+    $('#star1').click(function(){
+        $('#img1').attr("src", "{% static 'img/review/review_create/fill_star.png' %}");
+        $('#img2').attr("src", "{% static 'img/review/review_create/empty_star.png' %}");
+        $('#img3').attr("src", "{% static 'img/review/review_create/empty_star.png' %}");
+        $('#img4').attr("src", "{% static 'img/review/review_create/empty_star.png' %}");
+        $('#img5').attr("src", "{% static 'img/review/review_create/empty_star.png' %}");
+    })
+
     $('.cook .radio_box').click(function(){
         $('.cook .radio_box').css("background-color", "#FFFFFF");
         $('.cook .radio_box').css("color", "#575757");

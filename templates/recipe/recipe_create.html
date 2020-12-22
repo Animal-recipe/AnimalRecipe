@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'homeNav.html' %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/recipe/recipe_create.css' %}"/>
 <script type="text/javascript" src="{% static 'js/recipe/recipe_create.js' %}"></script>
-<div style=" overflow:hidden;width: 100%;height: 320px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+<div style=" overflow:hidden;width: 100%;height: 420px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+    {% include 'nav.html' %}
     <div id="title">
         <p>레시피</p>
         <p>작성하기</p>
     </div>
 </div>
-<div style="margin: 0 auto; width:1920px;">
+<div style="margin: 0 auto; width:1920px; margin-bottom:100px;">
     <div id="save">임시저장 글 | </div>
     <div style="margin-left:219px; margin-top:95px;">
         <form action="" method="post" enctype="multipart/form-data">
@@ -22,24 +23,24 @@
             <div style="margin-top:180px;">
                 <p class="font1">어떤 반려동물을 위한 요리인가요?</p>
                 <div class="animal" style="margin-top:80px;">
-                    <label style="width: 170px;" class="radio_box">모두<input style="display:none;" type="radio" name="animal" value="모두" autofocus="" ></label>
-                    <label style="width: 170px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="강아지"> 강아지</label>
-                    <label style="width: 170px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="고양이"> 고양이</label>
-                    <label style="width: 588px; margin-left:30px; padding-left:60px; text-align:left;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="other"> 기타 <input class="input_box" style="margin-left: 30px; box-shadow: none; width:430px;" placeholder="반려동물을 작성해주세요.(한글, 쉼표만 가능)" type="text" name="other_animal"></label>
+                    <label style="width: 170px; cursor:pointer;" class="radio_box">모두<input style="display:none;" type="radio" name="animal" value="모두" autofocus="" ></label>
+                    <label style="width: 170px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="강아지"> 강아지</label>
+                    <label style="width: 170px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="고양이"> 고양이</label>
+                    <label style="width: 588px; margin-left:30px; cursor:pointer; padding-left:60px; text-align:left;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="other"> 기타 <input class="input_box" style="margin-left: 30px; box-shadow: none; width:430px;" placeholder="반려동물을 작성해주세요.(한글, 쉼표만 가능)" type="text" name="other_animal"></label>
                 </div>
             </div>
             <p class="font1" style=" margin-top:200px;">조리시간이 얼마나 걸리나요?</p>
             <div class="cook" style="margin-top:80px;">
-                <label style="width: 180px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 이내" autofocus="" > 5분 이내 </label>
-                <label style="width: 180px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 - 10분"> 5분 - 10분 </label>
-                <label style="width: 180px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="10분 - 20분"> 10분 - 20분 </label>
-                <label style="width: 180px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="20분 이상"> 20분 이상 </label>
+                <label style="width: 180px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 이내" autofocus="" > 5분 이내 </label>
+                <label style="width: 180px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 - 10분"> 5분 - 10분 </label>
+                <label style="width: 180px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="10분 - 20분"> 10분 - 20분 </label>
+                <label style="width: 180px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="20분 이상"> 20분 이상 </label>
             </div>
             <p class="font1" style="margin-top:180px;">조리 난이도</p>
             <div class="level" style="margin-top:80px;">
-                <label style="width: 120px;" class="radio_box"><input style="display:none;" type="radio" name="level" value="상" autofocus="" > 상 </label>
-                <label style="width: 120px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="level" value="중"> 중 </label>
-                <label style="width: 120px; margin-left:30px;" class="radio_box"><input style="display:none;" type="radio" name="level" value="하"> 하 </label>
+                <label style="width: 120px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="level" value="상" autofocus="" > 상 </label>
+                <label style="width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="level" value="중"> 중 </label>
+                <label style="width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="level" value="하"> 하 </label>
             </div>
 
             <div style="margin-top:160px;">
@@ -56,7 +57,7 @@
                 <div id="ingredient" style="overflow:hidden; width: 800px; margin-top:50px; padding-bottom:40px;">
                     {{ ingredient_formset }}
                 </div>
-                <div id="click_box">
+                <div id="click_box" style="cursor:pointer;">
                     <img style="margin-top:13px;" src="{% static 'img/recipe/recipe_create/add.png' %}"/>
                 </div>
             </div>

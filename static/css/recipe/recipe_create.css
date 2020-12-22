@@ -148,3 +148,14 @@
     line-height:73px;
     border-radius: 24px;
 }
+
+#star_box{
+    width: 510px;
+    height: 97px;
+    line-height:97px;
+    padding-top:10px;
+    text-align:center;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}

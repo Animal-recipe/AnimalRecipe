@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'homeNav.html' %}
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
 
-<div style="width: 100%;height: 30px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+<div style="width: 100%;height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+    {% include 'nav.html' %}
 </div>
 <div style="margin: 0 auto; width:1920px;">
     <div id="box">
@@ -34,9 +35,9 @@
         <div style="margin-top:60px;">
             <p id="title">{{ recipe.title }}</p>
             <div style="overflow:hidden; margin-top:40px;">
-                <img id="user_img">
-                <p id="user_info">{{ recipe.author }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
-                <p id="count">
+                <img class="user_img">
+                <p class="user_info">{{ recipe.author }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
+                <p class="count">
                     조회수   공감
                 </p>
             </div>
@@ -76,18 +77,58 @@
                 </div>
             {% endfor %}
     </div>
-    <div style=" margin-top:152px;width: 100%;height: 440px;background: #1B1B1B;border-radius: 60px;"></div>
-    <div>
-        <button>도움이 됐어요</button>
-        <button>스크랩</button>
-        <button>신고</button>
-        <button>수정</button>
+    <div style=" margin: 0 auto; margin-top:152px;width: 1724px;height: 440px;background: #1B1B1B;border-radius: 60px;">
+        <div style="padding-top:85px; padding-left:121px; overflow:hidden; float:left;">
+            <div style="float:left; text-align:center;">
+                <a href=""><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
+                <p class="white_font">공감</p>
+            </div>
+            <div style="float:left; text-align:center; margin-left: 100px;">
+                <a href=""><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/save.png' %}" class="card-img-top" alt="사진"></a>
+                <p class="white_font">저장</p>
+            </div>
+            <div style="float:left; text-align:center; margin-left:40px;">
+                <a href=""><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
+                <p class="white_font">쪽지</p>
+            </div>
+        </div>
+        <div style="padding-top:85px; float:right; padding-right:121px;">
+            <p id="white_title">{{ recipe.title }}</p>
+            <div style="overflow:hidden; margin-top:40px;">
+                <img class="user_img">
+                <p class="user_info">{{ recipe.author }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
+                <p class="count">
+                    조회수   공감
+                </p>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top:144px; overflow:hidden; padding-bottom: 104px;">
+        <p id="review_title" style="float:left; margin-left:855px; padding-top:15px;">총 {{ count }}개의 <br>후기가 있어요!</p>
+        <div id="create_review_css" style="float:right; margin-right:221px; margin-top:40px;">
+            <a href="{% url 'review:create_review' recipe_id=recipe.id %}" style="color: #FFFFFF;">후기 작성하기</a>
+            <img style="margin-left:15px;" src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/>
+        </div>
     </div>
     <div>
-        <p>후기</p>
-        <p>총 ~~개의 후기가 있습니다. </p>
-        <button>후기 작성하기</button>
-        <div>
+        <div style="padding-left:221px; overflow:auto; width:2012px;">
+            {% if review_dict %}
+                {% for item, image in review_dict.items %}
+                <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'" >
+                    <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                    <div style="padding-left:22px;">
+                        <p class="recipe_title">"{{ item.title }}"</p>
+                        <div>
+                            <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"></p>
+                            <p class="recipe_id">{{ item.author }}</p>
+                        </div>
+                        <div style="margin-top:29px; float: right; margin-right:40px;">
+                            <p class="star"> ★   {{ item.star }}.0</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

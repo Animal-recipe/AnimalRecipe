@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
 from django.core.paginator import Paginator
 
+from review.models import Review, Review_Img
+
 # Create your views here.
 def create(request):
     if request.method == 'POST':
@@ -70,5 +72,23 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     ingredient_list = Recipe_Ingredient.objects.filter(recipe=recipe)
     step_list = Recipe_Step.objects.filter(recipe=recipe)
 
+    review = Review.objects.all()
+    review_img = Review_Img.objects.all()
+    review_dict = {}
+    # review를 key로 하고, image url을 value로 하는 맵 생성
+    paginator = Paginator(review, 12)  # 12개로 제한
+    page = request.GET.get('page')  # ??
+    review = paginator.get_page(page)
+    count = 0
+    for i in range(0, review.__len__()):
+        tmp = review[i]
+        if tmp.recipe == recipe:
+            count = count + 1
+            for j in range(0, review_img.__len__()):
+                if review_img[j].review == tmp:
+                    img_obj = review_img[j]
+                    review_dict[review[i]] = img_obj.image.url
+                    break
+
     return render(request, "recipe/recipe_detail.html",
-                  {"recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list})
+                  {"recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count})

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/recipe/recipe_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/review/review_detail.css' %}">
+<script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
+
+<div style="width: 100%;height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+    {% include 'nav.html' %}
+</div>
+<div style="margin: 0 auto; width:1920px;">
+    <div id="box">
+        <a href="" style="color: #FFFFFF;">수정</a>
+        <span style="margin:0 10px;">  | </span>
+        <a href="" style="color: #FFFFFF;">삭제</a>
+    </div>
+    <div style="margin-top:30px; margin-left:219px;">
+        <div style="overflow:hidden;">
+            <div class="image_list"  style="width: 870px; height: 526px; float:left;">
+                {% for img in img_list %}
+                <div class="image">
+                    <img class="img_style" src="{{ img.image.url }}" class="card-img-top" alt="사진">
+                </div>
+                {% endfor %}
+            </div>
+            <div style="width:62px; float:right; margin-right:218px; margin-top:274px;">
+                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
+                <p id="good">공감</p>
+                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/save.png' %}" class="card-img-top" alt="사진"></a>
+                <p id="save">저장</p>
+                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
+                <p id="message">쪽지</p>
+            </div>
+        </div>
+        <div style="margin-top:60px;">
+            <div>
+                <p class="star" style="float:left; margin-right:16px; margin-top:8px;"> ★   {{ review.star }}.0</p>
+                <p id="title">{{ review.title }}</p>
+            </div>
+            <div style="overflow:hidden; margin-top:40px;">
+                <img class="user_img">
+                <p class="user_info">{{ recipe.author }} 의 레시피  |  작성일 : {{ review.updated }}</p>
+                <p class="count">
+                    조회수   공감
+                </p>
+            </div>
+        </div>
+        <div style="overflow:hidden; margin-top:58px;">
+            <p id="animal">{{ review.recipe.animal }}</p>
+            <p id="cook_time">{{ review.recipe.cooking_time }}</p>
+            <p id="cook_level">{{ review.recipe.level }}</p>
+        </div>
+
+        <div id="summary">"{{ review.content }} "</div>
+    </div>
+
+    <div class="goto_recipe" style=" cursor: pointer; margin-left:219px; margin-top:73px;" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=review.recipe.id %}'">
+        레시피 보기
+        <img src="{% static 'img/review/review_detail/goto_recipe.png' %}"/>
+    </div>
+    <div style=" margin-top:106px; width: 1926px; height: 338px;text-align:center;line-height:338px;background: #FFDADA;">
+    ===========광고============
+    </div>
+</div>
+
+{% endblock %}
