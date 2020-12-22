@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/recipe/recipe_create.css' %}"/>
 <link rel="stylesheet" type="text/css" href="{% static 'css/review/review_create.css' %}"/>
-<script type="text/javascript" src="{% static 'js/recipe/recipe_create.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/review/review_create.js' %}"></script>
 <div style=" overflow:hidden;width: 100%;height: 420px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
     <div id="title">
@@ -25,11 +25,11 @@
                 <p class="font1">별점을 매겨주세요!</p>
                 <div class="star" style="margin-top:80px;">
                     <div id="star_box">
-                        <label id="star1" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="1" autofocus="" ><img id="img1" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
-                        <label id="star2" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="2"><img id="img2" src="{% static 'img/review/review_create/empty_star.png' %}"/></label>
-                        <label id="star3" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="3"><img id="img3" src="{% static 'img/review/review_create/empty_star.png' %}"/></label>
-                        <label id="star4" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="4"><img id="img4" src="{% static 'img/review/review_create/empty_star.png' %}"/></label>
-                        <label id="star5" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="5"><img id="img5" src="{% static 'img/review/review_create/empty_star.png' %}"/></label>
+                        <label id="star1" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="1" autofocus="" ><img id="star_img1" src="{% static 'img/review/review_create/fill_star.png' %}"/><img id="empty1" style="display:none;" src="{% static 'img/review/review_create/empty_star.png' %}"/></label>
+                        <label id="star2" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="2"><img id="empty2" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img2" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
+                        <label id="star3" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="3"><img id="empty3" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img3" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
+                        <label id="star4" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="4"><img id="empty4" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img4" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
+                        <label id="star5" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="5"><img id="empty5" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img5" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,19 @@
+#textarea_box{
+    display:block;
+    margin-top: 99px;
+    padding: 58px;
+    width: 860px;
+    height: 1579px;
+
+    background: #FFFFFF;
+    border: 1px solid #575757;
+    box-sizing: border-box;
+    border-radius: 20px;
+
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #000000;
+}
+

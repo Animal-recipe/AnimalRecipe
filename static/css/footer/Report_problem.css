@@ -1,0 +1,24 @@
+.list{
+    display: block;
+    height: 25px;
+
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+
+    color: #575757;
+}
+
+.check_box{
+    float: left;
+    width: 25px;
+    height: 25px;
+}
+
+.noncheck_box{
+    float: left;
+    width: 25px;
+    height: 25px;
+}
+

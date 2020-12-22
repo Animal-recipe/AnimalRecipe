@@ -286,3 +286,15 @@
     text-align:center;
     color: #FFFFFF;
 }
+
+#report{
+    height: 18px;
+
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+

@@ -6,9 +6,6 @@ from django.shortcuts import redirect
 from django.core.paginator import Paginator
 
 # Create your views here.
-def review_list(request):
-    return render(request, "../templates/review/review_list.html")
-
 def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
     review = Review.objects.all()
     img = Review_Img.objects.all()
@@ -59,3 +56,4 @@ def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가
 
     return render(request, "review/review_detail.html",
                   {"review": review, "img_list": img_list})
+

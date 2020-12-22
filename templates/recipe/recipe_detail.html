@@ -36,7 +36,7 @@
             <p id="title">{{ recipe.title }}</p>
             <div style="overflow:hidden; margin-top:40px;">
                 <img class="user_img">
-                <p class="user_info">{{ recipe.author }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
+                <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
                 <p class="count">
                     조회수   공감
                 </p>
@@ -96,10 +96,14 @@
             <p id="white_title">{{ recipe.title }}</p>
             <div style="overflow:hidden; margin-top:40px;">
                 <img class="user_img">
-                <p class="user_info">{{ recipe.author }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
+                <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
                 <p class="count">
                     조회수   공감
                 </p>
+            </div>
+            <div style="float:right; margin-top:160px; cursor:pointer;">
+                <img style="float:left;" src="{% static 'img/recipe/recipe_detail/report.png' %}"/>
+                <p id="report" style="float:left; margin-left:5px;" onclick = "location.href='{% url 'footer:Report' user_id=recipe.author %}'">신고하기</p>
             </div>
         </div>
     </div>
@@ -120,7 +124,7 @@
                         <p class="recipe_title">"{{ item.title }}"</p>
                         <div>
                             <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"></p>
-                            <p class="recipe_id">{{ item.author }}</p>
+                            <p class="recipe_id">{{ item.author.nickname }}</p>
                         </div>
                         <div style="margin-top:29px; float: right; margin-right:40px;">
                             <p class="star"> ★   {{ item.star }}.0</p>

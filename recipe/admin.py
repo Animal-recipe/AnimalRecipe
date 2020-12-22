@@ -11,3 +11,4 @@ admin.site.register(Recipe_Ingredient)
 # @admin.register(Recipe_Img)
 # class CountryAmin(admin.ModelAdmin):
 #     form = RecipeImageForm
+
