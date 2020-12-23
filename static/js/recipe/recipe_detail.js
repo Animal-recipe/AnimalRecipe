@@ -15,3 +15,4 @@ $(document).ready(function(){
         $('.user_comment_box').removeAttr('disabled');
     });
 });
+

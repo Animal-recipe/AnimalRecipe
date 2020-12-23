@@ -115,7 +115,7 @@
 }
 
 #title{
-    margin-left:219px; margin-top: 120px;
+    margin-left:219px; margin-top: 100px;
     height: 122px;
     font-family: Noto Sans;
     font-weight: bold;
@@ -159,3 +159,4 @@
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
 }
+

@@ -61,7 +61,7 @@
                         <p class="recipe_title">"{{ item.title }}"</p>
                         <div>
                             <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"></p>
-                            <p class="recipe_id">{{ item.author }}</p>
+                            <p class="recipe_id">{{ item.author.nickname }}</p>
                         </div>
                         <div style="margin-top:29px; float: right; margin-right:40px;">
                             <p class="star"> ★   {{ item.star }}.0</p>
@@ -76,3 +76,4 @@
 
 
 {% endblock %}
+

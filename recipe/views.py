@@ -92,3 +92,4 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
 
     return render(request, "recipe/recipe_detail.html",
                   {"recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count})
+

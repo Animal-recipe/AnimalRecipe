@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'question',
     'home',
     'about',
+    'footer',
 ]
 
 MIDDLEWARE = [
