@@ -4,80 +4,98 @@ from django.core.files.images import get_image_dimensions
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User, PET_KINDS
-
+from django.contrib.auth.hashers import check_password
 
 class UserCreationForm(forms.ModelForm):
 
     email = forms.EmailField(
-        label=_('이메일'),
+        label='',
         widget=forms.EmailInput(
             attrs={
-                'class': 'form-control',
-                'placeholder': _('이메일 주소'),
+                'class': 'registerInput',
+                'placeholder': _('이메일'),
                 'required': 'True',
             }
         )
     )
     nickname = forms.CharField(
-        label=_('닉네임'),
+        label='',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
-                'placeholder': _('닉네임'),
+                'class': 'registerInput',
+                'placeholder': _('닉네임(중복불가)'),
                 'required': 'True',
             }
         )
     )
-
-    profile = forms.ImageField(label='프로필 사진')
-    password1 = forms.CharField(label='비밀번호', 
+    profile = forms.ImageField(label='')
+    password1 = forms.CharField(
+        label='',
         widget=forms.PasswordInput(
                 attrs={
-                    'class': 'form-control',
-                    'placeholder': _('비밀번호'),
+                    'class': 'registerInput',
+                    'placeholder': _('비밀번호(8자리 이상)'),
                     'required': 'True',
                 }
         )
     )
     password2 = forms.CharField(
-        label='비밀번호 확인', 
+        label='',
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control',
+                'class': 'registerInput',
                 'placeholder': _('비밀번호 확인'),
                 'required': 'True',
             }
         )
     )
-
     petname = forms.CharField(
-        label=_('반려동물 이름'),
+        label='',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control',
+                'class': 'registerInput',
                 'placeholder': _('반려동물 이름'),
                 'required': 'True',
             }
         )
     )
-
     petkind = forms.CharField(
-        label='반려동물 종류',
+        label='',
         max_length=4,
-        widget=forms.Select(choices=PET_KINDS),
+        widget= forms.Select(
+            choices=PET_KINDS,
+            attrs={
+                'placeholder': _('반려동물을 선택해주세요'),
+                'class': 'registerInput',
+            }
+        )
     )
 
     class Meta:
         model = User
-        fields = ('email', 'password1', 'password2', 'nickname', 'petname', 'petkind', 'profile')
+        fields = ('profile', 'email',  'nickname', 'password1', 'password2', 'petkind', 'petname')
 
+    def clean_password1(self):
+        password1 = self.cleaned_data.get("password1")
+        if len(password1) < 8:
+            raise forms.ValidationError("비밀번호는 8자 이상이어야 합니다.")
+        return password1
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError("비밀번호가 일치하지 않습니다.")
         return password2
-
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('이메일 중복을 확인해 주세요.')
+        return email
+    def clean_nickname(self):
+        nickname = self.cleaned_data.get("nickname")
+        if User.objects.filter(nickname=nickname).exists():
+            raise forms.ValidationError('닉네임 중복으로 사용하실 수 없습니다.')
+        return nickname
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
@@ -92,6 +110,34 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('password', 'nickname', 'petname', 'petkind', 'profile')
-    
+
     def clean_password(self):
         return self.initial["password"]
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs = {
+                'class' : 'loginInput'
+            }
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs = {
+                'class' : 'loginInput'
+            }
+        )
+    )
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        password = cleaned_data.get('password')
+        if email and password :
+            try:
+                user = User.objects.get(email = email)
+            except User.DoesNotExist:
+                self.add_error('email', "존재하지 않는 이메일입니다.")
+            if not check_password(password, user.password):
+                self.add_error('password', '비밀번호가 일치하지 않습니다.')
+        return cleaned_data
