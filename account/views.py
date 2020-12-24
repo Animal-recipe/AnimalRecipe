@@ -14,10 +14,6 @@ def register(request):
         form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            email = form.cleaned_data.get('email')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=raw_password)
-            login(request, user)
             return redirect('/account/register/success/')
         else:
             pass
