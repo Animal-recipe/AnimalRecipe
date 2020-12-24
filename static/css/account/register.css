@@ -171,3 +171,66 @@ a:hover {color: #575757;}
     height: 24px;
     cursor: pointer;
 }
+/* registerSuccess.html */
+#successImage {
+    width: 278px;
+    height: 66px;
+    display: flex;
+    margin: 218px auto 306px;
+}
+#catImage {
+    position: absolute;
+    width: 173.86px;
+    height: 143.51px;
+    left: -24px;
+    top: 596.12px;
+    transform: rotate(-3.64deg);
+}
+#rabbitImage {
+    position: absolute;
+    width: 104.59px;
+    height: 133.44px;
+    left: 1363px;
+    top: 198.73px;
+    transform: rotate(-10.99deg);
+}
+#dogImage {
+    position: absolute;
+    width: 104.22px;
+    height: 98.38px;
+    left: 1160.91px;
+    top: 884px;
+    transform: rotate(5.27deg);
+}
+.optionBox .loginButton {
+    width: 329px;
+    height: 55px;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(255, 92, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    margin: 0 10px;
+}
+.optionBox .homeButton {
+    width: 329px;
+    height: 55px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575757;
+    margin: 0 10px;
+}

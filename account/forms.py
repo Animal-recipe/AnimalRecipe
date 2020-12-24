@@ -10,6 +10,7 @@ class UserCreationForm(forms.ModelForm):
 
     email = forms.EmailField(
         label='',
+        max_length=255,
         widget=forms.EmailInput(
             attrs={
                 'class': 'registerInput',
@@ -20,6 +21,7 @@ class UserCreationForm(forms.ModelForm):
     )
     nickname = forms.CharField(
         label='',
+        max_length=20,
         widget=forms.TextInput(
             attrs={
                 'class': 'registerInput',
@@ -28,7 +30,7 @@ class UserCreationForm(forms.ModelForm):
             }
         )
     )
-    profile = forms.ImageField(label='')
+    profile = forms.ImageField(label='', required=False)
     password1 = forms.CharField(
         label='',
         widget=forms.PasswordInput(
@@ -51,6 +53,7 @@ class UserCreationForm(forms.ModelForm):
     )
     petname = forms.CharField(
         label='',
+        max_length=20,
         widget=forms.TextInput(
             attrs={
                 'class': 'registerInput',
@@ -61,7 +64,6 @@ class UserCreationForm(forms.ModelForm):
     )
     petkind = forms.CharField(
         label='',
-        max_length=4,
         widget= forms.Select(
             choices=PET_KINDS,
             attrs={
@@ -97,6 +99,7 @@ class UserCreationForm(forms.ModelForm):
             raise forms.ValidationError('닉네임 중복으로 사용하실 수 없습니다.')
         return nickname
     def save(self, commit=True):
+        print('save')
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:

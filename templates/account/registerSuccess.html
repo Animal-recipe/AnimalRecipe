@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/account/register.css' %}">
+<div id="navBarBox">
+    {% include 'nav.html' %}
+</div>
+
+<img src="{% static 'img/account/defaultProfile.png' %}" id="successImage">
+<img src="{% static 'img/account/cat.png' %}" id="catImage">
+<img src="{% static 'img/account/rabbit.png' %}" id="rabbitImage">
+<img src="{% static 'img/account/dog.png' %}" id="dogImage">
+
+<div class="optionBox">
+    <a class="loginButton" href="{% url 'account:login' %}">로그인 하기</a>
+    <a class="homeButton" href="{% url 'home:home' %}">메인으로 돌아가기</a>
+</div>
+{% endblock %}
