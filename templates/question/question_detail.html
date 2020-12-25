@@ -9,7 +9,7 @@
             <p>{{ question.updated }}</p>
             <p>{{ question.content }}</p>
         </div>
-        <button onclick ="location.href='{% url 'create_answer' question.id %}'">답변하기</button>
+        <a href='{% url "question:create_answer" question.id %}'>답변하기</button>
         <button>수정</button>
         <button>삭제</button>
         <hr>

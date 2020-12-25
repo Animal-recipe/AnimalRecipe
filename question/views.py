@@ -6,36 +6,36 @@ from .models import Question, Answer
 # Create your views here.
 def question_create(request):
     if request.method == 'POST':
-        question_form = QuestionForm(request.POST, request.FILES)
-        if question_form.is_valid():
-            question = question_form.save(commit=False)
+        form = QuestionForm(request.POST, request.FILES)
+        if form.is_valid():
+            question = form.save(commit=False)
             question.author_id = request.user.id
             question.save()
 
-            return redirect('list_question')
+            return redirect('/question/list/')
     else:
-        question_form = QuestionForm()
+        form = QuestionForm()
 
     return render(request, '../templates/question/question_create.html', {
-        'question_form': question_form,
+        'form': form,
     })
 
 def answer_create(request, question_id):
+    question = Question.objects.get(pk=question_id)
     if request.method == 'POST':
-        answer_form = AnswerForm(request.POST, request.FILES)
-        if answer_form.is_valid():
-            answer = answer_form.save(commit=False)
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
             answer.author_id = request.user.id
-            answer.question = Question.objects.get(pk=question_id)
+            answer.question = question
             answer.save()
-            # 해당 질문에 대한 페이지로 이동하려면 어떻게?!
-            return redirect('list_question')
+            return redirect('question:detail', question_id=question_id)
     else:
-        answer_form = AnswerForm()
+        form = AnswerForm()
 
-    return render(request, '../templates/question/answer_create.html', {
-        'answer_form': answer_form,
-    })
+    return render(request, '../templates/question/answer_create.html', 
+        {"form": form, "question": question}
+    )
 
 def question_list(request):
     question = Question.objects.all()

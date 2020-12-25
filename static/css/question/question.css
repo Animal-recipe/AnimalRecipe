@@ -1,0 +1,201 @@
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #ABABAB;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #ABABAB;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #ABABAB;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #ABABAB;
+}
+::-moz-placeholder {
+    opacity: 1;
+}
+button:focus {outline:0;}
+#bigNavBarBox {
+    height: 430px;
+    background: #1B1B1B;
+    border-radius: 0px 0px 80px 80px;
+    position: relative;
+    z-index: 1;
+    padding: 0 145px;
+}
+/* question create css */
+#bigNavBarBox h1 {
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 127.4%;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    margin: 82px 0 84px;
+}
+#questionCreateBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 160px;
+    padding: 0 219px;
+}
+.questionTitleBox {
+    width: 636px;
+    height: 65px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    padding: 20px 30px;
+}
+.questionTitle {
+    width: 100%;
+    height: 100%;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+}
+.questionContentBox {
+    width: 992px;
+    height: 562px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    padding: 30px 50px;
+}
+.questionContent {
+    width: 100%;
+    height: 100%;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 33px;
+    white-space: pre-wrap;
+    outline: none;
+    border: none;
+}
+.FieldTitle {
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 41px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-bottom: 80px;
+}
+.buttonBox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 270px;
+}
+.submitButton {
+    width: 251px;
+    height: 73px;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    color: #ffffff;
+    outline: none;
+    border: none;
+}
+.submitButton:hover {
+    background-color: #e75d0d;
+}
+.cancelButton {
+    width: 251px;
+    height: 73px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    margin: 0 20px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575757;
+    outline: none;
+    border: none;
+}
+.cancelButton:hover {
+    color: #575757;
+    background-color: #e9e9e9;
+}
+
+/* Answer css */
+#answerCreateBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 160px;
+    padding: 0 219px;
+}
+.answerContent {
+    width: 100%;
+    height: 100%;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 33px;
+    white-space: pre-wrap;
+    outline: none;
+    border: none;
+}
+.answerContentBox {
+    width: 992px;
+    height: 562px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    padding: 30px 50px;
+}
+.questionTitle {
+    dislay: flex;
+    justify-content: flex-start;
+}
+.trigger {
+    cursor: pointer;
+    background: none;
+    display: inline-block;
+    border: 0.8px solid #575757;
+    box-sizing: border-box;
+    border-radius: 19px;
+    color: #575757;
+    font-size: 3px;
+    padding: 6px;
+    margin-left: 26px;
+}
+.triggerContentBox {
+    display: none;
+    white-space: pre-wrap;
+    width: 884px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 180.8%;
+    color: #575757;
+    padding: 70px 0px;
+}
+.triggerContent {
+    padding-left: 50px;
+}

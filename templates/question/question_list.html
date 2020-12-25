@@ -9,12 +9,12 @@
     <div style="">
         질문
     </div>
-    <a href="{% url 'create_question' %}">질문하기</a>
+    <a href="{% url 'question:create_question' %}">질문하기</a>
 
     <div style="">
         {% if question %}
             {% for item in question %}
-                <div onclick ="location.href='{% url 'detail_question' item.id %}'">
+                <a href="{% url 'question:detail' item.id %}">
                     <p> {{ item.title }}</p>
                     <p> {{ item.author }}</p>
                     <p> {{ item.updated }}</p>

@@ -1,12 +1,33 @@
-<!DOCTYPE html>
-<body>
-    {% load static %}
-    <div>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/question/question.css' %}">
+<div id="bigNavBarBox">
+    {% include 'nav.html' %}
+    <h1>질문<br>작성하기</h1>
+</div>
+    <div id="questionCreateBox">
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ question_form.as_p }}
-            <input type="submit" value="올리기">
+            <div style="margin-bottom:180px;">
+                <h2 class="FieldTitle">제목을 작성해주세요</h2>
+                <div class="questionTitleBox">
+                    {{ form.title }}
+                </div>
+            </div>
+            
+            <div style="margin-bottom:300px;">
+                <h2 class="FieldTitle">궁금한 내용을 입력해주세요</h2>
+                <div class="questionContentBox">
+                    {{ form.content }}
+                </div>
+            </div>
+
+            <div class="buttonBox">
+                <button type="submit" class="submitButton">작성완료</button>
+                <a href="{% url 'question:list' %}" class="cancelButton">취소</a>
+            </div>
          </form>
     </div>
-</body>
-</html>
+{% include 'footer.html' %}
+{% endblock %}

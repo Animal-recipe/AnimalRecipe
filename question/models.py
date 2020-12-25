@@ -14,6 +14,8 @@ class Question(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # 수정 시간
     updated = models.DateTimeField(auto_now=True)
+    # 활성화 여부
+    # is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
@@ -39,7 +41,9 @@ class Answer(models.Model):
     # 공감
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_answer', blank=True)
     # 채택 # 채택하기 버튼을 누를 경우 이 값이 1로 변경, 답변을 보여줄 때, accept가 1인 것 부터 출력
-    accept = models.CharField(max_length=50, default='0')
+    accept = models.BooleanField(default=False)
+    # 활성화 여부
+    # is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.question.title
