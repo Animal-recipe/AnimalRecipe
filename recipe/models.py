@@ -83,5 +83,3 @@ class Recipe_Step(models.Model):
 
     def __str__(self):
         return self.recipe.title
-
-

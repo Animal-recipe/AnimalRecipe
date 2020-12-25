@@ -72,4 +72,3 @@ class RecipeStepForms(forms.ModelForm):
 RecipeImageFormSet = forms.inlineformset_factory(Recipe, Recipe_Img, form=RecipeImageForm, extra=3)
 RecipeIngredientFormSet = forms.inlineformset_factory(Recipe, Recipe_Ingredient, form=RecipeIngredientForms, extra=20)
 RecipeStepFormSet = forms.inlineformset_factory(Recipe, Recipe_Step, form=RecipeStepForms, extra=10)
-

@@ -54,4 +54,3 @@ class Review_Img(models.Model):
 
     def __str__(self):
         return self.review.recipe.title
-

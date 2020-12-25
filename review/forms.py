@@ -22,4 +22,3 @@ class ReviewImageForm(forms.ModelForm):
         }
 
 ReviewImageFormSet = forms.inlineformset_factory(Review, Review_Img, form=ReviewImageForm, extra=3)
-

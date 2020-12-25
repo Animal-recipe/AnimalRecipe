@@ -136,4 +136,3 @@ def edit(request, recipe_id):
         'step_formset': step_formset,
         'now_recipe': now_recipe,
     })
-

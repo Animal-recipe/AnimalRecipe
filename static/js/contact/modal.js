@@ -20,4 +20,3 @@ $(document).ready(function(){
         $('#send_mail').hide();
     });
 });
-
