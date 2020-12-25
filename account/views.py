@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from account.forms import UserCreationForm, UserChangeForm
+from account.forms import UserCreationForm, UserChangeForm, LoginForm
 from django.contrib.auth import views as auth_views
 from django.contrib import messages
 
@@ -14,16 +14,9 @@ def register(request):
         form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            print("form save")
-            # 신규 사용자를 저장한 후에 자동 로그인을 위해 개별적으로 email과 pw가져옴
-            email = form.cleaned_data.get('email')
-            print(email)
-            raw_password = form.cleaned_data.get('password1')
-            print(raw_password)
-            user = authenticate(email=email, password=raw_password)
-            print(user)
-            login(request, user)
-            return redirect('/')
+            return redirect('/account/register/success/')
+        else:
+            pass
     return render(request, 'account/register.html', {'form': form})
 
 def agreement(request, *args, **kwargs):
@@ -35,18 +28,32 @@ def agreement(request, *args, **kwargs):
             return redirect('/account/register/')
         else:
             return render(request, 'account/agreement.html')
-
+def registerSuccess(request):
+    if request.method == "GET":
+        return render(request, 'account/registerSuccess.html')
 def mypage(request):
     if request.method == "POST":
         form = UserChangeForm(request.POST)
         if form.is_valid():
             form.save()
-            # 신규 사용자를 저장한 후에 자동 로그인을 위해 개별적으로 email과 pw가져옴
             email = form.cleaned_data.get('email')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=raw_password)
+            password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=password)
             login(request, user)
             return redirect('/')
     else:
         form = UserChangeForm()
     return render(request, 'account/mypage.html', {'form': form})
+
+def mylogin(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = request.POST['email']
+            password = request.POST['password']
+            user = authenticate(request, email=email, password=password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = LoginForm()
+    return render(request, 'account/login.html', {'form': form})
