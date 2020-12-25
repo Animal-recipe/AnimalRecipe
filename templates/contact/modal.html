@@ -1,0 +1,112 @@
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/recipe/recipe_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
+<script type="text/javascript" src="{% static 'js/contact/modal.js' %}"></script>
+
+<div class="modal modal-center fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-center modal-lg">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-content modal-center" style="padding: 40px 50px;">
+            <div id="receive_box" style="padding: 20px 20px;">
+                <div style="overflow:hidden; height: 100px;">
+                    <p class="header_font" style="float:left; margin-top: 20px;">쪽지함</p>
+                    <button class="button1 send_mail_btn" style="float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
+                </div>
+                <div style="overflow:hidden; padding-top:10px; height:50px;">
+                    <button class="modal_font1 receive" style="float:left; color: #FF5C00; ">받은 쪽지함</button> <p class="modal_font1" style="margin-left:15px; margin-top:10px; float:left;"> | </p>
+                    <button class="modal_font1 send" style="float:left; margin-left:15px;"> 보낸 쪽지함</button>
+                    <button class="modal_font2 all_delete" style="margin-top: 20px;float:right;">전체삭제</button>
+                </div>
+                <div class="modal-footer"></div>
+                <div style="height:361px;">
+                    {% if received_list %}
+                        {% for item in received_list %}
+                        <div style="overflow:hidden; margin-top:40px;">
+                            <p class="summary" style="float:left;">{{ item.summary }}</p>
+                            <p class="nickname" style="float:left; margin-left:100px;">{{ item.sender.nickname }}</p>
+                            <p class="time" style="float:left; margin-left:30px;">{{ item.sentAt}}</p>
+                            <img style="float:left; height:23px; margin-left:30px;" src="{% static 'img/contact/delete.png' %}"/>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="modal-footer"></div>
+                <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
+            </div>
+
+            <div id="send_box" style=" padding: 20px 20px; display:none;">
+                <div style="overflow:hidden; height: 100px;">
+                    <p class="header_font" style="float:left; margin-top: 20px;">쪽지함</p>
+                    <button class="button1 send_mail_btn" style="float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
+                </div>
+                <div style="overflow:hidden; padding-top:10px; height:50px;">
+                    <button class="modal_font1 receive" style="float:left; pointer:cursor;">받은 쪽지함</button> <p class="modal_font1" style="margin-left:15px; margin-top:10px; float:left;"> | </p>
+                    <button class="modal_font1 send" style="float:left; margin-left:15px;color: #FF5C00; pointer:cursor;"> 보낸 쪽지함</button>
+                    <button class="modal_font2 all_delete" style="margin-top: 20px;float:right; pointer:cursor;">전체삭제</button>
+                </div>
+                <div class="modal-footer"></div>
+                <div style="height:361px;">
+                    {% if send_list %}
+                        {% for item in send_list %}
+                        <div style="overflow:hidden; margin-top:40px;">
+                            <p class="summary" style="float:left;">{{ item.summary }}</p>
+                            <p class="nickname" style="float:left; margin-left:100px;">{{ item.recipient.nickname }}</p>
+                            <p class="time" style="float:left; margin-left:30px;">{{ item.sentAt}}</p>
+                            <img style="float:left; height:23px; margin-left:30px;" src="{% static 'img/contact/delete.png' %}"/>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="modal-footer"></div>
+                <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
+            </div>
+
+            <div id="send_mail" style="display: none;">
+                <button class="back_btn"><img src="{% static 'img/contact/back.png' %}"/></button>
+                <div style="padding: 0 20px;">
+                    <div style="overflow:hidden; height: 80px;">
+                        <p class="header_font" style="float:left; margin-top: 20px;">쪽지쓰기</p>
+                        <p class="button1" style="float:right;width: 114px;height: 53px;">보내기</p>
+                    </div>
+                    <div style="position:relative;">
+                        <input class="search" style="width: 655px; height: 53px;" class="form-control mr-sm-2" type="search" placeholder="쪽지를 보낼 회원을 검색해 주세요!" aria-label="Search" name="query_str" value="{{query_str}}">
+                        <button class="search_btn" type="submit" style="position: absolute; top: 11px; left:600px; border: 0px solid white; background-color:white;">
+                            <img class="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
+                        </button>
+                    </div>
+                    <div class="modal-footer" style="margin-top:20px;"></div>
+                    <div style="height:330px;">
+                        <textarea class="write_mail"></textarea>
+                    </div>
+                    <div class="modal-footer"></div>
+                    <p class="modal_font3">byte</p>
+                </div>
+            </div>
+
+            <div id="find_user" style="display:none;">
+                <button class="back_btn"><img src="{% static 'img/contact/back.png' %}"/></button>
+                <div style="padding: 0 20px;">
+                    <div style="overflow:hidden; height: 80px; margin-top:5px; ">
+                    <p class="header_font" style="float:left; margin-top: 20px;">회원검색</p>
+                    <p class="button1" style="float:right;width: 114px;height: 53px; background: #3B3B3B;color: #FFFFFF; ">확인</p>
+                    </div>
+                    <div style="position:relative;">
+                        <input class="search" style="width: 655px; height: 53px;" class="form-control mr-sm-2" type="search" placeholder="쪽지를 보낼 회원을 검색해 주세요!" aria-label="Search" name="query_str" value="{{query_str}}">
+                        <button class="search_btn" type="submit" style="position: absolute; top: 11px; left:600px; border: 0px solid white; background-color:white;">
+                            <img class="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
+                        </button>
+                    </div>
+                    <div class="modal-footer" style="margin-top:20px;"></div>
+                    <div style="height:330px;">
+                        <textarea class="write_mail"></textarea>
+                    </div>
+                    <div class="modal-footer"></div>
+                    <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

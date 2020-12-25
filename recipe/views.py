@@ -9,8 +9,8 @@ from django.views.generic.detail import DetailView
 from django.core.paginator import Paginator
 
 from review.models import Review, Review_Img
+from contact.models import Message
 
-# Create your views here.
 def create(request):
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES)
@@ -90,6 +90,50 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
                     review_dict[review[i]] = img_obj.image.url
                     break
 
+    received_list = Message.objects.filter(recipient=request.user)
+    send_list = Message.objects.filter(sender=request.user)
+
     return render(request, "recipe/recipe_detail.html",
-                  {"recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count})
+                  {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count})
+
+
+def delete(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
+    recipe.delete()
+    return redirect('/')
+
+def edit(request, recipe_id):
+    now_recipe = Recipe.objects.get(pk=recipe_id)
+    if now_recipe.author_id != request.user.id:
+        return redirect('/')
+    if request.method == 'POST':
+        image_formset = RecipeImageFormSet(request.POST, request.FILES, instance=now_recipe)
+        ingredient_formset = RecipeIngredientFormSet(request.POST, request.FILES, instance=now_recipe)
+        step_formset = RecipeStepFormSet(request.POST, request.FILES, instance=now_recipe)
+        now_recipe.animal = request.POST["animal"]
+        now_recipe.cooking_time = request.POST["cooking_time"]
+        now_recipe.level = request.POST["level"]
+        now_recipe.title = request.POST["title"]
+        now_recipe.summary = request.POST["summary"]
+        now_recipe.save()
+        if ingredient_formset.is_valid() and image_formset.is_valid() and step_formset.is_valid() :
+            with transaction.atomic():
+                image_formset.instance = now_recipe
+                ingredient_formset.instance = now_recipe
+                step_formset.instance = now_recipe
+                image_formset.save()
+                ingredient_formset.save()
+                step_formset.save()
+                return redirect('/')
+    else:
+        image_formset = RecipeImageFormSet(instance=now_recipe)
+        ingredient_formset = RecipeIngredientFormSet(instance=now_recipe)
+        step_formset = RecipeStepFormSet(instance=now_recipe)
+
+    return render(request, '../templates/recipe/recipe_edit.html', {
+        'image_formset': image_formset,
+        'ingredient_formset': ingredient_formset,
+        'step_formset': step_formset,
+        'now_recipe': now_recipe,
+    })
 

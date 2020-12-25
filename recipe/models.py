@@ -57,7 +57,7 @@ class Recipe(models.Model):
 
 class Recipe_Img(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe_img")
-    image = models.ImageField(upload_to='recipe_img/%Y/%m/%d', blank=False)
+    image = models.ImageField(upload_to='recipe_img/%Y/%m/%d', blank=True)
 
     def __str__(self):
         return self.recipe.title
@@ -77,7 +77,7 @@ class Recipe_Step(models.Model):
     # 순서
     procedure = models.PositiveIntegerField(default=0)
     # 이미지
-    image = models.ImageField(upload_to='recipe_step/%Y/%m/%d', blank=False)
+    image = models.ImageField(upload_to='recipe_step/%Y/%m/%d', blank=True)
     # 내용
     content = models.TextField(max_length=180, default='')
 

@@ -10,9 +10,9 @@
 </div>
 <div style="margin: 0 auto; width:1920px;">
     <div id="box">
-        <a href="" style="color: #FFFFFF;">수정</a>
+        <a onclick = "location.href='{% url 'recipe:edit_recipe' recipe_id=recipe.id %}'" style="color: #FFFFFF; cursor:pointer; ">수정</a>
         <span style="margin:0 10px;">  | </span>
-        <a href="" style="color: #FFFFFF;">삭제</a>
+        <a onclick = "location.href='{% url 'recipe:delete_recipe' recipe_id=recipe.id %}'" style="color: #FFFFFF; cursor:pointer;">삭제</a>
     </div>
     <div style="margin-top:30px; margin-left:219px;">
         <div style="overflow:hidden;">
@@ -28,8 +28,11 @@
                 <p id="good">공감</p>
                 <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/save.png' %}" class="card-img-top" alt="사진"></a>
                 <p id="save">저장</p>
-                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
-                <p id="message">쪽지</p>
+                <button type="button" style="background-color:white; border: 0px; outline:0px;" data-toggle="modal" data-target="#myModal">
+                    <a><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
+                    <p id="message">쪽지</p>
+                </button>
+
             </div>
         </div>
         <div style="margin-top:60px;">
@@ -88,9 +91,12 @@
                 <p class="white_font">저장</p>
             </div>
             <div style="float:left; text-align:center; margin-left:40px;">
-                <a href=""><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
-                <p class="white_font">쪽지</p>
+                <button type="button" style="background-color:#1B1B1B; border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
+                    <a><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
+                    <p class="white_font">쪽지</p>
+                </button>
             </div>
+            {% include 'contact\modal.html' %}
         </div>
         <div style="padding-top:85px; float:right; padding-right:121px;">
             <p id="white_title">{{ recipe.title }}</p>
