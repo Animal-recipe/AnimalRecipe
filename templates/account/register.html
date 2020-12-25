@@ -1,29 +1,130 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'nav.html' %}
-
+<link rel="stylesheet" href="{% static 'css/account/register.css' %}">
+<div id="navBarBox">
+    {% include 'nav.html' %}
+</div>
 <div style="padding:0 50px; padding-top:50px;">
     <div class="d-flex flex-column align-items-center my-5">
-        {% if form.errors %}
-        <p style="color: red;">
-            Please correct the error{{ form.errors }} below.
-        </p>
-        {% endif %}
         <form action="{% url 'account:register' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="form-group">
+            <div class="formBox">
+                <div class="profileBox" style="margin-bottom: 61px;">
+                    <img id="profileImage" src="{% static 'img/account/defaultProfile.png' %}" alt="profile image"/>
+                    <input type="file" name="profile" accept="image/*" id="id_profile">
+                    <label class="uploadButton" for="id_profile">이미지 업로드</label>
+                    <a href="#" class="deleteButton">삭제</a>
+                </div>
 
-                {{form.as_p}}
+                <div class="formField" {% if form.email.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
+                    <input type="email" name="email" class="registerInput" placeholder="이메일">
+                </div>
+                <div class="errorMsg">
+                    {% if form.email.errors %}
+                    <img src="{% static 'img/account/loginErrorImage.png' %}" width="16.67px" height="16.67px" style="margin-right: 11.67px;">
+                    {{ form.email.errors }}
+                    {% endif %}
+                </div>
+
+                <div class="formField" {% if form.nickname.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
+                    {{ form.nickname }}
+                </div>
+                <div class="errorMsg">
+                    {% if form.nickname.errors %}
+                    <img src="{% static 'img/account/loginErrorImage.png' .png' %}" width="16.67px" height="16.67px" style="margin-right: 11.67px;">
+                    {{ form.nickname.errors }}
+                    {% endif %}
+                </div>
+
+                <div class="passwordBox formField" {% if form.password1.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
+                    <input type="password" name="password1" class="registerInput" placeholder="비밀번호(8자리 이상)">
+                    <img src="{% static 'img/account/eye.png' %}" class="showHideToggle">
+                </div>
+                <div class="errorMsg">
+                    {% if form.password1.errors %}
+                    <img src="{% static 'img/account/loginErrorImage.png' %}" width="16.67px" height="16.67px" style="margin-right: 11.67px;">
+                    {{ form.password1.errors }}
+                    {% endif %}
+                </div>
+
+                <div class="passwordBox formField" {% if form.password2.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
+                    <input type="password" name="password2" class="registerInput" placeholder="비밀번호 확인">
+                    <img src="{% static 'img/account/eye.png' %}" class="showHideToggle">
+                </div>
+                <div class="errorMsg">
+                    {% if form.password2.errors %}
+                    <img src="{% static 'img/account/loginErrorImage.png' %}" width="16.67px" height="16.67px" style="margin-right: 11.67px;">
+                    {{ form.password2.errors }}
+                    {% endif %}
+                </div>
+
+                <div class="formField" style="margin: 30px 0;">
+                    <select required name="petkind" class="registerInput" maxlength="4" id="id_petkind">
+                        <option value="" disabled selected hidden>반려동물을 선택해주세요</option>
+                        <option value="DOG">개</option>
+                        <option value="CAT">고양이</option>
+                        <option value="RAB">토끼</option>
+                        <option value="BIRD">새</option>
+                        <option value="FISH">물고기</option>
+                        <option value="HAM">햄스터</option>
+                        <option value="ETC">기타</option>
+                    </select>
+                </div>
+                <div class="formField">
+                    {{ form.petname }}
+                </div>
             </div>
-            <div id="post-option" style="margin:5% 5%;">
-                <a class="btn btn-primary" href="/">닫기</a>
-                <input class="btn btn-success" type="submit" value="저장하기">
+            <div class="optionBox">
+                <button class="submitButton" type="submit">회원가입 완료</button>
+                <a class="cancelButton" href="/">취소</a>
             </div>
         </form>
-
-
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    // 이미지 추가
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#profileImage').prop('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#id_profile").change(function(){
+        readURL(this);
+    });
+    // 이미지 삭제
+    function resetInputFile($input, $profileImage) {
+        var agent = navigator.userAgent.toLowerCase();
+        if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
+            // ie
+            $input.replaceWith($input.clone(true));
+            $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
+        } else {
+            //other
+            $input.val("");
+            $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
+        }
+    }
+    $(".deleteButton").click(function(event) {
+        let $input = $("#id_profile")
+        let $profileImage = $("#profileImage")
+        resetInputFile($input, $profileImage);
+    });
+    // 비밀번호 보기 숨기기
+    $('.showHideToggle').click(function(){
+        $(this).prev().toggleClass('active');
+        if($(this).prev().hasClass('active')){
+            $(this).prev().attr('type',"text");
+        }else{
+            $(this).prev().attr('type','password');
+        }
+    });
+});
+</script>
 {% endblock %}
