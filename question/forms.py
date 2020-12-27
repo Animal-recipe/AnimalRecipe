@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 class QuestionForm(forms.ModelForm):
     title = forms.CharField(
         label='',
-        max_length=180,
+        max_length=100,
         widget = forms.TextInput(
             attrs={
                 'class' : 'questionTitle',
@@ -16,7 +16,7 @@ class QuestionForm(forms.ModelForm):
     )
     content = forms.CharField(
         label='',
-        max_length=180,
+        max_length=2000,
         widget = forms.Textarea(
             attrs={
                 'class' : 'questionContent',
@@ -33,7 +33,7 @@ class QuestionForm(forms.ModelForm):
 class AnswerForm(forms.ModelForm):
     content = forms.CharField(
         label='',
-        max_length=180,
+        max_length=2000,
         widget = forms.Textarea(
             attrs={
                 'class' : 'answerContent',

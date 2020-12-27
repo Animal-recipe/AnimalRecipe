@@ -7,7 +7,11 @@ app_name = 'question'
 
 urlpatterns = [
     path('create/', views.question_create, name='create_question'),
-    path('answer/create/<int:question_id>/', views.answer_create, name='create_answer'),
+    path('update/<int:question_id>/', views.update_question, name='update_question'),
+    path('delete/<int:question_id>/', views.delete_question, name='delete_question'),
+    path('answer/create/<int:question_id>/', views.create_answer, name='create_answer'),
+    path('asnwer/update/<int:answer_id>/', views.update_answer, name='update_answer'),
+    path('answer/delete/<int:answer_id>/', views.delete_answer, name='delete_answer'),
     path('list/', views.question_list, name='list'),
     path('detail/<int:question_id>/', views.question_detail, name='detail'),
     path("search/",views.search, name='search'),
