@@ -1,18 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-        <div style="height:200px;">
+<link rel="stylesheet" href="{% static 'css/question/question.css' %}">
+<div id="navBarBox" style="height: 130px;">
+    {% include 'nav.html' %}
+</div>
+    <div class="questionDetailBox">
+        <div style="display: flex;justify-content: flex-end;">
+            <div class="optionBox">
+                <a>수정</a>
+                <hr style="width: 1px;
+                height: 36px;background: #FFFFFF;
+                border-radius: 1px;display: inline-block;">
+                <a>삭제</a>
+            </div>
         </div>
-        <div style="">
-            <p>{{ question.title }}</p>
-            <p>{{ question.author }}</p>
-            <p>{{ question.updated }}</p>
-            <p>{{ question.content }}</p>
+        <div>{{question.author.profile}}</div>
+        <div class="qInfoTitle">
+            <img src="{% static 'img/question/questionMark.png' %}" width="40px" height="40px">
+            <h2>{{ question.title }}</h2>
         </div>
-        <a href='{% url "question:create_answer" question.id %}'>답변하기</button>
-        <button>수정</button>
-        <button>삭제</button>
-        <hr>
+        <div style="margin-bottom: 121px;">
+            <img src="media/"+{{ question.author.profile.url }} width="22px" height="20.74px" style="border-radius: 50%;">
+            <p>{{ question.author.nickname}}의 레시피 | <span>작성일: {{ question.created|date:"y.m.d H:i" }}</span>
+            <span style="/* Rectangle 305 */
+            width: 60px;
+            height: 20px;
+            background: #FFFFFF;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            ">답변수</span></p>
+        </div>
+        <div style="margin-bottom: 130px;white-space: pre-wrap;display:flex;justify-content: flex-start;align-items: flex-start;">
+            {{ question.content }}
+        </div>
+        <div style="display:flex;justify-content:flex-start;margin-bottom: 218px;">
+            <a style="background: #FF5C00;
+            box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);" href="{% url 'question:create_answer' question.id %}" class="questionCreateBtn btn"><span>답변하기</span><img src="{% static 'img/question/createButton.png' %}"></a>
+        </div>
+    </div>
+    <div style="/* Rectangle 316 */
+    width: 1935px;
+    height: 218px;
+    background: #FFDADA;
+    ">
+<!-- 광고 -->
+    </div>
         {% if answer %}
             {% for item in answer %}
                     <div>

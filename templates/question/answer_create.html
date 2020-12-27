@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/question/question.css' %}">
 <script type="text/javascript" src="{% static 'js/question/question.js' %}"></script>
 
-<div id="bigNavBarBox">
+<div id="navBarBox">
     {% include 'nav.html' %}
     <h1>답변<br>작성하기</h1>
 </div>
@@ -16,7 +16,7 @@
     </div>
     <hr style="border: 0.8px solid #575757;width: 100%;">
     <div class="triggerContentBox" id="triggerContentBox">
-        <span class="triggerContent">{{ question.content }}</span>
+        <div class="triggerContent">{{ question.content }}</div>
         <hr style="border: 0.8px solid #575757;width: 100%;">
     </div>
     <form action="" method="post" enctype="multipart/form-data" style="margin-top: 180px;">

@@ -1,5 +1,5 @@
 #navBarBox {
-    height: 158px;
+    height: 130px;
     background: #1B1B1B;
     border-radius: 0px 0px 80px 80px;
     position: relative;
@@ -32,13 +32,16 @@
 .trigger {
     cursor: pointer;
     background: none;
-    display: inline-block;
+    width: 76px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 0.8px solid #575757;
     box-sizing: border-box;
     border-radius: 19px;
     color: #575757;
     font-size: 3px;
-    padding: 6px;
     margin-left: 26px;
 }
 .content {

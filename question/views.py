@@ -16,7 +16,7 @@ def question_create(request):
     else:
         form = QuestionForm()
 
-    return render(request, '../templates/question/question_create.html', {
+    return render(request, 'question/question_create.html', {
         'form': form,
     })
 
@@ -33,14 +33,12 @@ def answer_create(request, question_id):
     else:
         form = AnswerForm()
 
-    return render(request, '../templates/question/answer_create.html', 
+    return render(request, 'question/answer_create.html', 
         {"form": form, "question": question}
     )
-
 def question_list(request):
-    question = Question.objects.all()
-
-    return render(request, "../templates/question/question_list.html", {"question":question})
+    questions = Question.objects.all()
+    return render(request, "question/question_list.html", {"questions":questions})
 
 def question_detail(request, question_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     question = Question.objects.get(pk=question_id)
@@ -48,3 +46,11 @@ def question_detail(request, question_id):  # 카테고리, 지역에 따라 lis
 
     return render(request, "../templates/question/question_detail.html",
                   {"question": question, "answer": answer})
+def search(request):
+    questions = Question.objects.all().order_by('-created')
+    q = request.POST.get('q', "")
+    if q:
+        questions = questions.filter(title__icontains=q)
+        return render(request, "question/searchResult.html", {'questions': questions, 'q': q})
+    else:
+        return render(request, "question/searchResult.html")
