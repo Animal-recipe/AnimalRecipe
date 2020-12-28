@@ -15,14 +15,12 @@
                     {{ form.title }}
                 </div>
             </div>
-            
             <div style="margin-bottom:300px;">
                 <h2 class="FieldTitle">궁금한 내용을 입력해주세요</h2>
                 <div class="questionContentBox">
                     {{ form.content }}
                 </div>
             </div>
-
             <div class="buttonBox">
                 <button type="submit" class="submitButton">작성완료</button>
                 <a href="{% url 'question:list' %}" class="cancelButton">취소</a>

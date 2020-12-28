@@ -2,8 +2,8 @@ from django.shortcuts import render
 from .forms import QuestionForm, AnswerForm
 from django.shortcuts import redirect
 from .models import Question, Answer
+from django.core.paginator import Paginator
 
-# Create your views here.
 def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST, request.FILES)
@@ -21,12 +21,12 @@ def question_create(request):
     return render(request, 'question/createQuestion.html', {
         'form': form,
     })
+
 def update_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     if request.user != question.author:
         messages.error(request, '댓글수정권한이 없습니다')
         return redirect('question:detail', question_id=question.id)
-
     if request.method == "POST":
         form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
@@ -41,7 +41,6 @@ def update_question(request, question_id):
 
 def delete_question(request, question_id):
     question = Question.objects.get(pk=question_id)
-    print('delete q')
     if request.user != question.author:
         messages.error(request, '댓글 삭제권한이 없습니다')
         return redirect('question:detail', question_id=question.id)
@@ -66,6 +65,7 @@ def create_answer(request, question_id):
     return render(request, 'question/createAnswer.html', 
         {"form": form, "question": question}
     )
+
 def update_answer(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     question = answer.question
@@ -84,6 +84,7 @@ def update_answer(request, answer_id):
         form = AnswerForm(instance=answer)
     context = {'form': form, 'question': question}
     return render(request, 'question/createAnswer.html', context)
+
 def delete_answer(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     if request.user != answer.author:
@@ -92,16 +93,22 @@ def delete_answer(request, answer_id):
     else:
         answer.delete()
     return redirect('question:detail', question_id=answer.question.id)
+
 def question_list(request):
+    page = request.GET.get('page', 1)
     questions = Question.objects.all()
-    return render(request, "question/listQuestion.html", {"questions":questions})
+
+    paginator = Paginator(questions, 3)
+    pageObject = paginator.get_page(page)
+
+    return render(request, "question/listQuestion.html", {"questions":pageObject})
 
 def question_detail(request, question_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     question = Question.objects.get(pk=question_id)
     answers = Answer.objects.filter(question=question).order_by('created')
-
     return render(request, "../templates/question/detailQuestion.html",
                   {"question": question, "answers": answers})
+
 def search(request):
     questions = Question.objects.all().order_by('-created')
     q = request.POST.get('q', "")

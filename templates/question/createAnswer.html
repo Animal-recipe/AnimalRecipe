@@ -9,9 +9,9 @@
     <h1>답변<br>작성하기</h1>
 </div>
 <div id="answerCreateBox">
-    <div class="questionTitle">
+    <div class="answerQTitle">
         <img src="{% static 'img/question/questionMark.png' %}">
-        <h3 class="FieldTitle" style="margin-bottom: 0;">{{ question.title }}</h3>
+        <h3 class="FieldTitle" style="margin-bottom: 0;width: 600px;margin-left: 20px;">{{ question.title }}</h3>
         <p class="trigger" id="trigger">상세보기</a>
     </div>
     <hr style="border: 0.8px solid #575757;width: 100%;">
@@ -27,7 +27,6 @@
                 {{ form.content }}
             </div>
         </div>
-
         <div class="buttonBox">
             <button type="submit" class="submitButton">작성완료</button>
             <a href="{% url 'question:list' %}" class="cancelButton">취소</a>

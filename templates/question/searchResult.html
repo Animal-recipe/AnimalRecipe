@@ -12,31 +12,33 @@
     <form class="searchBarBox" action="{% url 'question:search' %}" method="POST">
         {% csrf_token %}
         <input class="searchBar" placeholder="질문을 검색해 보세요!" name="q" value="{{q}}">
-        <button type="submit" class=""><img src="{% static 'img/question/searchButton.png' %}" width="23.32px" height="23.32px"></button>
+        <button type="submit" class=""><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
+                height="23.32px"></button>
     </form>
 
     <div style="display:flex;justify-content:flex-end;">
-        <a href="{% url 'question:create_question' %}" class="questionCreateBtn btn"><span>질문하기</span><img src="{% static 'img/question/createButton.png' %}"></a>
+        <a href="{% url 'question:create_question' %}" class="questionCreateBtn btn"><span>질문하기</span><img
+                src="{% static 'img/question/createButton.png' %}"></a>
     </div>
 
     <h2 class="my-5 text-center font-weight-bold" style="color:#FF2E00;font-size:20px;">검색결과</h2>
     {% if not questions %}
-    
+
     <h3 class="mt-5 text-center">'{{ q }}'에 대한 검색 결과가 없습니다</h3>
-    
+
     {% else %}
     <div>
-            <ul>
-                <li class="listHead">
-                    <div class="nullCell"></div>
-                    <div class="idCell">번호</div>
-                    <div class="titleCell">제목</div>
-                    <div class="authorCell" style="background: none;">작성자</div>
-                    <div class="answerCountCell">답변 수</div>
-                    <div class="createdCell" style="background: none;">작성일</div>
-                    <div class="nullCell"></div>
-                </li>
-            </ul>
+        <ul>
+            <li class="listHead">
+                <div class="nullCell"></div>
+                <div class="idCell">번호</div>
+                <div class="titleCell">제목</div>
+                <div class="authorCell" style="background: none;">작성자</div>
+                <div class="answerCountCell">답변 수</div>
+                <div class="createdCell" style="background: none;">작성일</div>
+                <div class="nullCell"></div>
+            </li>
+        </ul>
         <div class="listContent">
             {% for question in questions %}
             {% if question.is_active %}
@@ -51,16 +53,17 @@
                     <p class="qContent">{{question.content}}</p>
                 </div>
                 <div class="authorCell cellBox"><span>{{ question.author.nickname }}</span></div>
-                <div class="answerCountCell cellBox"><span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
+                <div class="answerCountCell cellBox">
+                    <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
                 <div class="createdCell cellBox"><span>{{ question.created|date:"y.m.d" }}</span></div>
                 <div class="nullCell cellBox"></div>
             </ul>
-                    {% else %}
-                <ul class="listRow">
-                    <div class="nullCell cellBox" style="height: 70px;"></div>
-                    <div class="idCell cellBox" style="height: 70px;"><span>{{ question.id }}</span></div>
-                    <div class="titleCell cellBox" style="height: 70px;">
-                        <p class="qTitle">
+            {% else %}
+            <ul class="listRow">
+                <div class="nullCell cellBox" style="height: 70px;"></div>
+                <div class="idCell cellBox" style="height: 70px;"><span>{{ question.id }}</span></div>
+                <div class="titleCell cellBox" style="height: 70px;">
+                    <p class="qTitle">
                         <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
                         <a href="#" style="/* 관리자에 의해 규제된 질문입니다. */
                         font-family: Noto Sans;
@@ -69,17 +72,19 @@
                         line-height: 181.2%;
                         color: #FF2E00;
                         ">관리자에 의해 규제된 답변입니다.</a>
-                        </p>
-                    </div>
-                    <div class="authorCell cellBox" style="height: 70px;"></div>
-                    <div class="answerCountCell cellBox" style="height: 70px;"><span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
-                    <div class="createdCell cellBox" style="height: 70px;"><span>{{ question.created|date:"y.m.d" }}</span></div>
-                    <div class="nullCell cellBox" style="height: 70px;"></div>
-                </ul>
-                    {% endif %}
+                    </p>
+                </div>
+                <div class="authorCell cellBox" style="height: 70px;"></div>
+                <div class="answerCountCell cellBox" style="height: 70px;">
+                    <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
+                <div class="createdCell cellBox" style="height: 70px;"><span>{{ question.created|date:"y.m.d" }}</span>
+                </div>
+                <div class="nullCell cellBox" style="height: 70px;"></div>
+            </ul>
+            {% endif %}
             {% endfor %}
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

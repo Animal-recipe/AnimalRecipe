@@ -1,69 +1,74 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% include 'confirmDeleteModal.html' %}
 <link rel="stylesheet" href="{% static 'css/question/question.css' %}">
 <div id="navBarBox" style="height: 130px;">
     {% include 'nav.html' %}
 </div>
-    <div class="questionDetailBox">
-        {% if user == question.author %}
-        <div style="display: flex;justify-content: flex-end;">
-            <div class="optionBox">
-                <a href="{% url 'question:update_question' question.id %}">수정</a>
-                <hr style="width: 1px;
+<div class="questionDetailBox">
+    {% if user == question.author %}
+    <div style="display: flex;justify-content: flex-end;">
+        <div class="optionBox">
+            <a href="{% url 'question:update_question' question.id %}">수정</a>
+            <hr style="width: 1px;
                 height: 36px;background: #FFFFFF;
                 border-radius: 1px;display: inline-block;">
-                <!-- <a href="{% url 'question:delete_question' question.id %}">삭제</a> -->
-                <button data-toggle="modal" data-target="#delete_modal">삭제</button>
-            </div>
+            <a href="{% url 'question:delete_question' question.id %}" class="confirm-delete" title="Delete" data-toggle="modal" data-target="#confirmDeleteModal" id="deleteButton{{question.id}}">삭제</a>
         </div>
-        <div class="qDetailTitle">
-        {% else %}
+    </div>
+    <div class="qDetailTitle">
+    {% else %}
         <div class="qDetailTitle" style="margin-top: 85px;">
-        {% endif %}
+    {% endif %}
             <img src="{% static 'img/question/questionMark.png' %}" width="40px" height="40px">
             <h2>{{ question.title }}</h2>
         </div>
         <div class="qDetailInfo">
-            <img src="{{MEDIA_URL}}{{question.author.profile}}" width="22px" height="20.74px" style="border-radius: 50%;">
-            <p>{{ question.author.nickname}} 의 레시피 | 
-            <span>작성일: {{ question.created|date:"y.m.d H:i" }}</span>
-            <span class="answerCount">답변수 {{ question.answer.count }}</span>
+            <img src="{{MEDIA_URL}}{{question.author.profile}}" width="22px" height="20.74px"style="border-radius: 50%;">
+            <p>{{ question.author.nickname}} 의 레시피 |
+                <span>작성일: {{ question.created|date:"y.m.d H:i" }}</span>
+                <span class="answerCount">답변수 {{ question.answer.count }}</span>
             </p>
         </div>
         <div class="qDetailContent">{{ question.content }}</div>
         <div style="display:flex;justify-content:flex-start;margin-bottom: 218px;">
-            <a style="background: #FF5C00;
-            box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);" href="{% url 'question:create_answer' question.id %}" class="questionCreateBtn btn"><span>답변하기</span><img src="{% static 'img/question/createButton.png' %}"></a>
+            <a style="background: #FF5C00;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);" href="{% url 'question:create_answer' question.id %}"
+                class="questionCreateBtn btn"><span>답변하기</span>
+                <img src="{% static 'img/question/createButton.png' %}">
+            </a>
         </div>
     </div>
-    <div style="width: 100%;height: 218px;background: #FFDADA;"><!-- 광고 --></div>
+    <div style="width: 100%;height: 218px;background: #FFDADA;">
+        <!-- 광고 -->
+    </div>
     <div class="questionDetailBox" style="margin-bottom: 156px;">
         {% if answers %}
-            {% for answer in answers %}
-            <div class="detailAnswerBox">
-                {% if user == answer.author %}
-                <div style="display: flex;justify-content: flex-end;">
-                    <div class="optionBox">
-                        <a href="{% url 'question:update_answer' answer.id %}">수정</a>
-                        <hr style="width: 1px;
+        {% for answer in answers %}
+        <div class="detailAnswerBox">
+            {% if user == answer.author %}
+            <div style="display: flex;justify-content: flex-end;">
+                <div class="optionBox">
+                    <a href="{% url 'question:update_answer' answer.id %}">수정</a>
+                    <hr style="width: 1px;
                         height: 36px;background: #FFFFFF;
                         border-radius: 1px;display: inline-block;">
-                        <a href="{% url 'question:delete_answer' answer.id %}" data-toggle="modal" data-target="#delete_Amodal" id="deleteButton{{your.id}}">삭제</a>
-                    </div>
+                    <a href="{% url 'question:delete_answer' answer.id %}" class="confirm-delete" title="Delete" data-toggle="modal" data-target="#confirmDeleteModal" id="deleteButton{{answer.id}}">삭제</a>
                 </div>
-                <div class="qDetailTitle">
-                {% else %}
+            </div>
+            <div class="qDetailTitle">
+            {% else %}
                 <div class="qDetailTitle" style="margin-top: 85px;">
-                {% endif %}
+            {% endif %}
                     <img src="{% static 'img/question/questionMark.png' %}" width="40px" height="40px">
                     <h2>{{ answer.author.nickname }}님의 답변</h2>
                 </div>
                 <div class="qDetailInfo">
-                    <img src="{{MEDIA_URL}}{{question.author.profile}}" width="22px" height="20.74px" style="border-radius: 50%;">
-                    <p>{{ answer.author.nickname}} 의 레시피 | 
-                    <span>작성일: {{ answer.created|date:"y.m.d H:i" }}</span>
-                    <span class="answerCount">좋아요 수</span>
+                    <img src="{{MEDIA_URL}}{{question.author.profile}}" width="22px" height="20.74px"
+                        style="border-radius: 50%;">
+                    <p>{{ answer.author.nickname}} 의 레시피 |
+                        <span>작성일: {{ answer.created|date:"y.m.d H:i" }}</span>
+                        <span class="answerCount">좋아요 수</span>
                     </p>
                 </div>
                 <div class="qDetailContent">{{ answer.content }}</div>
@@ -73,35 +78,25 @@
                     <a class="report" href="#">신고하기</a>
                 </div>
             </div>
-            {% endfor %}
+        {% endfor %}
         {% else %}
-        <div style="margin: 120px 0;font-family: Noto Sans;
+            <div style="margin: 120px 0;font-family: Noto Sans;
         font-weight: 700;
         line-height: 16px;
         color: #686868;text-align: center;">
-            <h1>아직 답변이 없습니다.</h1>
-        </div>
-        {% endif %}
-    </div>
-    <!-- 질문 삭제 모달 -->
-    <div id="delete_modal" class="modal fade modal-center" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-center" role="document">
-            <div class="modal-content modal-center">
-                <div class="modal-body modal-center">
-                    <p>정말 삭제 하시겠어요?</p>
-                    <div>
-                        <button onclick="delete_modal()" type="button" class="submitButton" style="width:179px;height:55px;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);border-radius: 18px;">삭제</button>
-                        <button type="button" class="cancelButton" data-dismiss="modal" style="width:179px;height:55px;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);border-radius: 18px;">취소</button>
-                    </div>
-                </div>
+                <h1>아직 답변이 없습니다.</h1>
             </div>
+        {% endif %}
         </div>
-    </div>
-    
-    <script type="text/javascript">
-        function delete_modal() {
-            window.location.replace("{% url 'question:delete_question' question.id %}");
-        }
-    </script>
-    {% include 'footer.html' %}
+
+<script type="text/javascript">
+$(document).on('click', '.confirm-delete', function () {
+$("#confirmDeleteModal").attr("caller-id", $(this).attr("id"));
+});
+$(document).on('click', '#confirmDeleteButtonModal', function () {
+  var caller = $("#confirmDeleteButtonModal").closest(".modal").attr("caller-id");
+  window.location = $("#".concat(caller)).attr("href");
+});
+</script>
+{% include 'footer.html' %}
 {% endblock %}

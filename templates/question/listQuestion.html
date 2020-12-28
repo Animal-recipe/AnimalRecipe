@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load questionFilter %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/question/question.css' %}">
 <script type="text/javascript" src="{% static 'js/question/question.js' %}"></script>
@@ -7,37 +8,36 @@
 <div id="navBarBox" style="height: 130px;">
     {% include 'nav.html' %}
 </div>
-
 <div class="questionListBox">
     <form class="searchBarBox" action="{% url 'question:search' %}" method="POST">
         {% csrf_token %}
         <input class="searchBar" placeholder="질문을 검색해 보세요!" name="q" value="{{q}}">
-        <button type="submit" class=""><img src="{% static 'img/question/searchButton.png' %}" width="23.32px" height="23.32px"></button>
+        <button type="submit" class=""><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
+                height="23.32px"></button>
     </form>
-
-        <div style="display:flex;justify-content:flex-end;">
-            <a href="{% url 'question:create_question' %}" class="questionCreateBtn btn"><span>질문하기</span><img src="{% static 'img/question/createButton.png' %}"></a>
-        </div>
-    
+    <div style="display:flex;justify-content:flex-end;">
+        <a href="{% url 'question:create_question' %}" class="questionCreateBtn"><span>질문하기</span><img
+                src="{% static 'img/question/createButton.png' %}"></a>
+    </div>
     <div>
-            <ul>
-                <li class="listHead">
-                    <div class="nullCell"></div>
-                    <div class="idCell">번호</div>
-                    <div class="titleCell">제목</div>
-                    <div class="authorCell" style="background: none;">작성자</div>
-                    <div class="answerCountCell">답변 수</div>
-                    <div class="createdCell" style="background: none;">작성일</div>
-                    <div class="nullCell"></div>
-                </li>
-            </ul>
-            {% if questions %}
+        <ul>
+            <li class="listHead">
+                <div class="nullCell"></div>
+                <div class="idCell">번호</div>
+                <div class="titleCell">제목</div>
+                <div class="authorCell" style="background: none;">작성자</div>
+                <div class="answerCountCell">답변 수</div>
+                <div class="createdCell" style="background: none;">작성일</div>
+                <div class="nullCell"></div>
+            </li>
+        </ul>
+        {% if questions %}
         <div class="listContent">
             {% for question in questions %}
             {% if question.is_active %}
             <ul class="listRow">
                 <div class="nullCell cellBox"></div>
-                <div class="idCell cellBox"><span>{{ question.id }}</span></div>
+                <div class="idCell cellBox"><span>{{ questions.paginator.count|sub:questions.start_index|sub:forloop.counter0|add:1 }}</span></div>
                 <div class="titleCell cellBox">
                     <p class="qTitle">
                         <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
@@ -46,16 +46,17 @@
                     <p class="qContent">{{question.content}}</p>
                 </div>
                 <div class="authorCell cellBox"><span>{{ question.author.nickname }}</span></div>
-                <div class="answerCountCell cellBox"><span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
+                <div class="answerCountCell cellBox">
+                    <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
                 <div class="createdCell cellBox"><span>{{ question.created|date:"y.m.d" }}</span></div>
                 <div class="nullCell cellBox"></div>
             </ul>
-                    {% else %}
-                <ul class="listRow">
-                    <div class="nullCell cellBox" style="height: 70px;"></div>
-                    <div class="idCell cellBox" style="height: 70px;"><span>{{ question.id }}</span></div>
-                    <div class="titleCell cellBox" style="height: 70px;">
-                        <p class="qTitle">
+            {% else %}
+            <ul class="listRow">
+                <div class="nullCell cellBox" style="height: 70px;"></div>
+                <div class="idCell cellBox" style="height: 70px;"><span>{{ question.id }}</span></div>
+                <div class="titleCell cellBox" style="height: 70px;">
+                    <p class="qTitle">
                         <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
                         <a href="#" style="/* 관리자에 의해 규제된 질문입니다. */
                         font-family: Noto Sans;
@@ -64,18 +65,58 @@
                         line-height: 181.2%;
                         color: #FF2E00;
                         ">관리자에 의해 규제된 답변입니다.</a>
-                        </p>
-                    </div>
-                    <div class="authorCell cellBox" style="height: 70px;"></div>
-                    <div class="answerCountCell cellBox" style="height: 70px;"><span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
-                    <div class="createdCell cellBox" style="height: 70px;"><span>{{ question.created|date:"y.m.d" }}</span></div>
-                    <div class="nullCell cellBox" style="height: 70px;"></div>
-                </ul>
-                    {% endif %}
-                {% endfor %}
-        </div>
+                    </p>
+                </div>
+                <div class="authorCell cellBox" style="height: 70px;"></div>
+                <div class="answerCountCell cellBox" style="height: 70px;">
+                    <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
+                <div class="createdCell cellBox" style="height: 70px;"><span>{{ question.created|date:"y.m.d" }}</span>
+                </div>
+                <div class="nullCell cellBox" style="height: 70px;"></div>
+            </ul>
             {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
+        <!-- 페이징처리 시작 -->
+        <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if questions.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.previous_page_number }}">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in questions.paginator.page_range %}
+            {% if page_number >= questions.number|add:-2 and page_number <= questions.number|add:2 %}
+                {% if page_number == questions.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if questions.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.next_page_number }}">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- 페이징처리 끝 -->
 </div>
 {% include 'footer.html' %}
 {% endblock %}

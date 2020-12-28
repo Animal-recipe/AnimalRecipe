@@ -65,7 +65,7 @@ button:focus {
 }
 
 .questionTitle {
-    width: 800px;
+    width: 576px;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 18px;
@@ -198,9 +198,9 @@ button:focus {
     padding: 30px 50px;
 }
 
-.questionTitle {
-    dislay: flex;
-    justify-content: flex-start;
+.answerQTitle {
+    display: flex;
+    align-items: center;
 }
 
 .trigger {
@@ -282,7 +282,6 @@ button:focus {
     outline: none;
     border: none;
 }
-
 button:focus {
     outline: none;
     border: none;
@@ -659,4 +658,13 @@ button:focus {
     outline: none;
     border: none;
     margin: 0 10px;
+}
+.pagination li a:first-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
