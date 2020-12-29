@@ -29,7 +29,7 @@ class Report_problem(models.Model):
     # 신고하는 사람
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='report_author', default='')
     # 신고 대상
-    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reported_name', default='')
+    target = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reported_name', default='')
     # 신고사유
     reason = models.CharField(max_length=100, default='')
     # 기타 신고사유

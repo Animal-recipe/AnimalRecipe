@@ -9,6 +9,8 @@ urlpatterns = [
     path('list/', views.review_list, name='list_review'),
     path('create/<int:recipe_id>/', views.create, name='create_review'),
     path('detail/<int:review_id>/', views.review_detail, name='detail_review'),
+    path('delete/<int:review_id>/', views.delete, name='delete_review'),
+    path('edit/<int:review_id>/', views.edit, name='edit_review'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

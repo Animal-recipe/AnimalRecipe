@@ -65,5 +65,4 @@ $(document).ready(function(){
         $('#star_img4').show();
         $('#star_img5').show();
     })
-
 });

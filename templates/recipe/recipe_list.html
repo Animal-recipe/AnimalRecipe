@@ -14,9 +14,9 @@
     <div style="margin-top:52px; overflow:hidden; position:relative; height:185px; padding-left:219px;">
         <form style="" class="form-inline my-2 my-lg-0" action="" method="POST">
             {% csrf_token %}
-            <input id="search" class="form-control mr-sm-2" type="search" placeholder="요리를 검색해 보세요!" aria-label="Search" name="query_str" value="{{query_str}}">
-            <button id="search_btn" type="submit" style="position: absolute; right:905px; top: 9px; border: 0px solid white; background-color:white;">
-                <img id="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
+            <input class="search" class="form-control mr-sm-2" type="search" placeholder="요리를 검색해 보세요!" aria-label="Search" name="query_str" value="{{query_str}}">
+            <button class="search_btn" type="submit" style="position: absolute; right:905px; top: 9px; border: 0px solid white; background-color:white;">
+                <img class="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
             </button>
             <div class="dropdown show" style="margin-left:33px;">
                 <a id="dropdown_font1" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,7 +76,4 @@
             {% endif %}
         </div>
 </div>
-
-
 {% endblock %}
-

@@ -10,9 +10,9 @@
 </div>
 <div style="margin: 0 auto; width:1920px;">
     <div id="box">
-        <a href="" style="color: #FFFFFF;">수정</a>
+        <a onclick = "location.href='{% url 'review:edit_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">수정</a>
         <span style="margin:0 10px;">  | </span>
-        <a href="" style="color: #FFFFFF;">삭제</a>
+        <a onclick = "location.href='{% url 'review:delete_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">삭제</a>
     </div>
     <div style="margin-top:30px; margin-left:219px;">
         <div style="overflow:hidden;">
@@ -26,9 +26,7 @@
             <div style="width:62px; float:right; margin-right:218px; margin-top:274px;">
                 <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
                 <p id="good">공감</p>
-                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/save.png' %}" class="card-img-top" alt="사진"></a>
-                <p id="save">저장</p>
-                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
+                <a href=""><img style="margin-top:45px; width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
                 <p id="message">쪽지</p>
             </div>
         </div>

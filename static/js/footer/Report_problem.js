@@ -6,4 +6,3 @@ $(document).ready(function(){
         $(this).children('.check_box').show();
     })
 });
-

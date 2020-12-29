@@ -50,8 +50,7 @@ class Review(models.Model):
 
 class Review_Img(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="review_img")
-    image = models.ImageField(upload_to='review_img/%Y/%m/%d', blank=False)
+    image = models.ImageField(upload_to='review_img/%Y/%m/%d', blank=True)
 
     def __str__(self):
         return self.review.recipe.title
-

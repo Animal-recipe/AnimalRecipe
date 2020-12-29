@@ -57,3 +57,29 @@ def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가
     return render(request, "review/review_detail.html",
                   {"review": review, "img_list": img_list})
 
+def delete(request, review_id):
+    review = Review.objects.get(pk=review_id)
+    if review.author_id != request.user.id:
+        return redirect('/')
+    review.delete()
+    return redirect('/')
+
+def edit(request, review_id):
+    now_review = Review.objects.get(pk=review_id)
+    if now_review.author_id != request.user.id:
+        return redirect('/')
+    if request.method == 'POST':
+        image_formset = ReviewImageFormSet(request.POST, request.FILES, instance=now_review)
+        now_review.title = request.POST["title"]
+        now_review.star = request.POST["star"]
+        now_review.content = request.POST["content"]
+        now_review.save()
+        if image_formset.is_valid():
+            image_formset.save()
+            return redirect('/')
+    else:
+        image_formset = ReviewImageFormSet(instance=now_review)
+
+    return render(request, '../templates/review/review_edit.html', {
+        'image_formset': image_formset, 'now_review': now_review,
+    })
