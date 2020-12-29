@@ -19,6 +19,7 @@
         <a href="{% url 'question:create_question' %}" class="questionCreateBtn"><span>질문하기</span><img
                 src="{% static 'img/question/createButton.png' %}"></a>
     </div>
+    <!-- list content start -->
     <div>
         <ul>
             <li class="listHead">
@@ -58,13 +59,9 @@
                 <div class="titleCell cellBox" style="height: 70px;">
                     <p class="qTitle">
                         <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
-                        <a href="#" style="/* 관리자에 의해 규제된 질문입니다. */
-                        font-family: Noto Sans;
-                        font-weight: 600;
-                        font-size: 15px;
-                        line-height: 181.2%;
-                        color: #FF2E00;
-                        ">관리자에 의해 규제된 답변입니다.</a>
+                        <a href="#" style="font-family: Noto Sans;font-weight: 600;font-size: 15px;line-height: 181.2%;color: #FF2E00;">
+                            관리자에 의해 규제된 답변입니다.
+                        </a>
                     </p>
                 </div>
                 <div class="authorCell cellBox" style="height: 70px;"></div>
@@ -79,19 +76,19 @@
         </div>
         {% endif %}
     </div>
-        <!-- 페이징처리 시작 -->
-        <ul class="pagination justify-content-center">
-            <!-- 이전페이지 -->
+    <!-- listContent end -->
+
+        <!-- pagination start -->
+        <ul class="pagination justify-content-center" style="margin:150px 0 270px;">
             {% if questions.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.previous_page_number }}">이전</a>
+                <a class="page-link" href="?page={{ questions.previous_page_number }}"><img src="{% static 'img/question/previousButton.png' %}"></a>
             </li>
             {% else %}
             <li class="page-item disabled">
-                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><img src="{% static 'img/question/previousButton.png' %}"></a>
             </li>
             {% endif %}
-            <!-- 페이지리스트 -->
             {% for page_number in questions.paginator.page_range %}
             {% if page_number >= questions.number|add:-2 and page_number <= questions.number|add:2 %}
                 {% if page_number == questions.number %}
@@ -105,18 +102,17 @@
                 {% endif %}
             {% endif %}
             {% endfor %}
-            <!-- 다음페이지 -->
             {% if questions.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ questions.next_page_number }}">다음</a>
+                <a class="page-link" href="?page={{ questions.next_page_number }}"><img src="{% static 'img/question/nextButton.png' %}"></a>
             </li>
             {% else %}
             <li class="page-item disabled">
-                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><img src="{% static 'img/question/nextButton.png' %}"></a>
             </li>
             {% endif %}
         </ul>
-        <!-- 페이징처리 끝 -->
+        <!-- pagination end -->
 </div>
 {% include 'footer.html' %}
 {% endblock %}

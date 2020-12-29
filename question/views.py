@@ -3,6 +3,7 @@ from .forms import QuestionForm, AnswerForm
 from django.shortcuts import redirect
 from .models import Question, Answer
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 def question_create(request):
     if request.method == 'POST':
@@ -11,21 +12,17 @@ def question_create(request):
             question = form.save(commit=False)
             question.author_id = request.user.id
             question.save()
-
             return redirect('/question/list/')
         else:
-            print('not valid form')
+            pass
     else:
         form = QuestionForm()
-
-    return render(request, 'question/createQuestion.html', {
-        'form': form,
-    })
+    return render(request, 'question/createQuestion.html', {'form': form,})
 
 def update_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     if request.user != question.author:
-        messages.error(request, '댓글수정권한이 없습니다')
+        messages.error(request, '수정 권한이 없습니다')
         return redirect('question:detail', question_id=question.id)
     if request.method == "POST":
         form = QuestionForm(request.POST, instance=question)
@@ -36,13 +33,12 @@ def update_question(request, question_id):
             return redirect('question:detail', question_id=question.id)
     else:
         form = QuestionForm(instance=question)
-    context = {'form': form}
-    return render(request, 'question/createQuestion.html', context)
+    return render(request, 'question/createQuestion.html', {'form': form})
 
 def delete_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     if request.user != question.author:
-        messages.error(request, '댓글 삭제권한이 없습니다')
+        messages.error(request, '삭제 권한이 없습니다')
         return redirect('question:detail', question_id=question.id)
     else:
         question.delete()
@@ -59,18 +55,16 @@ def create_answer(request, question_id):
             answer.save()
             return redirect('question:detail', question_id=question_id)
         else:
-            print('not valid')
+            pass
     else:
         form = AnswerForm()
-    return render(request, 'question/createAnswer.html', 
-        {"form": form, "question": question}
-    )
+    return render(request, 'question/createAnswer.html', {"form": form, "question": question})
 
 def update_answer(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     question = answer.question
     if request.user != answer.author:
-        messages.error(request, '댓글수정권한이 없습니다')
+        messages.error(request, '수정 권한이 없습니다')
         return redirect('question:detail', question_id=question.id)
     if request.method == "POST":
         form = AnswerForm(request.POST, instance=answer)
@@ -82,38 +76,51 @@ def update_answer(request, answer_id):
             return redirect('question:detail', question_id=question.id)
     else:
         form = AnswerForm(instance=answer)
-    context = {'form': form, 'question': question}
-    return render(request, 'question/createAnswer.html', context)
+    return render(request, 'question/createAnswer.html', {'form': form, 'question': question})
 
 def delete_answer(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     if request.user != answer.author:
-        messages.error(request, '댓글 삭제권한이 없습니다')
+        messages.error(request, '삭제 권한이 없습니다')
         return redirect('question:detail', question_id=answer.question.id)
     else:
         answer.delete()
     return redirect('question:detail', question_id=answer.question.id)
 
 def question_list(request):
-    page = request.GET.get('page', 1)
     questions = Question.objects.all()
-
-    paginator = Paginator(questions, 3)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(questions, 10)
     pageObject = paginator.get_page(page)
-
     return render(request, "question/listQuestion.html", {"questions":pageObject})
 
-def question_detail(request, question_id):  # 카테고리, 지역에 따라 list가 다릅니다\
+def question_detail(request, question_id):
     question = Question.objects.get(pk=question_id)
-    answers = Answer.objects.filter(question=question).order_by('created')
-    return render(request, "../templates/question/detailQuestion.html",
-                  {"question": question, "answers": answers})
+    answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
+    return render(request, "../templates/question/detailQuestion.html", {"question": question, "answers": answers})
 
 def search(request):
-    questions = Question.objects.all().order_by('-created')
+    questions = Question.objects.all()
     q = request.POST.get('q', "")
     if q:
         questions = questions.filter(title__icontains=q, is_active=True)
-        return render(request, "question/searchResult.html", {'questions': questions, 'q': q})
+        page = request.GET.get('page', 1)
+        paginator = Paginator(questions, 10)
+        pageObject = paginator.get_page(page)
+        return render(request, "question/searchResult.html", {'questions': pageObject, 'q': q})
     else:
         return render(request, "question/searchResult.html")
+
+def accept(request, answer_id):
+    answerQuery = Answer.objects.filter(pk=answer_id)
+    answer = Answer.objects.get(pk=answer_id)
+    questionQuery = Question.objects.filter(pk=answer.question.id)
+    question = Question.objects.get(pk=answer.question.id)
+    if request.user != question.author:
+        messages.error(request, '질문 작성자만 채택할 수 있습니다.')
+    elif question.accept_done:
+        messages.error(request, '이미 답변 채택이 완료되었습니다.')
+    else:
+        answerQuery.update(accept=True)
+        questionQuery.update(accept_done=True)
+    return redirect('question:detail', question_id=question.id)

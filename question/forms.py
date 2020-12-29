@@ -9,9 +9,9 @@ class QuestionForm(forms.ModelForm):
         widget = forms.TextInput(
             attrs={
                 'class' : 'questionTitle',
-                'placeholder' : _('예시 ) 너무 쉽고 맛있는 황태국 (15자 이내)'),
+                'placeholder' : _('예시 ) 강아지도 아프면 죽을 줘야하나요? (100자 이내)'),
                 'required' : 'True',
-            } 
+            }
         )
     )
     content = forms.CharField(

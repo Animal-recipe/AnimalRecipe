@@ -14,6 +14,8 @@ class Question(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # 수정 시간
     updated = models.DateTimeField(auto_now=True)
+    # 채택 여부
+    accept_done = models.BooleanField(default=False)
     # 활성화 여부
     is_active = models.BooleanField(default=True)
 
@@ -49,4 +51,5 @@ class Answer(models.Model):
         return self.question.title
 
     class Meta:
-        ordering = ['-created', '-accept']
+        ordering = ['created']
+
