@@ -59,6 +59,8 @@ def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가
 
 def delete(request, review_id):
     review = Review.objects.get(pk=review_id)
+    if review.author_id != request.user.id:
+        return redirect('/')
     review.delete()
     return redirect('/')
 

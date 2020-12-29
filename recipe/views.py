@@ -99,6 +99,8 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
 
 def delete(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
+    if recipe.author_id != request.user.id:
+        return redirect('/')
     recipe.delete()
     return redirect('/')
 
