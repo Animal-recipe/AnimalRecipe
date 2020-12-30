@@ -9,8 +9,6 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 55px;
-    /* identical to box height */
-
     color: #ABABAB;
 }
 .input_box2{
@@ -21,11 +19,9 @@
     height: 63px;
     padding-left:30px;
     border: 0 solid black;
-
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
-
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 16px;
@@ -40,11 +36,9 @@
     height: 63px;
     padding-left:30px;
     border: 0 solid black;
-
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
-
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 16px;
@@ -64,8 +58,6 @@
     font-size: 16px;
     line-height: 30px;
     margin-bottom:20px;
-    /* identical to box height */
-
     color: #ABABAB;
 }
 .radio_box{
@@ -74,14 +66,11 @@
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
     border: 0 solid black;
-
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 16px;
     line-height: 55px;
-
     text-align: center;
-
     color: #575757;
 }
 .font1{
@@ -96,10 +85,8 @@
     width: 70px;
     height: 29px;
     disabled : disabled;
-
     background: #FF6B00;
     border-radius: 22px;
-
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 16px;
@@ -176,7 +163,6 @@
 #add_block_btn{
     width: 450px;
     height: 63px;
-
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
@@ -187,55 +173,43 @@
 #fake_save{
     width: 151px;
     height: 53px;
-
     background: #A9A9A9;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
-
     font-family: Noto Sans;
     font-weight: bold;
     font-size: 16px;
     line-height: 53px;
     text-align: center;
-
     color: #FFFFFF;
 }
 #back{
     width: 151px;
     height: 53px;
-
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
-
-
     font-family: Noto Sans;
     font-weight: bold;
     font-size: 16px;
     line-height: 53px;
     text-align: center;
-
     color: #575757;
-
 }
 
 #finish{
     width: 151px;
     height: 53px;
-
     background: #FF6B00;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
     border: 0px;
-
     font-family: Noto Sans;
     font-weight: bold;
     font-size: 16px;
     line-height: 53px;
     text-align: center;
-
     color: #FFFFFF;
-
 }
 
 input[type="checkbox"]{
@@ -278,9 +252,3 @@ label[for=id_recipe_ingredient-3-DELETE]{
 }label[for=id_recipe_ingredient-10-DELETE]{
     display: none;
 }
-
-
-
-
-
-

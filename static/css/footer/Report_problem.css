@@ -1,12 +1,10 @@
 .list{
     display: block;
     height: 25px;
-
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
-
     color: #575757;
 }
 

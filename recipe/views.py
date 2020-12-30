@@ -121,7 +121,6 @@ def edit(request, recipe_id):
         if ingredient_formset.is_valid() and image_formset.is_valid() and step_formset.is_valid() :
             with transaction.atomic():
                 image_formset.instance = now_recipe
-                image_formset.instance = now_recipe
                 ingredient_formset.instance = now_recipe
                 step_formset.instance = now_recipe
                 image_formset.save()
