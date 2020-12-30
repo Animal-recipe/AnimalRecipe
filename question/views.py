@@ -2,49 +2,125 @@ from django.shortcuts import render
 from .forms import QuestionForm, AnswerForm
 from django.shortcuts import redirect
 from .models import Question, Answer
+from django.core.paginator import Paginator
+from django.contrib import messages
 
-# Create your views here.
 def question_create(request):
     if request.method == 'POST':
-        question_form = QuestionForm(request.POST, request.FILES)
-        if question_form.is_valid():
-            question = question_form.save(commit=False)
+        form = QuestionForm(request.POST, request.FILES)
+        if form.is_valid():
+            question = form.save(commit=False)
             question.author_id = request.user.id
             question.save()
-
-            return redirect('list_question')
+            return redirect('/question/list/')
+        else:
+            pass
     else:
-        question_form = QuestionForm()
+        form = QuestionForm()
+    return render(request, 'question/createQuestion.html', {'form': form,})
 
-    return render(request, '../templates/question/question_create.html', {
-        'question_form': question_form,
-    })
+def update_question(request, question_id):
+    question = Question.objects.get(pk=question_id)
+    if request.user != question.author:
+        messages.error(request, '수정 권한이 없습니다')
+        return redirect('question:detail', question_id=question.id)
+    if request.method == "POST":
+        form = QuestionForm(request.POST, instance=question)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.author = request.user
+            question.save()
+            return redirect('question:detail', question_id=question.id)
+    else:
+        form = QuestionForm(instance=question)
+    return render(request, 'question/createQuestion.html', {'form': form})
 
-def answer_create(request, question_id):
+def delete_question(request, question_id):
+    question = Question.objects.get(pk=question_id)
+    if request.user != question.author:
+        messages.error(request, '삭제 권한이 없습니다')
+        return redirect('question:detail', question_id=question.id)
+    else:
+        question.delete()
+    return redirect('question:list')
+
+def create_answer(request, question_id):
+    question = Question.objects.get(pk=question_id)
     if request.method == 'POST':
-        answer_form = AnswerForm(request.POST, request.FILES)
-        if answer_form.is_valid():
-            answer = answer_form.save(commit=False)
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
             answer.author_id = request.user.id
-            answer.question = Question.objects.get(pk=question_id)
+            answer.question = question
             answer.save()
-            # 해당 질문에 대한 페이지로 이동하려면 어떻게?!
-            return redirect('list_question')
+            return redirect('question:detail', question_id=question_id)
+        else:
+            pass
     else:
-        answer_form = AnswerForm()
+        form = AnswerForm()
+    return render(request, 'question/createAnswer.html', {"form": form, "question": question})
 
-    return render(request, '../templates/question/answer_create.html', {
-        'answer_form': answer_form,
-    })
+def update_answer(request, answer_id):
+    answer = Answer.objects.get(pk=answer_id)
+    question = answer.question
+    if request.user != answer.author:
+        messages.error(request, '수정 권한이 없습니다')
+        return redirect('question:detail', question_id=question.id)
+    if request.method == "POST":
+        form = AnswerForm(request.POST, instance=answer)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.author = request.user
+            answer.question = question
+            answer.save()
+            return redirect('question:detail', question_id=question.id)
+    else:
+        form = AnswerForm(instance=answer)
+    return render(request, 'question/createAnswer.html', {'form': form, 'question': question})
+
+def delete_answer(request, answer_id):
+    answer = Answer.objects.get(pk=answer_id)
+    if request.user != answer.author:
+        messages.error(request, '삭제 권한이 없습니다')
+        return redirect('question:detail', question_id=answer.question.id)
+    else:
+        answer.delete()
+    return redirect('question:detail', question_id=answer.question.id)
 
 def question_list(request):
-    question = Question.objects.all()
+    questions = Question.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(questions, 10)
+    pageObject = paginator.get_page(page)
+    return render(request, "question/listQuestion.html", {"questions":pageObject})
 
-    return render(request, "../templates/question/question_list.html", {"question":question})
-
-def question_detail(request, question_id):  # 카테고리, 지역에 따라 list가 다릅니다\
+def question_detail(request, question_id):
     question = Question.objects.get(pk=question_id)
-    answer = Answer.objects.filter(question=question)
+    answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
+    return render(request, "../templates/question/detailQuestion.html", {"question": question, "answers": answers})
 
-    return render(request, "../templates/question/question_detail.html",
-                  {"question": question, "answer": answer})
+def search(request):
+    questions = Question.objects.all()
+    q = request.POST.get('q', "")
+    if q:
+        questions = questions.filter(title__icontains=q, is_active=True)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(questions, 10)
+        pageObject = paginator.get_page(page)
+        return render(request, "question/searchResult.html", {'questions': pageObject, 'q': q})
+    else:
+        return render(request, "question/searchResult.html")
+
+def accept(request, answer_id):
+    answerQuery = Answer.objects.filter(pk=answer_id)
+    answer = Answer.objects.get(pk=answer_id)
+    questionQuery = Question.objects.filter(pk=answer.question.id)
+    question = Question.objects.get(pk=answer.question.id)
+    if request.user != question.author:
+        messages.error(request, '질문 작성자만 채택할 수 있습니다.')
+    elif question.accept_done:
+        messages.error(request, '이미 답변 채택이 완료되었습니다.')
+    else:
+        answerQuery.update(accept=True)
+        questionQuery.update(accept_done=True)
+    return redirect('question:detail', question_id=question.id)

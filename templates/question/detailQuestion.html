@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'confirmModal.html' %}
+<link rel="stylesheet" href="{% static 'css/question/question.css' %}">
+<div id="navBarBox" style="height: 130px;">
+    {% include 'nav.html' %}
+</div>
+<!-- question start -->
+<div class="questionDetailBox">
+    {% if user == question.author %}
+    <div style="display: flex;justify-content: flex-end;">
+        <div class="optionBox">
+            <a href="{% url 'question:update_question' question.id %}">수정</a>
+            <hr style="width: 1px;
+                height: 36px;background: #FFFFFF;
+                border-radius: 1px;display: inline-block;">
+            <a href="{% url 'question:delete_question' question.id %}" class="confirm-delete" title="Delete" data-toggle="modal" data-target="#confirmModal" id="deleteButton{{question.id}}">삭제</a>
+        </div>
+    </div>
+    <div class="qDetailTitle">
+    {% else %}
+        <div class="qDetailTitle" style="margin-top: 85px;">
+    {% endif %}
+            <img src="{% static 'img/question/questionMark.png' %}" width="40px" height="40px">
+            <h2>{{ question.title }}</h2>
+        </div>
+        <div class="qDetailInfo">
+            <img src="{{MEDIA_URL}}{{question.author.profile}}" width="22px" height="20.74px"style="border-radius: 50%;">
+            <p>{{ question.author.nickname}} 의 레시피 |
+                <span>작성일: {{ question.created|date:"y.m.d H:i" }}</span>
+                <span class="answerCount">답변수 {{ question.answer.count }}</span>
+            </p>
+        </div>
+        <div class="qDetailContent">{{ question.content }}</div>
+        <div style="display:flex;justify-content:flex-start;margin-bottom: 218px;">
+            <a style="background: #FF5C00;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);" href="{% url 'question:create_answer' question.id %}"
+                class="questionCreateBtn btn"><span>답변하기</span>
+                <img src="{% static 'img/question/createButton.png' %}">
+            </a>
+            <a href="{% url 'question:list' %}" class="cancelButton" style="width:164px;height:53px;border-radius: 16px;font-size:16px;">목록보기</a>
+        </div>
+</div>
+<!-- question end -->
+    <div style="width: 100%;height: 218px;background: #FFDADA;"><!-- 광고 --></div>
+
+    <!-- answer start -->
+    <div class="questionDetailBox" style="margin-bottom: 156px;padding:0 126px;">
+        {% if answers %}
+        {% for answer in answers %}
+        <div class="detailAnswerBox">
+            {% if user == answer.author %}
+            <div style="display: flex;justify-content: flex-end;">
+                <div class="optionBox">
+                    <a href="{% url 'question:update_answer' answer.id %}">수정</a>
+                    <hr style="width: 1px;
+                        height: 36px;background: #FFFFFF;
+                        border-radius: 1px;display: inline-block;">
+                    <a href="{% url 'question:delete_answer' answer.id %}" class="confirm-delete" title="Delete" data-toggle="modal" data-target="#confirmModal" id="deleteButton{{answer.id}}">삭제</a>
+                </div>
+            </div>
+            <div class="qDetailTitle">
+            {% else %}
+                <div class="qDetailTitle" style="margin-top: 85px;">
+            {% endif %}
+                    <img src="{% static 'img/question/answerMark.png' %}" width="40px" height="40px">
+                    <h2>{{ answer.author.nickname }} 님의 답변</h2>
+                </div>
+                <div class="qDetailInfo">
+                    <img src="{{MEDIA_URL}}{{answer.author.profile}}" width="22px" height="20.74px"
+                        style="border-radius: 50%;">
+                    <p>{{ answer.author.nickname}} 의 레시피 |
+                        <span>작성일: {{ answer.created|date:"y.m.d H:i" }}</span>
+                        <span class="answerCount">좋아요 수</span>
+                    </p>
+                </div>
+                <div class="qDetailContent">{{ answer.content }}</div>
+
+                <div style="display:flex;justify-content:flex-start;margin-top: 156px;">
+                    <img src="{% static 'img/question/report.png' %}">
+                    <a class="report" href="#">신고하기</a>
+                </div>
+                <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
+                    <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>
+                </a>
+            </div>
+        {% endfor %}
+
+        <!-- no answer -->
+        {% else %}
+            <div style="margin: 120px 0;font-family: Noto Sans;font-weight: 700;line-height: 16px;color: #686868;text-align: center;">
+                <h1>아직 답변이 없습니다.</h1>
+            </div>
+        {% endif %}
+    </div>
+    <!-- answer end -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click', '.confirm-delete', function () {
+    $("#confirmModal").attr("caller-id", $(this).attr("id"));
+    $("#confirmModal").find(".submitButton").css({"background": "#FF5C00", "box-shadow": "6px 6px 30px rgba(0, 0, 0, 0.1)"});
+    $("#confirmModal").find("p").text("정말 삭제 하시겠어요?");
+    $("#confirmModal").find(".submitButton").text("삭제");
+    });
+    $(document).on('click', '.confirm-accept', function () {
+        $("#confirmModal").attr("caller-id", $(this).attr("id"));
+        $("#confirmModal").find(".submitButton").css({"background": "#9832FF", "box-shadow": "6px 6px 30px rgba(255, 92, 0, 0.1)"});
+        $("#confirmModal").find("p").text("해당 답변을 채택하시겠어요?");
+        $("#confirmModal").find(".submitButton").text("채택");
+    });
+    $(document).on('click', '#confirmButtonModal', function () {
+    var caller = $("#confirmButtonModal").closest(".modal").attr("caller-id");
+    window.location = $("#".concat(caller)).attr("href");
+    });
+});
+</script>
+
+{% if messages %}
+    {% for message in messages %}
+    <script>alert("{{ message }}")</script>
+    {% endfor %}
+{% endif %}
+
+{% include 'footer.html' %}
+{% endblock %}
