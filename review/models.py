@@ -33,6 +33,9 @@ class Review(models.Model):
     def get_absolute_url(self):
         return reverse('review:detail', args=[self, id])
 
+    def title_limit(self):
+        return self.title[:17]
+
     def created_string(self):
         time = timezone.now() - self.updated
 

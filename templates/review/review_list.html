@@ -6,19 +6,22 @@
 <div id="top_div">
     {% include 'nav.html' %}
     <div id="hot_recipe">
-        이번주 Best 레시피
+        이번주 Best 후기
     </div>
     <!--    슬릭 들어가기~~   -->
 </div>
-<div style="margin: 0 auto; width:1920px;">
-    <div style="margin-top:52px; overflow:hidden; position:relative; height:185px; padding-left:219px;">
+<div style="margin: 0 auto; width:100%;">
+    <div style="margin-top:52px; overflow:hidden; position:relative; height:185px; padding: 0 200px;">
         <form style="" class="form-inline my-2 my-lg-0" action="" method="POST">
             {% csrf_token %}
-            <input id="search" class="form-control mr-sm-2" type="search" placeholder="요리를 검색해 보세요!" aria-label="Search" name="query_str" value="{{query_str}}">
-            <button id="search_btn" type="submit" style="position: absolute; right:905px; top: 9px; border: 0px solid white; background-color:white;">
-                <img id="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
-            </button>
-            <div class="dropdown show" style="margin-left:33px;">
+            <div style="width: 55%; position:relative;">
+                <input class="search" class="form-control mr-sm-2" type="search" placeholder="요리를 검색해 보세요!" aria-label="Search" name="query_str" value="{{query_str}}">
+                <button class="search_btn" type="submit" style="position:absolute; top:9px; right:7px; border: 0px solid white; background-color:white;">
+                    <img class="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
+                </button>
+            </div>
+
+            <div class="dropdown show" style="width:15%; word-break : break-all">
                 <a id="dropdown_font1" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     반려 동물
                 </a>
@@ -28,7 +31,7 @@
                     <a class="dropdown-item" href="#">다른 동물</a>
                 </div>
             </div>
-            <div class="dropdown show" style="margin-left:15px;">
+            <div class="dropdown show" style="width:15%;">
                 <a id="dropdown_font2" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     조리 시간
                 </a>
@@ -39,7 +42,7 @@
                     <a class="dropdown-item" href="#">20분 이상</a>
                 </div>
             </div>
-            <div class="dropdown show" style="margin-left:15px;">
+            <div class="dropdown show" style="width:15%;">
                 <a id="dropdown_font3" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     정렬 방식
                 </a>
@@ -52,13 +55,13 @@
         </form>
     </div>
        <div>
-        <div style="padding-left:221px; overflow:auto; width:2012px;">
+        <div style="padding: 0 200px; overflow:auto; width:100%;">
             {% if review_dict %}
                 {% for item, image in review_dict.items %}
                 <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'" >
                     <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
-                    <div style="padding-left:22px;">
-                        <p class="recipe_title">"{{ item.title }}"</p>
+                    <div style="padding: 0 22px;">
+                        <p class="recipe_title">"{{ item.title_limit }}"</p>
                         <div>
                             <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"></p>
                             <p class="recipe_id">{{ item.author.nickname }}</p>
