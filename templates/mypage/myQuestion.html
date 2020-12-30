@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load questionFilter %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/mypage/mypage.css' %}">
+<link rel="stylesheet" href="{% static 'css/mypage/mypage.css' %}">
+
+<div class="mypageHeader">
+    {% include 'nav.html' %}
+    <div class="infoBox"><a>나의 정보</a></div>
+    <div class="menuBox">
+        <a href="#">나의<br>레시피</a>
+        <a href="#">저장한<br>레시피</a>
+        <a href="#">나의<br>후기</a>
+        <a href="{% url 'mypage:myQuestion' %}" style="color:#ffffff;">나의<br>질문</a>
+    </div>
+</div>
+
+<div class="questionListBox">
+    <form class="searchBarBox" action="{% url 'question:search' %}" method="POST">
+        {% csrf_token %}
+        <input class="searchBar" placeholder="질문을 검색해 보세요!" name="q" value="{{q}}">
+        <button type="submit" class=""><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
+                height="23.32px"></button>
+    </form>
+    <div style="display:flex;justify-content:flex-end;">
+        <a style="margin-right: 20px;" href="{% url 'question:create_question' %}" class="questionCreateBtn"><span>질문하기</span><img
+                src="{% static 'img/question/createButton.png' %}"></a>
+        <button id="editButton" class="showHide">편집</button>
+        <button id="cancelButton" class="showHide">취소</button>
+    </div>
+    <!-- list content start -->
+    {% if questions %}
+    <div>
+        <ul>
+            <li class="listHead">
+                <div class="nullCell"></div>
+                <div class="idCell">번호</div>
+                <div class="titleCell">제목</div>
+                <div class="authorCell" style="background: none;">작성자</div>
+                <div class="answerCountCell">답변 수</div>
+                <div class="createdCell" style="background: none;">작성일</div>
+                <div class="nullCell"></div>
+            </li>
+        </ul>
+        <div class="listContent">
+            {% for question in questions %}
+            {% if question.is_active %}
+            <ul class="listRow">
+                <div class="nullCell cellBox"></div>
+                <div class="idCell cellBox"><span>{{ questions.paginator.count|sub:questions.start_index|sub:forloop.counter0|add:1 }}</span></div>
+                <div class="titleCell cellBox">
+                    <p class="qTitle">
+                        <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
+                        <a href="{% url 'question:detail' question.id %}" style="color:#575757">{{ question.title }}</a>
+                    </p>
+                    <p class="qContent">{{question.content}}</p>
+                </div>
+                <div class="authorCell cellBox"><span>{{ question.author.nickname }}</span></div>
+                <div class="answerCountCell cellBox">
+                    <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
+                <div class="createdCell cellBox"><span>{{ question.created|date:"y.m.d" }}</span></div>
+                <div class="nullCell cellBox"><a class="deleteToggle" style="display:none;" href="{% url 'mypage:delete_myQuestion' question.id %}"><img src="{% static 'img/mypage/deleteMark.png' %}"></a></div>
+            </ul>
+            {% else %}
+            <ul class="listRow">
+                <div class="nullCell cellBox" style="height: 70px;"></div>
+                <div class="idCell cellBox" style="height: 70px;"><span>{{ question.id }}</span></div>
+                <div class="titleCell cellBox" style="height: 70px;">
+                    <p class="qTitle">
+                        <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
+                        <a href="#" style="font-family: Noto Sans;font-weight: 600;font-size: 15px;line-height: 181.2%;color: #FF2E00;">
+                            관리자에 의해 규제된 답변입니다.
+                        </a>
+                    </p>
+                </div>
+                <div class="authorCell cellBox" style="height: 70px;"></div>
+                <div class="answerCountCell cellBox" style="height: 70px;">
+                    <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
+                <div class="createdCell cellBox" style="height: 70px;"><span>{{ question.created|date:"y.m.d" }}</span>
+                </div>
+                <div class="nullCell cellBox" style="height: 70px;"></div>
+            </ul>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <!-- listContent end -->
+    
+    {% if questions %}
+        <!-- pagination start -->
+        <ul class="pagination justify-content-center" style="margin:150px 0 270px;">
+            {% if questions.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.previous_page_number }}"><img src="{% static 'img/question/previousButton.png' %}"></a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><img src="{% static 'img/question/previousButton.png' %}"></a>
+            </li>
+            {% endif %}
+            {% for page_number in questions.paginator.page_range %}
+            {% if page_number >= questions.number|add:-2 and page_number <= questions.number|add:2 %}
+                {% if page_number == questions.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% if questions.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ questions.next_page_number }}"><img src="{% static 'img/question/nextButton.png' %}"></a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><img src="{% static 'img/question/nextButton.png' %}"></a>
+            </li>
+            {% endif %}
+        </ul>
+        <!-- pagination end -->
+    {% else %}
+    <div style="height: 500px;display:flex; justify-content:center;align-items:center;">
+        <h2 style="font-family: Noto Sans;font-weight: 700;color: #686868;">아직 질문이 없습니다.</h2>
+    </div>
+    {% endif %}
+</div>
+{% include 'footer.html' %}
+<script>
+$(document).ready(function(){
+    $('.showHide').click(function(){
+        console.log('func execute')
+        if (document.getElementById("editButton").style.display == "none") {
+          document.getElementById("editButton").style.display = "block";
+          document.getElementById("cancelButton").style.display = "none";
+          $(".deleteToggle").css("display","none"); 
+          console.log('cancelButton none')
+        } else {
+            document.getElementById("editButton").style.display = "none";
+            document.getElementById("cancelButton").style.display = "block";
+            $(".deleteToggle").css("display","block"); 
+            console.log('editButton none')
+        }
+    });
+});
+</script>
+{% endblock %}
