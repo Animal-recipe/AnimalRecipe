@@ -3,11 +3,9 @@
 <link rel="stylesheet" href="{% static 'css/nav.css' %}">
 
 <nav id="navBar">
-
         <div id="menuBox">
-                <a id="home" href="{% url 'home:home' %}">홈</a>
+                <a class="menuItem" style="color: #FF5C00;font-weight: bold;" href="{% url 'home:home' %}">홈</a>
                 <a class="menuItem" href="{% url 'recipe:list_recipe' %}">레시피</a>
-
                 <a class="menuItem" href="{% url 'review:list_review' %}">후기</a>
                 <a class="menuItem" href="{% url 'about:about' %}">소개</a>
                 <a class="menuItem" href="{% url 'question:list' %}">질문</a>
