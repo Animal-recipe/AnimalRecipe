@@ -1,0 +1,30 @@
+{% load static %}
+{{ form.media }}
+
+<label for="{{widget.attrs.id}}" class="img_show2" style="display: flex; align-items: center;">
+    {% if widget.value %}
+        <img id="current_{{widget.attrs.id}}"  src="{{ widget.value.url }}" style="border-radius: 24px; width:450px; height:250px;">
+
+    {% else %}
+
+    <img id="preview_{{ widget.attrs.id }}" src="{% static 'img/recipe/recipe_create/add_img.png' %}" style="border-radius: 24px; width: 450px; height:250px;">
+
+    {% endif %}
+    {% include "admin/widgets/clearable_file_input.html" %}
+</label>
+
+<script>
+    $(function(){
+        $('#{{ widget.attrs.id }}').change(function(){
+
+            if (this.files[0]){
+                var reader = new FileReader();
+                reader.readAsDataURL(this.files[0]);
+                reader.onload = function(e){
+                    $('#preview_{{widget.attrs.id}}').attr('src', e.target.result).show();
+                    $('#current_{{widget.attrs.id}}').hide()
+                };
+            }
+        })
+    })
+</script>

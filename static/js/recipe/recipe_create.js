@@ -38,5 +38,29 @@ $(document).ready(function(){
         $('.input_box2').eq(number).show();
         $('.input_box3').eq(number).show();
         number += 1;
-    })
+    });
+
+    $('.nontext').hide();
+    $('.input_box4').hide();
+    $('p label').hide();
+
+    for(var i=0; i<2; i++){
+        var temp = i+1;
+        $('.nontext').eq(i).val('step '+temp);
+        $('.nontext').eq(i).show();
+        $('.input_box4').eq(i).show();
+        $('.img_show2').eq(i).show();
+    }
+
+    var j = 2;
+    $('#add_block_btn').click(function(){
+        if(j < 11){
+            var temp = j+1;
+            $('.nontext').eq(j).val('step '+temp);
+            $('.nontext').eq(j).show();
+            $('.input_box4').eq(j).show();
+            $('.img_show2').eq(j).show();
+            j += 1;
+        }
+    });
 });

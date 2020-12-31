@@ -5,39 +5,47 @@
 <link rel="stylesheet" href="{% static 'css/review/review_detail.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
 
-<div style="width: 100%;height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+<div style="padding: 0 145px; width: 100%; height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
 </div>
-<div style="margin: 0 auto; width:1920px;">
-    <div id="box">
-        <a onclick = "location.href='{% url 'review:edit_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">수정</a>
-        <span style="margin:0 10px;">  | </span>
-        <a onclick = "location.href='{% url 'review:delete_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">삭제</a>
-    </div>
+<div id="box">
+    <a onclick = "location.href='{% url 'review:edit_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">수정</a>
+    <span style="margin:0 10px;">  | </span>
+    <a onclick = "location.href='{% url 'review:delete_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">삭제</a>
+</div>
+<div style="margin: 0 auto; width:100%;">
+
     <div style="margin-top:30px; margin-left:219px;">
         <div style="overflow:hidden;">
-            <div class="image_list"  style="width: 870px; height: 526px; float:left;">
+            <div class="image_list"  style="width: 700px; height: 426px; float:left;">
+                {% if img_list %}
                 {% for img in img_list %}
                 <div class="image">
                     <img class="img_style" src="{{ img.image.url }}" class="card-img-top" alt="사진">
                 </div>
                 {% endfor %}
+                {% endif %}
             </div>
-            <div style="width:62px; float:right; margin-right:218px; margin-top:274px;">
+            <div style="width:62px; float:right; margin-right:0px; margin-top:174px;">
                 <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
                 <p id="good">공감</p>
-                <a href=""><img style="margin-top:45px; width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진"></a>
-                <p id="message">쪽지</p>
+                <div style="float:left; text-align:center;">
+                    <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
+                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진">
+                        <p id="message">쪽지</p>
+                    </button>
+                </div>
+                {% include 'contact\modal.html' %}
             </div>
         </div>
         <div style="margin-top:60px;">
             <div>
                 <p class="star" style="float:left; margin-right:16px; margin-top:8px;"> ★   {{ review.star }}.0</p>
-                <p id="title">{{ review.title }}</p>
+                <p id="title" style="word-break: break-all; width:70%; height:30%;">{{ review.title }}</p>
             </div>
             <div style="overflow:hidden; margin-top:40px;">
-                <img class="user_img">
-                <p class="user_info">{{ review.recipe.author.nickname }} 의 레시피  |  작성일 : {{ review.updated }}</p>
+                <img class="user_img" src="{{ review.author.profile.url }}">
+                <p class="user_info">{{ review.recipe.author.nickname }} 의 후기  |  작성일 : {{ review.updated }}</p>
                 <p class="count">
                     조회수   공감
                 </p>
@@ -46,17 +54,17 @@
         <div style="overflow:hidden; margin-top:58px;">
             <p id="animal">{{ review.recipe.animal }}</p>
             <p id="cook_time">{{ review.recipe.cooking_time }}</p>
-            <p id="cook_level">{{ review.recipe.level }}</p>
+            <p id="cook_level" >{{ review.recipe.level }}</p>
         </div>
 
-        <div id="summary">"{{ review.content }} "</div>
+        <div id="summary" style="word-break: break-all; width:70%; height:30%;">"{{ review.content }} "</div>
     </div>
 
     <div class="goto_recipe" style=" cursor: pointer; margin-left:219px; margin-top:73px;" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=review.recipe.id %}'">
         레시피 보기
         <img src="{% static 'img/review/review_detail/goto_recipe.png' %}"/>
     </div>
-    <div style=" margin-top:106px; width: 1926px; height: 338px;text-align:center;line-height:338px;background: #FFDADA;">
+    <div style=" margin-top:106px; width: 100%; height: 338px;text-align:center;line-height:338px;background: #FFDADA;">
     ===========광고============
     </div>
 </div>

@@ -1,151 +1,136 @@
 .input_box{
-    height: 65px;
-
-    padding-left:30px;
+    height: 55px;
+    padding:10px 30px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
     border: 0 solid black;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 65px;
-    /* identical to box height */
-
+    font-size: 16px;
+    line-height: 55px;
     color: #ABABAB;
 }
 .input_box2{
     margin-right:30px;
     margin-top:30px;
     float:left;
-    width: 338px;
-    height: 73px;
+    width: 278px;
+    height: 63px;
     padding-left:30px;
     border: 0 solid black;
-
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
-
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 73px;
+    font-size: 16px;
+    line-height: 63px;
     color: #ABABAB;
 }
 .input_box3{
     margin-right:30px;
     margin-top:30px;
     float:left;
-    width: 246px;
-    height: 73px;
+    width: 186px;
+    height: 63px;
     padding-left:30px;
     border: 0 solid black;
-
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
-
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 73px;
+    font-size: 16px;
+    line-height: 63px;
     color: #ABABAB;
 }
 .input_box4{
-    width: 544px;
-    height: 300px;
-
-    padding-left:50px;
-    padding-top:25px;
+    width: 450px;
+    height: 280px;
+    padding: 25px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 24px;
+    border-radius: 0 0 24px 24px;
     border: 0 solid black;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 65px;
-    /* identical to box height */
-
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom:20px;
     color: #ABABAB;
 }
 .radio_box{
-    height: 65px;
-
+    height: 55px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
     border: 0 solid black;
-
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 65px;
-
+    font-size: 16px;
+    line-height: 55px;
     text-align: center;
-
     color: #575757;
 }
 .font1{
     height: 41px;
-
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 41px;
-
     color: #000000;
 }
 .nontext{
-    width: 100px;
-    height: 39px;
+    width: 70px;
+    height: 29px;
     disabled : disabled;
-
     background: #FF6B00;
     border-radius: 22px;
-
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 39px;
+    font-size: 16px;
+    line-height: 29px;
     border: 0 solid black;
     text-align:center;
     color: #FFFFFF;
+    margin-left: 20px;
 }
 
 #title{
-    margin-left:219px; margin-top: 100px;
+    margin-top: 50px;
+    margin-left: 30px;
     height: 122px;
     font-family: Noto Sans;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 30px;
     line-height: 127.4%;
     color: #FFFFFF;
 }
 
 #save{
-    margin-left:1510px;
-    width: 191px;
-    height: 65px;
+    float:right;
+    margin-right:7%;
+    width: 171px;
+    height: 55px;
     background: #A9A9A9;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 0px 0px 24px 24px;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 65px;
+    font-size: 16px;
+    line-height: 55px;
     text-align: center;
     color: #FFFFFF;
 }
 
 #click_box{
-    width: 614px;
-    height: 73px;
+    width: 497px;
+    height: 63px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
-    line-height:73px;
+    line-height:63px;
     border-radius: 24px;
 }
 
@@ -158,4 +143,112 @@
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
+}
+
+.img_show{
+    margin-right: 30px;
+    margin-bottom: 30px;
+    width: 350px;
+    height: 250px;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+}
+.img_show2{
+    width: 450px;
+    height: 250px;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px 24px 0 0;
+}
+
+#add_block_btn{
+    width: 450px;
+    height: 63px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    text-align: center;
+    padding-top:12.5px;
+}
+
+#fake_save{
+    width: 151px;
+    height: 53px;
+    background: #A9A9A9;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 53px;
+    text-align: center;
+    color: #FFFFFF;
+}
+#back{
+    width: 151px;
+    height: 53px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 53px;
+    text-align: center;
+    color: #575757;
+}
+
+#finish{
+    width: 151px;
+    height: 53px;
+    background: #FF6B00;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    border: 0px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 53px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+input[type="checkbox"]{
+    display: none;
+}
+
+p label{
+    display: none;
+}
+p input[type="checkbox"]{
+    display: none;
+}
+input[type="file"]{
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0;
+}
+
+label[for=id_recipe_ingredient-0-DELETE]{
+    display: none;
+}
+label[for=id_recipe_ingredient-1-DELETE]{
+    display: none;
+}
+label[for=id_recipe_ingredient-2-DELETE]{
+    display: none;
+}
+label[for=id_recipe_ingredient-3-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-4-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-5-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-6-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-7-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-8-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-9-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-10-DELETE]{
+    display: none;
 }
