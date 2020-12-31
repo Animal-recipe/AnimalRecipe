@@ -78,7 +78,7 @@
 
                 <div style="display:flex;justify-content:flex-start;margin-top: 156px;">
                     <img src="{% static 'img/question/report.png' %}">
-                    <a class="report" href="#">신고하기</a>
+                    <a class="report" onclick = "location.href='{% url 'footer:Report' user_id=answer.author %}'">신고하기</a>
                 </div>
                 <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
                     <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>

@@ -5,40 +5,47 @@
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
 
-<div style="width: 100%;height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+<div style="padding: 0 145px; width: 100%; height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
 </div>
-<div style="margin: 0 auto; width:1920px;">
+<div style="height:65px;">
     <div id="box">
         <a onclick = "location.href='{% url 'recipe:edit_recipe' recipe_id=recipe.id %}'" style="color: #FFFFFF; cursor:pointer; ">수정</a>
         <span style="margin:0 10px;">  | </span>
         <a onclick = "location.href='{% url 'recipe:delete_recipe' recipe_id=recipe.id %}'" style="color: #FFFFFF; cursor:pointer;">삭제</a>
     </div>
+</div>
+<div style="margin: 0 auto; width:100%;">
+
     <div style="margin-top:30px; margin-left:219px;">
         <div style="overflow:hidden;">
-            <div class="image_list"  style="width: 870px; height: 526px; float:left;">
+            <div class="image_list"  style="width: 700px; height: 426px; float:left;">
+                {% if img_list %}
                 {% for img in img_list %}
                 <div class="image">
                     <img class="img_style" src="{{ img.image.url }}" class="card-img-top" alt="사진">
                 </div>
                 {% endfor %}
+                {% endif %}
             </div>
-            <div style="width:62px; float:right; margin-right:218px; margin-top:274px;">
+            <div style="width:62px; float:right; margin-right:218px; margin-top:174px;">
                 <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
                 <p id="good">공감</p>
                 <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/save.png' %}" class="card-img-top" alt="사진"></a>
                 <p id="save">저장</p>
-                <button type="button" style="background-color:white; border: 0px; outline:0px;" data-toggle="modal" data-target="#myModal">
-                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진">
-                    <p id="message">쪽지</p>
-                </button>
+                <div style="float:left; text-align:center;">
+                    <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
+                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진">
+                        <p id="message">쪽지</p>
+                    </button>
+                </div>
 
             </div>
         </div>
         <div style="margin-top:60px;">
             <p id="title">{{ recipe.title }}</p>
             <div style="overflow:hidden; margin-top:40px;">
-                <img class="user_img">
+                <img class="user_img" src="{{ recipe.author.profile.url }}">
                 <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
                 <p class="count">
                     조회수   공감
@@ -55,9 +62,9 @@
         <div id="show_ingredient">
             재료를 준비해 주세요!
         </div>
-        <div style="margin-top:75px; margin-left:62px;">
+        <div style="margin-top:75px; margin-left:10px;">
             {% for ingredient in ingredient_list %}
-            <div style="overflow:hidden; width: 800px; margin-bottom:30px;">
+            <div style="overflow:hidden; width: 40%; margin-bottom:30px;">
                 <p class="ingredient">{{ ingredient.ingredient }}</p>
                 <p class="amount">{{ ingredient.amount }}</p>
             </div>
@@ -65,22 +72,24 @@
         </div>
     </div>
 
-    <div style=" margin-top:106px; width: 1926px; height: 338px;text-align:center;line-height:338px;background: #FFDADA;">
+    <div style=" margin-top:106px; width: 100%; height: 338px;text-align:center;line-height:338px;background: #FFDADA;">
     ===========광고============
     </div>
-    <div style="margin-top:181px; margin-left:219px;">
+    <div style="margin-top:121px; margin-left:219px;">
         <div id="follow">
             이렇게 따라해봐요!
         </div>
             {% for step in step_list %}
                 <div style="margin-top:100px;">
-                    <p class="step"> step</p>
-                    <img style="margin-top:40px; width:689px; height:421px; border-radius: 24px;" src="{{ step.image.url }}" >
-                    <p class="content">{{ step.content }}</p>
+                    <p class="step"> {{ step.procedure }} </p>
+                    {% if step.image %}
+                    <img style="margin-top:20px; width:589px; height:321px; border-radius: 24px;" src="{{ step.image.url }}" >
+                    {% endif %}
+                    <p class="content" style="word-break : break-all;">{{ step.content }}</p>
                 </div>
             {% endfor %}
     </div>
-    <div style=" margin: 0 auto; margin-top:152px;width: 1724px;height: 440px;background: #1B1B1B;border-radius: 60px;">
+    <div style=" margin: 0 auto; margin-top:152px;width: 100%; height: 400px;background: #1B1B1B;border-radius: 60px;">
         <div style="padding-top:85px; padding-left:121px; overflow:hidden; float:left;">
             <div style="float:left; text-align:center;">
                 <a href=""><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
@@ -99,9 +108,9 @@
             {% include 'contact\modal.html' %}
         </div>
         <div style="padding-top:85px; float:right; padding-right:121px;">
-            <p id="white_title">{{ recipe.title }}</p>
+            <p id="white_title">{{ recipe.title_limit }}</p>
             <div style="overflow:hidden; margin-top:40px;">
-                <img class="user_img">
+                <img class="user_img" src="{{ recipe.author.profile.url }}">
                 <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
                 <p class="count">
                     조회수   공감
@@ -113,21 +122,20 @@
             </div>
         </div>
     </div>
-    <div style="margin-top:144px; overflow:hidden; padding-bottom: 104px;">
-        <p id="review_title" style="float:left; margin-left:855px; padding-top:15px;">총 {{ count }}개의 <br>후기가 있어요!</p>
-        <div id="create_review_css" style="float:right; margin-right:221px; margin-top:40px;">
+    <div style="margin: 50px auto; overflow:hidden; padding-bottom: 34px;">
+        <p id="review_title" style="float:left; padding-top:15px; margin: 0 44%;">총 {{ count }}개의 <br>후기가 있어요!</p>
+        <div id="create_review_css" style="float:right; margin-right:221px;">
             <a href="{% url 'review:create_review' recipe_id=recipe.id %}" style="color: #FFFFFF;">후기 작성하기</a>
             <img style="margin-left:15px;" src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/>
         </div>
     </div>
-    <div>
-        <div style="padding-left:221px; overflow:auto; width:2012px;">
+        <div style="padding: 0 200px; overflow:auto; width:100%;">
             {% if review_dict %}
                 {% for item, image in review_dict.items %}
                 <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'" >
                     <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
                     <div style="padding-left:22px;">
-                        <p class="recipe_title">"{{ item.title }}"</p>
+                        <p class="recipe_title">"{{ item.title_limit }}"</p>
                         <div>
                             <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"></p>
                             <p class="recipe_id">{{ item.author.nickname }}</p>
@@ -140,7 +148,6 @@
                 {% endfor %}
             {% endif %}
         </div>
-    </div>
 </div>
 
 {% endblock %}

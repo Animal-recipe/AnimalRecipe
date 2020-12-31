@@ -34,7 +34,7 @@ def create(request):
                 image_formset.save()
                 ingredient_formset.save()
                 step_formset.save()
-                return redirect('/')
+                return redirect('/recipe/list')
     else:
         image_formset = RecipeImageFormSet()
         ingredient_formset = RecipeIngredientFormSet()
@@ -100,14 +100,14 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
 def delete(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     if recipe.author_id != request.user.id:
-        return redirect('/')
+        return redirect('/recipe/list')
     recipe.delete()
-    return redirect('/')
+    return redirect('/recipe/list')
 
 def edit(request, recipe_id):
     now_recipe = Recipe.objects.get(pk=recipe_id)
     if now_recipe.author_id != request.user.id:
-        return redirect('/')
+        return redirect('/recipe/list')
     if request.method == 'POST':
         image_formset = RecipeImageFormSet(request.POST, request.FILES, instance=now_recipe)
         ingredient_formset = RecipeIngredientFormSet(request.POST, request.FILES, instance=now_recipe)
@@ -126,7 +126,7 @@ def edit(request, recipe_id):
                 image_formset.save()
                 ingredient_formset.save()
                 step_formset.save()
-                return redirect('/')
+                return redirect('/recipe/list')
     else:
         image_formset = RecipeImageFormSet(instance=now_recipe)
         ingredient_formset = RecipeIngredientFormSet(instance=now_recipe)

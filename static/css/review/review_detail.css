@@ -1,10 +1,8 @@
 .star{
     width: 58px;
     height: 23px;
-
     background: #1B1B1B;
     border-radius: 12.8413px;
-
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 12px;
@@ -14,17 +12,15 @@
 }
 
 .goto_recipe{
-    width: 222px;
-    height: 72px;
-
+    width: 180px;
+    height: 62px;
     background: #3C3C3C;
     box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
     border-radius: 24px;
-
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 24px;
-    line-height: 72px;
+    font-size: 20px;
+    line-height: 62px;
     text-align:center;
     color: #FFFFFF;
 }

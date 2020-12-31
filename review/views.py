@@ -4,6 +4,7 @@ from .forms import ReviewForm, ReviewImageForm, ReviewImageFormSet
 from django.db import transaction
 from django.shortcuts import redirect
 from django.core.paginator import Paginator
+from contact.models import Message
 
 # Create your views here.
 def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
@@ -42,7 +43,7 @@ def create(request, recipe_id):
                 review.save()
                 image_formset.instance = review
                 image_formset.save()
-                return redirect('/')
+                return redirect('/review/list')
     else:
         image_formset = ReviewImageFormSet()
 
@@ -53,21 +54,23 @@ def create(request, recipe_id):
 def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     review = Review.objects.get(pk=review_id)
     img_list = Review_Img.objects.filter(review=review)
+    received_list = Message.objects.filter(recipient=request.user)
+    send_list = Message.objects.filter(sender=request.user)
 
     return render(request, "review/review_detail.html",
-                  {"review": review, "img_list": img_list})
+                  {"review": review, "img_list": img_list, 'received_list':received_list, 'send_list':send_list})
 
 def delete(request, review_id):
     review = Review.objects.get(pk=review_id)
     if review.author_id != request.user.id:
-        return redirect('/')
+        return redirect('/review/list')
     review.delete()
-    return redirect('/')
+    return redirect('/review/list')
 
 def edit(request, review_id):
     now_review = Review.objects.get(pk=review_id)
     if now_review.author_id != request.user.id:
-        return redirect('/')
+        return redirect('/review/list')
     if request.method == 'POST':
         image_formset = ReviewImageFormSet(request.POST, request.FILES, instance=now_review)
         now_review.title = request.POST["title"]
@@ -76,7 +79,7 @@ def edit(request, review_id):
         now_review.save()
         if image_formset.is_valid():
             image_formset.save()
-            return redirect('/')
+            return redirect('/review/list')
     else:
         image_formset = ReviewImageFormSet(instance=now_review)
 

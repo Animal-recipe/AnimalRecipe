@@ -40,6 +40,9 @@ class Recipe(models.Model):
     def get_absolute_url(self):
         return reverse('recipe:detail', args=[self, id])
 
+    def title_limit(self):
+        return self.title[:20]
+
     def created_string(self):
         time = timezone.now() - self.updated
 
@@ -75,7 +78,7 @@ class Recipe_Ingredient(models.Model):
 class Recipe_Step(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe_step")
     # 순서
-    procedure = models.PositiveIntegerField(default=0)
+    procedure = models.TextField(max_length=50, default='')
     # 이미지
     image = models.ImageField(upload_to='recipe_step/%Y/%m/%d', blank=True)
     # 내용

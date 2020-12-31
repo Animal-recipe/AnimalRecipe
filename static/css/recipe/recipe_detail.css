@@ -1,21 +1,22 @@
 #box{
-    margin-left:1510px;
-    width: 191px;
-    height: 65px;
+    float:right;
+    margin-right:145px;
+    width: 10%;
+    height: 50px;
     background: #A9A9A9;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 0px 0px 24px 24px;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 18px;
-    line-height: 65px;
+    font-size: 16px;
+    line-height: 50px;
     text-align: center;
     color: #FFFFFF;
 }
 
 .img_style{
-    width: 870px;
-    height: 526px;
+    width: 700px;
+    height: 426px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 24px;
@@ -55,7 +56,7 @@
     height: 41px;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 25px;
     line-height: 41px;
     color: #000000;
 }
@@ -65,7 +66,6 @@
     float:left;
     margin-right:7px;
     height: 21px;
-    background: #31ADE2;
     border-radius:100px;
 }
 
@@ -140,7 +140,7 @@
 
 #summary{
     margin-top:85.4px;
-    width: 553px;
+    width: 70%;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 18px;
@@ -150,22 +150,22 @@
 
 #show_ingredient{
     margin-top:133px;
-    width: 290px;
-    height: 72px;
+    width: 250px;
+    height: 62px;
     background: #3C3C3C;
     box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
     border-radius: 24px;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 24px;
-    line-height: 72px;
+    font-size: 20px;
+    line-height: 62px;
     text-align:center;
     color: #FFFFFF;
 }
 
 .ingredient{
     float:left;
-    margin-right:114px;
+    width:40%;
     height: 25px;
     font-family: Noto Sans;
     font-weight: 600;
@@ -176,6 +176,7 @@
 
 .amount{
     height: 25px;
+    width:30%;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 18px;
@@ -186,27 +187,27 @@
 
 #follow{
     margin-top:133px;
-    width: 290px;
-    height: 72px;
+    width: 250px;
+    height: 62px;
     background: #3C3C3C;
     box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
     border-radius: 24px;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 24px;
-    line-height: 72px;
+    font-size: 20px;
+    line-height: 62px;
     text-align:center;
     color: #FFFFFF;
 }
 
 .step{
-        width: 100px;
+        width: 90px;
         height: 39px;
         background: #FF6B00;
         border-radius: 22px;
         font-family: Noto Sans;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 39px;
         text-align:center;
         color: #FFFFFF;
@@ -215,7 +216,7 @@
 
 .content{
         margin-top:40px;
-        width: 689px;
+        width: 70%;
         font-family: Noto Sans;
         font-weight: 600;
         font-size: 18px;
@@ -241,7 +242,7 @@
     color: #FFFFFF;
 }
 #review_title{
-    width: 210px;
+    width: 190px;
     height: 95px;
 
     background: #FFFFFF;
@@ -249,7 +250,7 @@
     border-radius: 24px;
     font-family: Noto Sans;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 33px;
     text-align: center;
 
