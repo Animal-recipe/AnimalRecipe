@@ -27,12 +27,16 @@
                 {% endif %}
             </div>
             <div style="width:62px; float:right; margin-right:0px; margin-top:174px;">
-                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
-                <p id="good">공감</p>
+                <a href="{% url 'review:like_review' review.id %}" style="margin-left:5px;">
+                    {% if click_like == 0 %}
+                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
+                    {% else %}
+                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
+                    {% endif %}
+                </a>
                 <div style="float:left; text-align:center;">
                     <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
-                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진">
-                        <p id="message">쪽지</p>
+                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
                     </button>
                 </div>
                 {% include 'contact\modal.html' %}
@@ -47,7 +51,7 @@
                 <img class="user_img" src="{{ review.author.profile.url }}">
                 <p class="user_info">{{ review.recipe.author.nickname }} 의 후기  |  작성일 : {{ review.updated }}</p>
                 <p class="count">
-                    조회수   공감
+                    조회수 {{ review.hits }}   공감 {{ review.like.all.count }}
                 </p>
             </div>
         </div>

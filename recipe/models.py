@@ -5,6 +5,7 @@ from datetime import timedelta
 from django.utils import timezone
 from django.urls import reverse
 from account.models import User
+
 # Create your models here.
 
 class Recipe(models.Model):
@@ -22,10 +23,10 @@ class Recipe(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # 수정 시간
     updated = models.DateTimeField(auto_now=True)
-    # # 공감
-    # like = models.ManyToManyField(User, related_name='like_recipe', blank=True)
-    # # 스크랩 수
-    # save = models.ManyToManyField(User, related_name='save_recipe', blank=True)
+    # 공감
+    like = models.ManyToManyField(User, related_name='like_recipe', blank=True)
+    # 스크랩 수
+    save_count = models.ManyToManyField(User, related_name='save_recipe', blank=True)
     # 조회수
     hits = models.PositiveIntegerField(default=0)
     # 난이도
@@ -57,6 +58,10 @@ class Recipe(models.Model):
             return str(time.days) + '일 전'
         else:
             return self.updated
+
+    def update_counter(self):
+        self.hits = self.hits + 1
+        self.save()
 
 class Recipe_Img(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe_img")

@@ -22,7 +22,9 @@ class Review(models.Model):
     # 수정일
     updated = models.DateTimeField(auto_now=True)
     # 공감
-    # like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_recipe', blank=True)
+    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_review', blank=True)
+    # 조회수
+    hits = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.recipe.title

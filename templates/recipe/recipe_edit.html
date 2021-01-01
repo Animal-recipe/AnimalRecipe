@@ -4,6 +4,42 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/recipe/recipe_create.css' %}"/>
 <script type="text/javascript" src="{% static 'js/recipe/recipe_create.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        var animal = "{{ now_recipe.animal }}"
+        var cook_time = "{{ now_recipe.cooking_time }}"
+        var level = "{{ now_recipe.level }}"
+
+        if (animal == "강아지"){
+            $("input:radio[name=animal]:radio[value=강아지]").prop('checked',true);
+        } else if(animal == "모두"){
+            $("input:radio[name=animal]:radio[value=모두]").prop('checked',true);
+        } else if(animal == "고양이"){
+            $("input:radio[name=animal]:radio[value=고양이]").prop('checked',true);
+        }else{
+            $("input:radio[name=animal]:radio[value=other]").prop('checked',true);
+        }
+
+        if (cook_time == "5분이내"){
+            $("input:radio[name=cooking_time]:radio[value=5분이내]").prop('checked',true);
+        }else if (cook_time == "5분_10분"){
+            $("input:radio[name=cooking_time]:radio[value=5분_10분]").prop('checked',true);
+        }else if (cook_time == "10분_20분"){
+            $("input:radio[name=cooking_time]:radio[value=10분_20분]").prop('checked',true);
+        }else if (cook_time == "20분이상"){
+            $("input:radio[name=cooking_time]:radio[value=20분이상]").prop('checked',true);
+        }
+
+        if (level == "상"){
+            $("input:radio[name=level]:radio[value=상]").prop('checked',true);
+        } else if(level == "중"){
+            $("input:radio[name=level]:radio[value=중]").prop('checked',true);
+        } else if(level == "하"){
+            $("input:radio[name=level]:radio[value=하]").prop('checked',true);
+        }
+
+    })
+</script>
 <div style=" padding: 0 145px; overflow:hidden;width: 100%;height: 320px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
     <div id="title">
@@ -31,10 +67,10 @@
             </div>
             <p class="font1" style=" margin-top:120px;">조리시간이 얼마나 걸리나요?</p>
             <div class="cook" style="margin-top:30px;">
-                <label style="width: 140px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 이내" autofocus="" > 5분 이내 </label>
-                <label style="width: 140px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분 - 10분"> 5분 - 10분 </label>
-                <label style="width: 140px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="10분 - 20분"> 10분 - 20분 </label>
-                <label style="width: 140px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="20분 이상"> 20분 이상 </label>
+                <label style="width: 140px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분이내" autofocus="" > 5분 이내 </label>
+                <label style="width: 140px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="5분_10분"> 5분 - 10분 </label>
+                <label style="width: 140px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="10분_20분"> 10분 - 20분 </label>
+                <label style="width: 140px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="cooking_time" value="20분이상"> 20분 이상 </label>
             </div>
             <p class="font1" style="margin-top:120px;">조리 난이도</p>
             <div class="level" style="margin-top:30px;">
@@ -48,14 +84,9 @@
                 <textarea maxlength="180" style="margin-top:30px; padding: 30px 50px; width: 645px; height: 320px; line-height: 32.62px;" class="input_box" name="summary" placeholder="예시 ) 우리집 강아지 뽀미가 요즘 너무 더워서 그런지 힘이 없어서 도전해 본 황태국이에요!! 만들어 보니 너무 쉽고 맛있게 만들 수 있어서 공유해봅니다. (50자 이내)">{{ now_recipe.summary }}</textarea>
             </div>
             <div style="margin-top:120px;" class="recipe_img">
-                <p class="font1">완성된 요리의 대표 사진을 업로드 해주세요.</p>
-                <div style="width: 70%; margin-top: 30px; ">
-                    <div>
-                        <label for="id_recipe_img-0-image"><img id="preview_id_recipe_img-0-image" class="img_show" src="{% static 'img/recipe/recipe_create/add_img.png' %}"/></label>
-                        <label for="id_recipe_img-1-image"><img id="preview_id_recipe_img-1-image" class="img_show" src="{% static 'img/recipe/recipe_create/add_img.png' %}"/></label>
-                        <label for="id_recipe_img-2-image"><img id="preview_id_recipe_img-2-image" class="img_show" src="{% static 'img/recipe/recipe_create/add_img.png' %}"/></label>
-                            {{ image_formset.as_p }}
-                    </div>
+                <p class="font1" style="margin-bottom:70px;">완성된 요리의 대표 사진을 업로드 해주세요.</p>
+                <div style="overflow:hidden; width: 70%;">
+                    {{ image_formset.as_p }}
                 </div>
             </div>
             <div style="margin-top:120px;">
@@ -69,7 +100,7 @@
                 </div>
             </div>
             <div style="margin-top:120px;">
-                <p class="font1">조리 방법을 순서대로 작성해보아요!</p>
+                <p class="font1" style="margin-bottom: 70px;">조리 방법을 순서대로 작성해보아요!</p>
                     {{ step_formset.as_p }}
             </div>
 

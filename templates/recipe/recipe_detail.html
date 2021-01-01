@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_detail.css' %}">
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
@@ -29,26 +30,29 @@
                 {% endif %}
             </div>
             <div style="width:62px; float:right; margin-right:218px; margin-top:174px;">
-                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
-                <p id="good">공감</p>
-                <a href=""><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/save.png' %}" class="card-img-top" alt="사진"></a>
-                <p id="save">저장</p>
+                <a id="like" href="{% url 'recipe:like_recipe' recipe.id %}" style="margin-left:5px;">
+                    {% if click_like == 0 %}
+                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
+                    {% else %}
+                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
+                    {% endif %}
+                </a>
+                <a href="{% url 'recipe:save_recipe' recipe.id %}" style="margin-left:5px;"><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진"></a>
                 <div style="float:left; text-align:center;">
                     <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
-                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진">
-                        <p id="message">쪽지</p>
+                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
                     </button>
                 </div>
 
             </div>
         </div>
         <div style="margin-top:60px;">
-            <p id="title">{{ recipe.title }}</p>
+            <p id="title" style="width:100%;" >{{ recipe.title }}</p>
             <div style="overflow:hidden; margin-top:40px;">
                 <img class="user_img" src="{{ recipe.author.profile.url }}">
                 <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
                 <p class="count">
-                    조회수   공감
+                    조회수 {{ recipe.hits }}   공감 {{ recipe.like.all.count }}
                 </p>
             </div>
         </div>
@@ -92,17 +96,20 @@
     <div style=" margin: 0 auto; margin-top:152px;width: 100%; height: 400px;background: #1B1B1B;border-radius: 60px;">
         <div style="padding-top:85px; padding-left:121px; overflow:hidden; float:left;">
             <div style="float:left; text-align:center;">
-                <a href=""><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good.png' %}" class="card-img-top" alt="사진"></a>
-                <p class="white_font">공감</p>
+                <a href="{% url 'recipe:like_recipe' recipe.id %}">
+                    {% if click_like == 0 %}
+                    <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
+                    {% else %}
+                    <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
+                    {% endif %}
+                </a>
             </div>
             <div style="float:left; text-align:center; margin-left: 100px;">
-                <a href=""><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/save.png' %}" class="card-img-top" alt="사진"></a>
-                <p class="white_font">저장</p>
+                <a href="{% url 'recipe:save_recipe' recipe.id %}"><img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진"></a>
             </div>
             <div style="float:left; text-align:center; margin-left:40px;">
                 <button type="button" style="background-color:#1B1B1B; border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
-                    <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/contact.png' %}" class="card-img-top" alt="사진">
-                    <p class="white_font">쪽지</p>
+                    <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
                 </button>
             </div>
             {% include 'contact\modal.html' %}
@@ -113,7 +120,7 @@
                 <img class="user_img" src="{{ recipe.author.profile.url }}">
                 <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
                 <p class="count">
-                    조회수   공감
+                    조회수 {{ recipe.hits }}   공감 {{ recipe.like.all.count }}
                 </p>
             </div>
             <div style="float:right; margin-top:160px; cursor:pointer;">

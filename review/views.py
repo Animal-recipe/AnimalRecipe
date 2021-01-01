@@ -5,6 +5,10 @@ from django.db import transaction
 from django.shortcuts import redirect
 from django.core.paginator import Paginator
 from contact.models import Message
+from django.views.generic.base import View
+from django.http import HttpResponseForbidden
+from django.http import HttpResponseRedirect
+from urllib.parse import urlparse
 
 # Create your views here.
 def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
@@ -16,6 +20,16 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     page = request.GET.get('page') #??
     reveiw =paginator.get_page(page)
 
+    best_review = Review.objects.all().order_by('-like')
+    best_review_dict = {}
+
+    for i in range(0, 4):
+        temp = best_review[i]
+        for j in range(0, img.__len__()):
+            if img[j].review == temp:
+                img_obj = img[j]
+        best_review_dict[temp] = img_obj.image.url
+
     for i in range(0, review.__len__()):
         tmp = review[i]
         for j in range(0, img.__len__()):
@@ -23,7 +37,7 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
                 img_obj = img[j]
         review_dict[review[i]] = img_obj.image.url
 
-    return render(request, "review/review_list.html",{"review_dict":review_dict})
+    return render(request, "review/review_list.html",{"review_dict":review_dict, "best_review_dict":best_review_dict})
 
 def create(request, recipe_id):
     if request.method == 'POST':
@@ -56,9 +70,17 @@ def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가
     img_list = Review_Img.objects.filter(review=review)
     received_list = Message.objects.filter(recipient=request.user)
     send_list = Message.objects.filter(sender=request.user)
+    review.hits = review.hits + 1
+    review.save()
+
+    click_like = 0
+    for temp in review.like.all():
+        if temp == request.user:
+            click_like = 1
+            break
 
     return render(request, "review/review_detail.html",
-                  {"review": review, "img_list": img_list, 'received_list':received_list, 'send_list':send_list})
+                  {"review": review, "img_list": img_list, 'received_list':received_list, 'send_list':send_list, 'click_like':click_like})
 
 def delete(request, review_id):
     review = Review.objects.get(pk=review_id)
@@ -86,3 +108,21 @@ def edit(request, review_id):
     return render(request, '../templates/review/review_edit.html', {
         'image_formset': image_formset, 'now_review': now_review,
     })
+
+class Review_Like(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
+            return HttpResponseForbidden()  # 아무일도 일어나지 않는다
+        else:
+            if 'review_id' in kwargs:
+                review_id = kwargs['review_id']
+                review = Review.objects.get(pk=review_id)
+                user = request.user
+                if user in review.like.all():
+                    review.like.remove(user)
+                else:
+                    review.like.add(user)
+
+            referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)

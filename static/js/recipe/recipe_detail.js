@@ -14,4 +14,7 @@ $(document).ready(function(){
 //        $(this).closest("div").closest("div").prev().find(".user_comment_box").removeAttr('disabled');
         $('.user_comment_box').removeAttr('disabled');
     });
+
+    $("#like").click(function(){
+    })
 });
