@@ -2,23 +2,26 @@
 {% load static %}
 {% load questionFilter %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/question/question.css' %}">
+<link rel="stylesheet" href="{% static 'css/mypage/mypage.css' %}">
 <link rel="stylesheet" href="{% static 'css/question/questionList.css' %}">
-<script type="text/javascript" src="{% static 'js/question/question.js' %}"></script>
 
-<div id="navBarBox" style="height: 130px;">
+<div class="mypageHeader">
     {% include 'nav.html' %}
+    <div class="infoBox"><a>나의 정보</a></div>
+    <div class="menuBox">
+        <a href="{% url 'mypage:myRecipe' %}">나의<br>레시피</a>
+        <a href="#">저장한<br>레시피</a>
+        <a href="{% url 'mypage:myReview' %}">나의<br>후기</a>
+        <a href="{% url 'mypage:myQuestion' %}" style="color:#ffffff;">나의<br>질문</a>
+    </div>
 </div>
-<div class="questionListBox">
-    <form class="searchBarBox" action="{% url 'question:search' %}" method="POST">
-        {% csrf_token %}
-        <input class="searchBar" placeholder="질문을 검색해 보세요!" name="q" value="{{q}}">
-        <button type="submit" class=""><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
-                height="23.32px"></button>
-    </form>
+
+<div class="questionListBox" style="margin-top: 52px;">
     <div style="display:flex;justify-content:flex-end;">
-        <a href="{% url 'question:create_question' %}" class="questionCreateBtn"><span>질문하기</span><img
-                src="{% static 'img/question/createButton.png' %}"></a>
+        <a style="margin-right: 20px;" href="{% url 'question:create_question' %}"
+            class="questionCreateBtn"><span>질문하기</span><img src="{% static 'img/question/createButton.png' %}"></a>
+        <button id="editButton" class="showHide">편집</button>
+        <button id="cancelButton" class="showHide">취소</button>
     </div>
     <!-- list content start -->
     {% if questions %}
@@ -53,7 +56,13 @@
                 <div class="answerCountCell cellBox">
                     <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
                 <div class="createdCell cellBox"><span>{{ question.created|date:"y.m.d" }}</span></div>
-                <div class="nullCell cellBox"></div>
+                <div class="nullCell cellBox" style="position: relative;">
+                    <a class="deleteToggle" style="display:none;position: relative;top:10px;"
+                        href="{% url 'mypage:delete_myQuestion' question.id %}">
+                        <img width="33px" src="{% static 'img/mypage/deleteMark.png' %}">
+                    </a>
+                    <div class="nullRow" style="display: block;height: 33px;"></div>
+                </div>
             </ul>
             {% else %}
             <ul class="listRow">
@@ -81,7 +90,6 @@
         {% endif %}
     </div>
     <!-- listContent end -->
-
     {% if questions %}
     <!-- pagination start -->
     <ul class="pagination justify-content-center" style="margin:150px 0 270px;">
@@ -124,9 +132,27 @@
     <!-- pagination end -->
     {% else %}
     <div style="height: 500px;display:flex; justify-content:center;align-items:center;">
-        <h2 style="font-family: Noto Sans;font-weight: 700;color: #686868;">아직 질문이 없습니다.</h2>
+        <h2 style="font-family: Noto Sans;font-weight: 700;color: #686868;">아직 나의 질문이 없습니다.</h2>
     </div>
     {% endif %}
 </div>
 {% include 'footer.html' %}
+<script>
+    $(document).ready(function () {
+        $('.showHide').click(function () {
+            console.log('func execute')
+            if (document.getElementById("editButton").style.display == "none") {
+                document.getElementById("editButton").style.display = "block";
+                document.getElementById("cancelButton").style.display = "none";
+                $(".deleteToggle").css("display", "none");
+                $(".nullRow").css("display", "block");
+            } else {
+                document.getElementById("editButton").style.display = "none";
+                document.getElementById("cancelButton").style.display = "block";
+                $(".deleteToggle").css("display", "block");
+                $(".nullRow").css("display", "none");
+            }
+        });
+    });
+</script>
 {% endblock %}

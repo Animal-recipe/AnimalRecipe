@@ -113,8 +113,8 @@
 #more3{
     width: 180px;
     height: 90px;
-    background: #FFFFFF;f
-    ont-family: Noto Sans KR;
+    background: #FFFFFF;
+    font-family: Noto Sans KR;
     font-weight: 500;
     font-size: 15px;
     padding:0px;
@@ -142,7 +142,9 @@
 
 .recipe_size{
     cursor:pointer;
-    float:left; margin-right:20px; margin-bottom:50px;
+    float:left;
+    margin-right:20px; 
+    margin-bottom:100px;
     width: 23%;
     height: 408px;
     background: #FFFFFF;
