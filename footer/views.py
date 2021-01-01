@@ -8,12 +8,12 @@ from account.models import User
 def create_AD(request):
     if request.method == 'POST':
         AD_form = ADForm(request.POST, request.FILES)
-
-        AD = AD_form.save(commit=False)
-        AD.name = request.POST["name"]
-        AD.phone = request.POST["phone"]
-        AD.content = request.POST["content"]
-        AD.save()
+        if AD_form.is_valid():
+            AD = AD_form.save(commit=False)
+            AD.name = request.POST["name"]
+            AD.phone = request.POST["phone"]
+            AD.content = request.POST["content"]
+            AD.save()
         return redirect('/')
     else:
         AD_form = ADForm()
@@ -22,12 +22,12 @@ def create_AD(request):
 def create_Service_center(request):
     if request.method == 'POST':
         Service_form = Service_center_Form(request.POST, request.FILES)
-
-        Service = Service_form.save(commit=False)
-        Service.name = request.POST["name"]
-        Service.phone = request.POST["phone"]
-        Service.content = request.POST["content"]
-        Service.save()
+        if Service_form.is_valid():
+            Service = Service_form.save(commit=False)
+            Service.name = request.POST["name"]
+            Service.phone = request.POST["phone"]
+            Service.content = request.POST["content"]
+            Service.save()
         return redirect('/')
     else:
         Service_form = Service_center_Form()
@@ -36,15 +36,14 @@ def create_Service_center(request):
 def create_Report_problem(request, user_id):
     if request.method == 'POST':
         Report_form = Report_problem_Form(request.POST, request.FILES)
-
         temp = User.objects.get(email=user_id)
-        # if Report_form.is_valid():
-        Report = Report_form.save(commit=False)
-        Report.author_id = request.user.id
-        Report.name_id = temp.id
-        Report.reason = request.POST["reason"]
-        Report.other_reason = request.POST["other_reason"]
-        Report.save()
+        if Report_form.is_valid():
+            Report = Report_form.save(commit=False)
+            Report.author_id = request.user.id
+            Report.target.id = temp.id
+            Report.reason = request.POST["reason"]
+            Report.other_reason = request.POST["other_reason"]
+            Report.save()
         return redirect('/')
 
     else:
@@ -57,4 +56,3 @@ def Terms_of_service(request):
 
 def Privacy_Policy(request):
     return render(request, '../templates/footer/Privacy_Policy.html')
-

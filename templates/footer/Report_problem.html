@@ -17,7 +17,7 @@
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <p class="font3" style="margin-top:230px;">신고대상</p>
-        <input style="width: 636px; margin-top:80px;" class="input_box" type="text" name="name" placeholder="" value="{{ user_id }}">
+        <input required style="width: 636px; margin-top:80px;" class="input_box" type="text" name="name" placeholder="" value="{{ user_id }}">
         <p class="font3" style="margin-top:100px; margin-bottom: 80px;">신고사유</p>
         <label style="cursor:pointer;" class="list"><input style="display:none;" type="radio" name="reason" value="도배 및 무성의한 게시글" autofocus="" > <img class="noncheck_box" style="display:none;" src="{% static 'img/footer/report_problem/noncheck.png' %}"/> <img class="check_box" src="{% static 'img/footer/report_problem/check.png' %}"/><p style="float:left;">도배 및 무성의한 게시글</p> </label>
         <label style="cursor:pointer;" class="list"><input style="display:none;" type="radio" name="reason" value="상업적 혹은 불법적인 홍보"> <img class="noncheck_box" src="{% static 'img/footer/report_problem/noncheck.png' %}"/> <img class="check_box" style="display:none;" src="{% static 'img/footer/report_problem/check.png' %}"/><p style="float:left;">상업적 혹은 불법적인 홍보</p> </label>
@@ -25,7 +25,7 @@
         <label style="cursor:pointer;" class="list"><input style="display:none;" type="radio" name="reason" value="도용 및 저작권 침해"><img class="noncheck_box" src="{% static 'img/footer/report_problem/noncheck.png' %}"/> <img class="check_box" style="display:none;" src="{% static 'img/footer/report_problem/check.png' %}"/> <p style="float:left;">도용 및 저작권 침해 </p></label>
         <label style="cursor:pointer;" class="list"><input style="display:none;" type="radio" name="reason" value="타인의 신상 무단 공개 혹은 불쾌감 유발"> <img class="noncheck_box" src="{% static 'img/footer/report_problem/noncheck.png' %}"/> <img class="check_box" style="display:none;" src="{% static 'img/footer/report_problem/check.png' %}"/><p style="float:left;">타인의 신상 무단 공개 혹은 불쾌감 유발</p> </label>
         <p class="font3" style="margin-top:100px;">기타 신고사유</p>
-        <textarea style="margin-top:80px; padding: 30px 50px; width: 645px; height: 320px; line-height: 32.62px;" class="input_box" name="other_reason" placeholder=""></textarea>
+        <textarea required style="margin-top:80px; padding: 30px 50px; width: 645px; height: 320px; line-height: 32.62px;" class="input_box" name="other_reason" placeholder=""></textarea>
         <div style="overflow:hidden; margin-top:250px; padding-bottom:100px;">
             <input style="" type="submit" id="submit" value="보내기">
             <p class="cancel" style="cursor:pointer;" onclick = "location.href='{% url 'home:home' %}'">취소</p>
