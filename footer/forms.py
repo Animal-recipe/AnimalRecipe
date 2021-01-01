@@ -15,6 +15,3 @@ class Report_problem_Form(forms.ModelForm):
     class Meta:
         model = Report_problem
         fields = ['reason', 'other_reason']
-
-
-
