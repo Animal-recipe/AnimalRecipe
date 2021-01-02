@@ -77,15 +77,8 @@ def update_myInfo(request):
     if request.method == "POST":
         form = UserChangeForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
-            # user = form.save(coomit=False)
             form.save()
-            print('now media')
-            print(request.user.profile)
-            # user.profile = request.POST.get('profile')
-            # user.save()
             return redirect('account:login')
     else:
         form = UserChangeForm(instance = request.user)
-        print('current media')
-        print(request.user.profile)
     return render(request, 'mypage/update_myInfo.html', {'form': form})
