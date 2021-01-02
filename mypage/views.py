@@ -5,6 +5,7 @@ from review.models import Review, Review_Img
 from question.forms import QuestionForm
 from django.shortcuts import redirect
 from django.core.paginator import Paginator
+from account.forms import UserChangeForm
 
 def myQuestion(request):
     myQuestions = Question.objects.filter(author=request.user)
@@ -67,3 +68,24 @@ def delete_myReview(request, review_id):
         return redirect('review:list_review')
     review.delete()
     return redirect('mypage:myReview')
+
+def detail_myInfo(request):
+    userPassword = '*' * request.user.passwordLength
+    return render(request, 'mypage/detail_myInfo.html',{"userPassword":userPassword})
+
+def update_myInfo(request):
+    if request.method == "POST":
+        form = UserChangeForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            # user = form.save(coomit=False)
+            form.save()
+            print('now media')
+            print(request.user.profile)
+            # user.profile = request.POST.get('profile')
+            # user.save()
+            return redirect('account:login')
+    else:
+        form = UserChangeForm(instance = request.user)
+        print('current media')
+        print(request.user.profile)
+    return render(request, 'mypage/update_myInfo.html', {'form': form})

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/mypage/mypage.css' %}">
+
+<div>
+    <div id="navBarBox">
+        {% include 'nav.html' %}
+    </div>
+    
+    <div class="myInfoBox">
+        <div>
+            <img src="{{MEDIA_URL}}{{user.profile}}" width="121px" height="121px" style="border-radius: 50%;">
+        </div>
+        <div class="userInfoBox">
+            <div>
+                <p class="fieldName">이메일</p>
+                <p class="fieldContent">{{ user.email }}</p>
+            </div>
+            <div>
+                <p class="fieldName">닉네임</p>
+                <p class="fieldContent">{{ user.nickname }}</p>
+            </div>
+            <div>
+                <p class="fieldName">비밀번호</p>
+                <p class="fieldContent">{{ userPassword }}</p>
+            </div>
+        </div>
+        <div class="petInfoBox">
+            <div>
+                <p class="fieldName">반려동물</p>
+                <p class="fieldContent">{{ user.get_petkind_display }}</p>
+            </div>
+            <div>
+                <p class="fieldName">반려동물 이름</p>
+                <p class="fieldContent" style="margin-bottom: 65px;">{{ user.petname }}</p>
+            </div>
+        </div>
+        <div class="infoButtonBox">
+            <a class="infoEditButton" href="{% url 'mypage:update_myInfo' %}">수정하기</a>
+            <a class="infoCancelButton" href="{% url 'mypage:myRecipe' %}">취소</a>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

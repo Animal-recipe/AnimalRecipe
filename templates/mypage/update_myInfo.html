@@ -7,29 +7,24 @@
 </div>
 <div style="padding:0 50px; padding-top:50px;">
     <div class="d-flex flex-column align-items-center my-5">
-        <form action="{% url 'account:register' %}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'mypage:update_myInfo' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="formBox">
                 <div class="profileBox" style="margin-bottom: 61px;">
-                    <img id="profileImage" src="{% static 'img/account/defaultProfile.png' %}" alt="profile image"/>
+                    <img id="profileImage" src="{{MEDIA_URL}}{{user.profile}}" alt="profile image"/>
                     <input type="file" name="profile" accept="image/*" id="id_profile">
                     <label class="uploadButton" for="id_profile">이미지 업로드</label>
                     <a href="#" class="deleteButton">삭제</a>
                 </div>
 
                 <div class="formField" {% if form.email.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
-                    <input type="email" name="email" class="registerInput" placeholder="이메일">
+                    <p class="registerInput">{{user.email}} (변경불가)</p>
                 </div>
-                <div class="errorMsg">
-                    {% if form.email.errors %}
-                    <img src="{% static 'img/account/loginErrorImage.png' %}" width="16.67px" height="16.67px" style="margin-right: 11.67px;">
-                    {{ form.email.errors }}
-                    {% endif %}
-                </div>
+                <input type="email" name="email" class="registerInput" value="{{user.email}}" style="display: none;">
 
                 <div class="formField" {% if form.nickname.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
-                    {{ form.nickname }}
+                    <input type="text" name="nickname" class="registerInput" placeholder="{{user.nickname}}" required maxlength="20" id="id_nickname">
                 </div>
                 <div class="errorMsg">
                     {% if form.nickname.errors %}
@@ -39,7 +34,7 @@
                 </div>
 
                 <div class="passwordBox formField" {% if form.password1.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
-                    <input type="password" name="password1" class="registerInput" placeholder="비밀번호(8자리 이상)">
+                    <input type="password" name="password1" class="registerInput" placeholder="비밀번호(8자리 이상)" required>
                     <img src="{% static 'img/account/eye.png' %}" class="showHideToggle">
                 </div>
                 <div class="errorMsg">
@@ -50,7 +45,7 @@
                 </div>
 
                 <div class="passwordBox formField" {% if form.password2.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
-                    <input type="password" name="password2" class="registerInput" placeholder="비밀번호 확인">
+                    <input type="password" name="password2" class="registerInput" placeholder="비밀번호 확인" required>
                     <img src="{% static 'img/account/eye.png' %}" class="showHideToggle">
                 </div>
                 <div class="errorMsg">
@@ -61,7 +56,7 @@
                 </div>
 
                 <div class="formField" style="margin: 30px 0;">
-                    <select required name="petkind" class="registerInput" maxlength="4" id="id_petkind">
+                    <select required name="petkind" class="registerInput" maxlength="4" id="id_petkind" required>
                         <option value="" disabled selected hidden>반려동물을 선택해주세요</option>
                         <option value="DOG">개</option>
                         <option value="CAT">고양이</option>
@@ -73,12 +68,12 @@
                     </select>
                 </div>
                 <div class="formField">
-                    {{ form.petname }}
+                    <input type="text" name="petname" class="registerInput" placeholder="{{ user.petname }}" required="" maxlength="20" id="id_petname">
                 </div>
             </div>
             <div class="optionBox">
-                <button class="submitButton" type="submit">회원가입 완료</button>
-                <a class="cancelButton" href="/">취소</a>
+                <button class="submitButton" type="submit">수정하기</button>
+                <a class="cancelButton" href="{% url 'mypage:detail_myInfo' %}">취소</a>
             </div>
         </form>
     </div>
@@ -106,13 +101,13 @@ $(document).ready(function(){
         if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
             // ie
             $input.replaceWith($input.clone(true));
-            console.log('reset func execute')
+            console.log('reset func execute ie')
             console.log($input)
             $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
         } else {
             //other
             $input.val("");
-            console.log('reset func execute')
+            console.log('reset func execute not ie')
             console.log($input)
             $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
         }
@@ -121,6 +116,7 @@ $(document).ready(function(){
         let $input = $("#id_profile")
         let $profileImage = $("#profileImage")
         resetInputFile($input, $profileImage);
+        console.log('delete btn execute')
     });
     // 비밀번호 보기 숨기기
     $('.showHideToggle').click(function(){
