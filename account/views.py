@@ -16,7 +16,7 @@ def register(request):
             form.save()
             return redirect('/account/register/success/')
         else:
-            pass
+            form = UserCreationForm()
     return render(request, 'account/register.html', {'form': form})
 
 def agreement(request, *args, **kwargs):
@@ -28,22 +28,10 @@ def agreement(request, *args, **kwargs):
             return redirect('/account/register/')
         else:
             return render(request, 'account/agreement.html')
+
 def registerSuccess(request):
     if request.method == "GET":
         return render(request, 'account/registerSuccess.html')
-def mypage(request):
-    if request.method == "POST":
-        form = UserChangeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(email=email, password=password)
-            login(request, user)
-            return redirect('/')
-    else:
-        form = UserChangeForm()
-    return render(request, 'account/mypage.html', {'form': form})
 
 def mylogin(request):
     if request.method == "POST":

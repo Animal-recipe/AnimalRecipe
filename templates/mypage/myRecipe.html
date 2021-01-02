@@ -7,7 +7,7 @@
 
 <div class="mypageHeader">
     {% include 'nav.html' %}
-    <div class="infoBox"><a>나의 정보</a></div>
+    <div class="infoBox"><a href="{% url 'mypage:detail_myInfo' %}">나의 정보</a></div>
     <div class="menuBox">
         <a href="{% url 'mypage:myRecipe' %}" style="color:#ffffff;">나의<br>레시피</a>
         <a href="#">저장한<br>레시피</a>
