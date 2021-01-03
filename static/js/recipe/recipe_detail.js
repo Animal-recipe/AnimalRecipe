@@ -8,10 +8,9 @@ $(document).ready(function(){
     });
     $('.create_recomment').click(function(){
         $(this).closest("div").next().show();
-//        $('.form_recomment').show();
     });
     $(".change_disable").click(function(){
-//        $(this).closest("div").closest("div").prev().find(".user_comment_box").removeAttr('disabled');
         $('.user_comment_box').removeAttr('disabled');
     });
+
 });

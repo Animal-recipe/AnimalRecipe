@@ -95,6 +95,7 @@
     text-align:center;
     color: #FFFFFF;
     margin-left: 20px;
+    margin-bottom: 15px;
 }
 
 #title{
@@ -251,4 +252,12 @@ label[for=id_recipe_ingredient-3-DELETE]{
     display: none;
 }label[for=id_recipe_ingredient-10-DELETE]{
     display: none;
+}label[for=id_recipe_ingredient-11-DELETE]{
+    display: none;
+}label[for=id_recipe_ingredient-12-DELETE]{
+    display: none;
+}
+
+.file-upload{
+    display:none;
 }

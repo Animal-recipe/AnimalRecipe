@@ -7,6 +7,10 @@ from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
 from django.core.paginator import Paginator
+from django.views.generic.base import View
+from django.http import HttpResponseForbidden
+from django.http import HttpResponseRedirect
+from urllib.parse import urlparse
 
 from review.models import Review, Review_Img
 from contact.models import Message
@@ -57,6 +61,16 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     page = request.GET.get('page') #??
     recipes =paginator.get_page(page)
 
+    hot_recipes = Recipe.objects.all().order_by('-like')
+    hot_recipes_dict={}
+
+    for i in range(0,4):
+        temp = hot_recipes[i]
+        for j in range(0, img.__len__()):
+            if img[j].recipe == temp:
+                img_obj = img[j]
+        hot_recipes_dict[temp] = img_obj.image.url
+
     for i in range(0, recipes.__len__()):
         tmp = recipes[i]
         for j in range(0, img.__len__()):
@@ -64,7 +78,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
                 img_obj = img[j]
         recipes_dict[recipes[i]] = img_obj.image.url
 
-    return render(request, "recipe/recipe_list.html",{"recipes_dict":recipes_dict})
+    return render(request, "recipe/recipe_list.html",{"recipes_dict":recipes_dict, "hot_recipes_dict":hot_recipes_dict})
 
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipe = Recipe.objects.get(pk=recipe_id)
@@ -93,9 +107,17 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     received_list = Message.objects.filter(recipient=request.user)
     send_list = Message.objects.filter(sender=request.user)
 
-    return render(request, "recipe/recipe_detail.html",
-                  {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count})
+    click_like = 0
+    for temp in recipe.like.all():
+        if temp == request.user:
+            click_like = 1
+            break
 
+    recipe.hits = recipe.hits + 1
+    recipe.save()
+
+    return render(request, "recipe/recipe_detail.html",
+                  {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count, "click_like":click_like})
 
 def delete(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
@@ -138,3 +160,39 @@ def edit(request, recipe_id):
         'step_formset': step_formset,
         'now_recipe': now_recipe,
     })
+
+class Recipe_Like(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
+            return HttpResponseForbidden()  # 아무일도 일어나지 않는다
+        else:
+            if 'recipe_id' in kwargs:
+                recipe_id = kwargs['recipe_id']
+                recipe = Recipe.objects.get(pk=recipe_id)
+                user = request.user
+                if user in recipe.like.all():
+                    recipe.like.remove(user)
+                else:
+                    recipe.like.add(user)
+
+            referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)
+
+class Recipe_Save(View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
+            return HttpResponseForbidden()  # 아무일도 일어나지 않는다
+        else:
+            if 'recipe_id' in kwargs:
+                recipe_id = kwargs['recipe_id']
+                recipe = Recipe.objects.get(pk=recipe_id)
+                user = request.user
+                if user in recipe.save_count.all():
+                    recipe.save_count.remove(user)
+                else:
+                    recipe.save_count.add(user)
+
+            referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)

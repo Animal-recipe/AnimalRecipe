@@ -1,10 +1,11 @@
 #top_div{
     width: 100%;
     height: 620px;
-    background-color: #1B1B1B;
     border-radius: 0px 0px 80px 80px;
     overflow:hidden;
     padding: 0 145px;
+    position:relative;
+    background: gray;
 }
 
 #hot_recipe{
@@ -18,6 +19,7 @@
     line-height: 49px;
     text-align:center;
     color: #FD6B01;
+    margin-left: 150px;
 }
 
 .search{
@@ -39,6 +41,7 @@
 #dropdown_font1{
     display:block;
     height: 53px;
+    width:90%;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
@@ -50,11 +53,15 @@
     padding: 0 25%;
     margin-left: 10%;
     color: #575757;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #dropdown_font2{
     display:block;
     height: 53px;
+    width:90%;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
@@ -66,11 +73,15 @@
     padding: 0 25%;
     margin-left: 10%;
     color: #575757;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #dropdown_font3{
     display:block;
     height: 53px;
+    width:90%;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
@@ -82,6 +93,9 @@
     padding: 0 25%;
     margin-left: 10%;
     color: #575757;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #more1{
@@ -164,25 +178,30 @@
     width:100%;
     font-family: Roboto;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 1.6rm;
     line-height: 19px;
     color: #000000;
     word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .recipe_id{
     margin-top:11px; margin-left:7px; display:inline-block;
+    width:70%;
     font-family: Roboto;
     font-weight: 500;
     font-size: 12px;
     height:20px;
     line-height:20px;
     color: #686868;
-
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .recipe_animal{
-    width: 65px; float: left;
+    width: 30%; float: left;
     height: 22px;
     background: #D2D2D2;
     border-radius: 8px;
@@ -192,10 +211,13 @@
     line-height: 22px;
     text-align: center;
     color: #606060;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .recipe_time{
-    width: 90px;
+    width: 40%;
     float: left;
     margin-left:7px;
     height: 22px;
@@ -207,6 +229,9 @@
     line-height: 22px;
     text-align: center;
     color: #606060;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .user_img{
@@ -215,4 +240,33 @@
     margin-right:7px;
     height: 20px;
     border-radius:100px;
+}
+
+#hot_title{
+    width: 70%;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 48px;
+    color: #FFFFFF;
+    margin-top: 50px;
+    margin-left: 150px;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    padding:5px;
+}
+
+#hot_summary{
+    width: 70%;
+    padding:5px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 127.4%;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 50px;
+    margin-left: 150px;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }

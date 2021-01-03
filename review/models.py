@@ -12,17 +12,19 @@ class Review(models.Model):
     # 레시피
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe_review")
     # 제목
-    title = models.TextField(max_length=180, default='')
+    title = models.TextField(max_length=20, default='')
     # 별점
     star = models.CharField(max_length=50,  default='')
     # 내용
-    content = models.TextField(max_length=180, default='')
+    content = models.TextField(max_length=60, default='')
     # 생성일
     created = models.DateTimeField(auto_now_add=True)
     # 수정일
     updated = models.DateTimeField(auto_now=True)
     # 공감
-    # like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_recipe', blank=True)
+    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_review', blank=True)
+    # 조회수
+    hits = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.recipe.title
