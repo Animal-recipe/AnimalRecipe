@@ -11,14 +11,15 @@
     <img id="cat" src="{% static 'img/home/home_cat.png'%}">
     <img id="dog" src="{% static 'img/home/home_dog.png'%}">
     <div>
-        <form class="form-inline my-2 my-lg-0" action="" method="POST">
+        <form class="searchBarBox" action="{% url 'home:search' %}" method="POST">
             {% csrf_token %}
-            <div>
-                <input id="searchBar" class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search"
-                    name="query_str" value="{{query_str}}">
-                <a id="writeBtn" class="btn btn-primary" href="{% url 'recipe:create_recipe' %}">레시피 작성하기</a>
-            </div>
+            <input class="searchBar" placeholder="질문을 검색해 보세요!" name="q" value="{{q}}">
+            <button type="submit"><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
+                    height="23.32px"></button>
         </form>
+        <a href="{% url 'recipe:create_recipe' %}" class="createRecipeBtn btn"><span>레시피 작성하기</span>
+            <img src="{% static 'img/home/write.png' %}">
+        </a>
     </div>
 </div>
 <div id="contentBox">

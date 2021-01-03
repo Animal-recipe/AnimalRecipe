@@ -32,7 +32,7 @@ def myRecipe(request):
         for j in range(0, img.__len__()):
             if img[j].recipe == tmp:
                 img_obj = img[j]
-        recipes_dict[myRecipes[i]] = img_obj.image.url
+                recipes_dict[myRecipes[i]] = img_obj.image.url
     recipes = tuple(recipes_dict.items())
     page = request.GET.get('page', 1)
     paginator = Paginator(recipes, 12)
@@ -55,7 +55,7 @@ def myReview(request):
         for j in range(0, img.__len__()):
             if img[j].review == tmp:
                 img_obj = img[j]
-        review_dict[myReviews[i]] = img_obj.image.url
+                review_dict[myReviews[i]] = img_obj.image.url
     reviews = tuple(review_dict.items())
     page = request.GET.get('page', 1)
     paginator = Paginator(reviews, 12)
