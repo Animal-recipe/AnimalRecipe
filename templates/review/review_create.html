@@ -18,23 +18,23 @@
             {% csrf_token %}
             <div>
                 <p class="font1">제목을 작성해주세요</p>
-                <input maxlength="180" style="width: 636px; margin-top:30px;" class="input_box" type="text" name="title" placeholder="예시 ) 너무 쉽고 맛있는 황태국 (15자 이내)">
+                <input required maxlength="15" style="width: 636px; margin-top:30px;" class="input_box" type="text" name="title" placeholder="예시 ) 너무 쉽고 맛있는 황태국 (15자 이내)">
             </div>
             <div style="margin-top:120px;">
                 <p class="font1">별점을 매겨주세요!</p>
                 <div class="star" style="margin-top:30px;">
                     <div id="star_box">
-                        <label id="star1" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="1" autofocus="" ><img id="star_img1" src="{% static 'img/review/review_create/fill_star.png' %}"/><img id="empty1" style="display:none;" src="{% static 'img/review/review_create/empty_star.png' %}"/></label>
-                        <label id="star2" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="2"><img id="empty2" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img2" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
-                        <label id="star3" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="3"><img id="empty3" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img3" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
-                        <label id="star4" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="4"><img id="empty4" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img4" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
-                        <label id="star5" style="cursor:pointer;"><input style="display:none;" type="radio" name="star" value="5"><img id="empty5" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img5" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
+                        <label id="star1" style="margin:7px; cursor:pointer;"><input checked required style="display:none;" type="radio" name="star" value="1" autofocus="" ><img id="star_img1" src="{% static 'img/review/review_create/fill_star.png' %}"/><img id="empty1" style="display:none;" src="{% static 'img/review/review_create/empty_star.png' %}"/></label>
+                        <label id="star2" style="margin:7px; cursor:pointer;"><input style="display:none;" type="radio" name="star" value="2"><img id="empty2" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img2" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
+                        <label id="star3" style="margin:7px; cursor:pointer;"><input style="display:none;" type="radio" name="star" value="3"><img id="empty3" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img3" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
+                        <label id="star4" style="margin:7px; cursor:pointer;"><input style="display:none;" type="radio" name="star" value="4"><img id="empty4" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img4" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
+                        <label id="star5" style="margin:7px; cursor:pointer;"><input style="display:none;" type="radio" name="star" value="5"><img id="empty5" src="{% static 'img/review/review_create/empty_star.png' %}"/><img id="star_img5" style="display:none;" src="{% static 'img/review/review_create/fill_star.png' %}"/></label>
                     </div>
                 </div>
             </div>
             <div style="margin-top:120px;">
                 <p class="font1">후기를 작성해주세요!</p>
-                <textarea maxlength="180" style="margin-top:30px; padding: 30px 50px; width: 645px; height: 320px; line-height: 32.62px;" class="input_box" name="content" placeholder="예시 ) 우리집 강아지 뽀미가 요즘 너무 더워서 그런지 힘이 없어서 도전해 본 황태국이에요!! 만들어 보니 너무 쉽고 맛있게 만들 수 있어서 공유해봅니다. (50자 이내)"></textarea>
+                <textarea required maxlength="50" style="margin-top:30px; padding: 30px 50px; width: 645px; height: 320px; line-height: 32.62px;" class="input_box" name="content" placeholder="예시 ) 우리집 강아지 뽀미가 요즘 너무 더워서 그런지 힘이 없어서 도전해 본 황태국이에요!! 만들어 보니 너무 쉽고 맛있게 만들 수 있어서 공유해봅니다. (50자 이내)"></textarea>
             </div>
             <div style="margin-top:120px;" class="recipe_img">
                 <p class="font1" style="margin-bottom:70px;">완성된 요리의 대표 사진을 업로드 해주세요.</p>

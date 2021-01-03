@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('.animal .radio_box').click(function(){
         $('.animal .radio_box').css("background-color", "#FFFFFF");
         $('.animal .radio_box').css("color", "#575757");
@@ -44,7 +45,7 @@ $(document).ready(function(){
     $('.input_box4').hide();
     $('p label').hide();
 
-    for(var i=0; i<2; i++){
+    for(var i=0; i<1; i++){
         var temp = i+1;
         $('.nontext').eq(i).val('step '+temp);
         $('.nontext').eq(i).show();
@@ -52,7 +53,7 @@ $(document).ready(function(){
         $('.img_show2').eq(i).show();
     }
 
-    var j = 2;
+    var j = 1;
     $('#add_block_btn').click(function(){
         if(j < 11){
             var temp = j+1;

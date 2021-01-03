@@ -16,9 +16,9 @@ class Recipe(models.Model):
     # 조리시간
     cooking_time = models.CharField(max_length=50, default='')
     # 제목
-    title = models.TextField(max_length=180, default='')
+    title = models.TextField(max_length=20, default='')
     # 요약설명
-    summary = models.TextField(max_length=180, default='')
+    summary = models.TextField(max_length=60, default='')
     # 작성 시간
     created = models.DateTimeField(auto_now_add=True)
     # 수정 시간

@@ -4,21 +4,20 @@
 
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_list.js' %}"></script>
-<div id="top_div">
-    {% include 'nav.html' %}
-    <div id="hot_recipe" style="margin-bottom:15px;">
-        이번주 Hot 레시피
+
+<div class="image_list"  style="">
+    {% if hot_recipes_dict %}
+    {% for item, image in hot_recipes_dict.items %}
+    <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: url('{{ image }}'); background-size: 100%;">
+        <div style="padding: 0 145px;">
+            {% include 'nav.html' %}
+        </div>
+        <div id="hot_recipe" style="margin-bottom:15px;">이번주 Hot 레시피</div>
+        <p id="hot_title" style="color:white;"> {{ item.title }}</p>
+        <p id="hot_summary" style="color:white;"> {{ item.summary }}</p>
     </div>
-    <div class="image_list"  style="width: 100%; height: 100%;">
-        {% if hot_recipes_dict %}
-            {% for item, image in hot_recipes_dict.items %}
-                <div style="border-radius: 80px; width: 100%; height: 400px; background-image: url('{{ image }}'); background-size: 100%;">
-                    <p id="hot_title" style="color:white;"> {{ item.title }}</p>
-                    <p id="hot_summary" style="color:white;"> {{ item.summary }}</p>
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
+    {% endfor %}
+    {% endif %}
 </div>
 <div style="margin: 0 auto; width:100%;">
     <div style="margin-top:52px; overflow:hidden; height:185px; padding: 0 200px;">
