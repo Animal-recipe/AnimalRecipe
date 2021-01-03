@@ -15,10 +15,10 @@
                     <img id="profileImage" src="{{MEDIA_URL}}{{user.profile}}" alt="profile image"/>
                     <input type="file" name="profile" accept="image/*" id="id_profile">
                     <label class="uploadButton" for="id_profile">이미지 업로드</label>
-                    <a href="#" class="deleteButton">삭제</a>
+                    <!-- <a href="#" class="deleteButton">삭제</a> -->
                 </div>
 
-                <div class="formField" {% if form.email.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
+                <div class="formField" style="margin-bottom: 50px;">
                     <p class="registerInput">{{user.email}} (변경불가)</p>
                 </div>
                 <input type="email" name="email" class="registerInput" value="{{user.email}}" style="display: none;">
@@ -55,7 +55,7 @@
                     {% endif %}
                 </div>
 
-                <div class="formField" style="margin: 30px 0;">
+                <div class="formField" style="margin: 80px 0 33px;">
                     <select required name="petkind" class="registerInput" maxlength="4" id="id_petkind" required>
                         <option value="" disabled selected hidden>반려동물을 선택해주세요</option>
                         <option value="DOG">개</option>
@@ -96,22 +96,22 @@ $(document).ready(function(){
         console.log($("#id_profile"))
     });
     // 이미지 삭제
-    function resetInputFile($input, $profileImage) {
-        var agent = navigator.userAgent.toLowerCase();
-        if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
-            // ie
-            $input.replaceWith($input.clone(true));
-            console.log('reset func execute ie')
-            console.log($input)
-            $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
-        } else {
-            //other
-            $input.val("");
-            console.log('reset func execute not ie')
-            console.log($input)
-            $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
-        }
-    }
+    // function resetInputFile($input, $profileImage) {
+    //     var agent = navigator.userAgent.toLowerCase();
+    //     if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
+    //         // ie
+    //         $input.replaceWith($input.clone(true));
+    //         console.log('reset func execute ie')
+    //         console.log($input)
+    //         $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
+    //     } else {
+    //         //other
+    //         $input.val("");
+    //         console.log('reset func execute not ie')
+    //         console.log($input)
+    //         $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
+    //     }
+    // }
     $(".deleteButton").click(function(event) {
         let $input = $("#id_profile")
         let $profileImage = $("#profileImage")

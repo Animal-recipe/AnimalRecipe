@@ -109,10 +109,6 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserChangeForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = '__all__'
-        fields = ('profile', 'nickname', 'password', 'password2', 'petkind', 'petname')
 
     email = forms.EmailField(
         label='',
@@ -181,6 +177,7 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ('email', 'profile', 'nickname', 'password1', 'password2', 'petkind', 'petname')
+
     def clean_nickname(self):
         nickname = self.cleaned_data.get("nickname")
         email=self.cleaned_data.get("email")
@@ -204,6 +201,7 @@ class UserChangeForm(forms.ModelForm):
         user.passwordLength = len(self.cleaned_data["password1"])
         if commit:
             user.save()
+            print('change form save')
         return user
 
 class LoginForm(forms.Form):

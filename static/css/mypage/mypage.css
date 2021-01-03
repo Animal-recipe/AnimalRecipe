@@ -6,6 +6,7 @@
     z-index: 1;
     padding: 0 145px;
 }
+
 button,
 button:focus {
     outline: none;
@@ -177,9 +178,10 @@ button:focus {
 .createButton:hover {
     color: #FFFFFF;
 }
+
 /* detail_myInfo */
 .myInfoBox {
-    width: 100%;;
+    width: 100%;
     margin: 90px auto 0;
     display: flex;
     flex-direction: column;
@@ -187,25 +189,28 @@ button:focus {
     align-items: center;
     overflow: hidden;
 }
+
 .myInfoBox .fieldName {
     width: 95px;
-font-family: Noto Sans;
-font-weight: 600;
-font-size: 15px;
-line-height: 20px;
-color: #ABABAB;
-display: inline-block;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #ABABAB;
+    display: inline-block;
 }
+
 .myInfoBox .fieldContent {
-font-family: Noto Sans;
-font-weight: 600;
-font-size: 15px;
-line-height: 20px;
-color: #575757;
-margin-left: 51px;
-display: inline-block;
-margin-bottom: 55px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #575757;
+    margin-left: 51px;
+    display: inline-block;
+    margin-bottom: 55px;
 }
+
 .userInfoBox {
     width: 665px;
     padding: 138px 0 135px;
@@ -214,6 +219,7 @@ margin-bottom: 55px;
     align-items: flex-start;
     flex-direction: column;
 }
+
 .petInfoBox {
     width: 665px;
     display: flex;
@@ -221,24 +227,26 @@ margin-bottom: 55px;
     align-items: flex-start;
     flex-direction: column;
 }
+
 .infoEditButton {
-min-width: 329px;
-width: 329px;
-height: 55px;
-background: #FF5C00;
-box-shadow: 6px 6px 30px rgba(255, 92, 0, 0.1);
-border-radius: 18px;
-font-family: Noto Sans;
-font-weight: 600;
-font-size: 18px;
-line-height: 25px;
-display: flex;
-justify-content: center;
-align-items: center;
-color: #FFFFFF;
-overflow: hidden;
-margin: 0 10px;
+    min-width: 329px;
+    width: 329px;
+    height: 55px;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(255, 92, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    overflow: hidden;
+    margin: 0 10px;
 }
+
 .infoCancelButton {
     min-width: 329px;
     width: 329px;
@@ -256,14 +264,17 @@ margin: 0 10px;
     color: #575757;
     margin: 0 10px;
 }
+
 .infoEditButton:hover {
     color: #FFFFFF;
     background: #f35c05;
 }
+
 .infoCancelButton:hover {
     color: #575757;
     background: #f7f6f6;
 }
+
 .infoButtonBox {
     display: flex;
     padding-bottom: 270px;
