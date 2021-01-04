@@ -65,6 +65,7 @@ class User(AbstractBaseUser):
         default='profiles/defaultProfile.png',
         blank=True, null=True,
     )
+    passwordLength = models.SmallIntegerField(default=0)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -81,7 +82,6 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
-
 
     def is_staff(self):
         return self.is_admin

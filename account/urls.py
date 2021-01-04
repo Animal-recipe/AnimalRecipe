@@ -11,5 +11,4 @@ urlpatterns = [
     path('agreement/', views.agreement, name="agreement"),
     path('register/', views.register, name='register'),
     path('register/success/', views.registerSuccess, name="registerSuccess"),
-    path('mypage/', views.mypage, name='mypage'),
 ]

@@ -10,4 +10,6 @@ urlpatterns = [
     path('delete/myQuestion/<int:question_id>/', views.delete_myQuestion, name="delete_myQuestion"),
     path('myReview/', views.myReview, name="myReview"),
     path('delete/myReview/<int:review_id>/', views.delete_myReview, name="delete_myReview"),
+    path('detail/myInfo', views.detail_myInfo, name="detail_myInfo"),
+    path('update/myInfo', views.update_myInfo, name="update_myInfo"),
 ]
