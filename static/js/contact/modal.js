@@ -19,4 +19,13 @@ $(document).ready(function(){
         $('#send_box').hide();
         $('#send_mail').hide();
     });
+
+    $('.summary_list').click(function(){
+        var temp = $(this).children('.content_list');
+        if(temp.css("display")=="none"){
+            temp.show();
+        }else{
+            temp.hide();
+        }
+    });
 });

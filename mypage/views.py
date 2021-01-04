@@ -5,7 +5,9 @@ from review.models import Review, Review_Img
 from question.forms import QuestionForm
 from django.shortcuts import redirect
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def myQuestion(request):
     myQuestions = Question.objects.filter(author=request.user)
     page = request.GET.get('page', 1)
@@ -13,6 +15,7 @@ def myQuestion(request):
     pageObject = paginator.get_page(page)
     return render(request, "mypage/myQuestion.html", {"questions":pageObject})
 
+@login_required
 def delete_myQuestion(request, question_id):
     question = Question.objects.get(pk=question_id)
     if request.user != question.author:
@@ -22,6 +25,7 @@ def delete_myQuestion(request, question_id):
         question.delete()
     return redirect('mypage:myQuestion')
 
+@login_required
 def myRecipe(request):
     myRecipes = Recipe.objects.filter(author=request.user)
     img = Recipe_Img.objects.filter()
@@ -38,6 +42,7 @@ def myRecipe(request):
     recipeList =paginator.get_page(page)
     return render(request, "mypage/myRecipe.html",{"recipeList":recipeList})
 
+@login_required
 def delete_myRecipe(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     if recipe.author_id != request.user.id:
@@ -45,6 +50,7 @@ def delete_myRecipe(request, recipe_id):
     recipe.delete()
     return redirect('mypage:myRecipe')
 
+@login_required
 def myReview(request):
     myReviews = Review.objects.filter(author=request.user)
     img = Review_Img.objects.all()
@@ -61,6 +67,7 @@ def myReview(request):
     reviewList =paginator.get_page(page)
     return render(request, "mypage/myReview.html",{"reviewList":reviewList})
 
+@login_required
 def delete_myReview(request, review_id):
     review = Review.objects.get(pk=review_id)
     if review.author_id != request.user.id:

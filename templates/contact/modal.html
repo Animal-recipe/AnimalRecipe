@@ -19,14 +19,19 @@
                     <button class="modal_font2 all_delete" style="margin-top: 20px;float:right;">전체삭제</button>
                 </div>
                 <div class="modal-footer"></div>
-                <div style="height:361px;">
+                <div style="height:361px; overflow:auto; padding:12px;">
                     {% if received_list %}
                         {% for item in received_list %}
-                        <div style="overflow:hidden; margin-top:40px;">
-                            <p class="summary" style="float:left;">{{ item.summary }}</p>
-                            <p class="nickname" style="float:left; margin-left:100px;">{{ item.sender.nickname }}</p>
-                            <p class="time" style="float:left; margin-left:30px;">{{ item.sentAt}}</p>
-                            <img style="float:left; height:23px; margin-left:30px;" src="{% static 'img/contact/delete.png' %}"/>
+                        <div class="summary_list" style="cursor:pointer; overflow:hidden; margin-top:10px; padding:15px; background: #FFFFFF; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); border-radius: 30px;">
+                            <div style="overflow:hidden;">
+                                <p class="summary" style="float:left;">{{ item.summary }}</p>
+                                <p class="nickname" style="float:left; margin-left:80px;">{{ item.sender.nickname }}</p>
+                                <p class="time" style="float:left; margin-left:5px; width:120px; overflow:hidden;">{{ item.sentAt}}</p>
+                                <img style="float:left; height:23px; margin-left:5px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>
+                            </div>
+                            <div class="content_list" style="display: none; width: 580px; margin: 5px; padding-left: 30px;">
+                                {{ item.content }}
+                            </div>
                         </div>
                         {% endfor %}
                     {% endif %}
@@ -46,14 +51,19 @@
                     <button class="modal_font2 all_delete" style="margin-top: 20px;float:right; pointer:cursor;">전체삭제</button>
                 </div>
                 <div class="modal-footer"></div>
-                <div style="height:361px;">
+                <div style="height:361px; overflow:auto; padding:12px;">
                     {% if send_list %}
                         {% for item in send_list %}
-                        <div style="overflow:hidden; margin-top:40px;">
-                            <p class="summary" style="float:left;">{{ item.summary }}</p>
-                            <p class="nickname" style="float:left; margin-left:100px;">{{ item.recipient.nickname }}</p>
-                            <p class="time" style="float:left; margin-left:30px;">{{ item.sentAt}}</p>
-                            <img style="float:left; height:23px; margin-left:30px;" src="{% static 'img/contact/delete.png' %}"/>
+                        <div class="summary_list" style="cursor:pointer; overflow:hidden; margin-top:10px; padding:15px; background: #FFFFFF; box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); border-radius: 30px;">
+                            <div style="overflow:hidden;">
+                                <p class="summary" style="float:left;">{{ item.summary }}</p>
+                                <p class="nickname" style="float:left; margin-left:80px;">{{ item.recipient.nickname }}</p>
+                                <p class="time" style="float:left; margin-left:5px; width:120px; overflow:hidden;">{{ item.sentAt }}</p>
+                                <img style="float:left; height:23px; margin-left:5px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>
+                            </div>
+                            <div class="content_list" style="display: none; width: 580px; margin: 5px; padding-left: 30px;">
+                                {{ item.content }}
+                            </div>
                         </div>
                         {% endfor %}
                     {% endif %}
@@ -65,20 +75,22 @@
             <div id="send_mail" style="display: none;">
                 <button class="back_btn"><img src="{% static 'img/contact/back.png' %}"/></button>
                 <div style="padding: 0 20px;">
-                    <div style="overflow:hidden; height: 80px;">
-                        <p class="header_font" style="float:left; margin-top: 20px;">쪽지쓰기</p>
-                        <p class="button1" style="float:right;width: 114px;height: 53px;">보내기</p>
-                    </div>
-                    <div style="position:relative;">
-                        <input class="search" style="width: 655px; height: 53px;" class="form-control mr-sm-2" type="search" placeholder="쪽지를 보낼 회원을 검색해 주세요!" aria-label="Search" name="query_str" value="{{query_str}}">
-                        <button class="search_btn" type="submit" style="position: absolute; top: 11px; left:600px; border: 0px solid white; background-color:white;">
-                            <img class="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
-                        </button>
-                    </div>
-                    <div class="modal-footer" style="margin-top:20px;"></div>
-                    <div style="height:330px;">
-                        <textarea class="write_mail"></textarea>
-                    </div>
+                    <form action="{% url 'contact:sendMessage' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div style="overflow:hidden; height: 80px;">
+                            <p class="header_font" style="float:left; margin-top: 20px;">쪽지쓰기</p>
+                            <input class="button1" type="submit" value="보내기" style="float:right;width: 114px;height: 53px;">
+                        </div>
+                        <input type="text" value="{{ recipe.author }}" style="" name="recipient">
+                        <div class="search" style="line-height:50px; ">
+                            To. {{ recipe.author.nickname }}
+                        </div>
+
+                        <div class="modal-footer" style="margin-top:20px;"></div>
+                        <div style="height:330px;">
+                            <textarea name="context" class="write_mail" maxlength="150"></textarea>
+                        </div>
+                    </form>
                     <div class="modal-footer"></div>
                     <p class="modal_font3">byte</p>
                 </div>

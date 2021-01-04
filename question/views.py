@@ -4,7 +4,9 @@ from django.shortcuts import redirect
 from .models import Question, Answer
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def question_create(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST, request.FILES)
@@ -19,6 +21,7 @@ def question_create(request):
         form = QuestionForm()
     return render(request, 'question/createQuestion.html', {'form': form,})
 
+@login_required
 def update_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     if request.user != question.author:
@@ -35,6 +38,7 @@ def update_question(request, question_id):
         form = QuestionForm(instance=question)
     return render(request, 'question/createQuestion.html', {'form': form})
 
+@login_required
 def delete_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     if request.user != question.author:
@@ -44,6 +48,7 @@ def delete_question(request, question_id):
         question.delete()
     return redirect('question:list')
 
+@login_required
 def create_answer(request, question_id):
     question = Question.objects.get(pk=question_id)
     if request.method == 'POST':
@@ -60,6 +65,7 @@ def create_answer(request, question_id):
         form = AnswerForm()
     return render(request, 'question/createAnswer.html', {"form": form, "question": question})
 
+@login_required
 def update_answer(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     question = answer.question
@@ -78,6 +84,7 @@ def update_answer(request, answer_id):
         form = AnswerForm(instance=answer)
     return render(request, 'question/createAnswer.html', {'form': form, 'question': question})
 
+@login_required
 def delete_answer(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     if request.user != answer.author:
@@ -94,6 +101,7 @@ def question_list(request):
     pageObject = paginator.get_page(page)
     return render(request, "question/listQuestion.html", {"questions":pageObject})
 
+@login_required
 def question_detail(request, question_id):
     question = Question.objects.get(pk=question_id)
     answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
@@ -111,6 +119,7 @@ def search(request):
     else:
         return render(request, "question/searchResult.html")
 
+@login_required
 def accept(request, answer_id):
     answerQuery = Answer.objects.filter(pk=answer_id)
     answer = Answer.objects.get(pk=answer_id)

@@ -14,7 +14,10 @@ from urllib.parse import urlparse
 
 from review.models import Review, Review_Img
 from contact.models import Message
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+@login_required
 def create(request):
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES)
@@ -51,7 +54,6 @@ def create(request):
     })
 
 
-
 def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipes = Recipe.objects.all()
     img = Recipe_Img.objects.all()
@@ -80,6 +82,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
 
     return render(request, "recipe/recipe_list.html",{"recipes_dict":recipes_dict, "hot_recipes_dict":hot_recipes_dict})
 
+@login_required
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipe = Recipe.objects.get(pk=recipe_id)
     img_list = Recipe_Img.objects.filter(recipe=recipe)
@@ -119,6 +122,7 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     return render(request, "recipe/recipe_detail.html",
                   {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count, "click_like":click_like})
 
+@login_required
 def delete(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     if recipe.author_id != request.user.id:
@@ -126,6 +130,7 @@ def delete(request, recipe_id):
     recipe.delete()
     return redirect('/recipe/list')
 
+@login_required
 def edit(request, recipe_id):
     now_recipe = Recipe.objects.get(pk=recipe_id)
     if now_recipe.author_id != request.user.id:
@@ -161,7 +166,7 @@ def edit(request, recipe_id):
         'now_recipe': now_recipe,
     })
 
-class Recipe_Like(View):
+class Recipe_Like(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
             return HttpResponseForbidden()  # 아무일도 일어나지 않는다
@@ -179,7 +184,7 @@ class Recipe_Like(View):
             path = urlparse(referer_url).path
             return HttpResponseRedirect(path)
 
-class Recipe_Save(View):
+class Recipe_Save(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
             return HttpResponseForbidden()  # 아무일도 일어나지 않는다

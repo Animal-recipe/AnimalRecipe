@@ -9,8 +9,9 @@ from django.views.generic.base import View
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from urllib.parse import urlparse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-# Create your views here.
 def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
     review = Review.objects.all()
     img = Review_Img.objects.all()
@@ -22,7 +23,6 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
 
     best_review = Review.objects.all().order_by('-like')
     best_review_dict = {}
-
     for i in range(0, 4):
         temp = best_review[i]
         for j in range(0, img.__len__()):
@@ -39,6 +39,7 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
 
     return render(request, "review/review_list.html",{"review_dict":review_dict, "best_review_dict":best_review_dict})
 
+@login_required
 def create(request, recipe_id):
     if request.method == 'POST':
         review_form = ReviewForm(request.POST, request.FILES)
@@ -65,6 +66,7 @@ def create(request, recipe_id):
         'image_formset': image_formset,
     })
 
+@login_required
 def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     review = Review.objects.get(pk=review_id)
     img_list = Review_Img.objects.filter(review=review)
@@ -82,6 +84,7 @@ def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가
     return render(request, "review/review_detail.html",
                   {"review": review, "img_list": img_list, 'received_list':received_list, 'send_list':send_list, 'click_like':click_like})
 
+@login_required
 def delete(request, review_id):
     review = Review.objects.get(pk=review_id)
     if review.author_id != request.user.id:
@@ -89,6 +92,7 @@ def delete(request, review_id):
     review.delete()
     return redirect('/review/list')
 
+@login_required
 def edit(request, review_id):
     now_review = Review.objects.get(pk=review_id)
     if now_review.author_id != request.user.id:
@@ -109,7 +113,7 @@ def edit(request, review_id):
         'image_formset': image_formset, 'now_review': now_review,
     })
 
-class Review_Like(View):
+class Review_Like(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
             return HttpResponseForbidden()  # 아무일도 일어나지 않는다

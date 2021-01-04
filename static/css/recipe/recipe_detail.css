@@ -330,12 +330,17 @@
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 36px;
-    line-height: 44%;
     color: #575757;
+    width: 20%;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    float:left;
+    margin-top: 20px;
 }
 
 .button1{
-    width: 159px;
+    width: 13%;
     height: 53px;
     background: #FF5C00;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
@@ -346,15 +351,22 @@
     line-height: 53px;
     text-align: center;
     color: #FFFFFF;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .modal_font1{
     height: 23px;
+    width: 10%;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 18px;
     line-height: 23%;
     color: #666666;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .modal_font2{
@@ -399,31 +411,74 @@ button:focus{
 }
 
 .summary{
-    width: 251px;
+    width: 40%;
     height: 23px;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 18px;
     line-height: 23px;
     color: #000000;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .nickname{
-    width: 100px;
+    width: 20%;
     height: 23px;
     font-family: Noto Sans;
     font-weight: 500;
     font-size: 14px;
     line-height: 23px;
     color: #666666;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .time{
-    width: 120px;
+    width: 20%;
     height: 23px;
     font-family: Noto Sans;
     font-weight: 500;
     font-size: 14px;
     line-height: 23px;
     color: #666666;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.send_at{
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 14px;
+    color: #666666;
+    margin: 10px;
+}
+
+.summary_list{
+    width: 100%;
+    cursor:pointer;
+    overflow:hidden;
+    height: 50px;
+    margin-top:10px;
+    line-height: 50px;
+    padding:15px;
+    padding-left:50px;
+    background: #FFFFFF;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.delete_img{
+    width: 23px;
+    display: block;
+    float:left;
+    height:23px;
+    margin-left: 2%;
+    cursor:pointer;
+    word-break : break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
