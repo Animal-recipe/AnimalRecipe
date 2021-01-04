@@ -1,13 +1,14 @@
 #mainBox {
-    margin-bottom:147px;
+    margin-bottom: 147px;
     height: 934px;
     background: #1B1B1B;
-    border-radius: 0px 0px 80px 80px; 
+    border-radius: 0px 0px 80px 80px;
     padding: 0 145px;
-    overflow:hidden;
+    overflow: hidden;
     position: relative;
     z-index: 1;
 }
+
 #mainText {
     font-family: Noto Sans KR;
     font-style: normal;
@@ -18,6 +19,7 @@
     padding: 7rem 0 7rem;
     color: #FFFFFF;
 }
+
 #rabbit {
     position: absolute;
     width: 175px;
@@ -25,13 +27,15 @@
     top: 179.88px;
     transform: rotate(-4.99deg);
 }
-#cat{
+
+#cat {
     position: absolute;
     width: 216px;
     left: 1037px;
     top: 639.31px;
     transform: rotate(-2.64deg);
 }
+
 #dog {
     position: absolute;
     width: 197px;
@@ -40,62 +44,74 @@
     transform: rotate(3.27deg);
 }
 
-#searchBar {
+.searchBar {
+    width: 100%;
+    background: #FFFFFF;
+    outline: none;
+    border: none;
+}
+
+.searchBarBox {
     position: absolute;
     left: 154px;
     top: 670px;
     width: 481px;
     height: 53px;
+    background: #FFFFFF;
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
-    background-image : url('../img/home/search.png'); 
-    background-position: 93% 50%; 
-    background-repeat:no-repeat;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 30px;
 }
-#searchBar:hover{
-    background: #e4e2e2;
-    background-image : url('../img/home/search.png'); 
-    background-position: 93% 50%; 
-    background-repeat:no-repeat;
+
+.searchBarBox button {
+    border: none;
+    background: none;
 }
-/* input without button 하기 */
-.searchBtn {
-    position: absolute; 
-    right:650px; 
-    top: 550px; 
-    border: 0px solid white; 
-    background-color:white;
-}
-#writeBtn {
+
+.createRecipeBtn {
     position: absolute;
     left: 660px;
-    top: 668px;
-    font-family: Noto Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 54px;
-    display:inline-block;
-    width: 250px;
-    height: 57px;
+    top: 670px;
+    width: 224px;
+    height: 53px;
     background: #FF5C00;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 16px; border:none;
-    background-image : url('../img/home/write.png'); 
-    background-position: 80% 50%; 
-    background-repeat:no-repeat;
-    padding: 2px 28px 0 2px;
+    border-radius: 16px;
+    padding: 14px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
 }
-#writeBtn:hover{
+
+.createRecipeBtn img {
+    width: 18px;
+    height: 18px;
+    margin-left: 15px;
+}
+
+.createRecipeBtn span {
+    font-family: Noto Sans;
+    width: 131px;
+    height: 25px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    color: #FFFFFF;
+}
+
+#createRecipeBtn:hover {
     background: #d8580d;
-    background-image : url('../img/home/write.png'); 
-    background-position: 80% 50%; 
-    background-repeat:no-repeat;
 }
+
 #hotRecipe {
-    margin:0 auto;
+    margin: 0 auto;
     width: 238px;
     height: 129px;
     background: #3C3C3C;
@@ -108,8 +124,9 @@
     text-align: center;
     line-height: 127.4%;
     color: #FFFFFF;
-    padding-top:29px;
+    padding-top: 29px;
 }
+
 #hotRecipeIntro {
     font-family: Noto Sans;
     font-style: normal;
@@ -122,8 +139,9 @@
     color: #575757;
     margin: 3rem 0 4rem;
 }
+
 #bestRecipe {
-    margin:0 auto;
+    margin: 0 auto;
     width: 238px;
     height: 129px;
     background: #3C3C3C;
@@ -136,8 +154,9 @@
     text-align: center;
     line-height: 127.4%;
     color: #FFFFFF;
-    padding-top:29px;
+    padding-top: 29px;
 }
+
 #bestRecipeIntro {
     font-family: Noto Sans;
     font-style: normal;
@@ -150,26 +169,30 @@
     color: #575757;
     margin: 3rem 0 4rem;
 }
-#contentBox{
+
+#contentBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.hotRecipeBox{
+
+.hotRecipeBox {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10rem; 
+    margin-bottom: 10rem;
 }
-.bestRecipeBox{
+
+.bestRecipeBox {
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10rem; 
+    margin-bottom: 10rem;
 }
+
 #aboutBox {
     height: 775px;
     background: #161616;
@@ -180,7 +203,7 @@
     position: relative;
 }
 
-#textBox{
+#textBox {
     position: absolute;
     width: 603px;
     height: 578px;
@@ -195,34 +218,39 @@
     color: #FFFFFF;
     padding: 64px 64px;
 }
-#aboutRabbit{
+
+#aboutRabbit {
     position: absolute;
     width: 175px;
     left: 320px;
     top: 123px;
     transform: rotate(-1.99deg);
 }
-#aboutCat{
+
+#aboutCat {
     position: absolute;
     width: 216.81px;
     left: 138px;
     top: 313px;
     transform: rotate(-2.64deg);
 }
-#aboutDog{
+
+#aboutDog {
     position: absolute;
     width: 197.1px;
     left: 457px;
     top: 376px;
     transform: rotate(2.27deg);
 }
-#aboutTitle{
+
+#aboutTitle {
     font-family: Noto Sans;
     font-weight: 900;
     font-size: 36px;
     line-height: 152.7%;
     padding-bottom: 36px;
 }
+
 .aboutIntro {
     font-family: Noto Sans;
     font-weight: 600;
@@ -230,6 +258,7 @@
     line-height: 212.7%;
     padding-bottom: 21px;
 }
+
 #aboutBtn {
     width: 228px;
     height: 54px;
@@ -247,12 +276,115 @@
     color: #575757;
     margin: 100px auto 0;
 }
-#aboutBtn:hover{
+
+#aboutBtn:hover {
     color: #cea73c;
     border: 1px solid #cea73c;
 }
-#homeUnderBox{
+
+#homeUnderBox {
     height: 450px;
     margin: 140px 0 14px;
     background: #FFDADA;
+}
+
+/* home search result */
+.nav-searchBarBox {
+    width: 481px;
+    height: 53px;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 30px;
+}
+
+.nav-searchBarBox button {
+    border: none;
+    background: none;
+}
+
+.nav-searchBar {
+    width: 100%;
+    background: #FFFFFF;
+    outline: none;
+    border: none;
+}
+
+.searchResultTitle {
+    width: 138px;
+    height: 56px;
+    background: #3C3C3C;
+    box-shadow: 6px 6px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.searchResultTitle h2 {
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 127.4%;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    color: #FFFFFF;
+}
+
+.resultBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchResult {
+    width: 100%;
+    padding: 100px 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.resultBox hr {
+    width: 100%;
+    height: 12px;
+    background: #EDEDED;
+}
+
+.home-noResultText {
+    font-family: Noto Sans;
+    font-weight: 700;
+    line-height: 18px;
+    color: #686868;
+    margin-bottom: 100px;
+}
+
+.goListButton {
+    width: 186px;
+    height: 54px;
+    border: 1px solid #575757;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575757;
+}
+
+.goListButton:hover {
+    color: #cea73c;
+    border: 1px solid #cea73c !important;
 }
