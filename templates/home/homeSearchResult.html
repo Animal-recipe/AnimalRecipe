@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/question/questionList.css' %}">
+<link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/nav.css' %}">
+
+<div id="navBarBox" style="height: 274px;">
+
+    <nav id="navBar">
+        <div id="menuBox">
+            <a class="menuItem" style="color: #FF5C00;font-weight: bold;" href="{% url 'home:home' %}">홈</a>
+            <a class="menuItem" href="{% url 'recipe:list_recipe' %}">레시피</a>
+            <a class="menuItem" href="{% url 'review:list_review' %}">후기</a>
+            <a class="menuItem" href="{% url 'about:about' %}">소개</a>
+            <a class="menuItem" href="{% url 'question:list' %}">질문</a>
+        </div>
+
+        <a id="logo" href="{% url 'home:home' %}"><img src="{% static 'img/home/logo.png'%}" width="68px"></a>
+
+        <div id="userBox">
+            {% if user.is_authenticated %}
+            <a href="{% url 'mypage:myRecipe' %}" class="menuItem">마이페이지</a>
+            <a href="{% url 'account:logout' %}" class="menuItem">로그아웃</a>
+            {% else %}
+            <a href="{% url 'account:login' %}" class="menuItem">로그인</a>
+            <a href="{% url 'account:agreement' %}" class="menuItem">회원가입</a>
+            {% endif %}
+        </div>
+    </nav>
+    <form class="nav-searchBarBox" action="{% url 'home:search' %}" method="POST">
+        {% csrf_token %}
+        <input class="nav-searchBar" placeholder="요리를 검색해 보세요!" name="q" value="{{q}}">
+        <button type="submit"><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
+                height="23.32px"></button>
+    </form>
+</div>
+{% if recipes_dict or reviews_dict or questions %}
+<div class="resultBox">
+    <div class="recipeResult searchResult">
+        <div class="searchResultTitle">
+            <h2>레시피</h2>
+        </div>
+        {% if not recipes_dict %}
+        <div class="home-noResultText">레시피 검색 결과가 없습니다.</div>
+        {% else %}
+        <div style="overflow:auto; width:100%;">
+            {% for item, image in recipes_dict.items %}
+            <div class="recipe_size" onclick="location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'">
+                <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                <div style="padding: 0 22px;">
+                    <p class="recipe_title">{{ item.title_limit }}</p>
+                    <div>
+                        <p
+                            style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;">
+                            <img class="user_img" src="{{ item.author.profile.url }}"> </p>
+                        <p class="recipe_id">{{ item.author.nickname }} 의 레시피</p>
+                    </div>
+                    <div style="margin-top:29px;">
+                        <p class="recipe_animal">{{ item.animal }}</p>
+                        <p class="recipe_time">{{ item.cooking_time }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'recipe:list_recipe' %}" class="goListButton">레시피 더보러 가기</a>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="reviewResult searchResult">
+        <div class="searchResultTitle">
+            <h2>후기</h2>
+        </div>
+        {% if not reviews_dict %}
+        <div class="home-noResultText">후기 검색 결과가 없습니다.</div>
+        {% else %}
+        <div style="overflow:auto; width:100%;">
+            {% for item, image in reviews_dict.items %}
+            <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.id %}'">
+                <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                <div style="padding: 0 22px;">
+                    <p class="recipe_title">"{{ item.title_limit }}"</p>
+                    <div>
+                        <p
+                            style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;">
+                            <img class="user_img" src="{{ item.author.profile.url }}"></p>
+                        <p class="recipe_id">{{ item.author.nickname }}</p>
+                    </div>
+                    <div style="margin-top:29px; float: right; margin-right:40px;">
+                        <p class="star"> ★ {{ item.star }}.0</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'review:list_review' %}" class="goListButton">후기 더보러 가기</a>
+        {% endif %}
+    </div>
+    <hr>
+    <div class="questionResult searchResult">
+        <div class="searchResultTitle">
+            <h2>질문</h2>
+        </div>
+        {% if not questions %}
+        <div class="home-noResultText">질문 검색 결과가 없습니다.</div>
+        {% else %}
+        <!-- question list start -->
+        <ul>
+            <li class="listHead">
+                <div class="nullCell"></div>
+                <div class="idCell">번호</div>
+                <div class="titleCell">제목</div>
+                <div class="authorCell" style="background: none;">작성자</div>
+                <div class="answerCountCell">답변 수</div>
+                <div class="createdCell" style="background: none;">작성일</div>
+                <div class="nullCell"></div>
+            </li>
+        </ul>
+        <div class="listContent">
+            {% for question in questions %}
+            <ul class="listRow">
+                <div class="nullCell cellBox"></div>
+                <div class="idCell cellBox"><span>{{ question.id }}</span></div>
+                <div class="titleCell cellBox">
+                    <p class="qTitle">
+                        <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
+                        <a href="{% url 'question:detail' question.id %}" style="color:#575757">{{ question.title }}</a>
+                    </p>
+                    <p class="qContent">{{question.content}}</p>
+                </div>
+                <div class="authorCell cellBox"><span>{{ question.author.nickname }}</span></div>
+                <div class="answerCountCell cellBox">
+                    <span>{% if question.answer.count != 0 %}{{ question.answer.count }}</span>{% endif %}</div>
+                <div class="createdCell cellBox"><span>{{ question.created|date:"y.m.d" }}</span></div>
+                <div class="nullCell cellBox"></div>
+            </ul>
+            {% endfor %}
+        </div>
+        <a href="{% url 'question:list' %}" class="goListButton" style="margin-top: 100px;">질문 더보러 가기</a>
+        <!-- question list end -->
+        {% endif %}
+    </div>
+    <!-- questionResult end -->
+</div>
+<!-- resultBox end -->
+{% else %}
+<div class="noResultBox">
+    <img src="{% static 'img/question/error.png' %}">
+    <h2 class="noResultText" style="padding-top:24px;">검색결과가 없습니다.</h2>
+    <h2 class="noResultText">다른 검색어로 검색해 보세요!</h2>
+</div>
+{% endif %}
+<div style="height: 450px;background: #FFDADA;"></div>
+{% include 'footer.html' %}
+{% endblock %}
