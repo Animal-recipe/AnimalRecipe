@@ -46,6 +46,30 @@ def delete_myRecipe(request, recipe_id):
     recipe.delete()
     return redirect('mypage:myRecipe')
 
+def saveRecipe(request):
+    user = request.user
+    # saveRecipes = user.like_recipe.all()
+    saveRecipes = user.save_recipe.all()
+    print(saveRecipes)
+    img = Recipe_Img.objects.filter()
+    recipes_dict={}
+    for i in range(0, saveRecipes.__len__()):
+        tmp = saveRecipes[i]
+        for j in range(0, img.__len__()):
+            if img[j].recipe == tmp:
+                img_obj = img[j]
+                recipes_dict[saveRecipes[i]] = img_obj.image.url
+    recipes = tuple(recipes_dict.items())
+    page = request.GET.get('page', 1)
+    paginator = Paginator(recipes, 12)
+    recipeList =paginator.get_page(page)
+    return render(request, "mypage/saveRecipe.html",{"recipeList":recipeList})
+
+def delete_saveRecipe(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
+    recipe.save_count.remove(request.user)
+    return redirect('mypage:saveRecipe')
+
 def myReview(request):
     myReviews = Review.objects.filter(author=request.user)
     img = Review_Img.objects.all()
