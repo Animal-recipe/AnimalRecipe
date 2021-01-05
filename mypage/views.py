@@ -48,7 +48,6 @@ def delete_myRecipe(request, recipe_id):
 
 def saveRecipe(request):
     user = request.user
-    # saveRecipes = user.like_recipe.all()
     saveRecipes = user.save_recipe.all()
     print(saveRecipes)
     img = Recipe_Img.objects.filter()

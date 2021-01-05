@@ -120,7 +120,6 @@
         </li>
         {% else %}
         <li class="page-item">
-            <!-- <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a> -->
             <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
         </li>
         {% endif %}
@@ -128,7 +127,6 @@
         {% endfor %}
         {% if questions.has_next %}
         <li class="page-item">
-            <!-- <a class="page-link" href="?page={{ questions.next_page_number }}"> -->
             <a class="page-link" data-page="{{ questions.next_page_number }}" href="#">
                 <img src="{% static 'img/question/nextButton.png' %}"></a>
         </li>

@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load questionFilter %}
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_list.js' %}"></script>
 
-<div class="image_list"  style="">
+<div class="image_list" style="">
     {% if hot_recipes_dict %}
     {% for item, image in hot_recipes_dict.items %}
-    <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: url('{{ image }}'); background-size: 100%;">
+    <div
+        style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: url('{{ image }}'); background-size: 100%;">
         <div style="padding: 0 145px;">
             {% include 'nav.html' %}
         </div>
@@ -19,73 +21,138 @@
     {% endfor %}
     {% endif %}
 </div>
-<div style="margin: 0 auto; width:100%;">
-    <div style="margin-top:52px; overflow:hidden; height:185px; padding: 0 200px;">
-        <form style="" class="form-inline my-2 my-lg-0" action="" method="POST">
-            {% csrf_token %}
-            <div style="width: 55%; position:relative;">
-                <input class="search" class="form-control mr-sm-2" type="search" placeholder="요리를 검색해 보세요!" aria-label="Search" name="query_str" value="{{query_str}}">
-                <button class="search_btn" type="submit" style="position:absolute; top:9px; right:7px; border: 0px solid white; background-color:white;">
-                    <img class="search_icon" src="{% static 'img/recipe/recipe_home/search.png' %}"/>
-                </button>
+<div>
+    <!-- filter div -->
+    <div style="overflow:hidden;padding: 0 200px;">
+        <div style="display: flex;justify-content: space-between;margin:52px 0 40px">
+            <div style="display: inline-block;width:100%;margin-right:30px;">
+                <form class="searchBarBox" action="{% url 'recipe:list_recipe' %}" method="GET">
+                    {% csrf_token %}
+                    <input class="searchBar q" placeholder="요리를 검색해 보세요!" aria-label="Search" id="q" name="q"
+                        value="{{q|default_if_none:''}}">
+                    <button id="searchBtn" type="submit">
+                        <img width="23.32px" height="23.32px" src="{% static 'img/recipe/recipe_home/search.png' %}" />
+                    </button>
+                    <input type="hidden" id="petkind" name="petkind" value="{{ petkind }}">
+                    <input type="hidden" id="cooking_time" name="cooking_time" value="{{ cooking_time }}">
+                    <input type="hidden" id="order" name="order" value="{{ order }}">
+                    <input type="hidden" id="page" name="page" value="{{ page }}">
+                </form>
             </div>
-
-            <div class="dropdown show" style="width:15%; word-break : break-all">
-                <a id="dropdown_font1" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    반려 동물
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="more1">
-                    <a class="dropdown-item" href="#">강아지</a>
-                    <a class="dropdown-item" href="#">고양이</a>
-                    <a class="dropdown-item" href="#">다른 동물</a>
+            <div style="display:inline-block;width:100%;">
+                <div class="selectBox">
+                    <select class="petkind">
+                        <option value="all" {% if petkind == 'all' %} selected {% endif %}><span>모든 동물</span></option>
+                        <option value="dog" {% if petkind == 'dog' %} selected {% endif %}><span>강아지</span></option>
+                        <option value="cat" {% if petkind == 'cat' %} selected {% endif %}><span>고양이</span></option>
+                        <option value="etc" {% if petkind == 'etc' %} selected {% endif %}><span>다른 동물</span></option>
+                    </select>
+                </div>
+                <div class="selectBox">
+                    <select class="cooking_time">
+                        <option value="all" {% if cooking_time == 'all' %} selected {% endif %}><span>모든 시간</span>
+                        </option>
+                        <option value="under5" {% if cooking_time == 'under5' %} selected {% endif %}><span>5분 이내</span>
+                        </option>
+                        <option value="fiveTo10" {% if cooking_time == 'fiveTo10' %} selected {% endif %}><span>5분 -
+                                10분</span></option>
+                        <option value="tenTo20" {% if cooking_time == 'tenTo20' %} selected {% endif %}><span>10분 -
+                                20분</span></option>
+                        <option value="over20" {% if cooking_time == 'over20' %} selected {% endif %}><span>20분
+                                이상</span></option>
+                    </select>
+                </div>
+                <div class="selectBox">
+                    <select class="order">
+                        <option value="recent" {% if order == 'recent' %} selected {% endif %}><span>최신순</span></option>
+                        <option value="review" {% if order == 'review' %} selected {% endif %}><span>후기 많은 순</span>
+                        </option>
+                        <option value="like" {% if order == 'like' %} selected {% endif %}><span>공감 순</span></option>
+                    </select>
                 </div>
             </div>
-            <div class="dropdown show" style="width:15%;">
-                <a id="dropdown_font2" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    조리 시간
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="more2">
-                    <a class="dropdown-item" href="#">5분 이내</a>
-                    <a class="dropdown-item" href="#">5분 - 10분</a>
-                    <a class="dropdown-item" href="#">10분 - 20분</a>
-                    <a class="dropdown-item" href="#">20분 이상</a>
-                </div>
-            </div>
-            <div class="dropdown show" style="width:15%;">
-                <a id="dropdown_font3" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    정렬 방식
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="more3">
-                    <a class="dropdown-item" href="#">최신순</a>
-                    <a class="dropdown-item" href="#">후기 많은 순</a>
-                    <a class="dropdown-item" href="#">공감 순</a>
-                </div>
-            </div>
-        </form>
+        </div>
         <div id="create_recipe_css">
-            <a href="{% url 'recipe:create_recipe' %}" style="color: #FFFFFF;">레시피 작성하기</a>
-            <img style="margin-left:5px;" src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/>
+            <a href="{% url 'recipe:create_recipe' %}" style="color: #FFFFFF;">레시피 작성하기<img style="margin-left:15px;"
+                    src="{% static 'img/recipe/recipe_list/recipe_write.png' %}" /></a>
         </div>
     </div>
+    <!-- filter div end -->
+
+    <!-- content div -->
     <div style="padding: 0 200px; overflow:auto; width:100%;">
-            {% if recipes_dict %}
-                {% for item, image in recipes_dict.items %}
-                <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'">
-                    <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
-                    <div style="padding: 0 22px;">
-                        <p class="recipe_title">{{ item.title_limit }}</p>
-                        <div>
-                            <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"> </p>
-                            <p class="recipe_id">{{ item.author.nickname }} 의 레시피</p>
-                        </div>
-                        <div style="margin-top:29px;">
-                            <p class="recipe_animal">{{ item.animal }}</p>
-                            <p class="recipe_time">{{ item.cooking_time }}</p>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            {% endif %}
+        {% if not recipes_dict %}
+        <div class="noResultBox">
+            <img src="{% static 'img/question/error.png' %}">
+            <h2 class="noResultText" style="padding-top:24px;">아직 레시피가 없습니다.</h2>
+            <h2 class="noResultText">직접 만들어주세요!</h2>
         </div>
+        {% else %}
+        {% for item in recipes_dict %}
+        <div class="recipe_size" onclick="location.href='{% url 'recipe:detail_recipe' recipe_id=item.0.id %}'">
+            <img class="recipe_img" src="{{ item.1 }}" class="card-img-top" alt="사진">
+            <div style="padding: 0 22px;">
+                <p class="recipe_title">{{ item.0.title_limit }}</p>
+                <div>
+                    <p
+                        style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;">
+                        <img class="user_img" src="{{ item.0.author.profile.url }}"> </p>
+                    <p class="recipe_id">{{ item.0.author.nickname }} 의 레시피</p>
+                </div>
+                <div style="margin-top:29px;">
+                    <p class="recipe_animal">{{ item.0.animal }}</p>
+                    <p class="recipe_time">{{ item.0.cooking_time }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <!-- content div end -->
+
+    {% if recipes_dict %}
+    <!-- pagination start -->
+    <ul class="pagination justify-content-center" style="margin:150px 0 270px;">
+        {% if recipes_dict.has_previous %}
+        <li class="page-item">
+            <a class="page-link" data-page="{{ recipes_dict.previous_page_number }}" href="#">
+                <img src="{% static 'img/question/previousButton.png' %}">
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><img
+                    src="{% static 'img/question/previousButton.png' %}"></a>
+        </li>
+        {% endif %}
+        {% for page_number in recipes_dict.paginator.page_range %}
+        {% if page_number >= recipes_dict.number|add:-2 and page_number <= recipes_dict.number|add:2 %}
+        {% if page_number == recipes_dict.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        {% if recipes_dict.has_next %}
+        <li class="page-item">
+            <a class="page-link" data-page="{{ recipes_dict.next_page_number }}" href="#">
+                <img src="{% static 'img/question/nextButton.png' %}"></a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><img
+                    src="{% static 'img/question/nextButton.png' %}"></a>
+        </li>
+        {% endif %}
+    </ul>
+    <!-- pagination end -->
+    {% endif %}
 </div>
+
+{% include 'footer.html' %}
 {% endblock %}

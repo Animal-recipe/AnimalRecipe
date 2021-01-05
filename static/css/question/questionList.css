@@ -224,6 +224,7 @@ button:focus {
 .nullCell {
     width: 6%;
 }
+/* pagination css */
 .pagination>li>a {
     font-family: Noto Sans;
     font-weight: 500;
