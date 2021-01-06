@@ -16,7 +16,6 @@ $(document).ready(function(){
         $("#q").val($(".q").val());
         $("#page").val(1);
         $(".searchBarBox").submit();
-        console.log($("#q"))
     });
     $(".petkind").on('change', function() {
         $("#petkind").val($(this).val());
@@ -24,7 +23,6 @@ $(document).ready(function(){
         $("#order").val($(".order").val());
         $("#page").val(1);
         $(".searchBarBox").submit();
-        console.log($("#petkind"))
     });
     $(".cooking_time").on('change', function() {
         $("#petkind").val($(".petkind").val());
