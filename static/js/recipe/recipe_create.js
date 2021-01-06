@@ -64,4 +64,9 @@ $(document).ready(function(){
             j += 1;
         }
     });
+    if($('ul').hasClass("errorlist")){
+        $('.errorlist').hide();
+        alert("조리방법 내용은 "+$('.errorlist').text());
+        $('.input_box4').focus();
+    }
 });

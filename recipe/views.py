@@ -66,19 +66,28 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     hot_recipes = Recipe.objects.all().order_by('-like')
     hot_recipes_dict={}
 
-    for i in range(0,4):
-        temp = hot_recipes[i]
-        for j in range(0, img.__len__()):
-            if img[j].recipe == temp:
-                img_obj = img[j]
-        hot_recipes_dict[temp] = img_obj.image.url
+    if hot_recipes.__len__() >= 4 :
+        for i in range(0,4):
+            temp = hot_recipes[i]
+            img_obj = ""
+            for j in range(0, img.__len__()):
+                if img[j].recipe == temp:
+                    img_obj = img[j]
+            if img_obj != "":
+                hot_recipes_dict[temp] = img_obj.image.url
+            else:
+                hot_recipes_dict[temp] = ""
 
     for i in range(0, recipes.__len__()):
         tmp = recipes[i]
+        img_obj = ""
         for j in range(0, img.__len__()):
             if img[j].recipe == tmp:
                 img_obj = img[j]
-        recipes_dict[recipes[i]] = img_obj.image.url
+        if img_obj != "":
+            recipes_dict[recipes[i]] = img_obj.image.url
+        else:
+            recipes_dict[recipes[i]] = ""
 
     return render(request, "recipe/recipe_list.html",{"recipes_dict":recipes_dict, "hot_recipes_dict":hot_recipes_dict})
 

@@ -8,7 +8,7 @@
     background: gray;
 }
 
-#hot_recipe{
+.hot_recipe{
     width: 223px;
     height: 45px;
     background: #FFFFFF;
@@ -242,7 +242,7 @@
     border-radius:100px;
 }
 
-#hot_title{
+.hot_title{
     width: 70%;
     font-family: Noto Sans;
     font-weight: bold;
@@ -256,7 +256,7 @@
     padding:5px;
 }
 
-#hot_summary{
+.hot_summary{
     width: 70%;
     padding:5px;
     font-family: Noto Sans;

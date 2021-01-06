@@ -9,18 +9,13 @@ $(document).ready(function(){
         $('#send_box').show();
     });
 
-    $('.send_mail_btn').click(function(){
-        $('#receive_box').hide();
-        $('#send_box').hide();
-        $('#send_mail').show();
-    });
     $('.back_btn').click(function(){
         $('#receive_box').show();
         $('#send_box').hide();
         $('#send_mail').hide();
     });
 
-    $('.summary_list').click(function(){
+    $('.summary_list2').click(function(){
         var temp = $(this).children('.content_list');
         if(temp.css("display")=="none"){
             temp.show();

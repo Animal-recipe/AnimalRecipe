@@ -13,9 +13,9 @@
 <div id="receive_box" style="padding: 0 150px; margin: 50px 0;">
     <button class="back_btn" onclick = "location.href='{% url 'contact:contact_list' %}'"><img src="{% static 'img/contact/back.png' %}"/></button>
     <div style="padding: 0 50px;">
-        <div style="overflow:hidden; height: 60px;">
+        <div style="overflow:hidden; height: 100px;">
             <p class="header_font" style="float:left; margin-top: 20px;">보낸이 : {{ contact.sender.nickname }}</p>
-            <button class="button1 send_mail_btn" style="float:right;" onclick = "location.href='{% url 'contact:contact_recreate' message_id=contact.id %}'">답장쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
+            <button class="button1 send_mail_btn" style="float:right; margin:25px;" onclick = "location.href='{% url 'contact:contact_recreate' message_id=contact.id %}'">답장쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
         </div>
         <p class="send_at"> {{ contact.sentAt }}</p>
         <hr>

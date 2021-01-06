@@ -21,28 +21,15 @@ def contact_detail2(request, contact_id):
     contact = Message.objects.get(pk=contact_id)
     return render(request, "contact/contact_detail2.html", {"contact": contact})
 
-def create_remessage(request, message_id):
+@login_required
+def contact_create(request, user_id):
+    sender_nickname = User.objects.get(id=user_id).nickname
     if request.method == 'POST':
         form = RemessageForm(request.POST)
         if form.is_valid():
-            re_message = form.save(commit=False)
-            re_message.sender = request.user
-            re_message.recipient = Message.objects.get(id=message_id).sender
-            re_message.message = Message.objects.get(id=message_id)
-            re_message.content = form.cleaned_data.get("content")
-            re_message.save()
-            return redirect('/contact/list')
-    else:
-        form = RemessageForm()
-        return render(request, 'contact/viewMessage.html', {'form': form})
-
-def contact_create(request):
-    if request.method == 'POST':
-        form = MessageForm(request.POST)
-        if form.is_valid():
             message = form.save(commit=False)
             message.sender_id = request.user.id
-            message.recipient_id = User.objects.get(email=form.cleaned_data.get("recipient")).id
+            message.recipient_id = user_id
             message.content = form.cleaned_data.get("content")
             message.save()
             return redirect('/contact/list')
@@ -50,8 +37,9 @@ def contact_create(request):
             return HttpResponse('해당하는 아이디가 존재하지 않습니다. 다시 확인해주세요.')
     else:
         form = MessageForm()
-        return render(request, 'contact/contact_create.html', {'form': form})
+        return render(request, 'contact/contact_recreate.html', {'form': form, 'sender_nickname': sender_nickname})
 
+@login_required
 def contact_recreate(request, message_id):
     sender_nickname = Message.objects.get(id=message_id).sender.nickname
     if request.method == 'POST':
@@ -60,7 +48,6 @@ def contact_recreate(request, message_id):
             re_message = form.save(commit=False)
             re_message.sender = request.user
             re_message.recipient = Message.objects.get(id=message_id).sender
-            re_message.message = Message.objects.get(id=message_id)
             re_message.content = form.cleaned_data.get("content")
             re_message.save()
             return redirect('/contact/list')
@@ -68,7 +55,36 @@ def contact_recreate(request, message_id):
         form = RemessageForm()
         return render(request, 'contact/contact_recreate.html', {'form': form, 'sender_nickname': sender_nickname})
 
+@login_required
 def contact_delete(request, message_id):
     message = Message.objects.get(pk=message_id)
     message.delete()
     return redirect('/contact/list')
+
+@login_required
+def contact_senddelete(request):
+    message = Message.objects.filter(recipient=request.user)
+    for i in range(0, message.__len__()):
+        message.delete()
+    return redirect('/contact/list')
+
+@login_required
+def contact_receiveddelete(request):
+    message = Message.objects.filter(sender=request.user)
+    for i in range(0, message.__len__()):
+        message.delete()
+    return redirect('/contact/list')
+
+@login_required
+def contact_usersearch(request):
+    q = request.POST.get('q', "")
+    if q:
+        username = User.objects.filter(nickname__icontains=q, is_active=True)
+
+        return render(request, "contact/contact_usersearch.html", {'username': username, 'q': q})
+    else:
+        return render(request, "contact/contact_usersearch.html")
+
+@login_required
+def contact_showsearch(request):
+    return render(request, "contact/contact_usersearch.html")

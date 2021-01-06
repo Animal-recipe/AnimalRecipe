@@ -13,12 +13,12 @@
 <div id="receive_box" style="padding: 0 200px; margin: 50px 0; width: 100%;">
     <div style="overflow:hidden; height: 100px;">
         <p class="header_font">쪽지함</p>
-        <button class="button1 send_mail_btn" onclick = "location.href='{% url 'contact:contact_create' %}'" style="float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
+        <button class="button1 send_mail_btn" onclick = "location.href='{% url 'contact:contact_showsearch' %}'" style="margin: 15px;float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
     </div>
     <div style="overflow:hidden; padding-top:10px; height:50px;">
         <button class="modal_font1 receive" style="float:left; color: #FF5C00; ">받은 쪽지함</button> <p style="margin-left:15px; line-height: 23%; margin-top:10px; float:left;"> | </p>
         <button class="modal_font1 send" style="float:left; margin-left:15px;"> 보낸 쪽지함</button>
-        <button class="modal_font2 all_delete" style="margin-top: 20px;float:right;">전체삭제</button>
+        <button onclick = "location.href='{% url 'contact:contact_senddelete' %}'" class="modal_font2 all_delete" style="margin-top: 20px;float:right;">전체삭제</button>
     </div>
     <hr>
     <div style="height:361px; overflow:auto; padding:25px; padding-bottom: 50px;">
@@ -42,12 +42,12 @@
 <div id="send_box" style="padding: 0 200px; margin: 50px 0; display:none; width: 100%;">
     <div style="overflow:hidden; height: 100px;">
         <p class="header_font" style="float:left; margin-top: 20px;">쪽지함</p>
-        <button onclick = "location.href='{% url 'contact:contact_create' %}'" class="button1 send_mail_btn" style="float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
+        <button onclick = "location.href='{% url 'contact:contact_showsearch' %}'" class="button1 send_mail_btn" style="margin: 15px; float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
     </div>
     <div style="overflow:hidden; padding-top:10px; height:50px;">
         <button class="modal_font1 receive" style="float:left; pointer:cursor;">받은 쪽지함</button> <p style="margin-left:15px; line-height: 23%; margin-top:10px; float:left;"> | </p>
         <button class="modal_font1 send" style="float:left; margin-left:15px;color: #FF5C00; pointer:cursor;"> 보낸 쪽지함</button>
-        <button class="modal_font2 all_delete" style="margin-top: 20px;float:right; pointer:cursor;">전체삭제</button>
+        <button onclick = "location.href='{% url 'contact:contact_receiveddelete' %}'" class="modal_font2 all_delete" style="margin-top: 20px;float:right; pointer:cursor;">전체삭제</button>
     </div>
     <hr>
     <div style="height:361px; overflow:auto; padding:25px; padding-bottom: 50px;">
@@ -67,5 +67,4 @@
     <hr>
     <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
 </div>
-
 {% endblock %}

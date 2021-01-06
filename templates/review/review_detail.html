@@ -3,18 +3,22 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_detail.css' %}">
 <link rel="stylesheet" href="{% static 'css/review/review_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/question/question.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
 
 <div style="padding: 0 145px; width: 100%; height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
 </div>
-<div id="box">
-    <a onclick = "location.href='{% url 'review:edit_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">수정</a>
-    <span style="margin:0 10px;">  | </span>
-    <a onclick = "location.href='{% url 'review:delete_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">삭제</a>
+{% if user == review.author %}
+<div style="height:65px;">
+    <div id="box">
+        <a onclick = "location.href='{% url 'review:edit_review' review_id=review.id %}'" style="color: #FFFFFF; cursor:pointer;">수정</a>
+        <span style="margin:0 10px;">  | </span>
+        <a href="{% url 'review:delete_review' review_id=review.id %}" style="color: #FFFFFF; cursor:pointer;" class="confirm-delete" title="Delete" data-toggle="modal" data-target="#confirmModal" id="deleteButton{{question.id}}">삭제</a>
+    </div>
 </div>
+{% endif %}
 <div style="margin: 0 auto; width:100%;">
-
     <div style="margin-top:30px; margin-left:219px;">
         <div style="overflow:hidden;">
             <div class="image_list"  style="width: 700px; height: 426px; float:left;">
@@ -24,9 +28,11 @@
                     <img class="img_style" src="{{ img.image.url }}" class="card-img-top" alt="사진">
                 </div>
                 {% endfor %}
+                {% else %}
+                <p class="image" style="text-align: center; padding-top:200px; font-family: Noto Sans; font-weight: bold;">이미지가 없습니다</p>
                 {% endif %}
             </div>
-            <div style="width:62px; float:right; margin-right:0px; margin-top:174px;">
+            <div style="width:62px; float:right; margin-right:218px; margin-top:174px;">
                 <a href="{% url 'review:like_review' review.id %}" style="margin-left:5px;">
                     {% if click_like == 0 %}
                     <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
@@ -39,7 +45,7 @@
                         <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
                     </button>
                 </div>
-                {% include 'contact\modal.html' %}
+                {% include 'contact\modal2.html' %}
             </div>
         </div>
         <div style="margin-top:60px;">
@@ -64,7 +70,7 @@
         <div id="summary" style="word-break: break-all; width:70%; height:30%;">"{{ review.content }} "</div>
     </div>
 
-    <div class="goto_recipe" style=" cursor: pointer; margin-left:219px; margin-top:73px;" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=review.recipe.id %}'">
+    <div class="goto_recipe" style=" cursor: pointer; margin-left:219px; margin-top:73px; margin-bottom:25px;" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=review.recipe.id %}'">
         레시피 보기
         <img src="{% static 'img/review/review_detail/goto_recipe.png' %}"/>
     </div>
@@ -73,4 +79,34 @@
     </div>
 </div>
 
+<div id="confirmModal" class="modal fade modal-center" style="" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-center" role="document" style="height:314px;">
+        <div class="modal-content modal-center" style="width:100%; height:100%; text-align:center;">
+            <div class="modal-body modal-center">
+                <p></p>
+                <div style="text-align:center;">
+                    <button data-dismiss="modal" id="confirmButtonModal" class="submitButton"
+                        style="display:block; width:179px;height:55px;border-radius: 18px; float:left;">삭제</button>
+                    <button type="button" class="cancelButton" data-dismiss="modal"
+                        style="display:block; float:left; min-width:179px;height:55px;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);border-radius: 18px;">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click', '.confirm-delete', function () {
+    $("#confirmModal").attr("caller-id", $(this).attr("id"));
+    $("#confirmModal").find(".submitButton").css({"background": "#FF5C00", "box-shadow": "6px 6px 30px rgba(0, 0, 0, 0.1)"});
+    $("#confirmModal").find("p").text("정말 삭제 하시겠어요?");
+    $("#confirmModal").find(".submitButton").text("삭제");
+    });
+    $(document).on('click', '#confirmButtonModal', function () {
+    var caller = $("#confirmButtonModal").closest(".modal").attr("caller-id");
+    window.location = $("#".concat(caller)).attr("href");
+    });
+});
+</script>
 {% endblock %}

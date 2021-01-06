@@ -23,19 +23,30 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
 
     best_review = Review.objects.all().order_by('-like')
     best_review_dict = {}
-    for i in range(0, 4):
-        temp = best_review[i]
-        for j in range(0, img.__len__()):
-            if img[j].review == temp:
-                img_obj = img[j]
-        best_review_dict[temp] = img_obj.image.url
+
+    if best_review.__len__() >= 4:
+        for i in range(0, 4):
+            temp = best_review[i]
+            img_obj = ""
+            for j in range(0, img.__len__()):
+                if img[j].review == temp:
+                    img_obj = img[j]
+            if img_obj != "":
+                best_review_dict[temp] = img_obj.image.url
+            else:
+                best_review_dict[temp] = ""
+
 
     for i in range(0, review.__len__()):
         tmp = review[i]
+        img_obj = ""
         for j in range(0, img.__len__()):
             if img[j].review == tmp:
                 img_obj = img[j]
-        review_dict[review[i]] = img_obj.image.url
+        if img_obj != "":
+            review_dict[review[i]] = img_obj.image.url
+        else:
+            review_dict[review[i]] = ""
 
     return render(request, "review/review_list.html",{"review_dict":review_dict, "best_review_dict":best_review_dict})
 
