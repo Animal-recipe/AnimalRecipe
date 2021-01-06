@@ -29,8 +29,7 @@ def create(request):
             recipe.level = request.POST["level"]
             recipe.title = request.POST["title"]
             recipe.summary = request.POST["summary"]
-            print(recipe.animal)
-            print(recipe.cooking_time)
+
             with transaction.atomic():
                 recipe.save()
                 image_formset.instance = recipe

@@ -49,7 +49,6 @@ def delete_myRecipe(request, recipe_id):
 def saveRecipe(request):
     user = request.user
     saveRecipes = user.save_recipe.all()
-    print(saveRecipes)
     img = Recipe_Img.objects.filter()
     recipes_dict={}
     for i in range(0, saveRecipes.__len__()):
