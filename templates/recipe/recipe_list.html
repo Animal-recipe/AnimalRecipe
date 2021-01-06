@@ -6,11 +6,10 @@
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_list.js' %}"></script>
 
-<div class="image_list" style="">
+<div class="image_list">
     {% if hot_recipes_dict %}
     {% for item, image in hot_recipes_dict.items %}
-    <div
-        style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: url('{{ image }}'); background-size: 100%;">
+    <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: url('{{ image }}'); background-size: 100%;">
         <div style="padding: 0 145px;">
             {% include 'nav.html' %}
         </div>
@@ -39,7 +38,7 @@
                     <input type="hidden" id="page" name="page" value="{{ page }}">
                 </form>
             </div>
-            <div style="display:inline-block;width:100%;">
+            <div style="display:inline-block;width:100%;text-align:right;">
                 <div class="selectBox">
                     <select class="petkind">
                         <option value="all" {% if petkind == 'all' %} selected {% endif %}><span>모든 동물</span></option>
@@ -110,8 +109,8 @@
     </div>
     <!-- content div end -->
 
-    {% if recipes_dict %}
     <!-- pagination start -->
+    {% if recipes_dict %}
     <ul class="pagination justify-content-center" style="margin:150px 0 270px;">
         {% if recipes_dict.has_previous %}
         <li class="page-item">
@@ -150,8 +149,8 @@
         </li>
         {% endif %}
     </ul>
-    <!-- pagination end -->
     {% endif %}
+    <!-- pagination end -->
 </div>
 
 {% include 'footer.html' %}

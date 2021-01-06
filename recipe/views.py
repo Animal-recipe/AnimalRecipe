@@ -70,7 +70,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     else:
         recipes =Recipe.objects.all()
     
-    # 정렬
+    # 필터
     if petkind == 'dog':
         recipes = recipes.filter(animal='강아지')
     elif petkind == 'cat':
@@ -112,7 +112,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
                 img_obj = img[j]
                 recipes_dict[recipes[i]] = img_obj.image.url
     recipes = tuple(recipes_dict.items())
-    paginator = Paginator(recipes, 2)
+    paginator = Paginator(recipes, 12)
     recipes =paginator.get_page(page)
     context = {"recipes_dict":recipes, "hot_recipes_dict":hot_recipes_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
     return render(request, "recipe/recipe_list.html", context)
