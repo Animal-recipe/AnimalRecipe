@@ -65,7 +65,7 @@ def saveRecipe(request):
 
 def delete_saveRecipe(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
-    recipe.save_count.remove(request.user)
+    recipe.bookmark.remove(request.user)
     return redirect('mypage:saveRecipe')
 
 def myReview(request):
