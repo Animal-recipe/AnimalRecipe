@@ -173,10 +173,21 @@ a:hover {color: #575757;}
 }
 /* registerSuccess.html */
 #successImage {
-    width: 278px;
-    height: 66px;
+    width: 381px;
+    height: 184px;
     display: flex;
-    margin: 218px auto 306px;
+    margin: 218px auto 36px;
+}
+.successText {
+    overflow: hidden;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 306px;
 }
 #catImage {
     position: absolute;
@@ -201,6 +212,10 @@ a:hover {color: #575757;}
     left: 1160.91px;
     top: 884px;
     transform: rotate(5.27deg);
+}
+.optionBox {
+    overflow: hidden;
+    min-width: 700px;
 }
 .optionBox .loginButton {
     width: 329px;

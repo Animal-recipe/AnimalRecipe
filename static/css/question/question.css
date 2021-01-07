@@ -250,7 +250,7 @@ button:focus {
 .qDetailTitle {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     width: 900px;
 }
 .qDetailTitle h2 {
@@ -260,7 +260,6 @@ button:focus {
     font-size: 30px;
     line-height: 41px;
     color: #000000;
-    margin-left: 20px;
     white-space: pre-wrap;
     word-break: break-word;
 }
