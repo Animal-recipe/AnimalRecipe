@@ -50,7 +50,7 @@
             <p id="title" style="width:70%;" >{{ recipe.title }}</p>
             <div style="overflow:hidden; margin-top:40px;">
                 <img class="user_img" src="{{ recipe.author.profile.url }}">
-                <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.updated }}</p>
+                <p class="user_info">{{ recipe.author.nickname }} 의 레시피  |  작성일 : {{ recipe.created }}</p>
                 <p class="count">
                     조회수 {{ recipe.hits }}   공감 {{ recipe.like.all.count }}
                 </p>

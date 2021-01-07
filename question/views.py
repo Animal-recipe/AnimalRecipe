@@ -88,28 +88,20 @@ def delete_answer(request, answer_id):
     return redirect('question:detail', question_id=answer.question.id)
 
 def question_list(request):
-    questions = Question.objects.all()
+    q = request.GET.get('q', "")
     page = request.GET.get('page', 1)
-    paginator = Paginator(questions, 10)
+    if q:
+        questions = Question.objects.filter(title__icontains=q, is_active=True)
+    else:
+        questions = Question.objects.all()
+    paginator = Paginator(questions, 2)
     pageObject = paginator.get_page(page)
-    return render(request, "question/listQuestion.html", {"questions":pageObject})
+    return render(request, "question/listQuestion.html", {"questions":pageObject, "page":page, "q":q})
 
 def question_detail(request, question_id):
     question = Question.objects.get(pk=question_id)
     answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
     return render(request, "../templates/question/detailQuestion.html", {"question": question, "answers": answers})
-
-def search(request):
-    questions = Question.objects.all()
-    q = request.POST.get('q', "")
-    if q:
-        questions = questions.filter(title__icontains=q, is_active=True)
-        page = request.GET.get('page', 1)
-        paginator = Paginator(questions, 10)
-        pageObject = paginator.get_page(page)
-        return render(request, "question/searchResult.html", {'questions': pageObject, 'q': q})
-    else:
-        return render(request, "question/searchResult.html")
 
 def accept(request, answer_id):
     answerQuery = Answer.objects.filter(pk=answer_id)

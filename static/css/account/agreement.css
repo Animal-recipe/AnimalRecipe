@@ -44,13 +44,21 @@
     font-size: 3px;
     margin-left: 26px;
 }
+.trigger img {
+    margin-left: 5px;
+    width: 11px;
+    height: 6px;
+}
 .content {
     display: none;
     padding: 50px 50px;
     border: 1px solid #575757;
+    border-right: none;
     border-radius: 20px;
     white-space: pre-wrap;
     width: 760px;
+    height: 250px;
+    overflow-y: scroll;
     margin: 52px 0 68px;
     font-family: Noto Sans;
     font-weight: 600;

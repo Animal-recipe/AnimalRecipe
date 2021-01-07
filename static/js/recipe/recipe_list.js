@@ -8,4 +8,34 @@ $(document).ready(function(){
           autoplay: true,
           autoplaySpeed: 5000
     });
+    $(".page-link").on('click', function () {
+        $("#page").val($(this).data("page"));
+        $(".searchBarBox").submit();
+    });
+    $("#searchBtn").on('click', function () {
+        $("#q").val($(".q").val());
+        $("#page").val(1);
+        $(".searchBarBox").submit();
+    });
+    $(".petkind").on('change', function() {
+        $("#petkind").val($(this).val());
+        $("#cooking_time").val($(".cooking_time").val());
+        $("#order").val($(".order").val());
+        $("#page").val(1);
+        $(".searchBarBox").submit();
+    });
+    $(".cooking_time").on('change', function() {
+        $("#petkind").val($(".petkind").val());
+        $("#cooking_time").val($(this).val());
+        $("#order").val($(".order").val());
+        $("#page").val(1);
+        $(".searchBarBox").submit();
+    });
+    $(".order").on('change', function() {
+        $("#petkind").val($(".petkind").val());
+        $("#cooking_time").val($(".cooking_time").val());
+        $("#order").val($(this).val());
+        $("#page").val(1);
+        $(".searchBarBox").submit();
+    });
 });

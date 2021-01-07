@@ -15,7 +15,6 @@ urlpatterns = [
     path('accept/answer/<int:answer_id>/', views.accept, name="accept"),
     path('list/', views.question_list, name='list'),
     path('detail/<int:question_id>/', views.question_detail, name='detail'),
-    path("search/",views.search, name='search'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

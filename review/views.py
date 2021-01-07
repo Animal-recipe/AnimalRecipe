@@ -10,34 +10,71 @@ from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from urllib.parse import urlparse
 
-# Create your views here.
-def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
-    review = Review.objects.all()
+def review_list(request):
+    q= request.GET.get('q', "")
+    page = request.GET.get('page', 1)
+    petkind = request.GET.get('petkind', 'all')
+    cooking_time = request.GET.get('cooking_time', 'all')
+    order = request.GET.get('order', 'recent')
     img = Review_Img.objects.all()
+    recipe = Recipe.objects.all()
     review_dict={}
-    #recipe를 key로 하고, image url을 value로 하는 맵 생성
-    paginator = Paginator(review, 12) #12개로 제한
-    page = request.GET.get('page') #??
-    reveiw =paginator.get_page(page)
-
     best_review = Review.objects.all().order_by('-like')
     best_review_dict = {}
+
+    # 필터
+    if petkind == 'dog':
+        recipe = recipe.filter(animal='강아지')
+    elif petkind == 'cat':
+        recipe = recipe.filter(animal='고양이')
+    elif petkind == 'etc':
+        recipe = recipe.exclude(animal='강아지').exclude(animal='고양이')
+    else:
+        pass
+
+    if cooking_time == 'under5':
+        recipe = recipe.filter(cooking_time='5분 이내')
+    elif cooking_time == 'fiveTo10':
+        recipe = recipe.filter(cooking_time='5분 - 10분')
+    elif cooking_time == 'tenTo20':
+        recipe = recipe.filter(cooking_time='10분 - 20분')
+    elif cooking_time == 'over20':
+        recipe = recipe.filter(cooking_time='20분 이상')
+    else:
+        pass
+
+    review = Review.objects.filter(recipe__in=recipe)
+
+    # 검색
+    if q:
+        review = review.filter(title__icontains=q)
+    else:
+        pass
+
+    # 순서
+    if order == 'recent':
+        review = review.order_by('-created')
+    else:
+        review = review.order_by('-like', '-created')
 
     for i in range(0, 4):
         temp = best_review[i]
         for j in range(0, img.__len__()):
             if img[j].review == temp:
                 img_obj = img[j]
-        best_review_dict[temp] = img_obj.image.url
+                best_review_dict[temp] = img_obj.image.url
 
     for i in range(0, review.__len__()):
         tmp = review[i]
         for j in range(0, img.__len__()):
             if img[j].review == tmp:
                 img_obj = img[j]
-        review_dict[review[i]] = img_obj.image.url
-
-    return render(request, "review/review_list.html",{"review_dict":review_dict, "best_review_dict":best_review_dict})
+                review_dict[review[i]] = img_obj.image.url
+    reviews = tuple(review_dict.items())
+    paginator = Paginator(reviews, 12)
+    reviews =paginator.get_page(page)
+    context = {"reviews":reviews, "best_review_dict":best_review_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
+    return render(request, "review/review_list.html", context)
 
 def create(request, recipe_id):
     if request.method == 'POST':
