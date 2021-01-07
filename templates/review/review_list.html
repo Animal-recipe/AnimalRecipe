@@ -96,8 +96,12 @@
                             <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"></p>
                             <p class="recipe_id">{{ item.author.nickname }}</p>
                         </div>
-                        <div style="margin-top:29px; float: right; margin-right:3%; width:30%;">
-                            <p class="star" style="word-break : break-all; white-space: nowrap; overflow:hidden;"> ★   {{ item.star }}.0</p>
+                        <div style="margin-top:12px;">
+                            <p class="recipe_animal" style="background: #FF8B00;">{{ item.recipe.animal }}</p>
+                            <p class="recipe_time">{{ item.recipe.cooking_time }}</p>
+                        </div>
+                        <div style="margin-top:12px; float: right; width:30%;">
+                            <p class="star" style="height: 20px; line-height: 20px; text-align:center; color: #FFFFFF; background: #1B1B1B; border-radius: 12.8413px; word-break : break-all; white-space: nowrap; overflow:hidden;"> ★   {{ item.star }}.0</p>
                         </div>
                     </div>
                 </div>

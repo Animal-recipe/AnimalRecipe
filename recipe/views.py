@@ -202,10 +202,10 @@ class Recipe_Save(LoginRequiredMixin, View):
                 recipe_id = kwargs['recipe_id']
                 recipe = Recipe.objects.get(pk=recipe_id)
                 user = request.user
-                if user in recipe.save_count.all():
-                    recipe.save_count.remove(user)
+                if user in recipe.bookmark.all():
+                    recipe.bookmark.remove(user)
                 else:
-                    recipe.save_count.add(user)
+                    recipe.bookmark.add(user)
 
             referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
             path = urlparse(referer_url).path

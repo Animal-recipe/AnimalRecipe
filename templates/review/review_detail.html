@@ -67,7 +67,7 @@
             <p id="cook_level" >{{ review.recipe.level }}</p>
         </div>
 
-        <div id="summary" style="word-break: break-all; width:70%; height:30%;">"{{ review.content }} "</div>
+        <pre id="summary" style="word-break: break-all; width:70%; height:30%;">"{{ review.content }} "</pre>
     </div>
 
     <div class="goto_recipe" style=" cursor: pointer; margin-left:219px; margin-top:73px; margin-bottom:25px;" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=review.recipe.id %}'">

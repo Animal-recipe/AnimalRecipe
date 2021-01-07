@@ -101,7 +101,6 @@ def question_list(request):
     pageObject = paginator.get_page(page)
     return render(request, "question/listQuestion.html", {"questions":pageObject})
 
-@login_required
 def question_detail(request, question_id):
     question = Question.objects.get(pk=question_id)
     answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
