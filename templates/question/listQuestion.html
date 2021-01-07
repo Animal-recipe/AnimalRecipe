@@ -10,18 +10,31 @@
     {% include 'nav.html' %}
 </div>
 <div class="questionListBox">
-    <form class="searchBarBox" action="{% url 'question:search' %}" method="POST">
+    <form class="searchBarBox" action="{% url 'question:list' %}" method="GET">
         {% csrf_token %}
-        <input class="searchBar" placeholder="질문을 검색해 보세요!" name="q" value="{{q}}">
-        <button type="submit" class=""><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
+        <input class="searchBar q" placeholder="질문을 검색해 보세요!" id="q" name="q" value="{{q|default_if_none:''}}">
+        <button type="submit" id="searchBtn"><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
                 height="23.32px"></button>
+        <input type="hidden" id="page" name="page" value="{{ page }}">
     </form>
     <div style="display:flex;justify-content:flex-end;">
         <a href="{% url 'question:create_question' %}" class="questionCreateBtn"><span>질문하기</span><img
                 src="{% static 'img/question/createButton.png' %}"></a>
     </div>
     <!-- list content start -->
-    {% if questions %}
+    {% if not questions %}
+    {% if q %}
+    <div class="noResultBox">
+        <img src="{% static 'img/question/error.png' %}">
+        <h2 class="noResultText" style="padding-top:24px;">검색결과가 없습니다.</h2>
+        <h2 class="noResultText">다른 검색어로 검색해 보세요!</h2>
+    </div>
+    {% else %}
+    <div style="height: 500px;display:flex; justify-content:center;align-items:center;">
+        <h2 style="font-family: Noto Sans;font-weight: 700;color: #686868;">아직 질문이 없습니다.</h2>
+    </div>
+    {% endif %}
+    {% else %}
     <div>
         <ul>
             <li class="listHead">
@@ -58,7 +71,9 @@
             {% else %}
             <ul class="listRow">
                 <div class="nullCell cellBox" style="height: 70px;"></div>
-                <div class="idCell cellBox" style="height: 70px;"><span>{{ question.id }}</span></div>
+                <div class="idCell cellBox" style="height: 70px;">
+                    <span>{{ questions.paginator.count|sub:questions.start_index|sub:forloop.counter0|add:1 }}</span>
+                </div>
                 <div class="titleCell cellBox" style="height: 70px;">
                     <p class="qTitle">
                         <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
@@ -87,8 +102,9 @@
     <ul class="pagination justify-content-center" style="margin:150px 0 270px;">
         {% if questions.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ questions.previous_page_number }}"><img
-                    src="{% static 'img/question/previousButton.png' %}"></a>
+            <a class="page-link" data-page="{{ questions.previous_page_number }}" href="#">
+                <img src="{% static 'img/question/previousButton.png' %}">
+            </a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -100,19 +116,19 @@
         {% if page_number >= questions.number|add:-2 and page_number <= questions.number|add:2 %}
         {% if page_number == questions.number %}
         <li class="page-item active" aria-current="page">
-            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
         </li>
         {% endif %}
         {% endif %}
         {% endfor %}
         {% if questions.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ questions.next_page_number }}"><img
-                    src="{% static 'img/question/nextButton.png' %}"></a>
+            <a class="page-link" data-page="{{ questions.next_page_number }}" href="#">
+                <img src="{% static 'img/question/nextButton.png' %}"></a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -122,11 +138,21 @@
         {% endif %}
     </ul>
     <!-- pagination end -->
-    {% else %}
-    <div style="height: 500px;display:flex; justify-content:center;align-items:center;">
-        <h2 style="font-family: Noto Sans;font-weight: 700;color: #686868;">아직 질문이 없습니다.</h2>
-    </div>
     {% endif %}
 </div>
 {% include 'footer.html' %}
+<script type='text/javascript'>
+    $(document).ready(function () {
+        $(".page-link").on('click', function () {
+            $("#page").val($(this).data("page"));
+            $(".searchBarBox").submit();
+        });
+
+        $("#searchBtn").on('click', function () {
+            $("#q").val($(".q").val());
+            $("#page").val(1);
+            $(".searchBarBox").submit();
+        });
+    });
+</script>
 {% endblock %}

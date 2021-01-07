@@ -12,15 +12,16 @@ from urllib.parse import urlparse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
-    review = Review.objects.all()
-    img = Review_Img.objects.all()
-    review_dict={}
-    #recipe를 key로 하고, image url을 value로 하는 맵 생성
-    paginator = Paginator(review, 12) #12개로 제한
-    page = request.GET.get('page') #??
-    reveiw =paginator.get_page(page)
+def review_list(request):
+    q= request.GET.get('q', "")
+    page = request.GET.get('page', 1)
+    petkind = request.GET.get('petkind', 'all')
+    cooking_time = request.GET.get('cooking_time', 'all')
+    order = request.GET.get('order', 'recent')
 
+    img = Review_Img.objects.all()
+    recipe = Recipe.objects.all()
+    review_dict={}
     best_review = Review.objects.all().order_by('-like')
     best_review_dict = {}
 
@@ -36,6 +37,40 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
             else:
                 best_review_dict[temp] = ""
 
+    # 필터
+    if petkind == 'dog':
+        recipe = recipe.filter(animal='강아지')
+    elif petkind == 'cat':
+        recipe = recipe.filter(animal='고양이')
+    elif petkind == 'etc':
+        recipe = recipe.exclude(animal='강아지').exclude(animal='고양이')
+    else:
+        pass
+
+    if cooking_time == 'under5':
+        recipe = recipe.filter(cooking_time='5분 이내')
+    elif cooking_time == 'fiveTo10':
+        recipe = recipe.filter(cooking_time='5분 - 10분')
+    elif cooking_time == 'tenTo20':
+        recipe = recipe.filter(cooking_time='10분 - 20분')
+    elif cooking_time == 'over20':
+        recipe = recipe.filter(cooking_time='20분 이상')
+    else:
+        pass
+
+    review = Review.objects.filter(recipe__in=recipe)
+
+    # 검색
+    if q:
+        review = review.filter(title__icontains=q)
+    else:
+        pass
+
+    # 순서
+    if order == 'recent':
+        review = review.order_by('-created')
+    else:
+        review = review.order_by('-like', '-created')
 
     for i in range(0, review.__len__()):
         tmp = review[i]
@@ -48,7 +83,11 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
         else:
             review_dict[review[i]] = ""
 
-    return render(request, "review/review_list.html",{"review_dict":review_dict, "best_review_dict":best_review_dict})
+    reviews = tuple(review_dict.items())
+    paginator = Paginator(reviews, 12)
+    reviews =paginator.get_page(page)
+    context = {"review_dict":review_dict, "reviews":reviews, "best_review_dict":best_review_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
+    return render(request, "review/review_list.html", context)
 
 @login_required
 def create(request, recipe_id):

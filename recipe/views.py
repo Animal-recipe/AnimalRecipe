@@ -11,7 +11,7 @@ from django.views.generic.base import View
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from urllib.parse import urlparse
-
+from django.db.models import Count
 from review.models import Review, Review_Img
 from contact.models import Message
 from django.contrib.auth.decorators import login_required
@@ -55,16 +55,49 @@ def create(request):
 
 
 def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
-    recipes = Recipe.objects.all()
+    q = request.GET.get('q', "")
+    page = request.GET.get('page', 1)
+    petkind = request.GET.get('petkind', 'all')
+    cooking_time = request.GET.get('cooking_time', 'all')
+    order = request.GET.get('order', 'recent')
     img = Recipe_Img.objects.all()
     recipes_dict={}
-    #recipe를 key로 하고, image url을 value로 하는 맵 생성
-    paginator = Paginator(recipes, 12) #12개로 제한
-    page = request.GET.get('page') #??
-    recipes =paginator.get_page(page)
-
     hot_recipes = Recipe.objects.all().order_by('-like')
     hot_recipes_dict={}
+    
+    # 검색
+    if q:
+        recipes = Recipe.objects.filter(title__icontains=q)
+    else:
+        recipes =Recipe.objects.all()
+    
+    # 필터
+    if petkind == 'dog':
+        recipes = recipes.filter(animal='강아지')
+    elif petkind == 'cat':
+        recipes = recipes.filter(animal='고양이')
+    elif petkind == 'etc':
+        recipes = recipes.exclude(animal='강아지').exclude(animal='고양이')
+    else:
+        pass
+
+    if cooking_time == 'under5':
+        recipes = recipes.filter(cooking_time='5분 이내')
+    elif cooking_time == 'fiveTo10':
+        recipes = recipes.filter(cooking_time='5분 - 10분')
+    elif cooking_time == 'tenTo20':
+        recipes = recipes.filter(cooking_time='10분 - 20분')
+    elif cooking_time == 'over20':
+        recipes = recipes.filter(cooking_time='20분 이상')
+    else:
+        pass
+
+    if order == 'recent':
+        recipes = recipes.order_by('-created')
+    elif order == 'review':
+        recipes = recipes.annotate(num_review=Count('recipe_review')).order_by('-num_review', '-created')
+    else:  # like
+        recipes = recipes.order_by('-like', '-created')
 
     if hot_recipes.__len__() >= 4 :
         for i in range(0,4):
@@ -89,7 +122,11 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
         else:
             recipes_dict[recipes[i]] = ""
 
-    return render(request, "recipe/recipe_list.html",{"recipes_dict":recipes_dict, "hot_recipes_dict":hot_recipes_dict})
+    recipes = tuple(recipes_dict.items())
+    paginator = Paginator(recipes, 12)
+    recipes =paginator.get_page(page)
+    context = {"recipes":recipes, "recipes_dict":recipes_dict, "hot_recipes_dict":hot_recipes_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
+    return render(request, "recipe/recipe_list.html", context)
 
 @login_required
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
