@@ -10,8 +10,7 @@ from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from urllib.parse import urlparse
 
-# Create your views here.
-def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
+def review_list(request):
     q= request.GET.get('q', "")
     page = request.GET.get('page', 1)
     petkind = request.GET.get('petkind', 'all')
@@ -25,11 +24,11 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
 
     # 필터
     if petkind == 'dog':
-        recipe = Recipe.objects.filter(animal='강아지')
+        recipe = recipe.filter(animal='강아지')
     elif petkind == 'cat':
-        recipe = Recipe.objects.filter(animal='고양이')
+        recipe = recipe.filter(animal='고양이')
     elif petkind == 'etc':
-        recipe = Recipe.objects.exclude(animal='강아지').exclude(animal='고양이')
+        recipe = recipe.exclude(animal='강아지').exclude(animal='고양이')
     else:
         pass
 
@@ -71,10 +70,10 @@ def review_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
             if img[j].review == tmp:
                 img_obj = img[j]
                 review_dict[review[i]] = img_obj.image.url
-    review = tuple(review_dict.items())
-    paginator = Paginator(review, 12)
-    review =paginator.get_page(page)
-    context = {"reviews":review, "best_review_dict":best_review_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
+    reviews = tuple(review_dict.items())
+    paginator = Paginator(reviews, 12)
+    reviews =paginator.get_page(page)
+    context = {"reviews":reviews, "best_review_dict":best_review_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
     return render(request, "review/review_list.html", context)
 
 def create(request, recipe_id):
