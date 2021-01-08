@@ -26,7 +26,7 @@ class Recipe(models.Model):
     # 공감
     like = models.ManyToManyField(User, related_name='like_recipe', blank=True)
     # 스크랩 수
-    save_count = models.ManyToManyField(User, related_name='save_recipe', blank=True)
+    bookmark = models.ManyToManyField(User, related_name='save_recipe', blank=True)
     # 조회수
     hits = models.PositiveIntegerField(default=0)
     # 난이도

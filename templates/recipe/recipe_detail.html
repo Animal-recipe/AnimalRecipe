@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_detail.css' %}">
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/question/question.css' %}">
 <script type="text/javascript" src="{% static 'js/recipe/recipe_detail.js' %}"></script>
 
 <div style="padding: 0 145px; width: 100%; height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
 </div>
+{% if user == recipe.author %}
 <div style="height:65px;">
     <div id="box">
         <a onclick = "location.href='{% url 'recipe:edit_recipe' recipe_id=recipe.id %}'" style="color: #FFFFFF; cursor:pointer; ">수정</a>
         <span style="margin:0 10px;">  | </span>
-        <a onclick = "location.href='{% url 'recipe:delete_recipe' recipe_id=recipe.id %}'" style="color: #FFFFFF; cursor:pointer;">삭제</a>
+        <a href="{% url 'recipe:delete_recipe' recipe_id=recipe.id %}" style="color: #FFFFFF; cursor:pointer;" class="confirm-delete" title="Delete" data-toggle="modal" data-target="#confirmModal" id="deleteButton{{question.id}}">삭제</a>
     </div>
 </div>
+{% endif %}
 <div style="margin: 0 auto; width:100%;">
 
     <div style="margin-top:30px; margin-left:219px;">
@@ -27,20 +29,22 @@
                     <img class="img_style" src="{{ img.image.url }}" class="card-img-top" alt="사진">
                 </div>
                 {% endfor %}
+                {% else %}
+                <p class="image" style="text-align: center; padding-top:200px; font-family: Noto Sans; font-weight: bold;">이미지가 없습니다</p>
                 {% endif %}
             </div>
             <div style="width:62px; float:right; margin-right:218px; margin-top:174px;">
                 <a id="like" href="{% url 'recipe:like_recipe' recipe.id %}" style="margin-left:5px;">
                     {% if click_like == 0 %}
-                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
+                    <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
                     {% else %}
-                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
+                    <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
                     {% endif %}
                 </a>
-                <a href="{% url 'recipe:save_recipe' recipe.id %}" style="margin-left:5px;"><img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진"></a>
+                <a href="{% url 'recipe:save_recipe' recipe.id %}" style="margin-left:5px;"><img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진"></a>
                 <div style="float:left; text-align:center;">
                     <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
-                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
+                        <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
                     </button>
                 </div>
 
@@ -62,8 +66,8 @@
             <p id="cook_level">{{ recipe.level }}</p>
         </div>
 
-        <div id="summary">"{{ recipe.summary }} "</div>
-        <div id="show_ingredient">
+        <pre id="summary">"{{ recipe.summary }} "</pre>
+        <div id="show_ingredient" style="margin-right:15px;">
             재료를 준비해 주세요!
         </div>
         <div style="margin-top:75px; margin-left:10px;">
@@ -89,11 +93,11 @@
                     {% if step.image %}
                     <img style="margin-top:20px; width:589px; height:321px; border-radius: 24px;" src="{{ step.image.url }}" >
                     {% endif %}
-                    <p class="content" style="word-break : break-all;">{{ step.content }}</p>
+                    <pre class="content" style="word-break : break-all;">{{ step.content }}</pre>
                 </div>
             {% endfor %}
     </div>
-    <div style=" margin: 0 auto; margin-top:152px;width: 100%; height: 400px;background: #1B1B1B;border-radius: 60px;">
+    <div style=" margin: 0 auto; margin-top:152px;width: 90%; height: 400px;background: #1B1B1B;border-radius: 60px;">
         <div style="padding-top:85px; padding-left:121px; overflow:hidden; float:left;">
             <div style="float:left; text-align:center;">
                 <a href="{% url 'recipe:like_recipe' recipe.id %}">
@@ -129,9 +133,9 @@
             </div>
         </div>
     </div>
-    <div style="margin: 50px auto; overflow:hidden; padding-bottom: 34px;">
-        <p id="review_title" style="float:left; padding-top:15px; margin: 0 44%;">총 {{ count }}개의 <br>후기가 있어요!</p>
-        <div id="create_review_css" style="float:right; margin-right:221px;">
+    <div style="margin: 50px auto; width:100%; overflow:hidden; padding-bottom: 34px;">
+        <p id="review_title" style="float:left; padding-top:15px; margin: 0 44%; margin-top: 20px;">총 {{ count }}개의 <br>후기가 있어요!</p>
+        <div id="create_review_css" style=" width: 15%; float:right; margin-right:10%;">
             <a href="{% url 'review:create_review' recipe_id=recipe.id %}" style="color: #FFFFFF;">후기 작성하기</a>
             <img style="margin-left:15px;" src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/>
         </div>
@@ -157,4 +161,34 @@
         </div>
 </div>
 
+<div id="confirmModal" class="modal fade modal-center" style="" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-center" role="document" style="height:314px;">
+        <div class="modal-content modal-center" style="width:100%; height:100%; text-align:center;">
+            <div class="modal-body modal-center">
+                <p></p>
+                <div style="text-align:center;">
+                    <button data-dismiss="modal" id="confirmButtonModal" class="submitButton"
+                        style="display:block; width:179px;height:55px;border-radius: 18px; float:left;">삭제</button>
+                    <button type="button" class="cancelButton" data-dismiss="modal"
+                        style="display:block; float:left; min-width:179px;height:55px;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);border-radius: 18px;">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).on('click', '.confirm-delete', function () {
+    $("#confirmModal").attr("caller-id", $(this).attr("id"));
+    $("#confirmModal").find(".submitButton").css({"background": "#FF5C00", "box-shadow": "6px 6px 30px rgba(0, 0, 0, 0.1)"});
+    $("#confirmModal").find("p").text("정말 삭제 하시겠어요?");
+    $("#confirmModal").find(".submitButton").text("삭제");
+    });
+    $(document).on('click', '#confirmButtonModal', function () {
+    var caller = $("#confirmButtonModal").closest(".modal").attr("caller-id");
+    window.location = $("#".concat(caller)).attr("href");
+    });
+});
+</script>
 {% endblock %}

@@ -14,7 +14,10 @@ from urllib.parse import urlparse
 from django.db.models import Count
 from review.models import Review, Review_Img
 from contact.models import Message
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
+@login_required
 def create(request):
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES)
@@ -49,7 +52,6 @@ def create(request):
         'ingredient_formset': ingredient_formset,
         'step_formset': step_formset,
     })
-
 
 
 def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다\
@@ -97,25 +99,38 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     else:  # like
         recipes = recipes.order_by('-like', '-created')
 
-    for i in range(0,4):
-        temp = hot_recipes[i]
-        for j in range(0, img.__len__()):
-            if img[j].recipe == temp:
-                img_obj = img[j]
+    if hot_recipes.__len__() >= 4 :
+        for i in range(0,4):
+            temp = hot_recipes[i]
+            img_obj = ""
+            for j in range(0, img.__len__()):
+                if img[j].recipe == temp:
+                    img_obj = img[j]
+                    break
+            if img_obj != "":
                 hot_recipes_dict[temp] = img_obj.image.url
+            else:
+                hot_recipes_dict[temp] = ""
 
     for i in range(0, recipes.__len__()):
         tmp = recipes[i]
+        img_obj = ""
         for j in range(0, img.__len__()):
             if img[j].recipe == tmp:
                 img_obj = img[j]
-                recipes_dict[recipes[i]] = img_obj.image.url
+                break
+        if img_obj != "":
+            recipes_dict[recipes[i]] = img_obj.image.url
+        else:
+            recipes_dict[recipes[i]] = ""
+
     recipes = tuple(recipes_dict.items())
     paginator = Paginator(recipes, 12)
-    recipes =paginator.get_page(page)
-    context = {"recipes_dict":recipes, "hot_recipes_dict":hot_recipes_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
+    recipes = paginator.get_page(page)
+    context = {"recipes": recipes, "hot_recipes_dict": hot_recipes_dict, 'page':page, 'q': q, 'petkind': petkind, 'cooking_time': cooking_time, 'order': order}
     return render(request, "recipe/recipe_list.html", context)
 
+@login_required
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipe = Recipe.objects.get(pk=recipe_id)
     img_list = Recipe_Img.objects.filter(recipe=recipe)
@@ -155,6 +170,7 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     return render(request, "recipe/recipe_detail.html",
                   {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count, "click_like":click_like})
 
+@login_required
 def delete(request, recipe_id):
     recipe = Recipe.objects.get(pk=recipe_id)
     if recipe.author_id != request.user.id:
@@ -162,6 +178,7 @@ def delete(request, recipe_id):
     recipe.delete()
     return redirect('/recipe/list')
 
+@login_required
 def edit(request, recipe_id):
     now_recipe = Recipe.objects.get(pk=recipe_id)
     if now_recipe.author_id != request.user.id:
@@ -197,7 +214,7 @@ def edit(request, recipe_id):
         'now_recipe': now_recipe,
     })
 
-class Recipe_Like(View):
+class Recipe_Like(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
             return HttpResponseForbidden()  # 아무일도 일어나지 않는다
@@ -215,7 +232,7 @@ class Recipe_Like(View):
             path = urlparse(referer_url).path
             return HttpResponseRedirect(path)
 
-class Recipe_Save(View):
+class Recipe_Save(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
             return HttpResponseForbidden()  # 아무일도 일어나지 않는다
@@ -224,10 +241,10 @@ class Recipe_Save(View):
                 recipe_id = kwargs['recipe_id']
                 recipe = Recipe.objects.get(pk=recipe_id)
                 user = request.user
-                if user in recipe.save_count.all():
-                    recipe.save_count.remove(user)
+                if user in recipe.bookmark.all():
+                    recipe.bookmark.remove(user)
                 else:
-                    recipe.save_count.add(user)
+                    recipe.bookmark.add(user)
 
             referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
             path = urlparse(referer_url).path

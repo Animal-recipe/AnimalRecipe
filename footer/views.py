@@ -3,8 +3,8 @@ from .models import AD, Service_center, Report_problem
 from .forms import ADForm, Service_center_Form, Report_problem_Form
 from django.shortcuts import redirect
 from account.models import User
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 def create_AD(request):
     if request.method == 'POST':
         AD_form = ADForm(request.POST, request.FILES)
@@ -33,6 +33,7 @@ def create_Service_center(request):
         Service_form = Service_center_Form()
     return render(request, '../templates/footer/Service_center.html')
 
+@login_required
 def create_Report_problem(request, user_id):
     if request.method == 'POST':
         Report_form = Report_problem_Form(request.POST, request.FILES)
