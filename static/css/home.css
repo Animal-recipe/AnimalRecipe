@@ -223,13 +223,14 @@
     -webkit-box-shadow: 0 0 9px 5px rgb(0, 0, 0);
     box-shadow: 0 0 9px 5px rgb(0, 0, 0);
     position: relative;
+    margin: 0 44px;
 }
 
 #textBox {
     position: absolute;
     width: 603px;
     height: 578px;
-    left: 800px;
+    left: 770px;
     top: 100px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 78px;
