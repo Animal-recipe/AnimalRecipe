@@ -33,10 +33,15 @@ def myRecipe(request):
     recipes_dict={}
     for i in range(0, myRecipes.__len__()):
         tmp = myRecipes[i]
+        img_obj = ""
         for j in range(0, img.__len__()):
             if img[j].recipe == tmp:
                 img_obj = img[j]
-                recipes_dict[myRecipes[i]] = img_obj.image.url
+                break
+        if img_obj != "":
+            recipes_dict[myRecipes[i]] = img_obj.image.url
+        else:
+            recipes_dict[myRecipes[i]] = ""
     recipes = tuple(recipes_dict.items())
     page = request.GET.get('page', 1)
     paginator = Paginator(recipes, 12)
@@ -59,10 +64,15 @@ def saveRecipe(request):
     recipes_dict={}
     for i in range(0, saveRecipes.__len__()):
         tmp = saveRecipes[i]
+        img_obj = ""
         for j in range(0, img.__len__()):
             if img[j].recipe == tmp:
                 img_obj = img[j]
-                recipes_dict[saveRecipes[i]] = img_obj.image.url
+                break
+        if img_obj != "":
+            recipes_dict[saveRecipes[i]] = img_obj.image.url
+        else:
+            recipes_dict[saveRecipes[i]] = ""
     recipes = tuple(recipes_dict.items())
     page = request.GET.get('page', 1)
     paginator = Paginator(recipes, 12)
@@ -80,10 +90,15 @@ def myReview(request):
     review_dict={}
     for i in range(0, myReviews.__len__()):
         tmp = myReviews[i]
+        img_obj = ""
         for j in range(0, img.__len__()):
             if img[j].review == tmp:
                 img_obj = img[j]
-                review_dict[myReviews[i]] = img_obj.image.url
+                break
+        if img_obj != "":
+            review_dict[myReviews[i]] = img_obj.image.url
+        else:
+            review_dict[myReviews[i]] = ""
     reviews = tuple(review_dict.items())
     page = request.GET.get('page', 1)
     paginator = Paginator(reviews, 12)
