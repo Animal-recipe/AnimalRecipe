@@ -1,6 +1,6 @@
-#box{
-    float:right;
-    margin-right:145px;
+#box {
+    float: right;
+    margin-right: 145px;
     width: 10%;
     height: 50px;
     background: #A9A9A9;
@@ -14,7 +14,7 @@
     color: #FFFFFF;
 }
 
-.img_style{
+.img_style {
     width: 700px;
     height: 426px;
     background: #FFFFFF;
@@ -32,7 +32,7 @@
     color: #575757;
 }
 
-#save{
+#save {
     text-align: center;
     height: 14px;
     font-family: Noto Sans;
@@ -42,7 +42,7 @@
     color: #575757;
 }
 
-#message{
+#message {
     text-align: center;
     height: 14px;
     font-family: Noto Sans;
@@ -52,28 +52,28 @@
     color: #575757;
 }
 
-#title{
+#title {
     height: 41px;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 25px;
     line-height: 41px;
     color: #000000;
-    word-break : break-all;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.user_img{
+.user_img {
     width: 21px;
-    float:left;
-    margin-right:7px;
+    float: left;
+    margin-right: 7px;
     height: 21px;
-    border-radius:100px;
+    border-radius: 100px;
 }
 
-.user_info{
-    float:left;
+.user_info {
+    float: left;
     height: 22px;
     font-family: Noto Sans;
     font-weight: 500;
@@ -82,8 +82,8 @@
     color: #686868;
 }
 
-.count{
-    float:left;
+.count {
+    float: left;
     width: 99px;
     height: 20px;
     background: #FFFFFF;
@@ -94,12 +94,13 @@
     font-size: 12px;
     line-height: 20px;
     text-align: center;
-    color: #686868; margin-left: 12px;
+    color: #686868;
+    margin-left: 12px;
 }
 
-#animal{
+#animal {
     width: 95px;
-    float:left;
+    float: left;
     height: 39.6px;
     background: #FF8B00;
     border-radius: 14px;
@@ -111,10 +112,10 @@
     color: #FFFFFF;
 }
 
-#cook_time{
+#cook_time {
     width: 130px;
-    float:left;
-    margin-left:11px;
+    float: left;
+    margin-left: 11px;
     height: 39.6px;
     background: #9832FF;
     border-radius: 14px;
@@ -126,10 +127,10 @@
     color: #FFFFFF;
 }
 
-#cook_level{
+#cook_level {
     width: 64px;
-    float:left;
-    margin-left:11px;
+    float: left;
+    margin-left: 11px;
     height: 39.6px;
     background: #A2A2A2;
     border-radius: 14px;
@@ -141,8 +142,8 @@
     color: #FFFFFF;
 }
 
-#summary{
-    margin-top:85.4px;
+#summary {
+    margin-top: 85.4px;
     width: 70%;
     font-family: Noto Sans;
     font-weight: 600;
@@ -151,8 +152,8 @@
     color: #575757;
 }
 
-#show_ingredient{
-    margin-top:133px;
+#show_ingredient {
+    margin-top: 133px;
     width: 250px;
     height: 62px;
     background: #3C3C3C;
@@ -162,13 +163,13 @@
     font-weight: 600;
     font-size: 20px;
     line-height: 62px;
-    text-align:center;
+    text-align: center;
     color: #FFFFFF;
 }
 
-.ingredient{
-    float:left;
-    width:40%;
+.ingredient {
+    float: left;
+    width: 40%;
     height: 25px;
     font-family: Noto Sans;
     font-weight: 600;
@@ -177,19 +178,19 @@
     color: #575757;
 }
 
-.amount{
+.amount {
     height: 25px;
-    width:30%;
+    width: 30%;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
     color: #575757;
-    float:left;
+    float: left;
 }
 
-#follow{
-    margin-top:133px;
+#follow {
+    margin-top: 133px;
     width: 250px;
     height: 62px;
     background: #3C3C3C;
@@ -199,35 +200,35 @@
     font-weight: 600;
     font-size: 20px;
     line-height: 62px;
-    text-align:center;
+    text-align: center;
     color: #FFFFFF;
 }
 
-.step{
-        width: 90px;
-        height: 39px;
-        background: #FF6B00;
-        border-radius: 22px;
-        font-family: Noto Sans;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 39px;
-        text-align:center;
-        color: #FFFFFF;
+.step {
+    width: 90px;
+    height: 39px;
+    background: #FF6B00;
+    border-radius: 22px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 39px;
+    text-align: center;
+    color: #FFFFFF;
 
 }
 
-.content{
-        margin-top:40px;
-        width: 70%;
-        font-family: Noto Sans;
-        font-weight: 600;
-        font-size: 18px;
-        line-height: 25px;
-        color: #000000;
+.content {
+    margin-top: 40px;
+    width: 70%;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000000;
 }
 
-.white_font{
+.white_font {
     height: 18px;
     font-family: Noto Sans;
     font-weight: 600;
@@ -236,7 +237,7 @@
     color: #EAEAEA;
 }
 
-#white_title{
+#white_title {
     height: 41px;
     font-family: Noto Sans;
     font-weight: 600;
@@ -244,7 +245,8 @@
     line-height: 41px;
     color: #FFFFFF;
 }
-#review_title{
+
+#review_title {
     width: 190px;
     height: 95px;
     background: #FFFFFF;
@@ -257,7 +259,8 @@
     text-align: center;
     color: #000000;
 }
-#create_review_css{
+
+#create_review_css {
     width: 202px;
     height: 53px;
     background: #1B1B1B;
@@ -271,7 +274,8 @@
     color: #FFFFFF;
     margin: 20px;
 }
-.star{
+
+.star {
     width: 58px;
     height: 23px;
     background: #1B1B1B;
@@ -280,11 +284,11 @@
     font-weight: 600;
     font-size: 12px;
     line-height: 23px;
-    text-align:center;
+    text-align: center;
     color: #FFFFFF;
 }
 
-#report{
+#report {
     height: 18px;
     font-family: Noto Sans;
     font-weight: 500;
@@ -294,24 +298,25 @@
     text-decoration: underline;
 }
 
-.modal-dialog{
+.modal-dialog {
     width: 817px;
     height: 644px;
 }
 
-.modal-content{
+.modal-content {
     width: 817px;
     height: 644px;
     background: #FFFFFF;
     box-shadow: 20px 20px 80px rgba(0, 0, 0, 0.1);
     border-radius: 78px;
 }
-.modal-dialog2{
+
+.modal-dialog2 {
     width: 515px;
     height: 356px;
 }
 
-.modal-content2{
+.modal-content2 {
     width: 515px;
     height: 356px;
     background: #FFFFFF;
@@ -320,45 +325,45 @@
 }
 
 .modal.modal-center {
-  text-align: center;
+    text-align: center;
 }
 
 @media screen and (min-width: 768px) {
-  .modal.modal-center:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-  }
+    .modal.modal-center:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
 }
 
 .modal-dialog.modal-center {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
 }
 
 .modal-dialog2.modal-center {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
 }
 
-.header_font{
+.header_font {
     height: 44px;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 36px;
     color: #575757;
     width: 50%;
-    word-break : break-all;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
-    float:left;
+    float: left;
     margin-top: 20px;
 }
 
-.button1{
+.button1 {
     width: 13%;
     height: 53px;
     background: #FF5C00;
@@ -370,12 +375,12 @@
     line-height: 53px;
     text-align: center;
     color: #FFFFFF;
-    word-break : break-all;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.modal_font1{
+.modal_font1 {
     height: 23px;
     width: 10%;
     font-family: Noto Sans;
@@ -383,12 +388,12 @@
     font-size: 18px;
     line-height: 23%;
     color: #666666;
-    word-break : break-all;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.modal_font2{
+.modal_font2 {
     height: 18px;
     font-family: Noto Sans;
     font-weight: 500;
@@ -397,7 +402,7 @@
     color: #A3A3A3;
 }
 
-.modal_font3{
+.modal_font3 {
     height: 13px;
     font-family: Noto Sans;
     font-weight: 500;
@@ -406,9 +411,9 @@
     color: #A3A3A3;
 }
 
-.write_mail{
-    padding:10px;
-    border:0px;
+.write_mail {
+    padding: 10px;
+    border: 0px;
     width: 665px;
     height: 304px;
     font-family: Noto Sans;
@@ -418,18 +423,18 @@
     color: #575757;
 }
 
-button{
-    background-color:white;
+button {
+    background-color: white;
     border: 0px;
-    outline:0px;
+    outline: 0px;
 }
 
-button:focus{
+button:focus {
     border: none;
     outline: none;
 }
 
-.summary{
+.summary {
     width: 40%;
     height: 23px;
     font-family: Noto Sans;
@@ -437,12 +442,12 @@ button:focus{
     font-size: 18px;
     line-height: 23px;
     color: #000000;
-    word-break : break-all;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.nickname{
+.nickname {
     width: 20%;
     height: 23px;
     font-family: Noto Sans;
@@ -450,12 +455,12 @@ button:focus{
     font-size: 14px;
     line-height: 23px;
     color: #666666;
-    word-break : break-all;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.time{
+.time {
     width: 20%;
     height: 23px;
     font-family: Noto Sans;
@@ -463,12 +468,12 @@ button:focus{
     font-size: 14px;
     line-height: 23px;
     color: #666666;
-    word-break : break-all;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.send_at{
+.send_at {
     font-family: Noto Sans;
     font-weight: 500;
     font-size: 14px;
@@ -476,40 +481,40 @@ button:focus{
     margin: 10px;
 }
 
-.summary_list{
+.summary_list {
     width: 100%;
-    cursor:pointer;
-    overflow:hidden;
+    cursor: pointer;
+    overflow: hidden;
     height: 50px;
-    margin-top:10px;
+    margin-top: 10px;
     line-height: 50px;
-    padding:15px;
-    padding-left:50px;
+    padding: 15px;
+    padding-left: 50px;
     background: #FFFFFF;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
 }
 
-.summary_list2{
+.summary_list2 {
     width: 100%;
-    cursor:pointer;
-    margin-top:10px;
-    padding:15px 0;
-    padding-left:30px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 15px 0;
+    padding-left: 30px;
     line-height: 30px;
     background: #FFFFFF;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
 }
 
-.delete_img{
+.delete_img {
     width: 23px;
     display: block;
-    float:left;
-    height:23px;
+    float: left;
+    height: 23px;
     margin-left: 2%;
-    cursor:pointer;
-    word-break : break-all;
+    cursor: pointer;
+    word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
 }

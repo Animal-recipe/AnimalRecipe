@@ -48,7 +48,11 @@
         <div style="overflow:auto; width:100%;">
             {% for item, image in recipes_dict.items %}
             <div class="recipe_size" onclick="location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'">
+                {% if image %}
                 <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                {% else %}
+                <p class="recipe_img noImage">이미지가 없습니다</p>
+                {% endif %}
                 <div style="padding: 0 22px;">
                     <p class="recipe_title">{{ item.title_limit }}</p>
                     <div>
@@ -78,18 +82,25 @@
         {% else %}
         <div style="overflow:auto; width:100%;">
             {% for item, image in reviews_dict.items %}
-            <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.id %}'">
-                <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+            <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'" >
+                {% if image %}
+                    <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                {% else %}
+                    <p class="recipe_img noImage">이미지가 없습니다</p>
+                {% endif %}
                 <div style="padding: 0 22px;">
                     <p class="recipe_title">"{{ item.title_limit }}"</p>
                     <div>
-                        <p
-                            style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;">
-                            <img class="user_img" src="{{ item.author.profile.url }}"></p>
+                        <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"></p>
                         <p class="recipe_id">{{ item.author.nickname }}</p>
                     </div>
-                    <div style="margin-top:29px; float: right; margin-right:40px;">
-                        <p class="star"> ★ {{ item.star }}.0</p>
+                    <div style="margin-top:24px;">
+                        <p class="recipe_animal" style="background: #FF8B00;">{{ item.recipe.animal }}</p>
+                        <p class="recipe_time">{{ item.recipe.cooking_time }}</p>
+                    </div>
+                    <div style="margin-top:56px;">
+                        <p class="recipe_about">{{ item.recipe.title }}</p>
+                        <p class="review_star">★{{ item.star }}.0</p>
                     </div>
                 </div>
             </div>

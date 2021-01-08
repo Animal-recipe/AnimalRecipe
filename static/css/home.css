@@ -27,6 +27,7 @@
     top: 179.88px;
     transform: rotate(-4.99deg);
 }
+
 .rabbitShadow {
     position: absolute;
     width: 175px;
@@ -42,6 +43,7 @@
     top: 639.31px;
     transform: rotate(-2.64deg);
 }
+
 .catShadow {
     position: absolute;
     width: 216px;
@@ -302,7 +304,7 @@
 
 #aboutBtn:hover {
     color: #cea73c;
-    border: 1px solid #cea73c;
+    border: 1px solid #cea73c !important;
 }
 
 #homeUnderBox {

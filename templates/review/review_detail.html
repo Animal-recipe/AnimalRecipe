@@ -29,7 +29,7 @@
                 </div>
                 {% endfor %}
                 {% else %}
-                <p class="image" style="text-align: center; padding-top:200px; font-family: Noto Sans; font-weight: bold;">이미지가 없습니다</p>
+                <p class="image noImage" style="height:426px;text-align:center;padding-top:200px;">이미지가 없습니다</p>
                 {% endif %}
             </div>
             <div style="width:62px; float:right; margin-right:218px; margin-top:174px;">
@@ -67,7 +67,7 @@
             <p id="cook_level" >{{ review.recipe.level }}</p>
         </div>
 
-        <pre id="summary" style="word-break: break-all; width:70%; height:30%;">"{{ review.content }} "</pre>
+        <pre id="summary" style="word-break: break-all; width:70%; height:30%;">" {{ review.content }} "</pre>
     </div>
 
     <div class="goto_recipe" style=" cursor: pointer; margin-left:219px; margin-top:73px; margin-bottom:25px;" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=review.recipe.id %}'">

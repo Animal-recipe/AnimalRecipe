@@ -155,6 +155,7 @@ a:active {
 .selectBox {
     display: inline-block;
     width: 30%;
+    margin-top: 52px;
     min-width: 150px;
     height: 53px;
     padding: 18.5px 30px;
@@ -238,7 +239,8 @@ option span {
     margin-right: 20px;
     margin-bottom: 100px;
     width: 23%;
-    height: 408px;
+    min-width: 166.7px;
+    height: 432px;
     background: #FFFFFF;
     box-shadow: 26px 20px 35px rgba(0, 0, 0, 0.1);
     border-radius: 27px;
@@ -249,10 +251,19 @@ option span {
     height: 251px;
     border-radius: 27px 27px 0px 0px;
 }
-
+.noImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Noto Sans;
+    font-weight: bold;
+    background-color:#cfcfcf;
+}
 .recipe_title {
-    margin-top: 24px;
     width: 100%;
+    float:left;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: Roboto;
     font-weight: 900;
     font-size: 1.6rm;
@@ -261,6 +272,7 @@ option span {
     word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
+    margin-top: 29px;
 }
 
 .recipe_id {
@@ -280,9 +292,13 @@ option span {
 }
 
 .recipe_animal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px;
     width: 30%;
     float: left;
-    height: 22px;
+    height: 26px;
     background: #D2D2D2;
     border-radius: 8px;
     font-family: Roboto;
@@ -297,10 +313,14 @@ option span {
 }
 
 .recipe_time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px;
     width: 40%;
     float: left;
     margin-left: 7px;
-    height: 22px;
+    height: 26px;
     background: #D2D2D2;
     border-radius: 8px;
     font-family: Roboto;
@@ -313,7 +333,41 @@ option span {
     white-space: nowrap;
     overflow: hidden;
 }
-
+.recipe_about {
+    width: 38%;
+    white-space: nowrap;
+    height: 26px;
+    background: #E7E7E7;
+    border-radius: 8px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    display: inline-block;
+    padding: 3px 9px;
+    text-align: center;
+    vertical-align: middle;
+    color: #575757;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float:left;
+}
+.review_star {
+    width: 28%;
+    height:auto;
+    min-width: 70px;
+    max-width: 90px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px 3px;
+    color: #FFFFFF;
+    background: #1B1B1B;
+    border-radius: 12.8413px;
+    overflow:hidden;
+    float: right;
+}
 .user_img {
     width: 20px;
     float: left;
