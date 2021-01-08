@@ -4,7 +4,7 @@
 <div class="img_show" style="float: left;">
     <label for="{{widget.attrs.id}}">
         {% if widget.value %}
-            <img id="current_{{widget.attrs.id}}"  src="{{ widget.value.url }}" style="border-radius: 24px; width:350px; height:250px;">
+            <img id="preview_{{widget.attrs.id}}"  src="{{ widget.value.url }}" style="border-radius: 24px; width:350px; height:250px;">
         {% else %}
             <img id="preview_{{ widget.attrs.id }}" src="{% static 'img/recipe/recipe_create/add_img.png' %}" style="border-radius: 24px; width: 350px; height:250px;">
         {% endif %}

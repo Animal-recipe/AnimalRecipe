@@ -11,7 +11,7 @@
             <div id="receive_box" style="padding: 20px 20px;">
                 <div style="overflow:hidden; height: 100px;">
                     <p class="header_font" style="width:50%; float:left; margin-top: 20px;">쪽지함</p>
-                    <button onclick = "location.href='{% url 'contact:contact_create' recipe.author.id %}'" class="button1 send_mail_btn" style="width: 150px; float:right; margin: 15px;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
+                    <button onclick = "location.href='{% url 'contact:contact_create' review.author.id %}'" class="button1 send_mail_btn" style="width: 150px; float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
                 </div>
                 <div style="overflow:hidden; padding-top:10px; height:50px;">
                     <button class="modal_font1 receive" style="width: 15%; float:left; color: #FF5C00; ">받은 쪽지함</button> <p class="modal_font1" style="width: 20px; margin-left:15px; margin-top:10px; float:left;"> | </p>
@@ -43,7 +43,7 @@
             <div id="send_box" style=" padding: 20px 20px; display:none;">
                 <div style="overflow:hidden; height: 100px;">
                     <p class="header_font" style="width: 50%; float:left; margin-top: 20px;">쪽지함</p>
-                    <button onclick = "location.href='{% url 'contact:contact_create' recipe.author.id %}'" class="button1 send_mail_btn" style="width: 150px; float:right; margin: 15px;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
+                    <button onclick = "location.href='{% url 'contact:contact_create' review.author.id %}'" class="button1 send_mail_btn" style="width: 150px; float:right;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
                 </div>
                 <div style="overflow:hidden; padding-top:10px; height:50px;">
                     <button class="modal_font1 receive" style="width:15%; float:left; pointer:cursor;">받은 쪽지함</button> <p class="modal_font1" style="width:20px; margin-left:15px; margin-top:10px; float:left;"> | </p>

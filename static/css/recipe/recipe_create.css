@@ -9,7 +9,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 55px;
-    color: #ABABAB;
+    color: black;
 }
 .input_box2{
     margin-right:30px;
@@ -26,7 +26,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 63px;
-    color: #ABABAB;
+    color: black;
 }
 .input_box3{
     margin-right:30px;
@@ -43,7 +43,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 63px;
-    color: #ABABAB;
+    color: black;
 }
 .input_box4{
     width: 450px;
@@ -58,7 +58,7 @@
     font-size: 16px;
     line-height: 30px;
     margin-bottom:20px;
-    color: #ABABAB;
+    color: black;
 }
 .radio_box{
     height: 55px;
@@ -260,4 +260,24 @@ label[for=id_recipe_ingredient-3-DELETE]{
 
 .file-upload{
     display:none;
+}
+
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #ABABAB;
+}
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ABABAB;
+}
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #ABABAB;
+}
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #ABABAB;
+}
+::-moz-placeholder {
+    opacity: 1;
 }
