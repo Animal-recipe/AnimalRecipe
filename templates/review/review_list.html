@@ -98,7 +98,7 @@
             <h2 class="noResultText">직접 작성해주세요!</h2>
         </div>
         {% else %}
-            {% for item, image in review_dict.items %}
+            {% for item, image in reviews.items %}
                 <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'" >
                     {% if image %}
                         <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">

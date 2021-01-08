@@ -32,6 +32,7 @@ def review_list(request):
             for j in range(0, img.__len__()):
                 if img[j].review == temp:
                     img_obj = img[j]
+                    break
             if img_obj != "":
                 best_review_dict[temp] = img_obj.image.url
             else:
@@ -78,6 +79,7 @@ def review_list(request):
         for j in range(0, img.__len__()):
             if img[j].review == tmp:
                 img_obj = img[j]
+                break
         if img_obj != "":
             review_dict[review[i]] = img_obj.image.url
         else:
@@ -86,7 +88,7 @@ def review_list(request):
     reviews = tuple(review_dict.items())
     paginator = Paginator(reviews, 12)
     reviews =paginator.get_page(page)
-    context = {"review_dict":review_dict, "reviews":reviews, "best_review_dict":best_review_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
+    context = {"reviews": reviews, "best_review_dict": best_review_dict, 'page': page, 'q': q, 'petkind': petkind, 'cooking_time': cooking_time, 'order': order}
     return render(request, "review/review_list.html", context)
 
 @login_required

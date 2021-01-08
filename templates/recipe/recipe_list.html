@@ -97,8 +97,8 @@
 
     <!-- content div -->
     <div style="padding: 0 200px; overflow:auto; width:100%;">
-        {% if recipes_dict %}
-        {% for item, image in recipes_dict.items %}
+        {% if recipes %}
+        {% for item, image in recipes.items %}
         <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'">
             {% if image %}
             <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">

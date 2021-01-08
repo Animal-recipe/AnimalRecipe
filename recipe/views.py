@@ -106,6 +106,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
             for j in range(0, img.__len__()):
                 if img[j].recipe == temp:
                     img_obj = img[j]
+                    break
             if img_obj != "":
                 hot_recipes_dict[temp] = img_obj.image.url
             else:
@@ -117,6 +118,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
         for j in range(0, img.__len__()):
             if img[j].recipe == tmp:
                 img_obj = img[j]
+                break
         if img_obj != "":
             recipes_dict[recipes[i]] = img_obj.image.url
         else:
@@ -124,8 +126,8 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
 
     recipes = tuple(recipes_dict.items())
     paginator = Paginator(recipes, 12)
-    recipes =paginator.get_page(page)
-    context = {"recipes":recipes, "recipes_dict":recipes_dict, "hot_recipes_dict":hot_recipes_dict, 'page':page, 'q':q, 'petkind':petkind, 'cooking_time':cooking_time, 'order':order}
+    recipes = paginator.get_page(page)
+    context = {"recipes": recipes, "hot_recipes_dict": hot_recipes_dict, 'page':page, 'q': q, 'petkind': petkind, 'cooking_time': cooking_time, 'order': order}
     return render(request, "recipe/recipe_list.html", context)
 
 @login_required
