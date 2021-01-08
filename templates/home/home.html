@@ -8,8 +8,11 @@
         <h1 id="mainText">반려동물을 위한<br />요리 레시피를<br />공유해봐요!</h1>
     </div>
     <img id="rabbit" src="{% static 'img/home/home_rabbit.png'%}">
+    <img class="rabbitShadow" src="{% static 'img/home/rabbitShadow.png'%}">
     <img id="cat" src="{% static 'img/home/home_cat.png'%}">
+    <img class="catShadow" src="{% static 'img/home/catShadow.png'%}">
     <img id="dog" src="{% static 'img/home/home_dog.png'%}">
+    <img class="dogShadow" src="{% static 'img/home/dogShadow.png'%}">
     <div>
         <form class="searchBarBox" action="{% url 'home:search' %}" method="POST">
             {% csrf_token %}
@@ -44,8 +47,11 @@
 </div>
 <div id="aboutBox">
     <img id="aboutRabbit" src="{% static 'img/home/home_rabbit.png'%}">
+    <img class="rabbitShadow" style="top:498px;left:324px;width:210px;" src="{% static 'img/home/rabbitShadow.png'%}">
     <img id="aboutCat" src="{% static 'img/home/home_cat.png'%}">
+    <img class="catShadow" style="top:503px;left:143px;" src="{% static 'img/home/catShadow.png'%}">
     <img id="aboutDog" src="{% static 'img/home/home_dog.png'%}">
+    <img class="dogShadow" style="top:517px;left:471px;" src="{% static 'img/home/dogShadow.png'%}">
     <div id="textBox">
         <h3 id="aboutTitle">
             브랜드 스토리를

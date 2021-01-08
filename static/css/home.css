@@ -27,6 +27,13 @@
     top: 179.88px;
     transform: rotate(-4.99deg);
 }
+.rabbitShadow {
+    position: absolute;
+    width: 175px;
+    left: 1051px;
+    top: 388.88px;
+    transform: rotate(1.99deg);
+}
 
 #cat {
     position: absolute;
@@ -35,6 +42,13 @@
     top: 639.31px;
     transform: rotate(-2.64deg);
 }
+.catShadow {
+    position: absolute;
+    width: 216px;
+    left: 1054px;
+    top: 795.31px;
+    transform: rotate(0.99deg);
+}
 
 #dog {
     position: absolute;
@@ -42,6 +56,14 @@
     left: 1280px;
     top: 420.9px;
     transform: rotate(3.27deg);
+}
+
+.dogShadow {
+    position: absolute;
+    width: 197px;
+    left: 1280px;
+    top: 591.9px;
+    transform: rotate(1.99deg);
 }
 
 .searchBar {
@@ -222,8 +244,8 @@
 #aboutRabbit {
     position: absolute;
     width: 175px;
-    left: 320px;
-    top: 123px;
+    left: 330px;
+    top: 176px;
     transform: rotate(-1.99deg);
 }
 
@@ -238,7 +260,7 @@
 #aboutDog {
     position: absolute;
     width: 197.1px;
-    left: 457px;
+    left: 476px;
     top: 376px;
     transform: rotate(2.27deg);
 }
