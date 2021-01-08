@@ -110,18 +110,6 @@ def question_detail(request, question_id):
     answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
     return render(request, "../templates/question/detailQuestion.html", {"question": question, "answers": answers})
 
-def search(request):
-    questions = Question.objects.all()
-    q = request.POST.get('q', "")
-    if q:
-        questions = questions.filter(title__icontains=q, is_active=True)
-        page = request.GET.get('page', 1)
-        paginator = Paginator(questions, 10)
-        pageObject = paginator.get_page(page)
-        return render(request, "question/searchResult.html", {'questions': pageObject, 'q': q})
-    else:
-        return render(request, "question/searchResult.html")
-
 @login_required
 def accept(request, answer_id):
     answerQuery = Answer.objects.filter(pk=answer_id)

@@ -12,7 +12,7 @@
     <img id="cat" src="{% static 'img/home/home_cat.png'%}">
     <img id="dog" src="{% static 'img/home/home_dog.png'%}">
     <div>
-        <form class="searchBarBox" action="{% url 'home:search' %}" method="POST">
+        <form class="searchBarBox" style="width: 500px;" action="{% url 'home:search' %}" method="POST">
             {% csrf_token %}
             <input class="searchBar" placeholder="질문을 검색해 보세요!" name="q" value="{{q}}">
             <button type="submit"><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
