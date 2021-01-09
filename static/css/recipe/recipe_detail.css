@@ -84,7 +84,8 @@
 
 .count {
     float: left;
-    width: 99px;
+    min-width: 99px;
+    width: auto;
     height: 20px;
     background: #FFFFFF;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
@@ -93,7 +94,10 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 11px;
     color: #686868;
     margin-left: 12px;
 }
