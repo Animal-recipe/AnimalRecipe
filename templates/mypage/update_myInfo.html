@@ -24,7 +24,7 @@
                 <input type="email" name="email" class="registerInput" value="{{user.email}}" style="display: none;">
 
                 <div class="formField" {% if form.nickname.errors %} style="border: 2px solid #FF5C00;" {% endif %}>
-                    <input type="text" name="nickname" class="registerInput" placeholder="{{user.nickname}}" required maxlength="20" id="id_nickname">
+                    <input type="text" name="nickname" class="registerInput" placeholder="닉네임(중복 금지)" required maxlength="20" id="id_nickname" value="{{ user.nickname }}">
                 </div>
                 <div class="errorMsg">
                     {% if form.nickname.errors %}
@@ -57,27 +57,27 @@
 
                 <div class="formField" style="margin: 80px 0 33px;">
                     <select required name="petkind" class="registerInput" maxlength="4" id="id_petkind" required>
-                        <option value="" disabled selected hidden>반려동물을 선택해주세요</option>
-                        <option value="DOG">개</option>
-                        <option value="CAT">고양이</option>
-                        <option value="RAB">토끼</option>
-                        <option value="BIRD">새</option>
-                        <option value="FISH">물고기</option>
-                        <option value="HAM">햄스터</option>
-                        <option value="ETC">기타</option>
+                        <option {% if user.petkind == 'DOG' %}selected{% endif %} value="DOG">개</option>
+                        <option {% if user.petkind == 'CAT' %}selected{% endif %} value="CAT">고양이</option>
+                        <option {% if user.petkind == 'RAB' %}selected{% endif %} value="RAB">토끼</option>
+                        <option {% if user.petkind == 'BIRD' %}selected{% endif %} value="BIRD">새</option>
+                        <option {% if user.petkind == 'FISH' %}selected{% endif %} value="FISH">물고기</option>
+                        <option {% if user.petkind == 'HAM' %}selected{% endif %} value="HAM">햄스터</option>
+                        <option {% if user.petkind == 'ETC' %}selected{% endif %} value="ETC">기타</option>
                     </select>
                 </div>
                 <div class="formField">
-                    <input type="text" name="petname" class="registerInput" placeholder="{{ user.petname }}" required="" maxlength="20" id="id_petname">
+                    <input type="text" name="petname" class="registerInput" placeholder="반려동물 이름" required="" maxlength="20" id="id_petname" value="{{ user.petname}}">
                 </div>
             </div>
-            <div class="optionBox">
+            <div class="updateOptionBox" style="margin: 140px 0 270px;">
                 <button class="submitButton" type="submit">수정하기</button>
                 <a class="cancelButton" href="{% url 'mypage:detail_myInfo' %}">취소</a>
             </div>
         </form>
     </div>
 </div>
+{% include 'footer.html' %}
 <script>
 $(document).ready(function(){
     // 이미지 추가
@@ -95,23 +95,6 @@ $(document).ready(function(){
         console.log('change success')
         console.log($("#id_profile"))
     });
-    // 이미지 삭제
-    // function resetInputFile($input, $profileImage) {
-    //     var agent = navigator.userAgent.toLowerCase();
-    //     if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
-    //         // ie
-    //         $input.replaceWith($input.clone(true));
-    //         console.log('reset func execute ie')
-    //         console.log($input)
-    //         $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
-    //     } else {
-    //         //other
-    //         $input.val("");
-    //         console.log('reset func execute not ie')
-    //         console.log($input)
-    //         $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
-    //     }
-    // }
     $(".deleteButton").click(function(event) {
         let $input = $("#id_profile")
         let $profileImage = $("#profileImage")

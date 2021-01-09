@@ -90,7 +90,7 @@
                     <p class="recipe_img noImage">이미지가 없습니다</p>
                 {% endif %}
                 <div style="padding: 0 22px;">
-                    <p class="recipe_title">"{{ item.title_limit }}"</p>
+                    <div style="display: inline-block;"><p class="recipe_title">"{{ item.title_limit }}"</p></div>
                     <div>
                         <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"></p>
                         <p class="recipe_id">{{ item.author.nickname }}</p>
