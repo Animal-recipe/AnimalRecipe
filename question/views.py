@@ -5,6 +5,12 @@ from .models import Question, Answer
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from contact.models import Message
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import View
+from django.http import HttpResponseForbidden
+from django.http import HttpResponseRedirect
+from urllib.parse import urlparse
 
 @login_required
 def question_create(request):
@@ -108,7 +114,10 @@ def question_list(request):
 def question_detail(request, question_id):
     question = Question.objects.get(pk=question_id)
     answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
-    return render(request, "../templates/question/detailQuestion.html", {"question": question, "answers": answers})
+    received_list = Message.objects.filter(recipient=request.user)
+    send_list = Message.objects.filter(sender=request.user)
+
+    return render(request, "../templates/question/detailQuestion.html", {"received_list": received_list, "send_list": send_list, "question": question, "answers": answers})
 
 @login_required
 def accept(request, answer_id):
@@ -124,3 +133,21 @@ def accept(request, answer_id):
         answerQuery.update(accept=True)
         questionQuery.update(accept_done=True)
     return redirect('question:detail', question_id=question.id)
+
+class answer_like(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
+            return HttpResponseForbidden()  # 아무일도 일어나지 않는다
+        else:
+            if 'answer_id' in kwargs:
+                answer_id = kwargs['answer_id']
+                answer = Answer.objects.get(pk=answer_id)
+                user = request.user
+                if user in answer.like.all():
+                    answer.like.remove(user)
+                else:
+                    answer.like.add(user)
+
+            referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
+            path = urlparse(referer_url).path
+            return HttpResponseRedirect(path)

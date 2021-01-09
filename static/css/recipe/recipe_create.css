@@ -281,3 +281,53 @@ label[for=id_recipe_ingredient-3-DELETE]{
 ::-moz-placeholder {
     opacity: 1;
 }
+
+.modal-dialog {
+    width: 817px;
+    height: 644px;
+}
+
+.modal-content {
+    width: 817px;
+    height: 644px;
+    background: #FFFFFF;
+    box-shadow: 20px 20px 80px rgba(0, 0, 0, 0.1);
+    border-radius: 78px;
+}
+
+.modal.modal-center {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .modal.modal-center:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
+}
+
+.modal-dialog.modal-center {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#caution{
+    width: 181px;
+    height: 25px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 25px;
+    color: #FF5C00;
+    margin-left: 5px;
+}
+
+::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+input:focus {outline:none;}
+input {outline:none; border: none;}

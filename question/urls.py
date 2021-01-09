@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import answer_like
 
 app_name = 'question'
 
@@ -15,6 +16,7 @@ urlpatterns = [
     path('accept/answer/<int:answer_id>/', views.accept, name="accept"),
     path('list/', views.question_list, name='list'),
     path('detail/<int:question_id>/', views.question_detail, name='detail'),
+    path('like/<int:answer_id>/', answer_like.as_view(), name='like_answer'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -58,7 +58,7 @@ class RecipeStepForms(forms.ModelForm):
                 attrs={
                     'class': 'input_box4',
                     'placeholder': '예시) 싱싱한 야채들을 준비하고, 깨끗하게 씻어줍니다.',
-                    'maxlength': '180',
+                    'maxlength': '500',
                 }
             ),
         }

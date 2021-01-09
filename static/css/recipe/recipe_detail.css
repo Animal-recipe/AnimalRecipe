@@ -53,15 +53,11 @@
 }
 
 #title {
-    height: 41px;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 25px;
     line-height: 41px;
     color: #000000;
-    word-break: break-all;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
 .user_img {
@@ -517,4 +513,8 @@ button:focus {
     word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
+}
+
+textarea:focus {
+  outline: none;
 }
