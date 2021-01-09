@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from urllib.parse import urlparse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 def review_list(request):
     q= request.GET.get('q', "")
@@ -40,9 +41,9 @@ def review_list(request):
 
     # 필터
     if petkind == 'dog':
-        recipe = recipe.filter(animal='강아지')
+        recipe = recipe.filter(Q(animal='강아지')|Q(animal='모두'))
     elif petkind == 'cat':
-        recipe = recipe.filter(animal='고양이')
+        recipe = recipe.filter(Q(animal='고양이')|Q(animal='모두'))
     elif petkind == 'etc':
         recipe = recipe.exclude(animal='강아지').exclude(animal='고양이')
     else:

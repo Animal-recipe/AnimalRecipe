@@ -25,7 +25,11 @@
 <div style="padding: 86px 200px 0; overflow:auto;">
     {% if reviewList %}
     {% for item in reviewList %}
-    <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.0.id %}'">
+    <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.0.id %}'" style="position: relative;">
+        <a class="deleteToggle" style="display:none;position: absolute;top:-44px;"
+        href="{% url 'mypage:delete_myReview' item.0.id %}">
+        <img width="33px" src="{% static 'img/mypage/deleteMark.png' %}">
+        </a>
         {% if item.1 %}
         <img class="recipe_img" src="{{ item.1 }}" class="card-img-top" alt="사진">
         {% else %}

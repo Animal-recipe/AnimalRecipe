@@ -16,6 +16,7 @@ from review.models import Review, Review_Img
 from contact.models import Message
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 @login_required
 def create(request):
@@ -73,9 +74,9 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     
     # 필터
     if petkind == 'dog':
-        recipes = recipes.filter(animal='강아지')
+        recipes = recipes.filter(Q(animal='강아지')|Q(animal='모두'))
     elif petkind == 'cat':
-        recipes = recipes.filter(animal='고양이')
+        recipes = recipes.filter(Q(animal='고양이')|Q(animal='모두'))
     elif petkind == 'etc':
         recipes = recipes.exclude(animal='강아지').exclude(animal='고양이')
     else:
