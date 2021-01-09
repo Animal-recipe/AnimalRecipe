@@ -22,7 +22,7 @@
     {% else %}
         <div class="qDetailTitle" style="margin-top: 85px;">
     {% endif %}
-            <img src="{% static 'img/question/questionMark.png' %}" width="50px" height="50px">
+            <img src="{% static 'img/question/questionMark.png' %}" width="70px" height="70px">
             <h2>{{ question.title }}</h2>
         </div>
         <div class="qDetailInfo">
@@ -63,7 +63,7 @@
             {% else %}
                 <div class="qDetailTitle" style="margin-top: 85px;">
             {% endif %}
-                    <img src="{% static 'img/question/answerMark.png' %}" width="50px" height="50px">
+                    <img src="{% static 'img/question/answerMark.png' %}" width="70px" height="70px">
                     <h2>{{ answer.author.nickname }} 님의 답변</h2>
                 </div>
                 <div class="qDetailInfo">
@@ -80,7 +80,11 @@
                     <img src="{% static 'img/question/report.png' %}">
                     <a class="report" onclick = "location.href='{% url 'footer:Report' user_id=answer.author %}'">신고하기</a>
                 </div>
+                {% if not user.is_authenticated %}
+                <a onclick="location.href='{% url 'account:login' %}'" style="cursor: pointer;">
+                {% else %}
                 <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
+                {% endif %}
                     <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>
                 </a>
             </div>

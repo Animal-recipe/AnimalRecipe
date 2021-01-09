@@ -35,14 +35,18 @@
             <div style="width:62px; float:right; margin-right:218px; margin-top:174px;">
                 <a href="{% url 'review:like_review' review.id %}" style="margin-left:5px;">
                     {% if click_like == 0 %}
-                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
+                    <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
                     {% else %}
-                    <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
+                    <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
                     {% endif %}
                 </a>
                 <div style="float:left; text-align:center;">
+                    {% if not user.is_authenticated %}
+                    <button type="button" style=" border: 0px; outline:0px;" onclick="location.href='{% url 'account:login' %}'">
+                    {% else %}
                     <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal" data-target=".bs-example-modal-lg">
-                        <img style="width: 61.16px; height: 61.16px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
+                    {% endif %}
+                        <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
                     </button>
                 </div>
                 {% include 'contact\modal2.html' %}

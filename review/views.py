@@ -118,20 +118,24 @@ def create(request, recipe_id):
         'image_formset': image_formset,
     })
 
-@login_required
 def review_detail(request, review_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     review = Review.objects.get(pk=review_id)
     img_list = Review_Img.objects.filter(review=review)
-    received_list = Message.objects.filter(recipient=request.user)
-    send_list = Message.objects.filter(sender=request.user)
-    review.hits = review.hits + 1
-    review.save()
+    if request.user.is_anonymous:
+        received_list = {}
+        send_list = {}
+    else:
+        received_list = Message.objects.filter(recipient=request.user)
+        send_list = Message.objects.filter(sender=request.user)
 
     click_like = 0
-    for temp in review.like.all():
-        if temp == request.user:
-            click_like = 1
-            break
+    if not request.user.is_anonymous:
+        for temp in review.like.all():
+            if temp == request.user:
+                click_like = 1
+                break
+    review.hits = review.hits + 1
+    review.save()
 
     return render(request, "review/review_detail.html",
                   {"review": review, "img_list": img_list, 'received_list':received_list, 'send_list':send_list, 'click_like':click_like})
