@@ -9,8 +9,11 @@
         <h1 id="mainText">반려동물을 위한<br />요리 레시피를<br />공유해봐요!</h1>
     </div>
     <img id="rabbit" src="{% static 'img/home/home_rabbit.png'%}">
+    <img class="rabbitShadow" src="{% static 'img/home/rabbitShadow.png'%}">
     <img id="cat" src="{% static 'img/home/home_cat.png'%}">
+    <img class="catShadow" src="{% static 'img/home/catShadow.png'%}">
     <img id="dog" src="{% static 'img/home/home_dog.png'%}">
+    <img class="dogShadow" src="{% static 'img/home/dogShadow.png'%}">
     <div>
         <form class="searchBarBox" style="width: 500px;" action="{% url 'home:search' %}" method="POST">
             {% csrf_token %}
@@ -32,14 +35,14 @@
         <p id="hotRecipeIntro">
             반려동물을 위해 요리 레시피를 공유해봐요!
         </p>
-        <div>
+        <div style="padding: 0 200px;display:flex;">
             {% if hot_recipes_dict %}
             {% for item, image in hot_recipes_dict.items %}
-                <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'">
+                <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="margin: 0 auto;">
                     {% if image %}
                         <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
                     {% else %}
-                        <p class="recipe_img" style="text-align: center; padding-top:100px; font-family: Noto Sans; font-weight: bold;">이미지가 없습니다</p>
+                        <p class="recipe_img noImage">이미지가 없습니다</p>
                     {% endif %}
                     <div style="padding: 0 22px;">
                         <p class="recipe_title">{{ item.title_limit }}</p>
@@ -61,31 +64,36 @@
     <div class="bestRecipeBox">
         <div id="bestRecipe">
             이번주<br>
-            Best 레시피
+            Best 후기
         </div>
         <p id="bestRecipeIntro">
             후기가 너무 좋은 레시피! 놓치지 말고 만들어봐요.
         </p>
-        <div>
+        <div style="padding:0 200px;display:flex;">
             {% if best_review_dict %}
             {% for item, image in best_review_dict.items %}
-                <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'" >
-                    {% if image %}
-                        <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
-                    {% else %}
-                        <p class="recipe_img" style="text-align: center; padding-top:100px; font-family: Noto Sans; font-weight: bold;">이미지가 없습니다</p>
-                    {% endif %}
-                    <div style="padding: 0 22px;">
-                        <p class="recipe_title">"{{ item.title_limit }}"</p>
-                        <div>
-                            <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"></p>
-                            <p class="recipe_id">{{ item.author.nickname }}</p>
-                        </div>
-                        <div style="margin-top:29px; float: right; margin-right:3%; width:30%;">
-                            <p class="star" style="word-break : break-all; white-space: nowrap; overflow:hidden;"> ★   {{ item.star }}.0</p>
-                        </div>
+            <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'"style="margin: 0 auto;" >
+                {% if image %}
+                    <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                {% else %}
+                    <p class="recipe_img noImage">이미지가 없습니다</p>
+                {% endif %}
+                <div style="padding: 0 22px;">
+                    <p class="recipe_title">"{{ item.title_limit }}"</p>
+                    <div>
+                        <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"></p>
+                        <p class="recipe_id">{{ item.author.nickname }}</p>
+                    </div>
+                    <div style="margin-top:24px;">
+                        <p class="recipe_animal" style="background: #FF8B00;">{{ item.recipe.animal }}</p>
+                        <p class="recipe_time">{{ item.recipe.cooking_time }}</p>
+                    </div>
+                    <div style="margin-top:56px;">
+                        <p class="recipe_about">{{ item.recipe.title }}</p>
+                        <p class="review_star"> ★ {{ item.star }}.0</p>
                     </div>
                 </div>
+            </div>
                 {% endfor %}
             {% else %}
             {% endif %}
@@ -94,8 +102,11 @@
 </div>
 <div id="aboutBox">
     <img id="aboutRabbit" src="{% static 'img/home/home_rabbit.png'%}">
+    <img class="rabbitShadow" style="top:498px;left:324px;width:210px;" src="{% static 'img/home/rabbitShadow.png'%}">
     <img id="aboutCat" src="{% static 'img/home/home_cat.png'%}">
+    <img class="catShadow" style="top:503px;left:143px;" src="{% static 'img/home/catShadow.png'%}">
     <img id="aboutDog" src="{% static 'img/home/home_dog.png'%}">
+    <img class="dogShadow" style="top:517px;left:471px;" src="{% static 'img/home/dogShadow.png'%}">
     <div id="textBox">
         <h3 id="aboutTitle">
             브랜드 스토리를

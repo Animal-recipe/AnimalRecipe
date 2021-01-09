@@ -6,7 +6,11 @@
     {% include 'nav.html' %}
 </div>
 
-<img src="{% static 'img/account/defaultProfile.png' %}" id="successImage">
+<div style="overflow: hidden;min-width: 800px;">
+    <img src="{% static 'img/account/success.png' %}" id="successImage">
+    <h2 class="successText"  style="margin-bottom: 0;"><span style="color:#FF5C00;">회원가입이 완료</span>되었습니다!</h2>
+    <h2 class="successText">환영합니다!</h2>
+</div>
 <img src="{% static 'img/account/cat.png' %}" id="catImage">
 <img src="{% static 'img/account/rabbit.png' %}" id="rabbitImage">
 <img src="{% static 'img/account/dog.png' %}" id="dogImage">

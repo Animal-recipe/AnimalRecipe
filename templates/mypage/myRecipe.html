@@ -34,7 +34,11 @@
             href="{% url 'mypage:delete_myRecipe' item.0.id %}">
             <img width="33px" src="{% static 'img/mypage/deleteMark.png' %}">
         </a>
+        {% if item.1 %}
         <img class="recipe_img" src="{{ item.1 }}" class="card-img-top" alt="사진">
+        {% else %}
+        <p class="recipe_img noImage">이미지가 없습니다</p>
+        {% endif %}
         <div style="padding: 0 22px;">
             <p class="recipe_title">{{ item.0.title_limit }}</p>
             <div>
@@ -102,17 +106,14 @@
 <script>
     $(document).ready(function () {
         $('.showHide').click(function () {
-            console.log('func execute')
             if (document.getElementById("editButton").style.display == "none") {
                 document.getElementById("editButton").style.display = "block";
                 document.getElementById("cancelButton").style.display = "none";
                 $(".deleteToggle").css("display", "none");
-                console.log('cancelButton none')
             } else {
                 document.getElementById("editButton").style.display = "none";
                 document.getElementById("cancelButton").style.display = "block";
                 $(".deleteToggle").css("display", "block");
-                console.log('editButton none')
             }
         });
     });

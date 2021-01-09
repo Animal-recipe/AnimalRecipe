@@ -137,23 +137,27 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     ingredient_list = Recipe_Ingredient.objects.filter(recipe=recipe)
     step_list = Recipe_Step.objects.filter(recipe=recipe)
 
-    review = Review.objects.all()
+    reviews = Review.objects.filter(recipe=recipe_id)
     review_img = Review_Img.objects.all()
     review_dict = {}
-    # review를 key로 하고, image url을 value로 하는 맵 생성
-    paginator = Paginator(review, 12)  # 12개로 제한
-    page = request.GET.get('page')  # ??
-    review = paginator.get_page(page)
     count = 0
-    for i in range(0, review.__len__()):
-        tmp = review[i]
-        if tmp.recipe == recipe:
-            count = count + 1
-            for j in range(0, review_img.__len__()):
-                if review_img[j].review == tmp:
-                    img_obj = review_img[j]
-                    review_dict[review[i]] = img_obj.image.url
-                    break
+    
+    for i in range(0, reviews.__len__()):
+        tmp = reviews[i]
+        count = count + 1
+        img_obj = ""
+        for j in range(0, review_img.__len__()):
+            if review_img[j].review == tmp:
+                img_obj = review_img[j]
+                break
+        if img_obj != "":
+            review_dict[reviews[i]] = img_obj.image.url
+        else:
+            review_dict[reviews[i]] = ""
+    reviews = tuple(review_dict.items())
+    page = request.GET.get('page', 1)
+    paginator = Paginator(reviews, 4)
+    reviews =paginator.get_page(page)
 
     received_list = Message.objects.filter(recipient=request.user)
     send_list = Message.objects.filter(sender=request.user)
@@ -168,7 +172,7 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     recipe.save()
 
     return render(request, "recipe/recipe_detail.html",
-                  {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "review_dict": review_dict, "count":count, "click_like":click_like})
+                  {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "reviews": reviews, "count":count, "click_like":click_like})
 
 @login_required
 def delete(request, recipe_id):

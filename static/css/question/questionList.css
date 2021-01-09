@@ -178,14 +178,14 @@ button:focus {
 }
 .qTitle img {
     position: absolute;
-    top: 0px;
+    top: -7px;
 }
 .qTitle a {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 300px;
-    margin-left: 40px;
+    margin-left: 50px;
     text-align: start;
 }
 .qContent {
@@ -193,7 +193,7 @@ button:focus {
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 400px;
-    margin-left: 40px;
+    margin-left: 50px;
     text-align: start;
     margin-top: 40px;
 }

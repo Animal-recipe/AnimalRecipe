@@ -28,6 +28,14 @@
     transform: rotate(-4.99deg);
 }
 
+.rabbitShadow {
+    position: absolute;
+    width: 175px;
+    left: 1051px;
+    top: 388.88px;
+    transform: rotate(1.99deg);
+}
+
 #cat {
     position: absolute;
     width: 216px;
@@ -36,12 +44,28 @@
     transform: rotate(-2.64deg);
 }
 
+.catShadow {
+    position: absolute;
+    width: 216px;
+    left: 1054px;
+    top: 795.31px;
+    transform: rotate(0.99deg);
+}
+
 #dog {
     position: absolute;
     width: 197px;
     left: 1280px;
     top: 420.9px;
     transform: rotate(3.27deg);
+}
+
+.dogShadow {
+    position: absolute;
+    width: 197px;
+    left: 1280px;
+    top: 591.9px;
+    transform: rotate(1.99deg);
 }
 
 .searchBar {
@@ -201,13 +225,14 @@
     -webkit-box-shadow: 0 0 9px 5px rgb(0, 0, 0);
     box-shadow: 0 0 9px 5px rgb(0, 0, 0);
     position: relative;
+    margin: 0 44px;
 }
 
 #textBox {
     position: absolute;
     width: 603px;
     height: 578px;
-    left: 800px;
+    left: 770px;
     top: 100px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 78px;
@@ -222,8 +247,8 @@
 #aboutRabbit {
     position: absolute;
     width: 175px;
-    left: 320px;
-    top: 123px;
+    left: 330px;
+    top: 176px;
     transform: rotate(-1.99deg);
 }
 
@@ -238,7 +263,7 @@
 #aboutDog {
     position: absolute;
     width: 197.1px;
-    left: 457px;
+    left: 476px;
     top: 376px;
     transform: rotate(2.27deg);
 }
@@ -279,7 +304,7 @@
 
 #aboutBtn:hover {
     color: #cea73c;
-    border: 1px solid #cea73c;
+    border: 1px solid #cea73c !important;
 }
 
 #homeUnderBox {
