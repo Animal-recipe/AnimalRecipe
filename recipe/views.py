@@ -4,7 +4,6 @@ from .forms import RecipeImageFormSet,RecipeIngredientFormSet,RecipeStepFormSet,
 from django.db import transaction
 from django.shortcuts import redirect
 from django.views.generic.edit import FormMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
 from django.core.paginator import Paginator
 from django.views.generic.base import View
@@ -189,6 +188,9 @@ def delete(request, recipe_id):
 @login_required
 def edit(request, recipe_id):
     now_recipe = Recipe.objects.get(pk=recipe_id)
+    step_list = Recipe_Step.objects.filter(recipe=now_recipe)
+    step_size = step_list.__len__()
+
     if now_recipe.author_id != request.user.id:
         return redirect('/recipe/list')
     if request.method == 'POST':
@@ -220,6 +222,7 @@ def edit(request, recipe_id):
         'ingredient_formset': ingredient_formset,
         'step_formset': step_formset,
         'now_recipe': now_recipe,
+        'step_size': step_size,
     })
 
 class Recipe_Like(LoginRequiredMixin, View):

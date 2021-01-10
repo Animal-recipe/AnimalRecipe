@@ -72,7 +72,7 @@
             <p id="cook_level" >{{ review.recipe.level }}</p>
         </div>
 
-        <pre id="summary" style="word-break: break-all; width:70%; height:30%;">" {{ review.content }} "</pre>
+        <textarea readonly id="summary" style=" border: 0px; word-break: break-all; width:70%; height:400px;">" {{ review.content }} "</textarea>
     </div>
 
     <div class="goto_recipe" style=" cursor: pointer; margin-left:219px; margin-top:73px; margin-bottom:25px;" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=review.recipe.id %}'">

@@ -33,6 +33,15 @@
             </p>
         </div>
         <div class="qDetailContent">{{ question.content }}</div>
+        <div style="width:62px; float:right; margin-right:70px;">
+        <div style="float:left; text-align:center;">
+            <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal"
+                    data-target=".bs-example-modal-lg">
+                <img style="width: 80px; height: 80px;"
+                     src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
+            </button>
+        </div>
+        </div>
         <div style="display:flex;justify-content:flex-start;margin-bottom: 218px;">
             <a style="background: #FF5C00;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);" href="{% url 'question:create_answer' question.id %}"
                 class="questionCreateBtn btn"><span>답변하기</span>
@@ -74,19 +83,43 @@
                         <span class="answerCount"><img src="{% static 'img/recipe/recipe_detail/goodMark.png' %}">{{ answer.like.all.count }}</span>
                     </p>
                 </div>
-                <div class="qDetailContent">{{ answer.content }}</div>
-
+                <div style="overflow:hidden; ">
+                    <div class="qDetailContent" style="float:left;">{{ answer.content }}</div>
+                    <div style="float:right; margin-top:100px;">
+                        <div style="float:left; text-align:center;">
+                            <a href="{% url 'question:like_answer' answer.id %}">
+                                {% for temp in answer.like.all %}
+                                    {% if temp == user %}
+                                    <img class="good_color" style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
+                                    {{"<!--"}}
+                                    {% endif %}
+                                {% endfor %}
+                                    <img class="good_noncolor" style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
+                                <span style="display:none;"> {{"-->"}} </span>
+                            </a>
+                        </div>
+                        <div>
+                            {% if not user.is_authenticated %}
+                            <a onclick="location.href='{% url 'account:login' %}'" style="cursor: pointer;">
+                            {% else %}
+                            <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
+                            {% endif %}
+                                <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>
+                            </a>
+                        </div>
+                        <div style="float:left; text-align:center;">
+                            <button type="button" style="border: 0px; outline:0px;" data-toggle="modal"
+                                data-target=".bs-example-modal-lg">
+                                <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}"
+                                    class="card-img-top" alt="사진">
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div style="display:flex;justify-content:flex-start;margin-top: 156px;">
                     <img src="{% static 'img/question/report.png' %}">
                     <a class="report" onclick = "location.href='{% url 'footer:Report' user_id=answer.author %}'">신고하기</a>
                 </div>
-                {% if not user.is_authenticated %}
-                <a onclick="location.href='{% url 'account:login' %}'" style="cursor: pointer;">
-                {% else %}
-                <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
-                {% endif %}
-                    <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>
-                </a>
             </div>
         {% endfor %}
 
@@ -117,8 +150,10 @@ $(document).ready(function(){
     var caller = $("#confirmButtonModal").closest(".modal").attr("caller-id");
     window.location = $("#".concat(caller)).attr("href");
     });
+
 });
 </script>
+{% include 'contact\modal3.html' %}
 
 {% if messages %}
     {% for message in messages %}

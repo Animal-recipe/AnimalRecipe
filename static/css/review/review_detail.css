@@ -24,3 +24,7 @@
     text-align:center;
     color: #FFFFFF;
 }
+
+textarea:focus {
+  outline: none;
+}

@@ -16,9 +16,9 @@ class Recipe(models.Model):
     # 조리시간
     cooking_time = models.CharField(max_length=50, default='')
     # 제목
-    title = models.TextField(max_length=20, default='')
+    title = models.TextField(max_length=100, default='')
     # 요약설명
-    summary = models.TextField(max_length=60, default='')
+    summary = models.TextField(max_length=500, default='')
     # 작성 시간
     created = models.DateTimeField(auto_now_add=True)
     # 수정 시간
@@ -87,7 +87,7 @@ class Recipe_Step(models.Model):
     # 이미지
     image = models.ImageField(upload_to='recipe_step/%Y/%m/%d', blank=True)
     # 내용
-    content = models.TextField(max_length=180, default='')
+    content = models.TextField(max_length=500, default='')
 
     def __str__(self):
         return self.recipe.title

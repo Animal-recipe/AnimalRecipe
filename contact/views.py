@@ -58,21 +58,30 @@ def contact_recreate(request, message_id):
 @login_required
 def contact_delete(request, message_id):
     message = Message.objects.get(pk=message_id)
-    message.delete()
+    if (message.recipient != request.user) and (message.sender != request.user): # 수신자 발신자가 모두 아닌 경우
+        return redirect('/contact/list')
+    else:
+        message.delete()
     return redirect('/contact/list')
 
 @login_required
 def contact_senddelete(request):
     message = Message.objects.filter(recipient=request.user)
     for i in range(0, message.__len__()):
-        message.delete()
+        if message[i].recipient != request.user:  # 발신자가 유저와 다른경우
+            return redirect('/contact/list')
+        else:
+            message[i].delete()
     return redirect('/contact/list')
 
 @login_required
 def contact_receiveddelete(request):
     message = Message.objects.filter(sender=request.user)
     for i in range(0, message.__len__()):
-        message.delete()
+        if message[i].sender != request.user:  # 수신자가 유저와 다른 경우
+            return redirect('/contact/list')
+        else:
+            message[i].delete()
     return redirect('/contact/list')
 
 @login_required
