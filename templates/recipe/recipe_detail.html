@@ -47,9 +47,13 @@
                         class="card-img-top" alt="사진">
                     {% endif %}
                 </a>
-                <a href="{% url 'recipe:save_recipe' recipe.id %}" style="margin-left:5px;"><img
-                        style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}"
-                        class="card-img-top" alt="사진"></a>
+                <a href="{% url 'recipe:save_recipe' recipe.id %}" style="margin-left:5px;">
+                    {% if click_save == 0 %}
+                    <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진">
+                    {% else %}
+                    <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/save_color.png' %}" class="card-img-top" alt="사진">
+                    {% endif %}
+                </a>
                 <div style="float:left; text-align:center;">
                     {% if not user.is_authenticated %}
                     <button type="button" style=" border: 0px; outline:0px;" onclick="location.href='{% url 'account:login' %}'">
@@ -125,11 +129,16 @@
                     {% endif %}
                 </a>
             </div>
-            <div style="float:left; text-align:center; margin-left: 100px;">
-                <a href="{% url 'recipe:save_recipe' recipe.id %}"><img style="width: 98px; height: 98px;"
-                        src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진"></a>
+            <div style="float:left; text-align:center; margin-left: 80px;">
+                <a href="{% url 'recipe:save_recipe' recipe.id %}">
+                    {% if click_save == 0 %}
+                    <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진">
+                    {% else %}
+                    <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/save_color.png' %}" class="card-img-top" alt="사진">
+                    {% endif %}
+                </a>
             </div>
-            <div style="float:left; text-align:center; margin-left:40px;">
+            <div style="float:left; text-align:center;">
                 {% if not user.is_authenticated %}
                 <button type="button" style="background-color:#1B1B1B; border: 0px; outline:0px;" onclick="location.href='{% url 'account:login' %}'">
                 {% else %}
