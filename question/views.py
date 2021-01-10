@@ -107,7 +107,7 @@ def question_list(request):
         questions = Question.objects.filter(title__icontains=q, is_active=True)
     else:
         questions = Question.objects.all()
-    paginator = Paginator(questions, 2)
+    paginator = Paginator(questions, 10)
     pageObject = paginator.get_page(page)
     return render(request, "question/listQuestion.html", {"questions":pageObject, "page":page, "q":q})
 

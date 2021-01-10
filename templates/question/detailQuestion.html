@@ -22,10 +22,10 @@
     {% else %}
         <div class="qDetailTitle" style="margin-top: 85px;">
     {% endif %}
-            <img src="{% static 'img/question/questionMark.png' %}" width="50px" height="50px">
+            <img src="{% static 'img/question/questionMark.png' %}" width="70px" height="70px">
             <h2>{{ question.title }}</h2>
         </div>
-        <div class="qDetailInfo">
+        <div class="qDetailInfo ">
             <img src="{{MEDIA_URL}}{{question.author.profile}}" width="22px" height="20.74px"style="border-radius: 50%;">
             <p>{{ question.author.nickname}} 의 레시피 |
                 <span>작성일: {{ question.created|date:"y.m.d H:i" }}</span>
@@ -72,7 +72,7 @@
             {% else %}
                 <div class="qDetailTitle" style="margin-top: 85px;">
             {% endif %}
-                    <img src="{% static 'img/question/answerMark.png' %}" width="50px" height="50px">
+                    <img src="{% static 'img/question/answerMark.png' %}" width="70px" height="70px">
                     <h2>{{ answer.author.nickname }} 님의 답변</h2>
                 </div>
                 <div class="qDetailInfo">
@@ -80,7 +80,7 @@
                         style="border-radius: 50%;">
                     <p>{{ answer.author.nickname}} 의 레시피 |
                         <span>작성일: {{ answer.created|date:"y.m.d H:i" }}</span>
-                        <span class="answerCount">좋아요 수 {{ answer.like.all.count }}</span>
+                        <span class="answerCount"><img src="{% static 'img/recipe/recipe_detail/goodMark.png' %}">{{ answer.like.all.count }}</span>
                     </p>
                 </div>
                 <div style="overflow:hidden; ">
@@ -99,8 +99,12 @@
                             </a>
                         </div>
                         <div>
+                            {% if not user.is_authenticated %}
+                            <a onclick="location.href='{% url 'account:login' %}'" style="cursor: pointer;">
+                            {% else %}
                             <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
-                            <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>
+                            {% endif %}
+                                <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>
                             </a>
                         </div>
                         <div style="float:left; text-align:center;">
