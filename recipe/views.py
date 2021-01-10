@@ -171,11 +171,19 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
             if temp == request.user:
                 click_like = 1
                 break
+
+    click_save = 0
+    if not request.user.is_anonymous:
+        for temp in recipe.bookmark.all():
+            if temp == request.user:
+                click_save = 1
+                break
+
     recipe.hits = recipe.hits + 1
     recipe.save()
 
     return render(request, "recipe/recipe_detail.html",
-                  {"received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "reviews": reviews, "count":count, "click_like":click_like})
+                  {"click_save": click_save, "received_list": received_list, "send_list": send_list, "recipe": recipe, "img_list": img_list, "ingredient_list": ingredient_list, "step_list": step_list, "reviews": reviews, "count":count, "click_like":click_like})
 
 @login_required
 def delete(request, recipe_id):
