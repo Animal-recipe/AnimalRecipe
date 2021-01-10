@@ -16,6 +16,7 @@ from review.models import Review, Review_Img
 from contact.models import Message
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 @login_required
 def create(request):
@@ -73,9 +74,9 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     
     # 필터
     if petkind == 'dog':
-        recipes = recipes.filter(animal='강아지')
+        recipes = recipes.filter(Q(animal='강아지')|Q(animal='모두'))
     elif petkind == 'cat':
-        recipes = recipes.filter(animal='고양이')
+        recipes = recipes.filter(Q(animal='고양이')|Q(animal='모두'))
     elif petkind == 'etc':
         recipes = recipes.exclude(animal='강아지').exclude(animal='고양이')
     else:
@@ -130,7 +131,6 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     context = {"recipes": recipes, "hot_recipes_dict": hot_recipes_dict, 'page':page, 'q': q, 'petkind': petkind, 'cooking_time': cooking_time, 'order': order}
     return render(request, "recipe/recipe_list.html", context)
 
-@login_required
 def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가 다릅니다\
     recipe = Recipe.objects.get(pk=recipe_id)
     img_list = Recipe_Img.objects.filter(recipe=recipe)
@@ -141,7 +141,7 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     review_img = Review_Img.objects.all()
     review_dict = {}
     count = 0
-    
+
     for i in range(0, reviews.__len__()):
         tmp = reviews[i]
         count = count + 1
@@ -159,15 +159,19 @@ def recipe_detail(request, recipe_id):  # 카테고리, 지역에 따라 list가
     paginator = Paginator(reviews, 4)
     reviews =paginator.get_page(page)
 
-    received_list = Message.objects.filter(recipient=request.user)
-    send_list = Message.objects.filter(sender=request.user)
+    if request.user.is_anonymous:
+        received_list = {}
+        send_list = {}
+    else:
+        received_list = Message.objects.filter(recipient=request.user)
+        send_list = Message.objects.filter(sender=request.user)
 
     click_like = 0
-    for temp in recipe.like.all():
-        if temp == request.user:
-            click_like = 1
-            break
-
+    if not request.user.is_anonymous:
+        for temp in recipe.like.all():
+            if temp == request.user:
+                click_like = 1
+                break
     recipe.hits = recipe.hits + 1
     recipe.save()
 

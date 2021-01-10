@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load questionFilter %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/question/questionList.css' %}">
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
@@ -89,7 +90,7 @@
                     <p class="recipe_img noImage">이미지가 없습니다</p>
                 {% endif %}
                 <div style="padding: 0 22px;">
-                    <p class="recipe_title">"{{ item.title_limit }}"</p>
+                    <div style="display: inline-block;"><p class="recipe_title">"{{ item.title_limit }}"</p></div>
                     <div>
                         <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"></p>
                         <p class="recipe_id">{{ item.author.nickname }}</p>
@@ -136,7 +137,7 @@
                 <div class="idCell cellBox"><span>{{ question.id }}</span></div>
                 <div class="titleCell cellBox">
                     <p class="qTitle">
-                        <img src="{% static 'img/question/questionMark.png' %}" width="33px" height="33px">
+                        <img src="{% static 'img/question/questionMark.png' %}" width="43px" height="43px">
                         <a href="{% url 'question:detail' question.id %}" style="color:#575757">{{ question.title }}</a>
                     </p>
                     <p class="qContent">{{question.content}}</p>

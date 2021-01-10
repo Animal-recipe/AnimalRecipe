@@ -65,7 +65,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 90px;
+    margin: 90px 0 250px;
 }
 .cancelButton {
     width: 329px;
@@ -213,11 +213,13 @@ a:hover {color: #575757;}
     top: 884px;
     transform: rotate(5.27deg);
 }
-.optionBox {
-    overflow: hidden;
+.updateOptionBox {
     min-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.optionBox .loginButton {
+.updateOptionBox .loginButton {
     width: 329px;
     height: 55px;
     background: #FF5C00;
@@ -233,7 +235,7 @@ a:hover {color: #575757;}
     color: #FFFFFF;
     margin: 0 10px;
 }
-.optionBox .homeButton {
+.updateOptionBox .homeButton {
     width: 329px;
     height: 55px;
     background: #FFFFFF;
