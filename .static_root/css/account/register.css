@@ -1,0 +1,253 @@
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ABABAB;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #ABABAB;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #ABABAB;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #ABABAB;
+}
+::-moz-placeholder {
+  opacity: 1;
+}
+#navBarBox {
+    height: 158px;
+    background: #1B1B1B;
+    border-radius: 0px 0px 80px 80px;
+    position: relative;
+    z-index: 1;
+    padding: 0 145px;
+}
+.registerInput {
+    width: 100%;
+    height: 20px;
+    border: none;
+    outline: none;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+}
+.formBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.formBox .formField {
+    width: 465px;
+    height: 55px;
+    position: relative;
+    padding: 17px 30px;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+}
+.errorMsg {
+    width: 465px;
+    height: 50px;
+    box-sizing: border-box;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #FF5C00;
+    padding: 10px 0 20px;
+}
+.optionBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 90px 0 250px;
+}
+.cancelButton {
+    width: 329px;
+    height: 55px;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #575757;
+    margin: 0 10px;
+}
+.submitButton {
+    width: 329px;
+    justify-content: center;
+    height: 55px;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(255, 92, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    margin: 0 10px;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("../../img/account/dropdown.png") no-repeat 100% 50%;
+    cursor: pointer;
+}
+/* IE 에서 Select box 화살표 제거 */ 
+select::-ms-expand { display: none; }
+select:required:invalid {
+  color: #ABABAB;
+}
+option {
+  color: #000000;
+}
+.profileBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#id_profile + label {
+    background: #959595;
+    border-radius: 9.5px;
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18px;
+    display: inline-block;
+    color: #FFFFFF;
+    padding: 1px 6px;
+    cursor: pointer;
+}
+#id_profile:focus + label,
+#id_profile + label:hover {
+    background: #FF5C00;
+}
+.profileBox #id_profile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+#profileImage {
+    width: 121px;
+    height: 121px;
+    border-radius: 50%;
+    margin-bottom: 21px;
+}
+.deleteButton {
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    color: #575757;
+    border-bottom: 1px solid #575757;
+    margin-top: 7px;
+}
+a:hover {color: #575757;}
+.passwordBox img{
+    position: absolute;
+    top: 28%;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+/* registerSuccess.html */
+#successImage {
+    width: 381px;
+    height: 184px;
+    display: flex;
+    margin: 218px auto 36px;
+}
+.successText {
+    overflow: hidden;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 306px;
+}
+#catImage {
+    position: absolute;
+    width: 173.86px;
+    height: 143.51px;
+    left: -24px;
+    top: 596.12px;
+    transform: rotate(-3.64deg);
+}
+#rabbitImage {
+    position: absolute;
+    width: 104.59px;
+    height: 133.44px;
+    left: 1363px;
+    top: 198.73px;
+    transform: rotate(-10.99deg);
+}
+#dogImage {
+    position: absolute;
+    width: 104.22px;
+    height: 98.38px;
+    left: 1160.91px;
+    top: 884px;
+    transform: rotate(5.27deg);
+}
+.updateOptionBox {
+    min-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.updateOptionBox .loginButton {
+    width: 329px;
+    height: 55px;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(255, 92, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    margin: 0 10px;
+}
+.updateOptionBox .homeButton {
+    width: 329px;
+    height: 55px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575757;
+    margin: 0 10px;
+}

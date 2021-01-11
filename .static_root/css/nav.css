@@ -1,0 +1,43 @@
+#navBar {
+    display:flex;
+    flex:1;
+    justify-content: space-between;
+    align-items: center;
+    border : 0;
+    height: 142px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1000;
+}
+#menuBox {
+    display:flex;
+    justify-content: space-around;
+    text-align: center;
+    min-width: 370px;
+}
+.menuItem {
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    margin: 0 10px;
+    color: #FFFFFF;
+    flex: 1 1 auto;
+    width: 64px;
+}
+#logo {
+    width: 370px;
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+}
+#userBox {
+    min-width: 370px;
+    display: flex;
+    justify-content: flex-end;
+}
+#userBox a {
+    max-width: 80px;
+    display: flex;
+    justify-content: center;
+}

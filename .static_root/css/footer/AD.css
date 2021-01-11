@@ -1,0 +1,59 @@
+#font1{
+    height: 41px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 41px;
+    color: #000000;
+    margin-top:160px;
+}
+
+#font2{
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 187.4%;
+    color: #575757;
+    margin-top:76px;
+}
+
+.font3{
+    height: 41px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 41px;
+    color: #000000;
+}
+
+#submit{
+    float: left;
+    width: 251px;
+    height: 73px;
+    background: #FF5C00;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    color: #FFFFFF;
+    border: 0px;
+
+}
+.cancel{
+    margin-left:40px;
+    float:left;
+    width: 251px;
+    height: 73px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 24px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 73px;
+    text-align: center;
+    color: #575757;
+}

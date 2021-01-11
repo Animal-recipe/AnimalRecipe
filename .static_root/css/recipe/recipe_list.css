@@ -1,0 +1,406 @@
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #ABABAB;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ABABAB;
+}
+
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #ABABAB;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #ABABAB;
+}
+
+::-moz-placeholder {
+    opacity: 1;
+}
+
+button:focus {
+    outline: 0;
+    border: none;
+}
+
+/* pagination css */
+.pagination>li>a {
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    color: #000000;
+    border: none;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    border-radius: 8px !important;
+}
+
+.pagination>li>a:focus,
+.pagination>li>a:hover {
+    color: #5a5a5a;
+    background-color: #eee;
+}
+
+.pagination>.active>a {
+    color: white;
+    background: #FF5C00 !Important;
+}
+
+.pagination>.active>a:hover {
+    background-color: #d85b13 !Important;
+}
+
+a:hover,
+a:focus,
+a:active {
+    outline: 0 !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+/* no searchResult css */
+.noResultText {
+    overflow: hidden;
+    font-family: Noto Sans KR;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF5C00;
+}
+
+.noResultBox {
+    width: 394px;
+    height: 250px;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    margin: 120px auto 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* recipe List */
+#top_div {
+    width: 100%;
+    height: 620px;
+    border-radius: 0px 0px 80px 80px;
+    overflow: hidden;
+    padding: 0 145px;
+    position: relative;
+    background: gray;
+}
+
+.hot_recipe{
+    width: 223px;
+    height: 45px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 49px;
+    text-align: center;
+    color: #FD6B01;
+    margin-left: 150px;
+}
+
+.searchBar {
+    width: 100%;
+    background: #FFFFFF;
+    outline: none;
+    border: none;
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.searchBarBox {
+    width: 100%;
+    height: 53px;
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 30px;
+    margin-right: 15px;
+}
+
+.searchBarBox button {
+    border: none;
+    background: none;
+}
+
+/* select custom css */
+.selectBox {
+    display: inline-block;
+    width: 30%;
+    margin-top: 52px;
+    min-width: 150px;
+    height: 53px;
+    padding: 18.5px 30px;
+    background: #FFFFFF;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    margin-left: 8px;
+    box-sizing: border-box;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("../../img/account/dropdown.png") no-repeat 100% 50%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* IE 에서 Select box 화살표 제거 */
+select::-ms-expand {
+    display: none;
+}
+
+select:required:invalid {
+    color: #ABABAB;
+}
+
+option {
+    width: 30%;
+    min-width: 150px;
+    height: 53px;
+    font-family: Noto Sans KR;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575757;
+
+}
+
+option span {
+    font-family: Noto Sans KR;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #575757;
+}
+
+#create_recipe_css a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 76px;
+    float: right;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 53px;
+    color: #FFFFFF;
+    padding: 14px 32px;
+    min-width: 218px;
+    height: 53px;
+    background: #FF6B00;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+}
+
+.recipe_size {
+    cursor: pointer;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 100px;
+    width: 23%;
+    min-width: 204px;
+    height: 432px;
+    background: #FFFFFF;
+    box-shadow: 26px 20px 35px rgba(0, 0, 0, 0.1);
+    border-radius: 27px;
+}
+
+.recipe_img {
+    width: 100%;
+    height: 251px;
+    border-radius: 27px 27px 0px 0px;
+}
+.noImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Noto Sans;
+    font-weight: bold;
+    background-color:#cfcfcf;
+}
+.recipe_title {
+    width: 100%;
+    float:left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: Roboto;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 29px;
+}
+
+.recipe_id {
+    margin-top: 11px;
+    margin-left: 7px;
+    display: inline-block;
+    width: 70%;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    color: #686868;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.recipe_animal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px;
+    width: 30%;
+    float: left;
+    height: 26px;
+    background: #FF8B00;
+    border-radius: 8px;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: #606060;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.recipe_time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px;
+    width: 40%;
+    float: left;
+    margin-left: 7px;
+    height: 26px;
+    background: #D2D2D2;
+    border-radius: 8px;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: #606060;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.recipe_about {
+    width: 38%;
+    white-space: nowrap;
+    height: 26px;
+    background: #E7E7E7;
+    border-radius: 8px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    display: inline-block;
+    padding: 3px 9px;
+    text-align: center;
+    vertical-align: middle;
+    color: #575757;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float:left;
+}
+.review_star {
+    width: 28%;
+    height:auto;
+    min-width: 70px;
+    max-width: 90px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px 3px;
+    color: #FFFFFF;
+    background: #1B1B1B;
+    border-radius: 12.8413px;
+    overflow:hidden;
+    float: right;
+}
+.user_img {
+    width: 20px;
+    float: left;
+    margin-right: 7px;
+    height: 20px;
+    border-radius: 100px;
+}
+
+.hot_title{
+    width: 70%;
+    font-family: Noto Sans;
+    font-weight: bold;
+    font-size: 48px;
+    color: #FFFFFF;
+    margin-top: 50px;
+    margin-left: 150px;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+}
+
+.hot_summary{
+    width: 70%;
+    padding: 5px;
+    font-family: Noto Sans;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 127.4%;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 50px;
+    margin-left: 150px;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+}
