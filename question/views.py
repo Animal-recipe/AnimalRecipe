@@ -114,8 +114,13 @@ def question_list(request):
 def question_detail(request, question_id):
     question = Question.objects.get(pk=question_id)
     answers = Answer.objects.filter(question=question, is_active=True).order_by('-accept')
-    received_list = Message.objects.filter(recipient=request.user)
-    send_list = Message.objects.filter(sender=request.user)
+
+    if request.user.is_anonymous:
+        received_list = {}
+        send_list = {}
+    else:
+        received_list = Message.objects.filter(recipient=request.user)
+        send_list = Message.objects.filter(sender=request.user)
 
     return render(request, "../templates/question/detailQuestion.html", {"received_list": received_list, "send_list": send_list, "question": question, "answers": answers})
 

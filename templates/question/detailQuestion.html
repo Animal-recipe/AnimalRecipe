@@ -35,9 +35,13 @@
         <div class="qDetailContent">{{ question.content }}</div>
         <div style="width:62px; float:right; margin-right:70px;">
         <div style="float:left; text-align:center;">
+            {% if not user.is_authenticated %}
+            <button type="button" style="border: 0px; outline:0px;" onclick="location.href='{% url 'account:login' %}'">
+            {% else %}
             <button type="button" style=" border: 0px; outline:0px;" data-toggle="modal"
                     data-target=".bs-example-modal-lg">
-                <img style="width: 80px; height: 80px;"
+            {% endif %}
+                <img style="width: 98px; height: 98px;"
                      src="{% static 'img/recipe/recipe_detail/contact1.png' %}" class="card-img-top" alt="사진">
             </button>
         </div>
@@ -88,19 +92,18 @@
                     <div style="float:right; margin-top:100px;">
                         <div style="float:left; text-align:center;">
                             <a href="{% url 'question:like_answer' answer.id %}">
-                                {% for temp in answer.like.all %}
-                                    {% if temp == user %}
+                                {% if user in answer.like.all %}
                                     <img class="good_color" style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
-                                    {{"<!--"}}
-                                    {% endif %}
-                                {% endfor %}
+                                {% else %}
                                     <img class="good_noncolor" style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
-                                <span style="display:none;"> {{"-->"}} </span>
+                                {% endif %}
                             </a>
                         </div>
                         <div>
                             {% if not user.is_authenticated %}
                             <a onclick="location.href='{% url 'account:login' %}'" style="cursor: pointer;">
+                            {% elif user != question.author %}
+                            <a href="#">
                             {% else %}
                             <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
                             {% endif %}
@@ -108,15 +111,19 @@
                             </a>
                         </div>
                         <div style="float:left; text-align:center;">
+                            {% if not user.is_authenticated %}
+                            <button type="button" style="border: 0px; outline:0px;" onclick="location.href='{% url 'account:login' %}'">
+                            {% else %}
                             <button type="button" style="border: 0px; outline:0px;" data-toggle="modal"
                                 data-target=".bs-example-modal-lg">
+                            {% endif %}
                                 <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/contact1.png' %}"
                                     class="card-img-top" alt="사진">
                             </button>
                         </div>
                     </div>
                 </div>
-                <div style="display:flex;justify-content:flex-start;margin-top: 156px;">
+                <div style="display:flex;justify-content:flex-start;">
                     <img src="{% static 'img/question/report.png' %}">
                     <a class="report" onclick = "location.href='{% url 'footer:Report' user_id=answer.author %}'">신고하기</a>
                 </div>
