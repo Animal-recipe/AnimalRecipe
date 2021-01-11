@@ -85,7 +85,7 @@
             <p id="cook_level">{{ recipe.level }}</p>
         </div>
 
-        <textarea readonly id="summary" style="border: 0px; height: 400px;" >"{{ recipe.summary }} "</textarea>
+        <textarea readonly id="summary" style="border: 0px; height: 200px; cursor:pointer;" >"{{ recipe.summary }} "</textarea>
         <div id="show_ingredient" style="margin-right:15px;">
             재료를 준비해 주세요!
         </div>
@@ -112,7 +112,7 @@
             {% if step.image %}
             <img style="display:block; margin-top:20px; width:589px; height:321px; border-radius: 24px;" src="{{ step.image.url }}">
             {% endif %}
-            <textarea readonly class="content" style=" width: 597px; border: 0px; height: 410px; word-break : break-all;">{{ step.content }}</textarea>
+            <textarea readonly class="content" style="cursor:pointer; width: 597px; border: 0px; height: 200px; word-break : break-all;">{{ step.content }}</textarea>
         </div>
         {% endfor %}
     </div>

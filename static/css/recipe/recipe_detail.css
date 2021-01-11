@@ -522,3 +522,11 @@ button:focus {
 textarea:focus {
   outline: none;
 }
+
+::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.close{
+    cursor: pointer;
+}

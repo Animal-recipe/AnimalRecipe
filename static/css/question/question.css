@@ -350,6 +350,7 @@ button:focus {
 }
 .report {
     width: fit-content;
+    cursor: pointer;
     font-family: Noto Sans;
     font-weight: 500;
     font-size: 13px;
@@ -361,6 +362,9 @@ button:focus {
     text-decoration: none;
     outline: none;
     margin-left: 9px;
+}
+.report:hover {
+    border-bottom: 1px solid #575757!important;
 }
 /* confirmModal css */
 .modal-dialog {
