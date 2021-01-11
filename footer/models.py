@@ -36,5 +36,5 @@ class Report_problem(models.Model):
     other_reason = models.TextField(max_length=180, default='')
 
     def __str__(self):
-        return self.name.email
+        return self.target.email
 

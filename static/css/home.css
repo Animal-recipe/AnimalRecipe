@@ -31,7 +31,7 @@
 .rabbitShadow {
     position: absolute;
     width: 175px;
-    left: 1051px;
+    left: 921px;
     top: 388.88px;
     transform: rotate(1.99deg);
 }
@@ -47,7 +47,7 @@
 .catShadow {
     position: absolute;
     width: 216px;
-    left: 1054px;
+    left: 954px;
     top: 795.31px;
     transform: rotate(0.99deg);
 }
@@ -63,7 +63,7 @@
 .dogShadow {
     position: absolute;
     width: 197px;
-    left: 1280px;
+    left: 1150px;
     top: 591.9px;
     transform: rotate(1.99deg);
 }
@@ -202,6 +202,7 @@
 }
 
 .hotRecipeBox {
+    width:100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -210,6 +211,7 @@
 }
 
 .bestRecipeBox {
+    width:100%;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -224,16 +226,15 @@
     -moz-box-shadow: 0 0 9px 5px rgb(0, 0, 0);
     -webkit-box-shadow: 0 0 9px 5px rgb(0, 0, 0);
     box-shadow: 0 0 9px 5px rgb(0, 0, 0);
-    position: relative;
-    margin: 0 44px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 6%;
 }
 
 #textBox {
-    position: absolute;
-    width: 603px;
+    float:right;
+    width: 50%;
     height: 578px;
-    left: 770px;
-    top: 100px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 78px;
     -moz-box-shadow: 0 0 8px 16px rgba(255, 255, 255, 0.2);
@@ -241,13 +242,14 @@
     box-shadow: 0 0 8px 16px rgba(255, 255, 255, 0.2);
     box-sizing: border-box;
     color: #FFFFFF;
-    padding: 64px 64px;
+    padding: 5%;
+    z-index: 10;
 }
 
 #aboutRabbit {
     position: absolute;
     width: 175px;
-    left: 330px;
+    left: 200px;
     top: 176px;
     transform: rotate(-1.99deg);
 }
@@ -255,7 +257,7 @@
 #aboutCat {
     position: absolute;
     width: 216.81px;
-    left: 138px;
+    left: 8px;
     top: 313px;
     transform: rotate(-2.64deg);
 }
@@ -263,7 +265,7 @@
 #aboutDog {
     position: absolute;
     width: 197.1px;
-    left: 476px;
+    left: 346px;
     top: 376px;
     transform: rotate(2.27deg);
 }
@@ -412,4 +414,8 @@
 .goListButton:hover {
     color: #cea73c;
     border: 1px solid #cea73c !important;
+}
+
+button{
+    cursor:pointer;
 }

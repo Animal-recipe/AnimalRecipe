@@ -17,7 +17,7 @@
     float:left;
     width: 278px;
     height: 63px;
-    padding-left:30px;
+    padding: 0 5%;
     border: 0 solid black;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
@@ -34,7 +34,7 @@
     float:left;
     width: 186px;
     height: 63px;
-    padding-left:30px;
+    padding: 0 5%;
     border: 0 solid black;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
@@ -331,3 +331,7 @@ label[for=id_recipe_ingredient-3-DELETE]{
 
 input:focus {outline:none;}
 input {outline:none; border: none;}
+
+button{
+    cursor:pointer;
+}

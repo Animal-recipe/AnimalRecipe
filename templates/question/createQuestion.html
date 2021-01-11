@@ -2,20 +2,20 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/question/question.css' %}">
-<div id="navBarBox">
+<div id="navBarBox" style="padding: 0 7%;">
     {% include 'nav.html' %}
     <h1>질문<br>작성하기</h1>
 </div>
-    <div id="questionCreateBox">
-        <form action="" method="post" enctype="multipart/form-data">
+    <div id="questionCreateBox" style="width: 100%; ">
+        <form action="" method="post" enctype="multipart/form-data" style="width: 100%;">
             {% csrf_token %}
-            <div style="margin-bottom:180px;">
+            <div style="margin-bottom:180px; width:100%;">
                 <h2 class="FieldTitle">제목을 작성해주세요</h2>
                 <div class="questionTitleBox">
                     {{ form.title }}
                 </div>
             </div>
-            <div style="margin-bottom:300px;">
+            <div style="margin-bottom:300px; width:100%;">
                 <h2 class="FieldTitle">궁금한 내용을 입력해주세요</h2>
                 <div class="questionContentBox">
                     {{ form.content }}

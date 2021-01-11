@@ -3,9 +3,9 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
-    <div id="mainBox">
-        {% include 'nav.html' %}
-        <div class="my-5" style="margin: 800px 0 800px;">
+<div id="mainBox" style="padding:0 7%;">
+    {% include 'nav.html' %}
+    <div class="my-5" style="">
         <h1 id="mainText">반려동물을 위한<br />요리 레시피를<br />공유해봐요!</h1>
     </div>
     <img id="rabbit" src="{% static 'img/home/home_rabbit.png'%}">
@@ -35,7 +35,7 @@
         <p id="hotRecipeIntro">
             반려동물을 위해 요리 레시피를 공유해봐요!
         </p>
-        <div style="padding: 0 200px;display:flex;">
+        <div style="display:flex;">
             {% if hot_recipes_dict %}
             {% for item, image in hot_recipes_dict.items %}
                 <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="margin: 0 auto;">
@@ -69,7 +69,7 @@
         <p id="bestRecipeIntro">
             후기가 너무 좋은 레시피! 놓치지 말고 만들어봐요.
         </p>
-        <div style="padding:0 200px;display:flex;">
+        <div style="display:flex;">
             {% if best_review_dict %}
             {% for item, image in best_review_dict.items %}
             <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'"style="margin: 0 auto;" >
@@ -101,12 +101,12 @@
     </div>
 </div>
 <div id="aboutBox">
-    <img id="aboutRabbit" src="{% static 'img/home/home_rabbit.png'%}">
-    <img class="rabbitShadow" style="top:498px;left:324px;width:210px;" src="{% static 'img/home/rabbitShadow.png'%}">
-    <img id="aboutCat" src="{% static 'img/home/home_cat.png'%}">
-    <img class="catShadow" style="top:503px;left:143px;" src="{% static 'img/home/catShadow.png'%}">
-    <img id="aboutDog" src="{% static 'img/home/home_dog.png'%}">
-    <img class="dogShadow" style="top:517px;left:471px;" src="{% static 'img/home/dogShadow.png'%}">
+    <div style="position:relative;">
+        <img id="aboutRabbit" src="{% static 'img/home/home_rabbit.png'%}">
+        <img id="aboutCat" src="{% static 'img/home/home_cat.png'%}">
+        <img id="aboutDog" src="{% static 'img/home/home_dog.png'%}">
+    </div>
+
     <div id="textBox">
         <h3 id="aboutTitle">
             브랜드 스토리를
@@ -128,5 +128,4 @@
     <!-- 광고, 캠페인 등 -->
 </div>
 {% include 'footer.html' %}
-
 {% endblock %}

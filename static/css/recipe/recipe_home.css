@@ -22,3 +22,7 @@
 
     color: #FFFFFF;
 }
+
+button{
+    cursor:pointer;
+}

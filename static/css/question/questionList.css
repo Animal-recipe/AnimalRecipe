@@ -285,3 +285,7 @@ a:active {
     align-items: center;
     justify-content: center;
 }
+
+button{
+    cursor:pointer;
+}

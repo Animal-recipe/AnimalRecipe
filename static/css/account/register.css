@@ -201,7 +201,7 @@ a:hover {color: #575757;}
     position: absolute;
     width: 104.59px;
     height: 133.44px;
-    left: 1363px;
+    right: 5%;
     top: 198.73px;
     transform: rotate(-10.99deg);
 }
@@ -209,8 +209,8 @@ a:hover {color: #575757;}
     position: absolute;
     width: 104.22px;
     height: 98.38px;
-    left: 1160.91px;
-    top: 884px;
+    right: 12%;
+    top: 700px;
     transform: rotate(5.27deg);
 }
 .updateOptionBox {
@@ -250,4 +250,8 @@ a:hover {color: #575757;}
     justify-content: center;
     color: #575757;
     margin: 0 10px;
+}
+
+button{
+    cursor:pointer;
 }

@@ -131,3 +131,7 @@
 .custom_check-input {
     display: none;
 }
+
+button{
+    cursor:pointer;
+}

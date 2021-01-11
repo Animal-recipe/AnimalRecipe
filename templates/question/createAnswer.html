@@ -4,14 +4,14 @@
 <link rel="stylesheet" href="{% static 'css/question/question.css' %}">
 <script type="text/javascript" src="{% static 'js/question/question.js' %}"></script>
 
-<div id="navBarBox">
+<div id="navBarBox" style="padding:0 7%;">
     {% include 'nav.html' %}
     <h1>답변<br>작성하기</h1>
 </div>
-<div id="answerCreateBox">
-    <div class="answerQTitle">
+<div id="answerCreateBox" style="width: 100%; ">
+    <div class="answerQTitle" style="width:100%;">
         <img src="{% static 'img/question/questionMark.png' %}" width="70px" height="70px">
-        <h3 class="FieldTitle" style="margin-bottom: 0;width: 600px;">{{ question.title }}</h3>
+        <h3 class="FieldTitle" style="margin-bottom: 0;width: 100%;">{{ question.title }}</h3>
         <p class="trigger" id="trigger">상세보기</a>
     </div>
     <hr style="border: 0.8px solid #575757;width: 100%;">
@@ -19,7 +19,7 @@
         <div class="triggerContent">{{ question.content }}</div>
         <hr style="border: 0.8px solid #575757;width: 100%;">
     </div>
-    <form action="" method="post" enctype="multipart/form-data" style="margin-top: 180px;">
+    <form action="" method="post" enctype="multipart/form-data" style="margin-top: 180px; width:100%; ">
         {% csrf_token %}
         <div style="margin-bottom:300px;">
             <h2 class="FieldTitle">질문에 대한 답변 내용을 입력해 주세요!</h2>

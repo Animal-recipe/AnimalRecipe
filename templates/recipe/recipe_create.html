@@ -20,15 +20,14 @@ $(document).ready(function(){
 </div>
 {% endfor %}
 
-<div style=" padding: 0 145px; overflow:hidden;width: 100%;height: 320px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+<div style=" padding: 0 7%; overflow:hidden;width: 100%;height: 320px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
     <div id="title">
         <p>레시피</p>
         <p>작성하기</p>
     </div>
 </div>
-<div id="save">임시저장 글 | </div>
-<div style="margin: 0 auto; width:100%; margin-bottom:100px; padding: 0 180px;">
+<div style="margin: 0 auto; width:100%; margin-bottom:100px; padding: 0 10%;">
     <div style="margin-top:95px;">
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -39,10 +38,10 @@ $(document).ready(function(){
             <div style="margin-top:120px;">
                 <p class="font1">어떤 반려동물을 위한 요리인가요?</p>
                 <div class="animal" style="margin-top:30px;">
-                    <label style="width: 120px; cursor:pointer;" class="radio_box">모두<input checked required style="display:none;" type="radio" name="animal" value="모두" autofocus="" ></label>
-                    <label style="width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="강아지"> 강아지</label>
-                    <label style="width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="고양이"> 고양이</label>
-                    <label style="width: 538px; margin-left:30px; cursor:pointer; padding-left:60px; text-align:left;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="other"> 기타 <input class="input_box" style="margin-left: 30px; box-shadow: none; width:380px; height:55px;" placeholder="반려동물을 작성해주세요.(한글, 쉼표만 가능)" type="text" name="other_animal"></label>
+                    <label style="margin-top: 10px; width: 120px; cursor:pointer;" class="radio_box">모두<input checked required style="display:none;" type="radio" name="animal" value="모두" autofocus="" ></label>
+                    <label style="margin-top: 10px; width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="강아지"> 강아지</label>
+                    <label style="margin-top: 10px; width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="고양이"> 고양이</label>
+                    <label style="margin-top: 10px; width: 538px; margin-left:30px; cursor:pointer; padding-left:60px; text-align:left;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="other"> 기타 <input class="input_box" style="margin-left: 30px; box-shadow: none; width:380px; height:55px;" placeholder="반려동물을 작성해주세요.(한글, 쉼표만 가능)" type="text" name="other_animal"></label>
                 </div>
             </div>
             <p class="font1" style=" margin-top:120px;">조리시간이 얼마나 걸리나요?</p>
@@ -91,7 +90,6 @@ $(document).ready(function(){
             </div>
             <div style="overflow:hidden; margin-top:100px; padding-bottom:50px;">
                 <input id="finish" type="submit" value="작성완료" style="float:left; margin: 20px;">
-                <p id="fake_save" style="cursor:pointer; float:left; margin-left:40px; margin: 20px;"> 임시저장</p>
                 <p id="back" style="cursor:pointer; float:left; margin-left:40px; margin: 20px;" onclick = "location.href='{% url 'recipe:list_recipe' %}'">취소</p>
             </div>
          </form>
