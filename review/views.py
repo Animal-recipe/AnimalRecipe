@@ -11,7 +11,8 @@ from django.http import HttpResponseRedirect
 from urllib.parse import urlparse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+from django.db.models import Q, Count
+
 
 def review_list(request):
     q= request.GET.get('q', "")
@@ -50,13 +51,13 @@ def review_list(request):
         pass
 
     if cooking_time == 'under5':
-        recipe = recipe.filter(cooking_time='5분 이내')
+        recipe = recipe.filter(cooking_time='5분이내')
     elif cooking_time == 'fiveTo10':
-        recipe = recipe.filter(cooking_time='5분 - 10분')
+        recipe = recipe.filter(cooking_time='5분_10분')
     elif cooking_time == 'tenTo20':
-        recipe = recipe.filter(cooking_time='10분 - 20분')
+        recipe = recipe.filter(cooking_time='10분_20분')
     elif cooking_time == 'over20':
-        recipe = recipe.filter(cooking_time='20분 이상')
+        recipe = recipe.filter(cooking_time='20분이상')
     else:
         pass
 
@@ -72,7 +73,7 @@ def review_list(request):
     if order == 'recent':
         review = review.order_by('-created')
     else:
-        review = review.order_by('-like', '-created')
+        review = review.annotate(num_like=Count('like')).order_by('-num_like','-created')
 
     for i in range(0, review.__len__()):
         tmp = review[i]
