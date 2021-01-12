@@ -83,10 +83,8 @@
 $(document).ready(function(){
     if($("#id_petkind").val() == "NONE") {
             $("#petnameField").css('display', 'none');
-            console.log('display none')
         }  else {
             $("#petnameField").css('display', 'block');
-            console.log('display block')
     }
     // 이미지 추가
     function readURL(input) {
@@ -100,14 +98,11 @@ $(document).ready(function(){
     }
     $("#id_profile").change(function(){
         readURL(this);
-        console.log('change success')
-        console.log($("#id_profile"))
     });
     $(".deleteButton").click(function(event) {
         let $input = $("#id_profile")
         let $profileImage = $("#profileImage")
         resetInputFile($input, $profileImage);
-        console.log('delete btn execute')
     });
     // 비밀번호 보기 숨기기
     $('.showHideToggle').click(function(){

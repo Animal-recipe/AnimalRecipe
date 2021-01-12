@@ -14,10 +14,7 @@ def register(request):
         form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            print('valid')
             return redirect('/account/register/success/')
-        else:
-            print('not valid')
     return render(request, 'account/register.html', {'form': form})
 
 def agreement(request, *args, **kwargs):
