@@ -72,10 +72,10 @@ button:focus {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 160px;
-    padding: 0 10%;
+    padding: 0 219px;
 }
 .questionTitleBox {
-    width: 100%;
+    width: 636px;
     height: 65px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
@@ -95,7 +95,7 @@ button:focus {
     border: none;
 }
 .questionContentBox {
-    width: 100%''
+    width: 992px;
     height: 562px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
@@ -115,7 +115,7 @@ button:focus {
     border: none;
 }
 .FieldTitle {
-    /* width: 600px; */
+    width: 600px;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 30px;
@@ -185,7 +185,7 @@ button:focus {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 160px;
-    padding: 0 10%;
+    padding: 0 219px;
 }
 .answerContent {
     width: 100%;
@@ -200,7 +200,7 @@ button:focus {
     border: none;
 }
 .answerContentBox {
-    width: 100%;
+    width: 992px;
     height: 562px;
     background: #FFFFFF;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
@@ -245,7 +245,7 @@ button:focus {
 
 /* question detail */
 .questionDetailBox {
-    padding: 0 10%;
+    padding: 0 219px;
 }
 .qDetailTitle {
     display: flex;
