@@ -9,13 +9,13 @@
     <div id="questionCreateBox" style="width: 100%; ">
         <form action="" method="post" enctype="multipart/form-data" style="width: 100%;">
             {% csrf_token %}
-            <div style="margin-bottom:180px; width:100%;">
+            <div style="margin-bottom:180px; width:60%;">
                 <h2 class="FieldTitle">제목을 작성해주세요</h2>
                 <div class="questionTitleBox">
                     {{ form.title }}
                 </div>
             </div>
-            <div style="margin-bottom:300px; width:100%;">
+            <div style="margin-bottom:300px; width:80%;">
                 <h2 class="FieldTitle">궁금한 내용을 입력해주세요</h2>
                 <div class="questionContentBox">
                     {{ form.content }}

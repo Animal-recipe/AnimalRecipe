@@ -1,7 +1,7 @@
 {% load static %}
 {{ form.media }}
 
-<label for="{{widget.attrs.id}}" class="img_show2" style="display: flex; align-items: center;">
+<label for="{{widget.attrs.id}}" class="img_show2" style="cursor: pointer; display: flex; align-items: center;">
     {% if widget.value %}
         <img id="preview_{{widget.attrs.id}}"  src="{{ widget.value.url }}" style="border-radius: 24px; width:450px; height:250px;">
 

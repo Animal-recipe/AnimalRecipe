@@ -176,6 +176,10 @@
     font-size: 18px;
     line-height: 25px;
     color: #575757;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .amount {
@@ -532,5 +536,9 @@ textarea:focus {
 }
 
 button{
+    cursor:pointer;
+}
+
+input{
     cursor:pointer;
 }

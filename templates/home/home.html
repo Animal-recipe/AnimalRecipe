@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
 <div id="mainBox" style="padding:0 7%;">
     {% include 'nav.html' %}
-    <div class="my-5" style="">
+    <div class="my-5" style="padding-left:4%;">
         <h1 id="mainText">반려동물을 위한<br />요리 레시피를<br />공유해봐요!</h1>
     </div>
     <img id="rabbit" src="{% static 'img/home/home_rabbit.png'%}">
@@ -21,7 +21,7 @@
             <button type="submit"><img src="{% static 'img/question/searchButton.png' %}" width="23.32px"
                     height="23.32px"></button>
         </form>
-        <a href="{% url 'recipe:create_recipe' %}" class="createRecipeBtn btn"><span>레시피 작성하기</span>
+        <a style="margin-left:1%; " href="{% url 'recipe:create_recipe' %}" class="createRecipeBtn btn"><span>레시피 작성하기</span>
             <img src="{% static 'img/home/write.png' %}">
         </a>
     </div>
@@ -35,10 +35,10 @@
         <p id="hotRecipeIntro">
             반려동물을 위해 요리 레시피를 공유해봐요!
         </p>
-        <div style="display:flex;">
+        <div style="display:flex; padding: 0 5%; overflow:auto; width:100%;">
             {% if hot_recipes_dict %}
             {% for item, image in hot_recipes_dict.items %}
-                <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="margin: 0 auto;">
+                <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="margin: 0 auto; margin-bottom:50px;">
                     {% if image %}
                         <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
                     {% else %}
@@ -69,19 +69,20 @@
         <p id="bestRecipeIntro">
             후기가 너무 좋은 레시피! 놓치지 말고 만들어봐요.
         </p>
-        <div style="display:flex;">
-            {% if best_review_dict %}
+        <div style="display:flex; padding: 0 5%; overflow:auto; width:100%;">
+            {% if best_review_dict  %}
             {% for item, image in best_review_dict.items %}
-            <div class="recipe_size" onclick = "location.href='{% url 'review:detail_review' review_id=item.id %}'"style="margin: 0 auto;" >
+            <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.id %}'">
                 {% if image %}
-                    <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
+                <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
                 {% else %}
-                    <p class="recipe_img noImage">이미지가 없습니다</p>
+                <p class="recipe_img noImage">이미지가 없습니다</p>
                 {% endif %}
                 <div style="padding: 0 22px;">
-                    <div style="display: inline-block;"><p class="recipe_title" style="max-width:160px;">"{{ item.title_limit }}"</p></div>
+                    <p class="recipe_title">"{{ item.title_limit }}"</p>
                     <div>
-                        <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;"><img class="user_img" src="{{ item.author.profile.url }}"></p>
+                        <p style="float:left;width: 20px;height: 20px;margin-top:7px;border-radius: 27px; background: #C4C4C4;">
+                            <img class="user_img" src="{{ item.author.profile.url }}"></p>
                         <p class="recipe_id">{{ item.author.nickname }}</p>
                     </div>
                     <div style="margin-top:24px;">
@@ -89,13 +90,12 @@
                         <p class="recipe_time">{{ item.recipe.cooking_time }}</p>
                     </div>
                     <div style="margin-top:56px;">
-                        <p class="recipe_about" style="max-width:500px;">{{ item.recipe.title }}</p>
+                        <p class="recipe_about">{{ item.recipe.title }}</p>
                         <p class="review_star"> ★ {{ item.star }}.0</p>
                     </div>
                 </div>
             </div>
-                {% endfor %}
-            {% else %}
+            {% endfor %}
             {% endif %}
         </div>
     </div>

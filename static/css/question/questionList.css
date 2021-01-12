@@ -289,3 +289,7 @@ a:active {
 button{
     cursor:pointer;
 }
+
+input{
+    cursor:pointer;
+}

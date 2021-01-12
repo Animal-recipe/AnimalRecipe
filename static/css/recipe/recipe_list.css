@@ -385,6 +385,7 @@ option span {
     margin-top: 50px;
     margin-left: 150px;
     word-break: break-all;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     padding: 5px;
@@ -401,10 +402,15 @@ option span {
     margin-top: 50px;
     margin-left: 150px;
     word-break: break-all;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
 button{
+    cursor:pointer;
+}
+
+input{
     cursor:pointer;
 }

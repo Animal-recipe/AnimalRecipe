@@ -54,3 +54,7 @@ input[type="file"]{
 button{
     cursor:pointer;
 }
+
+input{
+    cursor:pointer;
+}

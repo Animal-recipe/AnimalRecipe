@@ -47,7 +47,7 @@
             {% csrf_token %}
             <div>
                 <p class="font1">제목을 작성해주세요</p>
-                <input required maxlength="100" style="width: 636px; margin-top:30px;" class="input_box" type="text" name="title" value="{{ now_review.title }}" placeholder="예시 ) 너무 쉽고 맛있는 황태국 (100자 이내)">
+                <input required maxlength="100" style="width: 60%; margin-top:30px;" class="input_box" type="text" name="title" value="{{ now_review.title }}" placeholder="예시 ) 너무 쉽고 맛있는 황태국 (100자 이내)">
             </div>
             <div style="margin-top:120px;">
                 <p class="font1">별점을 매겨주세요!</p>
@@ -63,7 +63,7 @@
             </div>
             <div style="margin-top:120px;">
                 <p class="font1">후기를 작성해주세요!</p>
-                <textarea required maxlength="500" style="margin-top:30px; padding: 30px 50px; width: 645px; height: 320px; line-height: 32.62px;" class="input_box" name="content" placeholder="예시 ) 우리집 강아지 뽀미가 요즘 너무 더워서 그런지 힘이 없어서 도전해 본 황태국이에요!! 만들어 보니 너무 쉽고 맛있게 만들 수 있어서 공유해봅니다. (500자 이내)">{{ now_review.content }}</textarea>
+                <textarea required maxlength="500" style="margin-top:30px; padding: 30px 50px; width: 60%; height: 320px; line-height: 32.62px;" class="input_box" name="content" placeholder="예시 ) 우리집 강아지 뽀미가 요즘 너무 더워서 그런지 힘이 없어서 도전해 본 황태국이에요!! 만들어 보니 너무 쉽고 맛있게 만들 수 있어서 공유해봅니다. (500자 이내)">{{ now_review.content }}</textarea>
             </div>
             <div style="margin-top:120px;" class="recipe_img">
                 <p class="font1" style="margin-bottom:70px; ">완성된 요리의 대표 사진을 업로드 해주세요.</p>

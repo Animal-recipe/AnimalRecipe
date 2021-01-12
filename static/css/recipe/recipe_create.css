@@ -335,3 +335,7 @@ input {outline:none; border: none;}
 button{
     cursor:pointer;
 }
+
+input{
+    cursor:pointer;
+}

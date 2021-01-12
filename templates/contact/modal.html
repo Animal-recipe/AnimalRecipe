@@ -18,8 +18,8 @@
                     <button class="modal_font1 send" style="width: 25%; float:left;"> 보낸 쪽지함</button>
                     <button onclick = "location.href='{% url 'contact:contact_senddelete' %}'" class="modal_font2 all_delete" style="margin-top: 20px;float:right;">전체삭제</button>
                 </div>
-                <div class="modal-footer"></div>
-                <div style="height:361px; overflow:auto; padding:12px; margin-bottom:30px; ">
+                <hr>
+                <div style="height:321px; overflow:auto; padding:12px; margin-bottom:30px; ">
                     {% if received_list %}
                         {% for item in received_list %}
                         <div class="summary_list2" style="">
@@ -36,7 +36,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="modal-footer"></div>
+                <hr>
                 <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
             </div>
 
