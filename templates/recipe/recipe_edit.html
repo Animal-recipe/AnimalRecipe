@@ -32,8 +32,9 @@
             $("input:radio[name=animal]:radio[value=고양이]").prop('checked',true);
             animal_num = 2;
         }else{
-            $("input:radio[name=animal]:radio[value=other]").prop('checked',true);
+            $("input:radio[name=animal]:radio[value=기타]").prop('checked',true);
             animal_num = 3;
+            $("input:text[name=other]").val(animal);
         }
 
         if (cook_time == "5분이내"){
@@ -91,7 +92,7 @@
                     <label style="margin-top: 10px; width: 120px; cursor:pointer;" class="radio_box">모두<input required style="display:none;" type="radio" name="animal" value="모두" autofocus="" ></label>
                     <label style="margin-top: 10px; width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="강아지"> 강아지</label>
                     <label style="margin-top: 10px; width: 120px; margin-left:30px; cursor:pointer;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="고양이"> 고양이</label>
-                    <label style="margin-top: 10px; width: 538px; margin-left:30px; cursor:pointer; padding-left:60px; text-align:left;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="other"> 기타 <input class="input_box" style="margin-left: 30px; box-shadow: none; width:380px; height:55px;" placeholder="반려동물을 작성해주세요.(한글, 쉼표만 가능)" type="text" name="other_animal"></label>
+                    <label style="margin-top: 10px; width: 538px; margin-left:30px; cursor:pointer; padding-left:60px; text-align:left;" class="radio_box"><input style="display:none;" type="radio" name="animal" value="기타"> 기타 <input name="other" class="input_box" style="margin-left: 30px; box-shadow: none; width:380px; height:55px;" placeholder="반려동물을 작성해주세요.(한글, 쉼표만 가능)" type="text"></label>
                 </div>
             </div>
             <p class="font1" style=" margin-top:120px;">조리시간이 얼마나 걸리나요?</p>

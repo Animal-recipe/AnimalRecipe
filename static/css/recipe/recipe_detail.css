@@ -58,6 +58,7 @@
     font-size: 25px;
     line-height: 41px;
     color: #000000;
+    word-break: break-all;
 }
 
 .user_img {
@@ -110,6 +111,11 @@
     line-height: 39.6px;
     text-align: center;
     color: #FFFFFF;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 px;
 }
 
 #cook_time {
@@ -242,12 +248,16 @@
 }
 
 #white_title {
-    height: 41px;
     font-family: Noto Sans;
     font-weight: 600;
     font-size: 30px;
     line-height: 41px;
     color: #FFFFFF;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align:right;
 }
 
 #review_title {

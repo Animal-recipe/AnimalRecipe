@@ -292,7 +292,6 @@ option span {
 }
 
 .recipe_animal {
-    display: flex;
     align-items: center;
     justify-content: center;
     padding: 2px 2px;
@@ -310,6 +309,7 @@ option span {
     word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .recipe_time {

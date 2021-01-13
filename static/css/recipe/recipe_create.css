@@ -101,12 +101,13 @@
 #title{
     margin-top: 50px;
     margin-left: 30px;
-    height: 122px;
     font-family: Noto Sans;
     font-weight: bold;
     font-size: 30px;
     line-height: 127.4%;
     color: #FFFFFF;
+    word-break: break-all;
+
 }
 
 #save{

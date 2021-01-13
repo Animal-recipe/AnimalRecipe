@@ -154,17 +154,19 @@
             </div>
             {% include 'contact/modal.html' %}
         </div>
-        <div style="float:right;">
-            <p id="white_title">{{ recipe.title_limit }}</p>
+        <div style="float:right; overflow:hidden; height:100%;">
+            <p id="white_title" style="width:600px;">{{ recipe.title }}</p>
             <div style="overflow:hidden; margin-top:40px;">
-                <img class="user_img" src="{{ recipe.author.profile.url }}">
-                <p class="user_info">{{ recipe.author.nickname }} 의 레시피 | 작성일 : {{ recipe.updated }}</p>
-                <div class="count">
-                    <img src="{% static 'img/recipe/recipe_detail/look.png' %}" style="margin-right:5px;">{{ recipe.hits }}
-                    <img src="{% static 'img/recipe/recipe_detail/goodMark.png' %}" style="margin:0 5px 0 10px;">{{ recipe.like.all.count }}
+                <div style="float: right;">
+                    <img class="user_img" src="{{ recipe.author.profile.url }}">
+                    <p class="user_info">{{ recipe.author.nickname }} 의 레시피 | 작성일 : {{ recipe.updated }}</p>
+                    <div class="count">
+                        <img src="{% static 'img/recipe/recipe_detail/look.png' %}" style="margin-right:5px;">{{ recipe.hits }}
+                        <img src="{% static 'img/recipe/recipe_detail/goodMark.png' %}" style="margin:0 5px 0 10px;">{{ recipe.like.all.count }}
+                    </div>
                 </div>
             </div>
-            <div style="float:right; margin-top:160px; cursor:pointer;">
+            <div style="float:right; cursor:pointer; margin-top:20%;">
                 <img style="float:left;" src="{% static 'img/recipe/recipe_detail/report.png' %}" />
                 <p id="report" style="float:left; margin-left:5px;"
                     onclick="location.href='{% url 'footer:Report' recipe.author.id %}'">신고하기</p>

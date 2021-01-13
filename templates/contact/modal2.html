@@ -29,7 +29,7 @@
                                 <p class="time" style="float:left; width: 10%; overflow:hidden; margin-right:10%;">{{ item.sentAt|date:"y.m.d" }}</p>
                                 <img onclick = "location.href='{% url 'contact:contact_delete' item.id %}'" style="float:left; height:23px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>
                             </div>
-                            <div class="content_list" style="display:none; width: 580px; padding:20px; ">
+                            <div class="content_list" style="display:none; width: 100%; padding:20px; ">
                                 {{ item.content }}
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                 <p class="time" style="float:left; width: 10%; overflow:hidden; margin-right:10%;">{{ item.sentAt|date:"y.m.d" }}</p>
                                 <img onclick = "location.href='{% url 'contact:contact_delete' item.id %}'" style="float:left; height:23px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>
                             </div>
-                            <div class="content_list" style="display:none; width: 580px; padding:20px; ">
+                            <div class="content_list" style="display:none; width: 100%; padding:20px; ">
                                 {{ item.content }}
                             </div>
                         </div>
