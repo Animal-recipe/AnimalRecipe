@@ -31,10 +31,12 @@
                 <p class="fieldName">반려동물</p>
                 <p class="fieldContent">{{ user.get_petkind_display }}</p>
             </div>
+            {% if user.petkind != 'NONE' %}
             <div>
                 <p class="fieldName">반려동물 이름</p>
                 <p class="fieldContent" style="margin-bottom: 65px;">{{ user.petname }}</p>
             </div>
+            {% endif %}
         </div>
         <div class="infoButtonBox">
             <a class="infoEditButton" href="{% url 'mypage:update_myInfo' %}">수정하기</a>

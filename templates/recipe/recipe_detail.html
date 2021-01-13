@@ -155,7 +155,7 @@
             <p id="white_title">{{ recipe.title_limit }}</p>
             <div style="overflow:hidden; margin-top:40px;">
                 <img class="user_img" src="{{ recipe.author.profile.url }}">
-                <p class="user_info">{{ recipe.author.nickname }} 의 레시피 | 작성일 : {{ recipe.updated }}</p>
+                <p class="user_info">{{ recipe.author.nickname }} 의 레시피 | 작성일 : {{ recipe.created }}</p>
                 <div class="count">
                     <img src="{% static 'img/recipe/recipe_detail/look.png' %}" style="margin-right:5px;">{{ recipe.hits }}
                     <img src="{% static 'img/recipe/recipe_detail/goodMark.png' %}" style="margin:0 5px 0 10px;">{{ recipe.like.all.count }}

@@ -70,9 +70,10 @@
                         <option value="FISH">물고기</option>
                         <option value="HAM">햄스터</option>
                         <option value="ETC">기타</option>
+                        <option value="NONE">없음</option>
                     </select>
                 </div>
-                <div class="formField">
+                <div class="formField" id="petnameField" style="display: block;">
                     {{ form.petname }}
                 </div>
             </div>
@@ -82,6 +83,9 @@
             </div>
         </form>
     </div>
+    {% for field in form %}
+    {{ field.errors }}
+{% endfor %}
 </div>
 <script>
 $(document).ready(function(){
@@ -97,8 +101,6 @@ $(document).ready(function(){
     }
     $("#id_profile").change(function(){
         readURL(this);
-        console.log('change success')
-        console.log($("#id_profile"))
     });
     // 이미지 삭제
     function resetInputFile($input, $profileImage) {
@@ -106,14 +108,10 @@ $(document).ready(function(){
         if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
             // ie
             $input.replaceWith($input.clone(true));
-            console.log('reset func execute')
-            console.log($input)
             $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
         } else {
             //other
             $input.val("");
-            console.log('reset func execute')
-            console.log($input)
             $('#profileImage').prop('src', '{% static "img/account/defaultProfile.png" %}');
         }
     }
@@ -129,6 +127,13 @@ $(document).ready(function(){
             $(this).prev().attr('type',"text");
         }else{
             $(this).prev().attr('type','password');
+        }
+    });
+    $("#id_petkind").change(function() {
+        if($("#id_petkind").val() == "NONE") {
+            $("#petnameField").css('display', 'none');
+        }  else {
+            $("#petnameField").css('display', 'block');
         }
     });
 });
