@@ -86,13 +86,13 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
         pass
 
     if cooking_time == 'under5':
-        recipes = recipes.filter(cooking_time='5분 이내')
+        recipes = recipes.filter(cooking_time='5분이내')
     elif cooking_time == 'fiveTo10':
-        recipes = recipes.filter(cooking_time='5분 - 10분')
+        recipes = recipes.filter(cooking_time='5분_10분')
     elif cooking_time == 'tenTo20':
-        recipes = recipes.filter(cooking_time='10분 - 20분')
+        recipes = recipes.filter(cooking_time='10분_20분')
     elif cooking_time == 'over20':
-        recipes = recipes.filter(cooking_time='20분 이상')
+        recipes = recipes.filter(cooking_time='20분이상')
     else:
         pass
 
@@ -101,7 +101,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     elif order == 'review':
         recipes = recipes.annotate(num_review=Count('recipe_review')).order_by('-num_review', '-created')
     else:  # like
-        recipes = recipes.order_by('-like', '-created')
+        recipes = recipes.annotate(num_like=Count('like')).order_by('-num_like','-created')
 
     if hot_recipes.__len__() >= 4 :
         for i in range(0,4):

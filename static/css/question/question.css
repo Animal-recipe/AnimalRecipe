@@ -264,7 +264,6 @@ button:focus {
 }
 .qDetailInfo {
     width: 800px;
-    /* overflow: hidden; */
     padding-top: 40px;
     font-family: Noto Sans;
     font-weight: 500;

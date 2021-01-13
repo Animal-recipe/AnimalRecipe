@@ -12,59 +12,60 @@ class UserCreationForm(forms.ModelForm):
     email = forms.EmailField(
         label='',
         max_length=255,
+        required=True,
         widget=forms.EmailInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('이메일'),
-                'required': 'True',
             }
         )
     )
     nickname = forms.CharField(
         label='',
         max_length=20,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('닉네임(중복불가)'),
-                'required': 'True',
             }
         )
     )
     profile = forms.ImageField(label='', required=False)
     password1 = forms.CharField(
         label='',
+        required=True,
         widget=forms.PasswordInput(
                 attrs={
                     'class': 'registerInput',
                     'placeholder': _('비밀번호(8자리 이상)'),
-                    'required': 'True',
                 }
         )
     )
     password2 = forms.CharField(
         label='',
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('비밀번호 확인'),
-                'required': 'True',
             }
         )
     )
     petname = forms.CharField(
         label='',
         max_length=20,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('반려동물 이름'),
-                'required': 'True',
             }
         )
     )
     petkind = forms.CharField(
         label='',
+        required=True,
         widget= forms.Select(
             choices=PET_KINDS,
             attrs={
@@ -113,59 +114,60 @@ class UserChangeForm(forms.ModelForm):
     email = forms.EmailField(
         label='',
         max_length=255,
+        required=True,
         widget=forms.EmailInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('이메일'),
-                'required': 'True',
             }
         )
     )
     nickname = forms.CharField(
         label='',
         max_length=20,
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('닉네임(중복불가)'),
-                'required': 'True',
             }
         )
     )
     profile = forms.ImageField(label='', required=False)
     password1 = forms.CharField(
         label='',
+        required=True,
         widget=forms.PasswordInput(
                 attrs={
                     'class': 'registerInput',
                     'placeholder': _('비밀번호(8자리 이상)'),
-                    'required': 'True',
                 }
         )
     )
     password2 = forms.CharField(
         label='',
+        required=True,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('비밀번호 확인'),
-                'required': 'True',
             }
         )
     )
     petname = forms.CharField(
         label='',
         max_length=20,
+        required=False,
         widget=forms.TextInput(
             attrs={
                 'class': 'registerInput',
                 'placeholder': _('반려동물 이름'),
-                'required': 'True',
             }
         )
     )
     petkind = forms.CharField(
         label='',
+        required=True,
         widget= forms.Select(
             choices=PET_KINDS,
             attrs={
@@ -199,9 +201,10 @@ class UserChangeForm(forms.ModelForm):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         user.passwordLength = len(self.cleaned_data["password1"])
+        if user.petkind == 'NONE':
+            user.petname = ''
         if commit:
             user.save()
-            print('change form save')
         return user
 
 class LoginForm(forms.Form):
@@ -227,7 +230,7 @@ class LoginForm(forms.Form):
             try:
                 user = User.objects.get(email = email)
             except User.DoesNotExist:
-                self.add_error('email', "존재하지 않는 이메일입니다.")
+                raise forms.ValidationError("존재하지 않는 이메일입니다.")
             if not check_password(password, user.password):
-                self.add_error('password', '비밀번호가 일치하지 않습니다.')
+                raise forms.ValidationError('비밀번호가 일치하지 않습니다.')
         return cleaned_data

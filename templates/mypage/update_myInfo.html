@@ -64,9 +64,10 @@
                         <option {% if user.petkind == 'FISH' %}selected{% endif %} value="FISH">물고기</option>
                         <option {% if user.petkind == 'HAM' %}selected{% endif %} value="HAM">햄스터</option>
                         <option {% if user.petkind == 'ETC' %}selected{% endif %} value="ETC">기타</option>
+                        <option {% if user.petkind == 'NONE' %}selected{% endif %} value="NONE">없음</option>
                     </select>
                 </div>
-                <div class="formField">
+                <div class="formField" id="petnameField">
                     <input type="text" name="petname" class="registerInput" placeholder="반려동물 이름" required="" maxlength="20" id="id_petname" value="{{ user.petname}}">
                 </div>
             </div>
@@ -80,6 +81,11 @@
 {% include 'footer.html' %}
 <script>
 $(document).ready(function(){
+    if($("#id_petkind").val() == "NONE") {
+            $("#petnameField").css('display', 'none');
+        }  else {
+            $("#petnameField").css('display', 'block');
+    }
     // 이미지 추가
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -92,14 +98,11 @@ $(document).ready(function(){
     }
     $("#id_profile").change(function(){
         readURL(this);
-        console.log('change success')
-        console.log($("#id_profile"))
     });
     $(".deleteButton").click(function(event) {
         let $input = $("#id_profile")
         let $profileImage = $("#profileImage")
         resetInputFile($input, $profileImage);
-        console.log('delete btn execute')
     });
     // 비밀번호 보기 숨기기
     $('.showHideToggle').click(function(){
@@ -108,6 +111,13 @@ $(document).ready(function(){
             $(this).prev().attr('type',"text");
         }else{
             $(this).prev().attr('type','password');
+        }
+    });
+    $("#id_petkind").change(function() {
+        if($("#id_petkind").val() == "NONE") {
+            $("#petnameField").css('display', 'none');
+        }  else {
+            $("#petnameField").css('display', 'block');
         }
     });
 });

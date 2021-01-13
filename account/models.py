@@ -10,6 +10,7 @@ PET_KINDS = [
     ('FISH', '물고기'),
     ('HAM', '햄스터'),
     ('ETC', '기타'),
+    ('NONE', '없음'),
 ]
 
 # 카테고리 연결하고 회원가입, 로그인, 로그아웃, 마이페이지....
@@ -55,10 +56,10 @@ class User(AbstractBaseUser):
         verbose_name='petname',
         default='petname',
         max_length=20,
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
     )
-    petkind = models.CharField(max_length=4, choices=PET_KINDS, default='DOG')
+    petkind = models.CharField(max_length=4, choices=PET_KINDS,blank=False, null=False)
     profile = models.ImageField(
         verbose_name="profile",
         upload_to='profiles/',

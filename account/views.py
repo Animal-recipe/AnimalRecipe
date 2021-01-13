@@ -15,8 +15,6 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('/account/register/success/')
-        else:
-            form = UserCreationForm()
     return render(request, 'account/register.html', {'form': form})
 
 def agreement(request, *args, **kwargs):
@@ -39,9 +37,10 @@ def mylogin(request):
         if form.is_valid():
             email = request.POST['email']
             password = request.POST['password']
-            user = authenticate(request, email=email, password=password)
-            login(request, user)
-            return redirect('/')
+            user = authenticate(email=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/')
     else:
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
