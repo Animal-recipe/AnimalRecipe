@@ -23,3 +23,11 @@
     width: 25px;
     height: 25px;
 }
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
+}

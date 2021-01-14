@@ -14,3 +14,11 @@
     line-height: 20px;
     color: #000000;
 }
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
+}

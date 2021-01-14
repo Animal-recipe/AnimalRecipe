@@ -17,7 +17,7 @@ button:focus {
     height: 400px;
     background: #1B1B1B;
     border-radius: 0px 0px 80px 80px;
-    padding: 0 145px;
+    padding: 0 7%;
     overflow: hidden;
 }
 
@@ -126,7 +126,6 @@ button:focus {
 
 #editButton {
     min-width: 98px;
-    cursor: pointer;
     height: 53px;
     background: #777777;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
@@ -145,7 +144,6 @@ button:focus {
 #cancelButton {
     min-width: 98px;
     height: 53px;
-    cursor: pointer;
     background: #A9A9A9;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
@@ -280,4 +278,12 @@ button:focus {
 .infoButtonBox {
     display: flex;
     padding-bottom: 270px;
+}
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
 }

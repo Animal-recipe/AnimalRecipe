@@ -119,3 +119,11 @@
     height: 138px;
     background: #FFDCDC;
 }
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
+}
