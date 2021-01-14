@@ -37,11 +37,11 @@ def create_Service_center(request):
 def create_Report_problem(request, user_id):
     temp = User.objects.get(id=user_id).nickname
     if request.method == 'POST':
-        Report_form = Report_problem_Form(request.POST, request.FILES)
+        Report_form = Report_problem_Form(request.POST)
         if Report_form.is_valid():
             Report = Report_form.save(commit=False)
             Report.author_id = request.user.id
-            Report.target.id = 1
+            Report.target.id = user_id
             Report.reason = request.POST["reason"]
             Report.other_reason = request.POST["other_reason"]
             Report.save()
