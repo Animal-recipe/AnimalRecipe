@@ -292,7 +292,6 @@ option span {
 }
 
 .recipe_animal {
-    display: flex;
     align-items: center;
     justify-content: center;
     padding: 2px 2px;
@@ -310,6 +309,7 @@ option span {
     word-break: break-all;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .recipe_time {
@@ -385,6 +385,7 @@ option span {
     margin-top: 50px;
     margin-left: 150px;
     word-break: break-all;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     padding: 5px;
@@ -401,6 +402,15 @@ option span {
     margin-top: 50px;
     margin-left: 150px;
     word-break: break-all;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
 }

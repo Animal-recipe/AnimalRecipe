@@ -35,3 +35,7 @@ footer {
     text-align: center;
     color: #757575;
 }
+
+input{
+    cursor:pointer;
+}

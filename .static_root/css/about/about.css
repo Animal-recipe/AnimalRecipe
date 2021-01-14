@@ -52,11 +52,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 140px 200px 327px;
     box-sizing: border-box;
 }
 #BIImg {
-    width: 1300px;
+    width: 100%;
     cursor: pointer;
 }
 #characterBox {
@@ -68,7 +67,7 @@
     box-sizing: border-box;
 }
 #characterImg {
-    width: 1200px;
+    width: 100%;
     padding: 173px 0 216px;
     cursor: pointer;
 }
@@ -90,7 +89,7 @@
     align-items: center;
     box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
     border-radius: 68px;
-    margin: 0 25px;
+    margin: 0 auto;
     cursor: pointer;
 }
 .infoBox:hover {
@@ -104,11 +103,11 @@
     line-height: 212.7%;
     display: flex;
     align-items: center;
-    width: 1300px;
+    width: 100%;
     box-sizing: border-box;
 }
 .row2 {
-    width: 622px;
+    width: 50%;
     padding: 100px 24px;
     font-family: Noto Sans;
     font-weight: 600;
@@ -120,7 +119,7 @@
     text-align: center;
 }
 .row3 {
-    width: 405px;
+    width: 50%;
     padding: 80px 26px;
     font-family: Noto Sans;
     font-weight: 600;
@@ -136,4 +135,12 @@
     font-weight: 900;
     font-size: 48px;
     line-height: 212.7%;
+}
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
 }

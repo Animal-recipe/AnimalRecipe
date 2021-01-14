@@ -28,3 +28,11 @@
 textarea:focus {
   outline: none;
 }
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
+}
