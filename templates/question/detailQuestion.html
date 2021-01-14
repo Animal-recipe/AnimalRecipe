@@ -46,6 +46,10 @@
             </button>
         </div>
         </div>
+        <div style="display:flex;justify-content:flex-start; margin-bottom: 70px;">
+            <img src="{% static 'img/question/report.png' %}">
+            <a class="report" onclick = "location.href='{% url 'footer:Report' question.author.id %}'">신고하기</a>
+        </div>
         <div style="display:flex;justify-content:flex-start;margin-bottom: 218px;">
             <a style="background: #FF5C00;box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);" href="{% url 'question:create_answer' question.id %}"
                 class="questionCreateBtn btn"><span>답변하기</span>

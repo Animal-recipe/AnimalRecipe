@@ -28,7 +28,7 @@ def review_list(request):
     best_review_dict = {}
 
     if best_review.__len__() >= 4:
-        for i in range(0, 4):
+        for i in range(0, best_review.__len__()):
             temp = best_review[i]
             img_obj = ""
             for j in range(0, img.__len__()):

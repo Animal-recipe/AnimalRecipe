@@ -38,6 +38,7 @@
         <div style="display:flex; padding: 0 5%; overflow:auto; width:100%;">
             {% if hot_recipes_dict %}
             {% for item, image in hot_recipes_dict.items %}
+                {% if forloop.counter < 5 %}
                 <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="margin: 0 auto; margin-bottom:50px;">
                     {% if image %}
                         <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
@@ -56,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
             {% else %}
             {% endif %}
@@ -72,6 +74,7 @@
         <div style="display:flex; padding: 0 5%; overflow:auto; width:100%;">
             {% if best_review_dict  %}
             {% for item, image in best_review_dict.items %}
+            {% if forloop.counter < 5 %}
             <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.id %}'">
                 {% if image %}
                 <img class="recipe_img" src="{{ image }}" class="card-img-top" alt="사진">
@@ -95,13 +98,14 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
             {% endif %}
         </div>
     </div>
 </div>
-<div id="aboutBox">
-    <div style="position:relative;">
+<div id="aboutBox" style="position:relative;">
+    <div style="position:relative; z-index:1;">
         <img id="aboutRabbit" src="{% static 'img/home/home_rabbit.png'%}">
          <img class="rabbitShadow" style="top:498px;left:194px;width:210px;" src="{% static 'img/home/rabbitShadow.png'%}">
         <img id="aboutCat" src="{% static 'img/home/home_cat.png'%}">
@@ -110,17 +114,17 @@
          <img class="dogShadow" style="top:517px;left:341px;" src="{% static 'img/home/dogShadow.png'%}">
     </div>
 
-    <div id="textBox">
+    <div id="textBox" style="position:relative; z-index:50px;">
         <h3 id="aboutTitle">
             브랜드 스토리를
             <br>
             들어봐요!
         </h3>
-        <p class="aboutIntro"> _<br>
+        <p class="aboutIntro" > _<br>
             집사의 레시피는 동물 친구들이 맛있는 음식을 찾아<br>
             여정을 떠나는 스토리로 시작됩니다.
         </p>
-        <p class="aboutIntro">동물 친구들의 여정 중 일어나는 왁자지껄하고<br>
+        <p class="aboutIntro" >동물 친구들의 여정 중 일어나는 왁자지껄하고<br>
             귀여운 이야기들 들으러 가볼까요?
         </p>
     </div>
