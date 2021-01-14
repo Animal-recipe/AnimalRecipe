@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="{% static 'css/question/questionList.css' %}">
 <script type="text/javascript" src="{% static 'js/question/question.js' %}"></script>
 
-<div id="navBarBox" style="height: 130px;">
+<div id="navBarBox" style="height: 130px; padding: 0 7%;">
     {% include 'nav.html' %}
 </div>
-<div class="questionListBox">
+<div class="questionListBox" style="padding: 0 10%;">
     <form class="searchBarBox" action="{% url 'question:list' %}" method="GET">
         {% csrf_token %}
         <input class="searchBar q" placeholder="질문을 검색해 보세요!" id="q" name="q" value="{{q|default_if_none:''}}">

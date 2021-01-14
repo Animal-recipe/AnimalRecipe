@@ -3,7 +3,7 @@
 {% block content %}
 {% include 'confirmModal.html' %}
 <link rel="stylesheet" href="{% static 'css/question/question.css' %}">
-<div id="navBarBox" style="height: 130px;">
+<div id="navBarBox" style="height: 130px; padding: 0 7%;">
     {% include 'nav.html' %}
 </div>
 <!-- question start -->
@@ -32,7 +32,7 @@
                 <span class="answerCount">답변수 {{ question.answer.count }}</span>
             </p>
         </div>
-        <div class="qDetailContent">{{ question.content }}</div>
+        <div class="qDetailContent" style="width:70%;">{{ question.content }}</div>
         <div style="width:62px; float:right; margin-right:70px;">
         <div style="float:left; text-align:center;">
             {% if not user.is_authenticated %}
@@ -88,7 +88,7 @@
                     </p>
                 </div>
                 <div style="overflow:hidden; ">
-                    <div class="qDetailContent" style="float:left;">{{ answer.content }}</div>
+                    <div class="qDetailContent" style="float:left; width:70%;">{{ answer.content }}</div>
                     <div style="float:right; margin-top:100px;">
                         <div style="float:left; text-align:center;">
                             <a href="{% url 'question:like_answer' answer.id %}">
@@ -125,7 +125,7 @@
                 </div>
                 <div style="display:flex;justify-content:flex-start;">
                     <img src="{% static 'img/question/report.png' %}">
-                    <a class="report" onclick = "location.href='{% url 'footer:Report' user_id=answer.author %}'">신고하기</a>
+                    <a class="report" onclick = "location.href='{% url 'footer:Report' answer.author.id %}'">신고하기</a>
                 </div>
             </div>
         {% endfor %}

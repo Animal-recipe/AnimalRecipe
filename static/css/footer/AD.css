@@ -57,3 +57,11 @@
     text-align: center;
     color: #575757;
 }
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
+}

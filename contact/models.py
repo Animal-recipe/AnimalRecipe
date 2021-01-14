@@ -11,7 +11,7 @@ class Message(models.Model):
     #보낸 시간
     sentAt = models.DateTimeField(auto_now_add=True)
     #내용
-    content = models.TextField(max_length=150)
+    content = models.TextField(max_length=500)
     #읽었는지
     isRead = models.BooleanField(default=False)
 
@@ -41,7 +41,7 @@ class Remessage(models.Model):
     #보낸 시간
     sentAt = models.DateTimeField(auto_now_add=True)
     #내용
-    content = models.TextField(max_length=150)
+    content = models.TextField(max_length=500)
     #읽었는지
     isRead = models.BooleanField(default=False)
 

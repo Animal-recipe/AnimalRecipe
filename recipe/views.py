@@ -27,7 +27,11 @@ def create(request):
         if ingredient_formset.is_valid() and image_formset.is_valid() and step_formset.is_valid() :
             recipe = recipe_form.save(commit=False)
             recipe.author_id = request.user.id
-            recipe.animal = request.POST["animal"]
+            if request.POST["animal"] == "기타":
+                recipe.animal = request.POST["other"]
+            else:
+                recipe.animal = request.POST["animal"]
+
             recipe.cooking_time = request.POST["cooking_time"]
             recipe.level = request.POST["level"]
             recipe.title = request.POST["title"]
@@ -205,7 +209,11 @@ def edit(request, recipe_id):
         image_formset = RecipeImageFormSet(request.POST, request.FILES, instance=now_recipe)
         ingredient_formset = RecipeIngredientFormSet(request.POST, request.FILES, instance=now_recipe)
         step_formset = RecipeStepFormSet(request.POST, request.FILES, instance=now_recipe)
-        now_recipe.animal = request.POST["animal"]
+        if request.POST["animal"] == "기타":
+            now_recipe.animal = request.POST["other"]
+        else:
+            now_recipe.animal = request.POST["animal"]
+
         now_recipe.cooking_time = request.POST["cooking_time"]
         now_recipe.level = request.POST["level"]
         now_recipe.title = request.POST["title"]

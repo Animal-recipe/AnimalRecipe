@@ -12,7 +12,7 @@ class Recipe(models.Model):
     # 유저
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipe_user')
     # 반려동물
-    animal = models.CharField(max_length=50, default='')
+    animal = models.CharField(max_length=10, default='')
     # 조리시간
     cooking_time = models.CharField(max_length=50, default='')
     # 제목

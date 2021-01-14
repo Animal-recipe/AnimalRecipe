@@ -17,7 +17,7 @@ button:focus {
     height: 400px;
     background: #1B1B1B;
     border-radius: 0px 0px 80px 80px;
-    padding: 0 145px;
+    padding: 0 7%;
     overflow: hidden;
 }
 
@@ -278,4 +278,12 @@ button:focus {
 .infoButtonBox {
     display: flex;
     padding-bottom: 270px;
+}
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
 }

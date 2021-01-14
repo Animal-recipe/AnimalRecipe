@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/about/about.css' %}">
-<div id="navBarBox">
+<div id="navBarBox" style="padding: 0 7%;">
     {% include 'nav.html' %}
 </div>
 <div id="brandStoryBox">
@@ -17,23 +17,23 @@
             <span class="emphasizedText">반려동물과 집사님들의 삶의 질이 더 높아지길 희망합니다.</span></p>
     </div>
 </div>
-<div id="BIBox">
+<div id="BIBox" style="margin-top: 100px;">
     <div class="Title">
         <h2 class="MainTitle">BI</h2>
         <p class="subTitle">_<br>
         Brand Story</p>
     </div>
-    <div class="content">
-        <img id="BIImg" src="{% static 'img/about/BI.png' %}">
-    </div>
 </div>
-<div id="characterBox">
+<div class="content" style="width:100%;">
+    <img id="BIImg" src="{% static 'img/about/BI.png' %}">
+</div>
+<div id="characterBox" style="margin-top:100px;">
     <div class="Title">
         <h2 class="MainTitle">Pet Friends</h2>
         <p class="subTitle">_<br>
         Brand Character</p>
     </div>
-    <div class="content">
+    <div class="content" style="width:100%;">
         <p>
             매일 똑같은 음식만 먹다 질린 동물 친구들이 맛있는 음식과 새로운 레시피를 찾기 위해 여정을 떠나게<br>
             됩니다. 음식을 찾아 나서는 것만이 방법이라고 생각한 냥냥이 가장 먼저 떠나게 되었죠. 냥냥의 용감한<br>

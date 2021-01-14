@@ -15,6 +15,12 @@
     text-align: center;
     min-width: 370px;
 }
+#menuBox2 {
+    display:flex;
+    justify-content: space-around;
+    text-align: center;
+    width:35%;
+}
 .menuItem {
     font-family: Noto Sans;
     font-weight: 500;
@@ -24,6 +30,15 @@
     color: #FFFFFF;
     flex: 1 1 auto;
     width: 64px;
+}
+.menuItem2 {
+    font-family: Noto Sans;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    color: #FFFFFF;
+    flex: 1 1 auto;
+    width: 10%;
 }
 #logo {
     width: 370px;
@@ -40,4 +55,12 @@
     max-width: 80px;
     display: flex;
     justify-content: center;
+}
+
+button{
+    cursor:pointer;
+}
+
+input{
+    cursor:pointer;
 }

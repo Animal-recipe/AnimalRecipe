@@ -11,7 +11,7 @@
     {% for item, image in hot_recipes_dict.items %}
         {% if image %}
         <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('{{ image }}'); background-size: 100%;">
-            <div style="padding: 0 145px;">
+            <div style="padding: 0 7%;">
                 {% include 'nav.html' %}
             </div>
             <div class="hot_recipe" style="margin-bottom:15px;">이번주 Hot 레시피</div>
@@ -20,7 +20,7 @@
         </div>
         {% else %}
         <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background: black; ">
-            <div style="padding: 0 145px;">
+            <div style="padding: 0 7%;">
                 {% include 'nav.html' %}
             </div>
             <div class="hot_recipe" style="margin-bottom:15px;">이번주 Hot 레시피</div>
@@ -31,7 +31,7 @@
     {% endfor %}
     {% else %}
     <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background: black; ">
-        <div style="padding: 0 145px;">
+        <div style="padding: 0 7%;">
             {% include 'nav.html' %}
         </div>
     </div>
@@ -39,7 +39,7 @@
 </div>
 <div>
     <!-- filter div -->
-    <div style="overflow:hidden;padding: 0 200px;">
+    <div style="overflow:hidden;padding: 0 10%;">
         <div style="display: flex;justify-content: space-between;margin:0 0 40px">
             <div style="display: inline-block;width:100%;margin-right:30px;margin-top: 52px;">
                 <form class="searchBarBox" action="{% url 'recipe:list_recipe' %}" method="GET">
@@ -89,14 +89,14 @@
             </div>
         </div>
         <div id="create_recipe_css">
-            <a href="{% url 'recipe:create_recipe' %}" style="color: #FFFFFF;">레시피 작성하기<img style="margin-left:15px;"
+            <a href="{% url 'recipe:create_recipe' %}" style="color: #FFFFFF;">레시피 작성하기<img style="padding-left:15px;"
                     src="{% static 'img/recipe/recipe_list/recipe_write.png' %}" /></a>
         </div>
     </div>
     <!-- filter div end -->
 
     <!-- content div -->
-    <div style="padding: 0 200px; overflow:auto; width:100%;">
+    <div style="padding: 0 10%; overflow:auto; width:100%;">
         {% if recipes %}
         {% for item in recipes %}
         <div class="recipe_size" onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.0.id %}'">

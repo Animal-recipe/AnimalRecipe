@@ -7,36 +7,36 @@
 <div class="modal modal-center fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-center modal-lg">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="cursor:pointer; "><span aria-hidden="true" style="cursor:pointer;">&times;</span></button>
-        <div class="modal-content modal-center" style="padding: 40px 50px;">
+        <div class="modal-content modal-center" style="padding: 5%;">
             <div id="receive_box" style="padding: 20px 20px;">
                 <div style="overflow:hidden; height: 100px;">
                     <p class="header_font" style="width:50%; float:left; margin-top: 20px;">쪽지함</p>
                     <button onclick = "location.href='{% url 'contact:contact_create' question.author.id %}'" class="button1 send_mail_btn" style="width: 150px; float:right; margin: 15px;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
                 </div>
                 <div style="overflow:hidden; padding-top:10px; height:50px;">
-                    <button class="modal_font1 receive" style="width: 15%; float:left; color: #FF5C00; ">받은 쪽지함</button> <p class="modal_font1" style="width: 20px; margin-left:15px; margin-top:10px; float:left;"> | </p>
-                    <button class="modal_font1 send" style="width: 15%; float:left;"> 보낸 쪽지함</button>
+                    <button class="modal_font1 receive" style="width: 25%; float:left; color: #FF5C00; ">받은 쪽지함</button> <p class="modal_font1" style="width: 20px; margin-left:15px; margin-top:10px; float:left;"> | </p>
+                    <button class="modal_font1 send" style="width: 25%; float:left;"> 보낸 쪽지함</button>
                     <button onclick = "location.href='{% url 'contact:contact_senddelete' %}'" class="modal_font2 all_delete" style="margin-top: 20px;float:right;">전체삭제</button>
                 </div>
-                <div class="modal-footer"></div>
-                <div style="height:361px; overflow:auto; padding:12px; margin-bottom:30px; ">
+                <hr>
+                <div style="height:321px; overflow:auto; padding:12px; margin-bottom:30px;">
                     {% if received_list %}
                         {% for item in received_list %}
                         <div class="summary_list2" style="">
                             <div style="height:20px;">
-                                <p class="summary" style="float:left;">{{ item.summary }}</p>
-                                <p class="nickname" style="float:left;">{{ item.sender.nickname }}</p>
-                                <p class="time" style="float:left; width: 32%; overflow:hidden;">{{ item.sentAt}}</p>
+                                <p class="summary" style="float:left; margin-right:5%;">{{ item.summary }}</p>
+                                <p class="nickname" style="float:left; margin-right:5%;">{{ item.sender.nickname }}</p>
+                                <p class="time" style="float:left; width: 10%; overflow:hidden; margin-right:10%;">{{ item.sentAt|date:"y.m.d" }}</p>
                                 <img onclick = "location.href='{% url 'contact:contact_delete' item.id %}'" style="float:left; height:23px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>
                             </div>
-                            <div class="content_list" style="display:none; width: 580px; padding:20px; ">
+                            <div class="content_list" style="display:none; width: 100%; padding:20px; ">
                                 {{ item.content }}
                             </div>
                         </div>
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="modal-footer"></div>
+                <hr>
                 <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
             </div>
 
@@ -46,29 +46,29 @@
                     <button onclick = "location.href='{% url 'contact:contact_create' question.author.id %}'" class="button1 send_mail_btn" style="width: 150px; float:right; margin: 15px;">쪽지쓰기 <img src="{% static 'img/recipe/recipe_list/recipe_write.png' %}"/></button>
                 </div>
                 <div style="overflow:hidden; padding-top:10px; height:50px;">
-                    <button class="modal_font1 receive" style="width:15%; float:left; pointer:cursor;">받은 쪽지함</button> <p class="modal_font1" style="width:20px; margin-left:15px; margin-top:10px; float:left;"> | </p>
-                    <button class="modal_font1 send" style="width:15%; float:left; color: #FF5C00; pointer:cursor;"> 보낸 쪽지함</button>
+                    <button class="modal_font1 receive" style="width:25%; float:left; pointer:cursor;">받은 쪽지함</button> <p class="modal_font1" style="width:20px; margin-left:15px; margin-top:10px; float:left;"> | </p>
+                    <button class="modal_font1 send" style="width:25%; float:left; color: #FF5C00; pointer:cursor;"> 보낸 쪽지함</button>
                     <button onclick = "location.href='{% url 'contact:contact_receiveddelete' %}'" class="modal_font2 all_delete" style="margin-top: 20px;float:right; pointer:cursor;">전체삭제</button>
                 </div>
-                <div class="modal-footer"></div>
-                <div style="height:361px; overflow:auto; padding:12px; margin-bottom:30px;">
+                <hr>
+                <div style="height:321px; overflow:auto; padding:12px; margin-bottom:30px;">
                     {% if send_list %}
                         {% for item in send_list %}
                         <div class="summary_list2" style="">
                             <div style="height:20px;">
-                                <p class="summary" style="float:left;">{{ item.summary }}</p>
-                                <p class="nickname" style="float:left;">{{ item.recipient.nickname }}</p>
-                                <p class="time" style="float:left; width:32%; overflow:hidden;">{{ item.sentAt }}</p>
+                               <p class="summary" style="float:left; margin-right:5%;">{{ item.summary }}</p>
+                                <p class="nickname" style="float:left; margin-right:5%;">{{ item.sender.nickname }}</p>
+                                <p class="time" style="float:left; width: 10%; overflow:hidden; margin-right:10%;">{{ item.sentAt|date:"y.m.d" }}</p>
                                 <img onclick = "location.href='{% url 'contact:contact_delete' item.id %}'" style="float:left; height:23px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>
                             </div>
-                            <div class="content_list" style="display:none; width: 580px; padding:20px; ">
+                            <div class="content_list" style="display:none; width: 100%; padding:20px; ">
                                 {{ item.content }}
                             </div>
                         </div>
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="modal-footer"></div>
+                <hr>
                 <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
             </div>
         </div>

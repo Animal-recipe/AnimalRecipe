@@ -22,7 +22,7 @@
         <button id="cancelButton" class="showHide">취소</button>
     </div>
 </div>
-<div style="padding: 86px 200px 0; overflow:auto;">
+<div style="padding: 86px 10% 0; overflow:auto;">
     {% if reviewList %}
     {% for item in reviewList %}
     <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.0.id %}'" style="position: relative;">

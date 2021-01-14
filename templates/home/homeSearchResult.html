@@ -7,22 +7,23 @@
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 <link rel="stylesheet" href="{% static 'css/nav.css' %}">
 
-<div id="navBarBox" style="height: 274px;">
+<div id="navBarBox" style="height: 274px; padding:0 7%;">
 
     <nav id="navBar">
-        <div id="menuBox">
-            <a class="menuItem" style="color: #FF5C00;font-weight: bold;" href="{% url 'home:home' %}">홈</a>
-            <a class="menuItem" href="{% url 'recipe:list_recipe' %}">레시피</a>
-            <a class="menuItem" href="{% url 'review:list_review' %}">후기</a>
-            <a class="menuItem" href="{% url 'about:about' %}">소개</a>
-            <a class="menuItem" href="{% url 'question:list' %}">질문</a>
+        <div id="menuBox2">
+            <a class="menuItem2" style="color: #FF5C00;font-weight: bold;" href="{% url 'home:home' %}">홈</a>
+            <a class="menuItem2" href="{% url 'recipe:list_recipe' %}">레시피</a>
+            <a class="menuItem2" href="{% url 'review:list_review' %}">후기</a>
+            <a class="menuItem2" href="{% url 'about:about' %}">소개</a>
+            <a class="menuItem2" href="{% url 'question:list' %}">질문</a>
         </div>
 
-        <a id="logo" href="{% url 'home:home' %}"><img src="{% static 'img/home/logo.png'%}" width="68px"></a>
+        <a style="margin-right:16%;" href="{% url 'home:home' %}"><img src="{% static 'img/home/logo.png'%}" width="68px"></a>
 
-        <div id="userBox">
+        <div style="float:right;">
             {% if user.is_authenticated %}
             <a href="{% url 'mypage:myRecipe' %}" class="menuItem">마이페이지</a>
+            <a href="{% url 'contact:contact_list' %}" class="menuItem">쪽지</a>
             <a href="{% url 'account:logout' %}" class="menuItem">로그아웃</a>
             {% else %}
             <a href="{% url 'account:login' %}" class="menuItem">로그인</a>
@@ -39,7 +40,7 @@
 </div>
 {% if recipes_dict or reviews_dict or questions %}
 <div class="resultBox">
-    <div class="recipeResult searchResult">
+    <div class="recipeResult searchResult" style="padding: 5% 10%;">
         <div class="searchResultTitle">
             <h2>레시피</h2>
         </div>
@@ -74,7 +75,7 @@
         {% endif %}
     </div>
     <hr>
-    <div class="reviewResult searchResult">
+    <div class="reviewResult searchResult"  style="padding: 5% 10%;">
         <div class="searchResultTitle">
             <h2>후기</h2>
         </div>
@@ -111,7 +112,7 @@
         {% endif %}
     </div>
     <hr>
-    <div class="questionResult searchResult">
+    <div class="questionResult searchResult"  style="padding: 5% 10%;">
         <div class="searchResultTitle">
             <h2>질문</h2>
         </div>

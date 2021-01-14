@@ -9,16 +9,16 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/footer/Report_problem.css' %}"/>
 <script type="text/javascript" src="{% static 'js/footer/Report_problem.js' %}"></script>
 
-<div style=" padding: 0 145px; overflow:hidden;width: 100%;height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+<div style=" padding: 0 7%; overflow:hidden;width: 100%;height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
 </div>
 
-<div id="find_user" style="padding: 0 150px; margin: 50px 0; width: 100%;">
+<div id="find_user" style="padding: 0 10%; margin: 50px 0; width: 100%;">
     <button class="back_btn" onclick = "location.href='{% url 'contact:contact_list' %}'"><img src="{% static 'img/contact/back.png' %}"/></button>
     <div style="padding: 0 50px;">
         <div style="overflow:hidden; height: 80px; margin-top:5px; ">
             <p class="header_font" style="float:left; margin-top: 20px;">회원검색</p>
-            <p class="" style="float:right; margin-top:38px;">쪽지를 보내고 싶은 닉네임을 더블클릭 해주세요</p>
+            <p class="" style="float:right; margin-top:38px;">쪽지를 보내고 싶은 닉네임을 클릭 해주세요</p>
         </div>
         <div style="position:relative;">
             <form class="" action="{% url 'contact:contact_usersearch' %}" method="POST">
@@ -33,7 +33,7 @@
         <div style="height:330px; overflow:auto; padding: 30px;">
             {% if username %}
                 {% for item in username %}
-                <div style="width:100%; height: 50px;" ondblclick = "location.href='{% url 'contact:contact_create' item.id %}'">
+                <div style="width:100%; height: 50px;" onclick = "location.href='{% url 'contact:contact_create' item.id %}'">
                     <label style="cursor:pointer;" class="list"><input style="display:none;" type="radio" name="username" value="{{ item.nickname }}" autofocus="" > <img class="noncheck_box" src="{% static 'img/footer/report_problem/noncheck.png' %}"/> <img class="check_box" style="display:none;" src="{% static 'img/footer/report_problem/check.png' %}"/>{{ item.nickname }}</label>
                 </div>
                 {% endfor %}
