@@ -12,7 +12,7 @@ def home(request):
         hot_recipes_dict = {}
 
         if hot_recipes.__len__() >= 4:
-            for i in range(0, 4):
+            for i in range(0, hot_recipes.__len__()):
                 temp = hot_recipes[i]
                 img_obj = ""
                 for j in range(0, img.__len__()):
@@ -29,7 +29,7 @@ def home(request):
         best_review_dict = {}
 
         if best_review.__len__() >= 4:
-            for i in range(0, 4):
+            for i in range(0, best_review.__len__()):
                 temp = best_review[i]
                 img_obj = ""
                 for j in range(0, img2.__len__()):

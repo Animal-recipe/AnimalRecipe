@@ -91,6 +91,7 @@
     border-radius: 68px;
     margin: 0 auto;
     cursor: pointer;
+    margin: 15px;
 }
 .infoBox:hover {
     box-shadow: 6px 6px 30px rgba(235, 55, 0, 0.1);

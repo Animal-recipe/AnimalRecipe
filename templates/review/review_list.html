@@ -9,8 +9,9 @@
 <div class="image_list">
     {% if best_review_dict %}
         {% for item, image in best_review_dict.items %}
+        {% if forloop.counter < 5 %}
             {% if image %}
-            <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url('{{ image }}'); background-size: 100%;">
+            <div onclick="location.href='{% url 'review:detail_review' review_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url('{{ image }}'); background-size: 100%;">
                 <div style="padding: 0 7%;">
                     {% include 'nav.html' %}
                 </div>
@@ -19,7 +20,7 @@
                 <p class="hot_summary" style="color:white;"> {{ item.content }}</p>
             </div>
             {% else %}
-            <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background: black; ">
+            <div onclick="location.href='{% url 'review:detail_review' review_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background: black; ">
                 <div style="padding: 0 7%;">
                     {% include 'nav.html' %}
                 </div>
@@ -28,6 +29,7 @@
                 <p class="hot_summary" style="color:white;"> {{ item.summary }}</p>
             </div>
             {% endif %}
+        {% endif %}
         {% endfor %}
     {% else %}
     <div style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background: black; ">
@@ -170,7 +172,5 @@
     {% endif %}
     <!-- pagination end -->
 </div>
-</div>
-
 {% include 'footer.html' %}
 {% endblock %}

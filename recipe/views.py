@@ -104,7 +104,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
         recipes = recipes.annotate(num_like=Count('like')).order_by('-num_like','-created')
 
     if hot_recipes.__len__() >= 4 :
-        for i in range(0,4):
+        for i in range(0, hot_recipes.__len__()):
             temp = hot_recipes[i]
             img_obj = ""
             for j in range(0, img.__len__()):

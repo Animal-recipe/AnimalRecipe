@@ -9,7 +9,7 @@
 <div id="navBarBox" style="height: 130px; padding: 0 7%;">
     {% include 'nav.html' %}
 </div>
-<div class="questionListBox" style="padding: 0 10%;">
+<div class="questionListBox" style="padding: 0 10%; height:100%; ">
     <form class="searchBarBox" action="{% url 'question:list' %}" method="GET">
         {% csrf_token %}
         <input class="searchBar q" placeholder="질문을 검색해 보세요!" id="q" name="q" value="{{q|default_if_none:''}}">
@@ -140,7 +140,6 @@
     <!-- pagination end -->
     {% endif %}
 </div>
-{% include 'footer.html' %}
 <script type='text/javascript'>
     $(document).ready(function () {
         $(".page-link").on('click', function () {
@@ -155,4 +154,5 @@
         });
     });
 </script>
+{% include 'footer.html' %}
 {% endblock %}

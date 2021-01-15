@@ -35,13 +35,13 @@ def create_Service_center(request):
 
 @login_required
 def create_Report_problem(request, user_id):
-    temp = User.objects.get(id=user_id).nickname
+    temp = User.objects.get(id=user_id)
     if request.method == 'POST':
         Report_form = Report_problem_Form(request.POST)
         if Report_form.is_valid():
             Report = Report_form.save(commit=False)
             Report.author_id = request.user.id
-            Report.target.id = user_id
+            Report.target_id = temp.id
             Report.reason = request.POST["reason"]
             Report.other_reason = request.POST["other_reason"]
             Report.save()
@@ -50,7 +50,7 @@ def create_Report_problem(request, user_id):
     else:
         Report_form = Report_problem_Form()
 
-    return render(request, '../templates/footer/Report_problem.html', {"user_id": temp})
+    return render(request, '../templates/footer/Report_problem.html', {"user_id": temp.nickname })
 
 def Terms_of_service(request):
     return render(request, '../templates/footer/Terms_of_service.html')
