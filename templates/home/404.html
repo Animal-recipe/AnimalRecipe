@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/account/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/error.css' %}">
+<div id="navBarBox" style="padding: 0 7%;">
+    {% include 'nav.html' %}
+</div>
+
+<div class="errorBox">
+    <h2 class="errorType">404</h2>
+    <p class="errorMessage">Oops!<br>페이지를 찾을 수 없습니다.</p>
+    <img src="{% static 'img/account/cat.png' %}" id="catImage">
+    <img src="{% static 'img/account/rabbit.png' %}" id="rabbitImage">
+    <img src="{% static 'img/account/dog.png' %}" id="dogImage">
+    <div class="errorOptionBox">
+        <a class="errorHome" href="{% url 'home:home' %}">메인으로 돌아가기</a>
+    </div>
+</div>
+{% endblock %}

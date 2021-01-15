@@ -80,3 +80,15 @@ def search(request):
         return render(request, "home/homeSearchResult.html", {'questions': questions, 'q': q, "recipes_dict":recipes_dict, 'reviews_dict': reviews_dict})
     else:
         return render(request, "home/homeSearchResult.html")
+
+def page_not_found(request, exception):
+    """
+    404 Page not found
+    """
+    return render(request, 'home/404.html', {})
+
+def server_error_page(request):
+    """
+    500 Page not found
+    """
+    return render(request, 'home/500.html', {})
