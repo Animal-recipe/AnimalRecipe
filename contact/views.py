@@ -87,12 +87,15 @@ def contact_receiveddelete(request):
 @login_required
 def contact_usersearch(request):
     q = request.POST.get('q', "")
+    flag = 0
     if q:
+        flag = 1
         username = User.objects.filter(nickname__icontains=q, is_active=True)
 
-        return render(request, "contact/contact_usersearch.html", {'username': username, 'q': q})
+        return render(request, "contact/contact_usersearch.html", {'username': username, 'q': q, 'flag': flag})
     else:
-        return render(request, "contact/contact_usersearch.html")
+        flag = 0
+        return render(request, "contact/contact_usersearch.html", {'flag': flag})
 
 @login_required
 def contact_showsearch(request):

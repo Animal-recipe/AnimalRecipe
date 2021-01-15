@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/footer/Report_problem.css' %}"/>
 <script type="text/javascript" src="{% static 'js/footer/Report_problem.js' %}"></script>
 
-<div style=" padding: 0 7%; overflow:hidden;width: 100%;height: 150px;background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
+<div style=" padding: 0 7%; overflow:hidden;width: 100%; background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
 </div>
 
@@ -31,23 +31,24 @@
         </div>
         <hr>
         <div style="height:330px; overflow:auto; padding: 30px;">
-            {% if username %}
-                {% for item in username %}
-                <div style="width:100%; height: 50px;" onclick = "location.href='{% url 'contact:contact_create' item.id %}'">
-                    <label style="cursor:pointer;" class="list"><input style="display:none;" type="radio" name="username" value="{{ item.nickname }}" autofocus="" > <img class="noncheck_box" src="{% static 'img/footer/report_problem/noncheck.png' %}"/> <img class="check_box" style="display:none;" src="{% static 'img/footer/report_problem/check.png' %}"/>{{ item.nickname }}</label>
-                </div>
-                {% endfor %}
-            {% else %}
-                <div class="noResultBox" style="margin:0 auto;">
-                    <img src="{% static 'img/question/error.png' %}">
-                    <h2 class="noResultText" style="padding-top:24px;">검색결과가 없습니다.</h2>
-                    <h2 class="noResultText">다른 검색어로 검색해 보세요!</h2>
-                </div>
+            {% if flag == 1 %}
+                {% if username %}
+                    {% for item in username %}
+                    <div style="width:100%; height: 50px;" onclick = "location.href='{% url 'contact:contact_create' item.id %}'">
+                        <label style="cursor:pointer;" class="list"><input style="display:none;" type="radio" name="username" value="{{ item.nickname }}" autofocus="" > <img class="noncheck_box" src="{% static 'img/footer/report_problem/noncheck.png' %}"/> <img class="check_box" style="display:none;" src="{% static 'img/footer/report_problem/check.png' %}"/>{{ item.nickname }}</label>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="noResultBox" style="margin:0 auto;">
+                        <img src="{% static 'img/question/error.png' %}">
+                        <h2 class="noResultText" style="padding-top:24px;">검색결과가 없습니다.</h2>
+                        <h2 class="noResultText">다른 검색어로 검색해 보세요!</h2>
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
         <hr>
         <p class="modal_font3">60일이 지난 쪽지는 자동으로 삭제됩니다.</p>
     </div>
 </div>
-
 {% endblock %}
