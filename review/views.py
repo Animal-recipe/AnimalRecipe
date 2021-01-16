@@ -24,11 +24,7 @@ def review_list(request):
     img = Review_Img.objects.all()
     recipe = Recipe.objects.all()
     review_dict={}
-<<<<<<< HEAD
-    best_review = Review.objects.all().annotate(num_like=Count('like')).order_by('-num_like','-created')
-=======
     best_review = Review.objects.all().annotate(num_like=Count('like')).order_by('-num_like')
->>>>>>> 22295ff60acf1bac8d0f676045b66cf2561202a5
     best_review_dict = {}
 
     if best_review.__len__() >= 4:
