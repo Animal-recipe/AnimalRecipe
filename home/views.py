@@ -7,7 +7,7 @@ from django.db.models import Count
 
 def home(request):
     if request.method == 'GET':
-        hot_recipes = Recipe.objects.all().annotate(num_like=Count('like')).order_by('-num_like','-created')
+        hot_recipes = Recipe.objects.all().annotate(num_like=Count('like')).order_by('-num_like')
         img = Recipe_Img.objects.all()
         hot_recipes_dict = {}
 
@@ -24,7 +24,7 @@ def home(request):
                 else:
                     hot_recipes_dict[temp] = ""
 
-        best_review = Review.objects.all().annotate(num_like=Count('like')).order_by('-num_like','-created')
+        best_review = Review.objects.all().annotate(num_like=Count('like')).order_by('-num_like')
         img2 = Review_Img.objects.all()
         best_review_dict = {}
 

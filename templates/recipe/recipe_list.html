@@ -11,7 +11,7 @@
     {% for item, image in hot_recipes_dict.items %}
     {% if forloop.counter < 5 %}
         {% if image %}
-        <div onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('{{ image }}'); background-size: 100%;">
+        <div onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('{{ image }}'); background-size: 100%;cursor: pointer;">
             <div style="padding: 0 7%;">
                 {% include 'nav.html' %}
             </div>
@@ -20,7 +20,7 @@
             <p class="hot_summary" style="color:white;"> {{ item.summary }}</p>
         </div>
         {% else %}
-        <div onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background: black; ">
+        <div onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background: black;cursor: pointer;">
             <div style="padding: 0 7%;">
                 {% include 'nav.html' %}
             </div>
