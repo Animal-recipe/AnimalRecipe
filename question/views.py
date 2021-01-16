@@ -96,6 +96,9 @@ def delete_answer(request, answer_id):
     if request.user != answer.author:
         messages.error(request, '삭제 권한이 없습니다')
         return redirect('question:detail', question_id=answer.question.id)
+    elif answer.accept == True:
+        messages.error(request, '채택된 답변은 삭제가 불가능합니다.')
+        return redirect('question:detail', question_id=answer.question.id)
     else:
         answer.delete()
     return redirect('question:detail', question_id=answer.question.id)
