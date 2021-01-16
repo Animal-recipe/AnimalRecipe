@@ -66,7 +66,7 @@ def recipe_list(request):  # 카테고리, 지역에 따라 list가 다릅니다
     order = request.GET.get('order', 'recent')
     img = Recipe_Img.objects.all()
     recipes_dict={}
-    hot_recipes = Recipe.objects.all().order_by('-like')
+    hot_recipes = Recipe.objects.all().annotate(num_like=Count('like')).order_by('-num_like','-created')
     hot_recipes_dict={}
     
     # 검색

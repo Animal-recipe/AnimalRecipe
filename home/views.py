@@ -3,11 +3,11 @@ from django.core.paginator import Paginator
 from question.models import Question, Answer
 from recipe.models import Recipe_Img, Recipe
 from review.models import Review, Review_Img
-
+from django.db.models import Count
 
 def home(request):
     if request.method == 'GET':
-        hot_recipes = Recipe.objects.all().order_by('-like')
+        hot_recipes = Recipe.objects.all().annotate(num_like=Count('like')).order_by('-num_like','-created')
         img = Recipe_Img.objects.all()
         hot_recipes_dict = {}
 
@@ -24,7 +24,7 @@ def home(request):
                 else:
                     hot_recipes_dict[temp] = ""
 
-        best_review = Review.objects.all().order_by('-like')
+        best_review = Review.objects.all().annotate(num_like=Count('like')).order_by('-num_like','-created')
         img2 = Review_Img.objects.all()
         best_review_dict = {}
 
