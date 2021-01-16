@@ -108,6 +108,8 @@
                             <a onclick="location.href='{% url 'account:login' %}'" style="cursor: pointer;">
                             {% elif user != question.author %}
                             <a href="#">
+                            {% elif question.accept_done %}
+                            <a href="#">
                             {% else %}
                             <a name="accept_btn_{{ answer.id }}" href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
                             {% endif %}
