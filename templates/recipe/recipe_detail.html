@@ -38,7 +38,7 @@
                 {% endif %}
             </div>
             <div style="width:62px; float:right; margin-right:10%; margin-top:174px;">
-                <a id="like" href="{% url 'recipe:like_recipe' recipe.id %}" style="margin-left:5px;">
+                <a name="like_btn" id="like" href="{% url 'recipe:like_recipe' recipe.id %}" style="margin-left:5px;">
                     {% if click_like == 0 %}
                     <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}"
                         class="card-img-top" alt="사진">
@@ -47,7 +47,7 @@
                         class="card-img-top" alt="사진">
                     {% endif %}
                 </a>
-                <a href="{% url 'recipe:save_recipe' recipe.id %}" style="margin-left:5px;">
+                <a name="save_btn" href="{% url 'recipe:save_recipe' recipe.id %}" style="margin-left:5px;">
                     {% if click_save == 0 %}
                     <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진">
                     {% else %}
@@ -102,8 +102,7 @@
         </div>
     </div>
 
-    <div style=" margin-top:106px; width: 100%; height: 338px;text-align:center;line-height:338px;background: #FFDADA;">
-        ===========광고============
+    <div style=" margin-top:106px; width: 100%; height:138px; background: #FFDADA;">
     </div>
     <div style="margin-top:121px; padding: 0 10%;">
         <div id="follow">
@@ -122,7 +121,7 @@
     <div style="padding:85px 8% 0; margin: 0 auto; margin-top:152px; width: 90%; height: 400px; background: #1B1B1B;border-radius: 60px;">
         <div style="overflow:hidden; float:left;">
             <div style="float:left; text-align:center;">
-                <a href="{% url 'recipe:like_recipe' recipe.id %}">
+                <a name="like_btn2" href="{% url 'recipe:like_recipe2' recipe.id %}">
                     {% if click_like == 0 %}
                     <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}"
                         class="card-img-top" alt="사진">
@@ -133,7 +132,7 @@
                 </a>
             </div>
             <div style="float:left; text-align:center; margin-left:50px;">
-                <a href="{% url 'recipe:save_recipe' recipe.id %}">
+                <a name="save_btn2" href="{% url 'recipe:save_recipe2' recipe.id %}">
                     {% if click_save == 0 %}
                     <img style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/save1.png' %}" class="card-img-top" alt="사진">
                     {% else %}

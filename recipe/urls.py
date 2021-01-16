@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import Recipe_Like, Recipe_Save
+from .views import Recipe_Like, Recipe_Save, Recipe_Like2, Recipe_Save2
 
 app_name = 'recipe'
 
@@ -13,7 +13,9 @@ urlpatterns = [
     path('delete/<int:recipe_id>/', views.delete, name='delete_recipe'),
     path('edit/<int:recipe_id>/', views.edit, name='edit_recipe'),
     path('like/<int:recipe_id>/', Recipe_Like.as_view(), name='like_recipe'),
+    path('like2/<int:recipe_id>/', Recipe_Like2.as_view(), name='like_recipe2'),
     path('save_count/<int:recipe_id>/', Recipe_Save.as_view(), name='save_recipe'),
+    path('save_count2/<int:recipe_id>/', Recipe_Save2.as_view(), name='save_recipe2'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

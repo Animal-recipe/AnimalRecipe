@@ -186,5 +186,5 @@ class Review_Like(LoginRequiredMixin, View):
                     review.like.add(user)
 
             referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
-            path = urlparse(referer_url).path
+            path = urlparse(referer_url).path+"#like_btn"
             return HttpResponseRedirect(path)

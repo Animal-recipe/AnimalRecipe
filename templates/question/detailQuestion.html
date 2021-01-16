@@ -59,7 +59,7 @@
         </div>
 </div>
 <!-- question end -->
-    <div style="width: 100%;height: 218px;background: #FFDADA;"><!-- 광고 --></div>
+    <div style="width: 100%; height:138px; background: #FFDADA;"><!-- 광고 --></div>
 
     <!-- answer start -->
     <div class="questionDetailBox" style="margin-bottom: 156px;padding:0 126px;">
@@ -95,7 +95,7 @@
                     <div class="qDetailContent" style="float:left; width:70%;">{{ answer.content }}</div>
                     <div style="float:right; margin-top:100px;">
                         <div style="float:left; text-align:center;">
-                            <a href="{% url 'question:like_answer' answer.id %}">
+                            <a name="like_btn_{{ answer.id }}" href="{% url 'question:like_answer' answer.id %}">
                                 {% if user in answer.like.all %}
                                     <img class="good_color" style="width: 98px; height: 98px;" src="{% static 'img/recipe/recipe_detail/good_color.png' %}" class="card-img-top" alt="사진">
                                 {% else %}
@@ -109,7 +109,7 @@
                             {% elif user != question.author %}
                             <a href="#">
                             {% else %}
-                            <a href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
+                            <a name="accept_btn_{{ answer.id }}" href="{% url 'question:accept' answer.id %}" class="confirm-accept" title="Accept" data-toggle="modal" data-target="#confirmModal" id="acceptButton{{answer.id}}">
                             {% endif %}
                                 <img {% if answer.accept %} src="{% static 'img/question/acceptActive.png' %}"{% else %} src="{% static 'img/question/accept.png' %}"{% endif %}>
                             </a>
