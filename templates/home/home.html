@@ -9,11 +9,11 @@
         <h1 id="mainText">반려동물을 위한<br />요리 레시피를<br />공유해봐요!</h1>
     </div>
     <img id="rabbit" src="{% static 'img/home/home_rabbit.png'%}">
-    <img class="rabbitShadow" src="{% static 'img/home/rabbitShadow.png'%}">
+    <img class="rabbitShadow" style="width:279px;left:1007px;top:360.88px;" src="{% static 'img/home/rabbitShadow.png'%}">
     <img id="cat" src="{% static 'img/home/home_cat.png'%}">
-    <img class="catShadow" src="{% static 'img/home/catShadow.png'%}">
+    <img class="catShadow" style="width:220px;left:1036px;top:798.31px;" src="{% static 'img/home/catShadow.png'%}">
     <img id="dog" src="{% static 'img/home/home_dog.png'%}">
-    <img class="dogShadow" src="{% static 'img/home/dogShadow.png'%}">
+    <img class="dogShadow" style="left:1270px;" src="{% static 'img/home/dogShadow.png'%}">
     <div>
         <form class="searchBarBox" style="width: 500px;" action="{% url 'home:search' %}" method="POST">
             {% csrf_token %}
@@ -59,7 +59,6 @@
                 </div>
                 {% endif %}
                 {% endfor %}
-            {% else %}
             {% endif %}
         </div>
     </div>
