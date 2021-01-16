@@ -34,7 +34,7 @@
                 {% endif %}
             </div>
             <div style="width:62px; float:right; margin-right:10%; margin-top:174px;">
-                <a href="{% url 'review:like_review' review.id %}" style="margin-left:5px;">
+                <a name="like_btn" href="{% url 'review:like_review' review.id %}" style="margin-left:5px;">
                     {% if click_like == 0 %}
                     <img style="width: 80px; height: 80px;" src="{% static 'img/recipe/recipe_detail/good1.png' %}" class="card-img-top" alt="사진">
                     {% else %}
@@ -60,7 +60,7 @@
             </div>
             <div style="display:inline-block; margin-top:40px;">
                 <img class="user_img" src="{{ review.author.profile.url }}">
-                <p class="user_info">{{ review.recipe.author.nickname }} 의 후기  |  작성일 : {{ review.created }}</p>
+                <p class="user_info">{{ review.author.nickname }} 의 후기  |  작성일 : {{ review.created }}</p>
                 <div class="count" style="margin-right:20px;">
                     <img src="{% static 'img/recipe/recipe_detail/look.png' %}" style="margin-right:5px;">{{ review.hits }}
                     <img src="{% static 'img/recipe/recipe_detail/goodMark.png' %}" style="margin:0 5px 0 10px;">{{ review.like.all.count }}
@@ -85,8 +85,7 @@
         레시피 보기
         <img src="{% static 'img/review/review_detail/goto_recipe.png' %}"/>
     </div>
-    <div style=" margin-top:106px; width: 100%; height: 338px;text-align:center;line-height:338px;background: #FFDADA;">
-    ===========광고============
+    <div style=" margin-top:106px; width: 100%; height:138px; background: #FFDADA;">
     </div>
 </div>
 

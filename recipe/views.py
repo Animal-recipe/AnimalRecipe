@@ -256,7 +256,25 @@ class Recipe_Like(LoginRequiredMixin, View):
                     recipe.like.add(user)
 
             referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
-            path = urlparse(referer_url).path
+            path = urlparse(referer_url).path+"#like_btn"
+            return HttpResponseRedirect(path)
+
+class Recipe_Like2(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
+            return HttpResponseForbidden()  # 아무일도 일어나지 않는다
+        else:
+            if 'recipe_id' in kwargs:
+                recipe_id = kwargs['recipe_id']
+                recipe = Recipe.objects.get(pk=recipe_id)
+                user = request.user
+                if user in recipe.like.all():
+                    recipe.like.remove(user)
+                else:
+                    recipe.like.add(user)
+
+            referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
+            path = urlparse(referer_url).path+"#like_btn2"
             return HttpResponseRedirect(path)
 
 class Recipe_Save(LoginRequiredMixin, View):
@@ -274,5 +292,23 @@ class Recipe_Save(LoginRequiredMixin, View):
                     recipe.bookmark.add(user)
 
             referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
-            path = urlparse(referer_url).path
+            path = urlparse(referer_url).path+"#save_btn"
+            return HttpResponseRedirect(path)
+
+class Recipe_Save2(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:  # 로그인이 되어있지 않을 경우
+            return HttpResponseForbidden()  # 아무일도 일어나지 않는다
+        else:
+            if 'recipe_id' in kwargs:
+                recipe_id = kwargs['recipe_id']
+                recipe = Recipe.objects.get(pk=recipe_id)
+                user = request.user
+                if user in recipe.bookmark.all():
+                    recipe.bookmark.remove(user)
+                else:
+                    recipe.bookmark.add(user)
+
+            referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
+            path = urlparse(referer_url).path+"#save_btn2"
             return HttpResponseRedirect(path)

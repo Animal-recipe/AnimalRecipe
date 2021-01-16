@@ -11,6 +11,7 @@ from django.views.generic.base import View
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from urllib.parse import urlparse
+from django.shortcuts import resolve_url
 
 @login_required
 def question_create(request):
@@ -137,7 +138,9 @@ def accept(request, answer_id):
     else:
         answerQuery.update(accept=True)
         questionQuery.update(accept_done=True)
-    return redirect('question:detail', question_id=question.id)
+    return redirect('{}#accept_btn_{}'.format(
+        resolve_url('question:detail', question_id=question.id), answer_id
+    ))
 
 class answer_like(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -154,5 +157,5 @@ class answer_like(LoginRequiredMixin, View):
                     answer.like.add(user)
 
             referer_url = request.META.get('HTTP_REFERER')  # 성공했을 때 url을 옮기지 않고
-            path = urlparse(referer_url).path
+            path = urlparse(referer_url).path+"#like_btn_"+str(answer_id)
             return HttpResponseRedirect(path)
