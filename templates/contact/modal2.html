@@ -24,7 +24,7 @@
                         {% for item in received_list %}
                         <div class="summary_list2" style="">
                             <div style="height:20px;">
-                                <p class="summary" style="float:left; margin-right:5%;">{{ item.summary }}</p>
+                                <p class="summary" style="float:left; margin-right:5%; text-overflow: ellipsis; word-break: break-all; white-space: nowrap; overflow: hidden;">{{ item.content }}</p>
                                 <p class="nickname" style="float:left; margin-right:5%;">{{ item.sender.nickname }}</p>
                                 <p class="time" style="float:left; width: 10%; overflow:hidden; margin-right:10%;">{{ item.sentAt|date:"y.m.d" }}</p>
                                 <img onclick = "location.href='{% url 'contact:contact_delete' item.id %}'" style="float:left; height:23px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>
@@ -56,7 +56,7 @@
                         {% for item in send_list %}
                         <div class="summary_list2" style="">
                             <div style="height:20px;">
-                                <p class="summary" style="float:left; margin-right:5%;">{{ item.summary }}</p>
+                                <p class="summary" style="float:left; margin-right:5%; text-overflow: ellipsis; word-break: break-all; white-space: nowrap; overflow: hidden;">{{ item.content }}</p>
                                 <p class="nickname" style="float:left; margin-right:5%;">{{ item.sender.nickname }}</p>
                                 <p class="time" style="float:left; width: 10%; overflow:hidden; margin-right:10%;">{{ item.sentAt|date:"y.m.d" }}</p>
                                 <img onclick = "location.href='{% url 'contact:contact_delete' item.id %}'" style="float:left; height:23px; cursor:pointer;" src="{% static 'img/contact/delete.png' %}"/>

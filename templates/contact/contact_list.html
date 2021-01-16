@@ -26,7 +26,7 @@
         {% for item in received_list %}
         <div class="summary_list" style="">
             <div onclick = "location.href='{% url 'contact:contact_detail' item.id %}'">
-                <p class="summary" style="float:left;">{{ item.summary }}</p>
+                <p class="summary" style="float:left; text-overflow: ellipsis; word-break: break-all; white-space: nowrap; overflow: hidden;">{{ item.content }}</p>
                 <p class="nickname" style="float:left; margin-left:5%;">{{ item.sender.nickname }}</p>
                 <p class="time" style="float:left; margin-left:5%;">{{ item.sentAt}}</p>
             </div>
@@ -55,7 +55,7 @@
         {% for item in send_list %}
         <div class="summary_list" style="">
             <div onclick = "location.href='{% url 'contact:contact_detail2' item.id %}'">
-                <p class="summary" style="float:left;">{{ item.summary }}</p>
+                <p class="summary" style="float:left;text-overflow: ellipsis; word-break: break-all; white-space: nowrap; overflow: hidden;">{{ item.content }}</p>
                 <p class="nickname" style="float:left; margin-left:5%;">{{ item.recipient.nickname }}</p>
                 <p class="time" style="float:left; margin-left:5%;">{{ item.sentAt}}</p>
             </div>
