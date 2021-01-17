@@ -6,7 +6,9 @@ $(document).ready(function(){
           speed: 300, // 모션 스피드
           cssEase: 'linear', //css easing 모션 함수
           autoplay: true,
-          autoplaySpeed: 5000
+          autoplaySpeed: 5000,
+          prevArrow: null,
+          nextArrow: null,
     });
     $(".page-link").on('click', function () {
         $("#page").val($(this).data("page"));

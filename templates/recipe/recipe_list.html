@@ -11,7 +11,7 @@
     {% for item, image in hot_recipes_dict.items %}
     {% if forloop.counter < 5 %}
         {% if image %}
-        <div onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('{{ image }}'); background-size: 100%;cursor: pointer;">
+        <div onclick = "location.href='{% url 'recipe:detail_recipe' recipe_id=item.id %}'" style="border-radius: 0px 0px 80px 80px; width: 100%; height: 550px; background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('{{ image }}'); background-size: 100%; cursor: pointer;">
             <div style="padding: 0 7%;">
                 {% include 'nav.html' %}
             </div>
@@ -42,8 +42,8 @@
 <div>
     <!-- filter div -->
     <div style="overflow:hidden;padding: 0 10%;">
-        <div style="display: flex;justify-content: space-between;margin:0 0 40px">
-            <div style="display: inline-block;width:100%;margin-right:30px;margin-top: 52px;">
+        <div style="display: flex; justify-content: space-between;margin:0 0 40px">
+            <div style="width:60%; margin-right:30px;margin-top: 52px;">
                 <form class="searchBarBox" action="{% url 'recipe:list_recipe' %}" method="GET">
                     {% csrf_token %}
                     <input class="searchBar q" placeholder="요리를 검색해 보세요!" aria-label="Search" id="q" name="q"
@@ -57,8 +57,8 @@
                     <input type="hidden" id="page" name="page" value="{{ page }}">
                 </form>
             </div>
-            <div style="display:inline-block;width:100%;text-align:right;">
-                <div class="selectBox">
+            <div style="display:flex; flex-wrap:nowrap; text-align:right;">
+                <div class="selectBox" style="width:25%; margin-right:7px;">
                     <select class="petkind">
                         <option value="all" {% if petkind == 'all' %} selected {% endif %}><span>모든 동물</span></option>
                         <option value="dog" {% if petkind == 'dog' %} selected {% endif %}><span>강아지</span></option>
@@ -66,7 +66,7 @@
                         <option value="etc" {% if petkind == 'etc' %} selected {% endif %}><span>다른 동물</span></option>
                     </select>
                 </div>
-                <div class="selectBox">
+                <div class="selectBox" style="width:25%; margin-right:7px;">
                     <select class="cooking_time">
                         <option value="all" {% if cooking_time == 'all' %} selected {% endif %}><span>모든 시간</span>
                         </option>
@@ -80,7 +80,7 @@
                                 이상</span></option>
                     </select>
                 </div>
-                <div class="selectBox">
+                <div class="selectBox" style="width:25%;">
                     <select class="order">
                         <option value="recent" {% if order == 'recent' %} selected {% endif %}><span>최신순</span></option>
                         <option value="review" {% if order == 'review' %} selected {% endif %}><span>후기 순</span>

@@ -13,6 +13,7 @@ class MessageForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control',
                     'placeholder': '쪽지를 작성해주세요.',
+                    'onkeyup': 'javascript:fnChkByte(this)',
                 }
             ),
         }
@@ -27,6 +28,7 @@ class RemessageForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control',
                     'placeholder': '쪽지를 작성해주세요.',
+                    'onkeyup': 'javascript:fnChkByte(this)',
                 }
             ),
         }

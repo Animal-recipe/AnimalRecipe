@@ -43,7 +43,7 @@
 <div style="padding: 0 10%; overflow:auto; width:100%;">
     <!-- filter div -->
     <div style="display: flex;justify-content: space-between;margin:0 0 40px">
-        <div style="display: inline-block;width:100%;margin-right:30px;margin-top: 52px;">
+        <div style="width:60%; margin-right:30px;margin-top: 52px;">
             <form class="searchBarBox" action="{% url 'review:list_review' %}" method="GET">
                 {% csrf_token %}
                 <input class="searchBar q" placeholder="후기를 검색해 보세요!" aria-label="Search" id="q" name="q"
@@ -57,8 +57,8 @@
                 <input type="hidden" id="page" name="page" value="{{ page }}">
             </form>
         </div>
-        <div style="display:inline-block;width:100%;text-align:right;">
-            <div class="selectBox">
+        <div style="display:flex; flex-wrap:nowrap; text-align:right;">
+            <div class="selectBox" style="width:25%; margin-right:7px;">
                 <select class="petkind">
                     <option value="all" {% if petkind == 'all' %} selected {% endif %}><span>모든 동물</span></option>
                     <option value="dog" {% if petkind == 'dog' %} selected {% endif %}><span>강아지</span></option>
@@ -66,7 +66,7 @@
                     <option value="etc" {% if petkind == 'etc' %} selected {% endif %}><span>다른 동물</span></option>
                 </select>
             </div>
-            <div class="selectBox">
+            <div class="selectBox" style="width:25%; margin-right:7px;">
                 <select class="cooking_time">
                     <option value="all" {% if cooking_time == 'all' %} selected {% endif %}><span>모든 시간</span>
                     </option>
@@ -80,7 +80,7 @@
                             이상</span></option>
                 </select>
             </div>
-            <div class="selectBox">
+            <div class="selectBox" class="selectBox" style="width:25%;">
                 <select class="order">
                     <option value="recent" {% if order == 'recent' %} selected {% endif %}><span>최신순</span></option>
                     <option value="like" {% if order == 'like' %} selected {% endif %}><span>공감 순</span></option>
@@ -92,7 +92,7 @@
 <!-- filter div end -->
 
 <!-- content div start -->
-<div style="padding: 0 10%; overflow:auto; width:100%;">
+<div style="padding: 0 10%; overflow:auto; width:100%; margin-top:60px;">
     {% if not reviews %}
     <div class="noResultBox">
         <img src="{% static 'img/question/error.png' %}">
