@@ -236,10 +236,10 @@ option span {
 .recipe_size {
     cursor: pointer;
     float: left;
-    margin-right: 20px;
+    margin-right: 2%;
     margin-bottom: 100px;
     width: 23%;
-    min-width: 204px;
+    min-width: 349.3px;
     height: 432px;
     background: #FFFFFF;
     box-shadow: 26px 20px 35px rgba(0, 0, 0, 0.1);
@@ -413,4 +413,8 @@ button{
 
 input{
     cursor:pointer;
+}
+
+.slick-track{
+    width:100%;
 }

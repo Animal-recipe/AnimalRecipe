@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_create.css' %}"/>
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_detail.css' %}">
 <link rel="stylesheet" href="{% static 'css/recipe/recipe_list.css' %}">
-
 <div style=" padding: 0 7%; overflow:hidden;width: 100%; background: #1B1B1B;border-radius: 0px 0px 80px 80px;">
     {% include 'nav.html' %}
 </div>
@@ -25,8 +24,30 @@
             <hr>
             {{ form.as_p }}
             <hr>
-            <p class="modal_font3">byte</p>
+            <p class="modal_font3" id="bytes">0 byte</p>
         </form>
     </div>
 </div>
+<script type="text/javascript">
+function fnChkByte(obj)
+{
+    var str = obj.value;
+    var str_len = str.length;
+
+    var rbyte = 0;
+    var rlen = 0;
+    var one_char = "";
+    var str2 = "";
+
+    for(var i=0; i<str_len; i++){
+        one_char = str.charAt(i);
+        if(escape(one_char).length > 4){
+            rbyte += 2;
+        }else{
+            rbyte++;
+        }
+    }
+    document.getElementById('bytes').innerText = rbyte+" byte";
+}
+</script>
 {% endblock %}
