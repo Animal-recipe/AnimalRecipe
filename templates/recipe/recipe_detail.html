@@ -182,7 +182,7 @@
             <img style="margin-left:15px;" src="{% static 'img/recipe/recipe_list/recipe_write.png' %}" />
         </div>
     </div>
-    <div style="padding: 0 10%; overflow:auto; width:100%;">
+    <div style="padding: 0 5%; overflow:auto; width:100%;display: flex;justify-content: space-around;">
         {% if not reviews %}
         <div class="noResultBox" style="margin: 30px auto 100px;">
             <img src="{% static 'img/question/error.png' %}">
@@ -191,7 +191,7 @@
         </div>
         {% else %}
         {% for item in reviews %}
-        <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.0.id %}'">
+        <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.0.id %}'" style="margin: 0 auto; margin-bottom:50px;min-width:204px;">
             {% if item.1 %}
             <img class="recipe_img" src="{{ item.1 }}" class="card-img-top" alt="사진">
             {% else %}
