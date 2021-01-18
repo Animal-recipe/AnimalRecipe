@@ -31,7 +31,7 @@ button:focus {
 }
 
 .menuBox a {
-    width: 147px;
+    width: auto;
     font-family: Noto Sans;
     font-weight: bold;
     font-size: 48px;
