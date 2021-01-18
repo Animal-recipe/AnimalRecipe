@@ -177,12 +177,12 @@
     <div style="margin: 50px auto; width:100%; padding: 0 10%; display: inline-block; padding-bottom: 34px;">
         <p id="review_title" style="padding-top:15px; margin: 0 auto;">총 {{ count }}개의
             <br>후기가 있어요!</p>
-        <div id="create_review_css" style=" width: 200px; float:right; margin-right:3%;">
-            <a href="{% url 'review:create_review' recipe_id=recipe.id %}" style="color: #FFFFFF;">후기 작성하기</a>
-            <img style="margin-left:15px;" src="{% static 'img/recipe/recipe_list/recipe_write.png' %}" />
+        <div id="create_recipe_css">
+            <a href="{% url 'review:create_review' recipe_id=recipe.id %}" style="color: #FFFFFF;background-color:#000000;min-width:202px;">후기 작성하기<img style="margin-left:15px;" src="{% static 'img/recipe/recipe_list/recipe_write.png' %}" />
+            </a>
         </div>
     </div>
-    <div style="padding: 0 5%; overflow:auto; width:100%;display: flex;justify-content: space-around;">
+    <div style="padding: 0 5%; overflow:auto; width:100%;">
         {% if not reviews %}
         <div class="noResultBox" style="margin: 30px auto 100px;">
             <img src="{% static 'img/question/error.png' %}">
@@ -191,7 +191,7 @@
         </div>
         {% else %}
         {% for item in reviews %}
-        <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.0.id %}'" style="margin: 0 auto; margin-bottom:50px;min-width:204px;">
+        <div class="recipe_size" onclick="location.href='{% url 'review:detail_review' review_id=item.0.id %}'">
             {% if item.1 %}
             <img class="recipe_img" src="{{ item.1 }}" class="card-img-top" alt="사진">
             {% else %}
